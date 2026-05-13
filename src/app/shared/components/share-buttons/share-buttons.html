@@ -1,0 +1,10 @@
+<div class="share-buttons">
+  <span class="share-label">Share</span>
+  <button class="share-btn" (click)="shareOnTwitter()" aria-label="Share on X">X</button>
+  <button class="share-btn" (click)="shareOnLinkedIn()" aria-label="Share on LinkedIn">
+    LinkedIn
+  </button>
+  <button class="share-btn" (click)="copyLink()" aria-label="Copy link">
+    {{ copied() ? 'Copied!' : 'Copy Link' }}
+  </button>
+</div>

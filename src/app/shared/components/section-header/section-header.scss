@@ -1,0 +1,21 @@
+.section-header {
+  margin-bottom: var(--space-xl);
+
+  &.center {
+    text-align: center;
+  }
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-tertiary);
+  max-width: 600px;
+  line-height: var(--leading-snug);
+}

@@ -1,0 +1,8 @@
+<app-scroll-reveal>
+  <div class="section-header" [class.center]="align() === 'center'">
+    <h2 class="section-title">{{ title() }}</h2>
+    @if (subtitle(); as sub) {
+      <p class="section-subtitle">{{ sub }}</p>
+    }
+  </div>
+</app-scroll-reveal>

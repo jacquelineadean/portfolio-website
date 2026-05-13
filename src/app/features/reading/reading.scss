@@ -1,0 +1,61 @@
+.reading-intro {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 700px;
+  margin-bottom: var(--space-2xl);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.book-card {
+  padding: var(--space-lg);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--duration-normal) ease,
+    background-color var(--duration-normal) ease;
+
+  &:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-bg-card-hover);
+  }
+}
+
+.book-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.book-author {
+  font-size: var(--text-sm);
+  color: var(--color-accent-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.book-reflection {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-md);
+}
+
+.book-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}

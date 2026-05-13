@@ -1,0 +1,31 @@
+<section class="page container">
+  <app-section-header
+    title="Reading & Ideas"
+    subtitle="Books and ideas that shape how I think about systems, complexity, and decisions."
+  />
+
+  <app-scroll-reveal>
+    <p class="reading-intro">
+      I'm drawn to writing that explores systems, complexity, incentives, and decision-making —
+      both within software engineering and beyond. These ideas frequently influence how I
+      approach design, tradeoffs, and long-term thinking in my work.
+    </p>
+  </app-scroll-reveal>
+
+  <div class="books-grid">
+    @for (book of books; track book.title; let i = $index) {
+      <app-scroll-reveal [delay]="0.1 + i * 0.1">
+        <div class="book-card">
+          <h3 class="book-title">{{ book.title }}</h3>
+          <p class="book-author">{{ book.author }}</p>
+          <p class="book-reflection">{{ book.reflection }}</p>
+          <div class="book-tags">
+            @for (tag of book.tags; track tag) {
+              <app-tag [label]="tag" />
+            }
+          </div>
+        </div>
+      </app-scroll-reveal>
+    }
+  </div>
+</section>

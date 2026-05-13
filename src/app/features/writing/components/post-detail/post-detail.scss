@@ -1,0 +1,54 @@
+.back-link {
+  display: inline-block;
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xl);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--color-accent-secondary);
+  }
+}
+
+.post-header {
+  margin-bottom: var(--space-2xl);
+  max-width: 800px;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-md);
+
+  .meta-sep {
+    opacity: 0.4;
+  }
+}
+
+.post-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-md);
+}
+
+.post-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+:host ::ng-deep .prose {
+  max-width: 800px;
+}
+
+.post-footer {
+  max-width: 800px;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}

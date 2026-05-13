@@ -1,0 +1,27 @@
+.resume-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 60vh;
+  justify-content: center;
+}
+
+.resume-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.resume-description {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 500px;
+}
+
+.resume-note {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}

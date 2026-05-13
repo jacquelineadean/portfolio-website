@@ -1,0 +1,34 @@
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.page {
+  min-height: 100vh;
+  padding-top: clamp(6rem, 10vw, 10rem);
+  padding-bottom: var(--space-3xl);
+}
+
+.section {
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+.gradient-text {
+  background: var(--gradient-accent);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

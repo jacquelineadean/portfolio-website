@@ -1,0 +1,26 @@
+<section class="page container">
+  <app-section-header
+    title="Work"
+    subtitle="Systems I've designed, built, and shipped."
+  />
+
+  <div class="case-studies">
+    @for (study of caseStudies; track study.slug; let i = $index) {
+      <app-scroll-reveal [delay]="i * 0.15">
+        <a [routerLink]="['/work', study.slug]" class="case-study-card">
+          <div class="card-content">
+            <div class="card-tags">
+              @for (tag of study.tags; track tag) {
+                <app-tag [label]="tag" />
+              }
+            </div>
+            <h3 class="card-title">{{ study.title }}</h3>
+            <p class="card-subtitle">{{ study.subtitle }}</p>
+            <span class="card-link">View Case Study →</span>
+          </div>
+          <div class="card-glow" aria-hidden="true"></div>
+        </a>
+      </app-scroll-reveal>
+    }
+  </div>
+</section>

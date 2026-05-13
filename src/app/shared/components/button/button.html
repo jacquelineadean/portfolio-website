@@ -1,0 +1,19 @@
+@if (routerPath(); as path) {
+  <a [routerLink]="path" class="btn" [class]="'btn--' + variant()">
+    {{ label() }}
+  </a>
+} @else if (href(); as link) {
+  <a
+    [href]="link"
+    class="btn"
+    [class]="'btn--' + variant()"
+    [target]="external() ? '_blank' : null"
+    [rel]="external() ? 'noopener noreferrer' : null"
+  >
+    {{ label() }}
+  </a>
+} @else {
+  <button class="btn" [class]="'btn--' + variant()">
+    {{ label() }}
+  </button>
+}
