@@ -1,0 +1,49 @@
+<section class="page container">
+  <app-section-header title="About" subtitle="Engineer, builder, systems thinker." />
+
+  <div class="about-grid">
+    <div class="about-bio">
+      <app-scroll-reveal>
+        <p>
+          I'm a full-stack software engineer who thrives at the intersection of complexity and
+          clarity. My work focuses on modernizing large, legacy enterprise systems into modular,
+          cloud-native platforms — the kind of transformation that demands both technical depth and
+          strategic patience.
+        </p>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="0.1">
+        <p>
+          I enjoy the problems where system boundaries are blurred, requirements evolve mid-flight,
+          and every decision is a tradeoff. Backend service design, API development, data modeling,
+          frontend integration — I operate across the stack with an emphasis on maintainability,
+          performance, and operational clarity.
+        </p>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="0.2">
+        <p>
+          I value clear ownership, thoughtful abstractions, and engineering decisions that balance
+          correctness with pragmatism. The best code isn't clever — it's confident, extensible,
+          and easy to hand off.
+        </p>
+      </app-scroll-reveal>
+    </div>
+
+    <div class="about-focus">
+      <app-scroll-reveal [delay]="0.3">
+        <h3 class="focus-title">Current Focus</h3>
+      </app-scroll-reveal>
+      <div class="focus-grid">
+        @for (interest of interests; track interest.label; let i = $index) {
+          <app-scroll-reveal [delay]="0.4 + i * 0.1">
+            <div class="focus-card">
+              <h4>{{ interest.label }}</h4>
+              <p>{{ interest.description }}</p>
+            </div>
+          </app-scroll-reveal>
+        }
+      </div>
+    </div>
+  </div>
+</section>

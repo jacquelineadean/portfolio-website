@@ -1,0 +1,51 @@
+<section class="hero">
+  <div class="hero-inner container">
+    <div class="hero-content">
+      <p class="hero-label">
+        <app-animated-text>Software Engineer — Full Stack & Systems</app-animated-text>
+      </p>
+
+      <h1 class="hero-name">
+        <app-animated-text [delay]="0.3">Jacqueline Dean</app-animated-text>
+      </h1>
+
+      <app-scroll-reveal [delay]="0.8">
+        <p class="hero-tagline">
+          I design and build scalable software systems with a focus on clean abstractions, data
+          correctness, and long-term sustainability.
+        </p>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="1">
+        <p class="hero-current">
+          Currently modernizing legacy enterprise platforms into cloud-native, service-oriented
+          architectures.
+        </p>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="1.2">
+        <div class="hero-links">
+          <app-button label="View Work" routerPath="/work" variant="primary" />
+          <app-button label="Read Writing" routerPath="/writing" variant="secondary" />
+          <app-button label="Resume" routerPath="/resume" variant="ghost" />
+        </div>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="1.4">
+        <div class="hero-social">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span class="divider">·</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span class="divider">·</span>
+          <a href="mailto:hello&#64;example.com">Email</a>
+        </div>
+      </app-scroll-reveal>
+    </div>
+
+    <div class="hero-decoration" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+  </div>
+</section>

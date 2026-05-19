@@ -1,0 +1,48 @@
+<section class="page container">
+  <app-section-header
+    title="Writing"
+    subtitle="Thoughts on software engineering — tradeoffs, design decisions, and lessons learned."
+  />
+
+  <app-scroll-reveal>
+    <div class="tag-filters">
+      <button
+        class="tag-filter"
+        [class.active]="!activeTag()"
+        (click)="setTag(null)"
+      >
+        All
+      </button>
+      @for (tag of allTags; track tag) {
+        <button
+          class="tag-filter"
+          [class.active]="activeTag() === tag"
+          (click)="setTag(tag)"
+        >
+          {{ tag }}
+        </button>
+      }
+    </div>
+  </app-scroll-reveal>
+
+  <div class="posts-grid">
+    @for (post of filteredPosts(); track post.slug; let i = $index) {
+      <app-scroll-reveal [delay]="i * 0.1">
+        <a [routerLink]="['/writing', post.slug]" class="post-card">
+          <div class="post-meta">
+            <time>{{ post.date }}</time>
+            <span class="meta-sep">·</span>
+            <span>{{ post.readingTime }} min read</span>
+          </div>
+          <h3 class="post-title">{{ post.title }}</h3>
+          <p class="post-excerpt">{{ post.excerpt }}</p>
+          <div class="post-tags">
+            @for (tag of post.tags; track tag) {
+              <app-tag [label]="tag" />
+            }
+          </div>
+        </a>
+      </app-scroll-reveal>
+    }
+  </div>
+</section>

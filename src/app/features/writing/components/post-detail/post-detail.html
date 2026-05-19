@@ -1,0 +1,38 @@
+@if (post(); as post) {
+  <article class="page container">
+    <app-scroll-reveal>
+      <a routerLink="/writing" class="back-link">← Back to Writing</a>
+    </app-scroll-reveal>
+
+    <app-scroll-reveal [delay]="0.1">
+      <header class="post-header">
+        <div class="post-meta">
+          <time>{{ post.date }}</time>
+          <span class="meta-sep">·</span>
+          <span>{{ post.readingTime }} min read</span>
+        </div>
+        <h1 class="post-title">{{ post.title }}</h1>
+        <div class="post-tags">
+          @for (tag of post.tags; track tag) {
+            <app-tag [label]="tag" />
+          }
+        </div>
+      </header>
+    </app-scroll-reveal>
+
+    <app-scroll-reveal [delay]="0.2">
+      <div class="prose" [innerHTML]="safeContent()"></div>
+    </app-scroll-reveal>
+
+    <app-scroll-reveal [delay]="0.3">
+      <div class="post-footer">
+        <app-share-buttons [title]="post.title" />
+      </div>
+    </app-scroll-reveal>
+  </article>
+} @else {
+  <div class="page container">
+    <p>Post not found.</p>
+    <a routerLink="/writing" class="back-link">← Back to Writing</a>
+  </div>
+}

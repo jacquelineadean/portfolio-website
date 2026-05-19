@@ -1,0 +1,35 @@
+@if (study(); as study) {
+  <article class="page container">
+    <app-scroll-reveal>
+      <a routerLink="/work" class="back-link">← Back to Work</a>
+    </app-scroll-reveal>
+
+    <app-section-header [title]="study.title" [subtitle]="study.subtitle" />
+
+    <div class="study-tags">
+      @for (tag of study.tags; track tag) {
+        <app-tag [label]="tag" />
+      }
+    </div>
+
+    <div class="study-sections">
+      @for (section of study.sections; track section.title; let i = $index) {
+        <app-scroll-reveal [delay]="i * 0.1">
+          <div class="study-section">
+            <h3 class="section-title">{{ section.title }}</h3>
+            <div class="section-content">
+              @for (item of section.content; track item) {
+                <p>{{ item }}</p>
+              }
+            </div>
+          </div>
+        </app-scroll-reveal>
+      }
+    </div>
+  </article>
+} @else {
+  <div class="page container">
+    <p>Case study not found.</p>
+    <a routerLink="/work" class="back-link">← Back to Work</a>
+  </div>
+}
