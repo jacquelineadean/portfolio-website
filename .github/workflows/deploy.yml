@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - claude/angular-portfolio-website-kJFpj
+  workflow_dispatch:
+
+# Allow the GITHUB_TOKEN to deploy to Pages and mint an OIDC token
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; cancel in-progress runs for the same ref
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Configure Pages
+        # enablement: true turns on GitHub Pages (source = GitHub Actions) via the
+        # API, so no manual toggle in repo Settings is required.
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        # Base href must match the project-site path: https://<user>.github.io/portfolio-website/
+        run: npm run build -- --base-href=/portfolio-website/
+
+      - name: Add SPA fallback for client-side routing
+        # GitHub Pages returns 404.html for unknown paths; serving the app shell
+        # there lets the Angular router resolve deep links on refresh.
+        run: cp dist/portfolio-website/browser/index.html dist/portfolio-website/browser/404.html
+
+      - name: Disable Jekyll processing
+        run: touch dist/portfolio-website/browser/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/portfolio-website/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
