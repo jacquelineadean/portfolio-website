@@ -1,24 +1,38 @@
 <section class="page container">
-  <app-section-header
-    title="Work"
-    subtitle="Systems I've designed, built, and shipped."
-  />
+  <header class="page-hero">
+    <app-scroll-reveal>
+      <p class="eyebrow">
+        <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+        Case studies
+      </p>
+      <h1 class="page-hero-title">The <em>experiments</em> that shipped.</h1>
+      <p class="page-hero-sub">
+        Systems I've designed, built, and carried into production — and what each one taught me.
+      </p>
+    </app-scroll-reveal>
+  </header>
 
   <div class="case-studies">
     @for (study of caseStudies; track study.slug; let i = $index) {
-      <app-scroll-reveal [delay]="i * 0.15">
-        <a [routerLink]="['/work', study.slug]" class="case-study-card">
-          <div class="card-content">
-            <div class="card-tags">
+      <app-scroll-reveal [delay]="i * 0.12">
+        <a [routerLink]="['/work', study.slug]" class="work-card">
+          <div class="work-card-tile" [class]="'work-card-tile tile--' + tileColors[i % 5]">
+            <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <span class="sparkle" aria-hidden="true"></span>
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-chips">
               @for (tag of study.tags; track tag) {
-                <app-tag [label]="tag" />
+                <span class="chip">{{ tag }}</span>
               }
             </div>
-            <h3 class="card-title">{{ study.title }}</h3>
-            <p class="card-subtitle">{{ study.subtitle }}</p>
-            <span class="card-link">View Case Study →</span>
+            <h3>{{ study.title }}</h3>
+            <p>{{ study.subtitle }}</p>
+            <span class="work-card-cta">
+              View case study
+              <span class="arrow-circle" aria-hidden="true">→</span>
+            </span>
           </div>
-          <div class="card-glow" aria-hidden="true"></div>
         </a>
       </app-scroll-reveal>
     }

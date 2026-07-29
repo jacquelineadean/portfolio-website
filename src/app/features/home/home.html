@@ -1,51 +1,135 @@
 <section class="hero">
   <div class="hero-inner container">
-    <div class="hero-content">
-      <p class="hero-label">
-        <app-animated-text>Software Engineer — Full Stack & Systems</app-animated-text>
-      </p>
-
-      <h1 class="hero-name">
-        <app-animated-text [delay]="0.3">Jacqueline Dean</app-animated-text>
-      </h1>
-
-      <app-scroll-reveal [delay]="0.8">
-        <p class="hero-tagline">
-          I design and build scalable software systems with a focus on clean abstractions, data
-          correctness, and long-term sustainability.
-        </p>
-      </app-scroll-reveal>
-
-      <app-scroll-reveal [delay]="1">
-        <p class="hero-current">
-          Currently modernizing legacy enterprise platforms into cloud-native, service-oriented
-          architectures.
-        </p>
-      </app-scroll-reveal>
-
-      <app-scroll-reveal [delay]="1.2">
-        <div class="hero-links">
-          <app-button label="View Work" routerPath="/work" variant="primary" />
-          <app-button label="Read Writing" routerPath="/writing" variant="secondary" />
-          <app-button label="Resume" routerPath="/resume" variant="ghost" />
-        </div>
-      </app-scroll-reveal>
-
-      <app-scroll-reveal [delay]="1.4">
-        <div class="hero-social">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <span class="divider">·</span>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <span class="divider">·</span>
-          <a href="mailto:hello&#64;example.com">Email</a>
-        </div>
-      </app-scroll-reveal>
-    </div>
-
     <div class="hero-decoration" aria-hidden="true">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
+      <span class="sparkle sparkle--yellow deco deco-1 spin-slow"></span>
+      <span class="sparkle sparkle--red deco deco-2"></span>
+      <span class="sparkle sparkle--green deco deco-3"></span>
+      <span class="sparkle sparkle--blue deco deco-4"></span>
+      <div class="blob"></div>
     </div>
+
+    <div class="hero-content">
+      <app-scroll-reveal>
+        <p class="chip hero-chip">
+          <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+          Jacqueline Dean · Software Engineer
+        </p>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="0.1">
+        <h1 class="hero-title">This is where <em>ideas</em> become <em>systems</em>.</h1>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="0.25">
+        <p class="hero-sub">
+          I'm a full-stack engineer who turns aging, tangled platforms into clean, cloud-native
+          systems — built for correctness, clarity, and the long run.
+        </p>
+      </app-scroll-reveal>
+
+      <app-scroll-reveal [delay]="0.4">
+        <div class="hero-links">
+          <app-button label="Explore my work" routerPath="/work" variant="primary" />
+          <app-button label="More about me" routerPath="/about" variant="secondary" />
+        </div>
+      </app-scroll-reveal>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      @for (skill of skills; track skill) {
+        <span>{{ skill }}</span>
+        <span class="sparkle"></span>
+      }
+    </div>
+    <div class="marquee-track">
+      @for (skill of skills; track skill) {
+        <span>{{ skill }}</span>
+        <span class="sparkle"></span>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section featured container">
+  <div class="featured-head">
+    <app-section-header
+      eyebrow="Featured work"
+      sparkleColor="blue"
+      title="Recent <em>experiments</em>, shipped to production."
+    />
+    <a routerLink="/work" class="text-link featured-all">All case studies</a>
+  </div>
+
+  <div class="featured-grid">
+    @for (study of caseStudies; track study.slug; let i = $index) {
+      <app-scroll-reveal [delay]="i * 0.12">
+        <a [routerLink]="['/work', study.slug]" class="work-card">
+          <div class="work-card-tile" [class]="'work-card-tile tile--' + tileColors[i % 5]">
+            <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <span class="sparkle" aria-hidden="true"></span>
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-chips">
+              @for (tag of study.tags.slice(0, 3); track tag) {
+                <span class="chip">{{ tag }}</span>
+              }
+            </div>
+            <h3>{{ study.title }}</h3>
+            <p>{{ study.subtitle }}</p>
+            <span class="work-card-cta">
+              View case study
+              <span class="arrow-circle" aria-hidden="true">→</span>
+            </span>
+          </div>
+        </a>
+      </app-scroll-reveal>
+    }
+  </div>
+</section>
+
+<section class="section statement">
+  <div class="container">
+    <app-scroll-reveal>
+      <p class="eyebrow">
+        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+        A working philosophy
+      </p>
+      <p class="statement-text">
+        The best code isn't <em>clever</em> — it's confident, extensible, and easy to hand off.
+      </p>
+      <div class="statement-chips">
+        @for (principle of principles; track principle) {
+          <span class="chip">{{ principle }}</span>
+        }
+      </div>
+    </app-scroll-reveal>
+  </div>
+</section>
+
+<section class="section writing-preview container">
+  <div class="featured-head">
+    <app-section-header
+      eyebrow="Notes from the lab"
+      sparkleColor="green"
+      title="Latest <em>writing</em>."
+    />
+    <a routerLink="/writing" class="text-link featured-all">All writing</a>
+  </div>
+
+  <div class="post-list">
+    @for (post of recentPosts; track post.slug; let i = $index) {
+      <app-scroll-reveal [delay]="i * 0.08">
+        <a [routerLink]="['/writing', post.slug]" class="post-row">
+          <time>{{ post.date }}</time>
+          <span class="post-row-main">
+            <span class="post-row-title">{{ post.title }}</span>
+            <span class="post-row-excerpt">{{ post.excerpt }}</span>
+          </span>
+          <span class="arrow-circle" aria-hidden="true">→</span>
+        </a>
+      </app-scroll-reveal>
+    }
   </div>
 </section>

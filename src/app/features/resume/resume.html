@@ -1,22 +1,18 @@
 <section class="page container">
   <div class="resume-content">
-    <app-section-header
-      title="Resume"
-      subtitle="A concise overview of my professional experience and technical skills."
-      align="center"
-    />
-
     <app-scroll-reveal>
-      <div class="resume-cta">
-        <p class="resume-description">
-          For a detailed look at my background, experience, and the systems I've built —
-          download my resume below.
+      <div class="resume-panel">
+        <span class="sparkle sparkle--blue panel-sparkle spin-slow" aria-hidden="true"></span>
+        <p class="eyebrow">
+          <span class="sparkle sparkle--purple" aria-hidden="true"></span>
+          Resume
         </p>
-        <app-button
-          label="Download Resume"
-          href="/resume.pdf"
-          variant="primary"
-        />
+        <h1 class="resume-title">The short <em>version</em>.</h1>
+        <p class="resume-description">
+          A concise overview of my experience, the systems I've built, and the technical skills I
+          bring to a team — in one tidy PDF.
+        </p>
+        <app-button label="Download resume" href="/resume.pdf" variant="primary" />
         <p class="resume-note">PDF · Updated 2026</p>
       </div>
     </app-scroll-reveal>

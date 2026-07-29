@@ -13,12 +13,10 @@ export class Navbar {
   protected readonly scrolled = signal(false);
 
   protected readonly navLinks = [
-    { path: '/', label: 'Home', exact: true },
     { path: '/about', label: 'About', exact: false },
     { path: '/work', label: 'Work', exact: false },
     { path: '/writing', label: 'Writing', exact: false },
     { path: '/reading', label: 'Reading', exact: false },
-    { path: '/resume', label: 'Resume', exact: false },
   ];
 
   @HostListener('window:scroll')

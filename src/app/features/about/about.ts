@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { ScrollReveal } from '../../shared/components/scroll-reveal/scroll-reveal';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [SectionHeader, ScrollReveal],
+  imports: [ScrollReveal],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
