@@ -1,7 +1,8 @@
 <nav [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
   <div class="nav-inner container">
     <a routerLink="/" class="logo" (click)="closeMenu()">
-      <span class="logo-text">JD</span>
+      <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+      <span class="logo-text">Jacqueline Dean</span>
     </a>
 
     <button
@@ -12,22 +13,24 @@
     >
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
     </button>
 
-    <ul class="nav-links" [class.open]="menuOpen()">
-      @for (link of navLinks; track link.path) {
-        <li>
-          <a
-            [routerLink]="link.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: link.exact }"
-            (click)="closeMenu()"
-          >
-            {{ link.label }}
-          </a>
-        </li>
-      }
-    </ul>
+    <div class="nav-links" [class.open]="menuOpen()">
+      <ul class="nav-list">
+        @for (link of navLinks; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: link.exact }"
+              (click)="closeMenu()"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+      <a routerLink="/resume" class="nav-cta" (click)="closeMenu()">Resume</a>
+    </div>
   </div>
 </nav>

@@ -7,13 +7,16 @@ import { Component, input } from '@angular/core';
   styles: `
     .tag {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
-      font-size: var(--text-xs);
-      font-weight: 500;
-      color: var(--color-accent-secondary);
-      background: var(--color-accent-glow);
-      border-radius: var(--radius-xl);
-      letter-spacing: var(--tracking-wide);
+      padding: 0.28rem 0.8rem;
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
     }
   `,
 })

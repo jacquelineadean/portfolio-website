@@ -1,16 +1,9 @@
 .back-link {
-  display: inline-block;
-  font-size: var(--text-sm);
-  color: var(--color-text-tertiary);
   margin-bottom: var(--space-xl);
-  transition: color var(--duration-fast) ease;
-
-  &:hover {
-    color: var(--color-accent-secondary);
-  }
 }
 
 .post-header {
+  margin-top: var(--space-lg);
   margin-bottom: var(--space-2xl);
   max-width: 800px;
 }
@@ -19,18 +12,21 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  font-size: var(--text-sm);
-  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
   margin-bottom: var(--space-md);
 
-  .meta-sep {
-    opacity: 0.4;
+  .sparkle {
+    font-size: 0.55rem;
   }
 }
 
 .post-title {
   font-size: var(--text-3xl);
-  font-weight: 700;
+  font-weight: 500;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-md);
@@ -43,12 +39,16 @@
 }
 
 :host ::ng-deep .prose {
-  max-width: 800px;
+  max-width: 760px;
 }
 
 .post-footer {
-  max-width: 800px;
+  max-width: 760px;
   margin-top: var(--space-2xl);
   padding-top: var(--space-lg);
   border-top: 1px solid var(--color-border);
+}
+
+.not-found {
+  margin-bottom: var(--space-md);
 }

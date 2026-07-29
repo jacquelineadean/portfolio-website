@@ -1,46 +1,45 @@
 <section class="page container">
-  <app-section-header
-    title="Writing"
-    subtitle="Thoughts on software engineering — tradeoffs, design decisions, and lessons learned."
-  />
+  <header class="page-hero">
+    <app-scroll-reveal>
+      <p class="eyebrow">
+        <span class="sparkle sparkle--green" aria-hidden="true"></span>
+        Field notes
+      </p>
+      <h1 class="page-hero-title">Notes from the <em>lab</em>.</h1>
+      <p class="page-hero-sub">
+        Thoughts on software engineering — tradeoffs, design decisions, and lessons learned in
+        production.
+      </p>
+    </app-scroll-reveal>
+  </header>
 
   <app-scroll-reveal>
     <div class="tag-filters">
-      <button
-        class="tag-filter"
-        [class.active]="!activeTag()"
-        (click)="setTag(null)"
-      >
-        All
-      </button>
+      <button class="tag-filter" [class.active]="!activeTag()" (click)="setTag(null)">All</button>
       @for (tag of allTags; track tag) {
-        <button
-          class="tag-filter"
-          [class.active]="activeTag() === tag"
-          (click)="setTag(tag)"
-        >
+        <button class="tag-filter" [class.active]="activeTag() === tag" (click)="setTag(tag)">
           {{ tag }}
         </button>
       }
     </div>
   </app-scroll-reveal>
 
-  <div class="posts-grid">
+  <div class="post-list">
     @for (post of filteredPosts(); track post.slug; let i = $index) {
-      <app-scroll-reveal [delay]="i * 0.1">
-        <a [routerLink]="['/writing', post.slug]" class="post-card">
-          <div class="post-meta">
-            <time>{{ post.date }}</time>
-            <span class="meta-sep">·</span>
-            <span>{{ post.readingTime }} min read</span>
-          </div>
-          <h3 class="post-title">{{ post.title }}</h3>
-          <p class="post-excerpt">{{ post.excerpt }}</p>
-          <div class="post-tags">
-            @for (tag of post.tags; track tag) {
-              <app-tag [label]="tag" />
-            }
-          </div>
+      <app-scroll-reveal [delay]="i * 0.06">
+        <a [routerLink]="['/writing', post.slug]" class="post-row">
+          <time>{{ post.date }}</time>
+          <span class="post-row-main">
+            <span class="post-row-title">{{ post.title }}</span>
+            <span class="post-row-excerpt">{{ post.excerpt }}</span>
+            <span class="post-row-meta">
+              {{ post.readingTime }} min read
+              @for (tag of post.tags; track tag) {
+                <span class="chip">{{ tag }}</span>
+              }
+            </span>
+          </span>
+          <span class="arrow-circle" aria-hidden="true">→</span>
         </a>
       </app-scroll-reveal>
     }

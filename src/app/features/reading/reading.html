@@ -1,28 +1,33 @@
 <section class="page container">
-  <app-section-header
-    title="Reading & Ideas"
-    subtitle="Books and ideas that shape how I think about systems, complexity, and decisions."
-  />
-
-  <app-scroll-reveal>
-    <p class="reading-intro">
-      I'm drawn to writing that explores systems, complexity, incentives, and decision-making —
-      both within software engineering and beyond. These ideas frequently influence how I
-      approach design, tradeoffs, and long-term thinking in my work.
-    </p>
-  </app-scroll-reveal>
+  <header class="page-hero">
+    <app-scroll-reveal>
+      <p class="eyebrow">
+        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+        Bookshelf
+      </p>
+      <h1 class="page-hero-title">Ideas worth <em>borrowing</em>.</h1>
+      <p class="page-hero-sub">
+        I'm drawn to writing that explores systems, complexity, incentives, and decision-making —
+        within software engineering and far beyond it. These ideas shape how I approach design,
+        tradeoffs, and long-term thinking.
+      </p>
+    </app-scroll-reveal>
+  </header>
 
   <div class="books-grid">
     @for (book of books; track book.title; let i = $index) {
-      <app-scroll-reveal [delay]="0.1 + i * 0.1">
+      <app-scroll-reveal [delay]="0.05 + i * 0.08">
         <div class="book-card">
-          <h3 class="book-title">{{ book.title }}</h3>
-          <p class="book-author">{{ book.author }}</p>
-          <p class="book-reflection">{{ book.reflection }}</p>
-          <div class="book-tags">
-            @for (tag of book.tags; track tag) {
-              <app-tag [label]="tag" />
-            }
+          <div class="book-spine" [class]="'book-spine spine--' + tileColors[i % 5]" aria-hidden="true"></div>
+          <div class="book-body">
+            <h3 class="book-title">{{ book.title }}</h3>
+            <p class="book-author">{{ book.author }}</p>
+            <p class="book-reflection">{{ book.reflection }}</p>
+            <div class="book-tags">
+              @for (tag of book.tags; track tag) {
+                <span class="chip">{{ tag }}</span>
+              }
+            </div>
           </div>
         </div>
       </app-scroll-reveal>
