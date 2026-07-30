@@ -12,8 +12,10 @@ h6 {
   text-wrap: balance;
 }
 
+/* The largest display sizes lighten to 400 — Labs' hero weight */
 h1 {
   font-size: var(--text-3xl);
+  font-weight: 400;
 }
 
 h2 {
@@ -22,21 +24,26 @@ h2 {
 
 h3 {
   font-size: var(--text-xl);
+  letter-spacing: var(--tracking-normal);
 }
 
 h4 {
   font-size: var(--text-lg);
+  letter-spacing: var(--tracking-normal);
 }
 
-/* The signature accent: italic serif words inside big sans headlines */
+/* Labs has no serif and no italic display accents. Emphasis inside a heading
+   renders upright and inherits the heading's own weight. Author emphasis in
+   long-form prose is handled separately in _prose.scss. */
 h1 em,
 h2 em,
 h3 em,
+h4 em,
 .serif {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 
 p {
@@ -48,12 +55,13 @@ p {
 code {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  background: var(--color-paper-warm);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
   padding: 0.15em 0.4em;
   border-radius: var(--radius-sm);
 }
 
 strong {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
 }
