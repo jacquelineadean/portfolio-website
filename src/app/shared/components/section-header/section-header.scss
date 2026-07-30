@@ -15,12 +15,20 @@
 }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: 500;
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
   margin-bottom: var(--space-sm);
   max-width: 24ch;
+
+  /* Titles still ship <em> accents; Labs has no italic — keep them upright. */
+  em {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: inherit;
+  }
 }
 
 .section-header.center .section-title {
@@ -29,7 +37,17 @@
 
 .section-subtitle {
   font-size: var(--text-lg);
-  color: var(--color-ink-muted);
-  max-width: 600px;
-  line-height: var(--leading-snug);
+  color: var(--color-on-surface-subtle);
+  max-width: 60ch;
+  line-height: var(--leading-normal);
+}
+
+:host-context(.section--inverse) {
+  .section-title {
+    color: var(--color-text-inverse-strong);
+  }
+
+  .section-subtitle {
+    color: var(--color-text-inverse);
+  }
 }

@@ -11,8 +11,15 @@
 
   --color-on-surface: #323232;
   --color-on-surface-subtle: rgba(50, 50, 50, 0.8);
+  /* Quietest ink that still clears 4.5:1 on the cream surface (5.29:1 on
+     #f3efea, 5.57:1 on the #f8f5f1 card fill). Same cool-neutral cast as the
+     Labs grays, one step down the ramp from --color-on-surface-subtle. */
+  --color-on-surface-dim: #5f6368;
   --color-on-surface-inverse: #d1d1d1;
 
+  /* Raw Labs grays. Both are dark-surface-only: on the cream surface
+     --color-gray-muted is 2.31:1 and --color-gray-dim is 3.92:1, so neither
+     may carry text there — use --color-on-surface-dim instead. */
   --color-gray-muted: #9aa0a6;
   --color-gray-dim: #75777b;
 
@@ -30,7 +37,7 @@
 
   --color-text-primary: var(--color-on-surface);
   --color-text-secondary: var(--color-on-surface-subtle);
-  --color-text-tertiary: var(--color-gray-dim);
+  --color-text-tertiary: var(--color-on-surface-dim);
 
   --color-accent-primary: var(--color-on-surface);
   --color-accent-secondary: var(--color-accent);
@@ -38,6 +45,11 @@
 
   --color-border: var(--color-hairline);
   --color-border-hover: #d6c9b9;
+  /* Interactive boundaries — a control's outline is its affordance, so it must
+     clear the 3:1 non-text threshold (WCAG 1.4.11). The hairline above is 1.15:1
+     and is for decorative separation between content blocks only; it must never
+     be the sole boundary of a button, input or other operable control. */
+  --color-border-strong: #8f8980;
 
   /* Inverse (full-bleed dark bands) */
   --color-bg-inverse: var(--color-surface-dark);
@@ -62,7 +74,10 @@
   --text-2xl: clamp(2rem, 1.5rem + 2.6vw, 3.75rem);
   --text-3xl: clamp(2.75rem, 1.6rem + 5.8vw, 6.25rem);
   --text-display: clamp(2.75rem, 1.5rem + 6.2vw, 6.25rem);
-  --text-hero: clamp(3rem, 1.4rem + 8vw, 7.5rem);
+  /* Labs runs its hero at 120px, but that is sized for a two-word product name
+     ("Google Flow"). A sentence-length headline needs a smaller cap to hold a
+     sane measure — 96px keeps the Labs scale without wrapping to one word a line. */
+  --text-hero: clamp(2.5rem, 1.2rem + 6.4vw, 6rem);
   /* The Labs "eyebrow + oversized statement" pairing */
   --text-statement: clamp(1.875rem, 1.1rem + 3.9vw, 3.75rem);
 

@@ -11,5 +11,4 @@ import { BOOKS } from './data/books.data';
 })
 export class Reading {
   protected readonly books = BOOKS;
-  protected readonly tileColors = ['yellow', 'blue', 'red', 'green', 'purple'];
 }

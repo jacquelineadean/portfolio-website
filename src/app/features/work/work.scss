@@ -1,13 +1,21 @@
+/* Work index — a uniform rail-style grid of neutral cards. Labs separates
+   cards with the warm hairline and generous gutters, never with color. */
 .case-studies {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 
   @media (min-width: 820px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* the reveal wrapper is the grid item — let it stretch so cards line up */
   > * {
     min-width: 0;
+    height: 100%;
   }
 }

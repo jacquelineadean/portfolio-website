@@ -1,3 +1,9 @@
+/* ---------------------------------------------------------------------------
+ * Post detail — Labs page-hero rhythm: uppercase eyebrow, large plain-sans
+ * title, quiet meta line. Body copy is owned by _prose.scss; nothing here
+ * overrides its sizing or color, only the measure it sits in.
+ * ------------------------------------------------------------------------- */
+
 .back-link {
   margin-bottom: var(--space-xl);
 }
@@ -5,31 +11,41 @@
 .post-header {
   margin-top: var(--space-lg);
   margin-bottom: var(--space-2xl);
-  max-width: 800px;
+  max-width: var(--container-narrow);
+
+  .eyebrow {
+    margin-bottom: var(--space-md);
+  }
+}
+
+.post-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  text-wrap: balance;
+  margin-bottom: var(--space-md);
 }
 
 .post-meta {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
+  flex-wrap: wrap;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-md);
-
-  .sparkle {
-    font-size: 0.55rem;
-  }
 }
 
-.post-title {
-  font-size: var(--text-3xl);
-  font-weight: 500;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
-  margin-bottom: var(--space-md);
+/* Decorative and aria-hidden, so no contrast floor applies — but the border
+   tone renders at 1.4:1 and vanishes, which defeats the point of a separator.
+   Matches the surrounding meta text instead. */
+.post-meta-sep {
+  color: var(--color-text-tertiary);
 }
 
 .post-tags {
@@ -39,11 +55,11 @@
 }
 
 :host ::ng-deep .prose {
-  max-width: 760px;
+  max-width: var(--container-narrow);
 }
 
 .post-footer {
-  max-width: 760px;
+  max-width: var(--container-narrow);
   margin-top: var(--space-2xl);
   padding-top: var(--space-lg);
   border-top: 1px solid var(--color-border);

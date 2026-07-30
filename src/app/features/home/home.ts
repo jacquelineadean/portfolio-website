@@ -19,8 +19,6 @@ export class Home {
   protected readonly caseStudies = CASE_STUDIES;
   protected readonly recentPosts = this.blogService.recentPosts().slice(0, 3);
 
-  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
-
   protected readonly skills = [
     'System design',
     'Spring Boot',

@@ -1,11 +1,8 @@
 <section class="page container">
   <header class="page-hero">
     <app-scroll-reveal>
-      <p class="eyebrow">
-        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
-        Bookshelf
-      </p>
-      <h1 class="page-hero-title">Ideas worth <em>borrowing</em>.</h1>
+      <p class="eyebrow">Bookshelf</p>
+      <h1 class="page-hero-title">Ideas worth borrowing.</h1>
       <p class="page-hero-sub">
         I'm drawn to writing that explores systems, complexity, incentives, and decision-making —
         within software engineering and far beyond it. These ideas shape how I approach design,
@@ -18,7 +15,6 @@
     @for (book of books; track book.title; let i = $index) {
       <app-scroll-reveal [delay]="0.05 + i * 0.08">
         <div class="book-card">
-          <div class="book-spine" [class]="'book-spine spine--' + tileColors[i % 5]" aria-hidden="true"></div>
           <div class="book-body">
             <h3 class="book-title">{{ book.title }}</h3>
             <p class="book-author">{{ book.author }}</p>

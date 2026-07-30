@@ -1,89 +1,110 @@
+/* Case study detail — Labs long-form rhythm: a dark full-bleed hero band, a
+   run of cream sections on the "eyebrow label + reading-measure body" grid,
+   and a single inverted band for Impact so the flip punctuates the page
+   rather than dominating it. */
+
 .back-link {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
-.study-header {
-  margin-top: var(--space-lg);
-
-  .study-chips {
-    display: flex;
-    gap: var(--space-xs);
-    flex-wrap: wrap;
+/* --------------------------------------------------------------------------
+ * Hero band (inverse #1 of 2)
+ * ----------------------------------------------------------------------- */
+.study-hero {
+  .eyebrow {
     margin-bottom: var(--space-md);
   }
 
   .page-hero-title {
-    max-width: 22ch;
+    max-width: 20ch;
+  }
+
+  .page-hero-sub {
+    max-width: 60ch;
+  }
+
+  .study-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-lg);
   }
 }
 
+/* --------------------------------------------------------------------------
+ * Section stack
+ * ----------------------------------------------------------------------- */
 .study-sections {
   display: flex;
   flex-direction: column;
-  max-width: 900px;
 }
 
 .study-section {
+  /* Cream sections are separated by the warm hairline only — no shadow, no fill. */
+  &:not(.section--inverse) {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Impact reads as the second inverted band (inverse #2 of 2). */
+  &.section--inverse {
+    border-top: none;
+    margin-block: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+.study-section-inner {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-sm) var(--space-xl);
-  padding: var(--space-lg) 0;
-  border-top: 1px solid var(--color-border);
+  gap: var(--space-sm) var(--space-2xl);
+  align-items: start;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 220px 1fr;
-  }
-
-  &.highlight {
-    background: var(--tint-green);
-    border-top: none;
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    margin-top: var(--space-sm);
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 16rem) minmax(0, 68ch);
   }
 }
 
+/* Section title takes the eyebrow cut — the quiet half of Labs' pairing. */
 .study-label {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-sm);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  line-height: var(--leading-normal);
+  color: var(--color-text-tertiary);
 
-  .study-index {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--color-ink-muted);
-  }
-
-  h2 {
-    font-size: var(--text-lg);
-    font-weight: 500;
+  @media (min-width: 900px) {
+    /* optical alignment with the first line of body copy */
+    padding-top: 0.3rem;
   }
 }
 
+/* Body copy keeps the .prose size and measure — no display scaling here. */
 .study-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+  max-width: 68ch;
 
-  p {
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-    color: var(--color-ink-soft);
+  p:last-child {
+    margin-bottom: 0;
   }
 
   &.multi p {
     position: relative;
-    padding-left: 1.4rem;
+    padding-left: 1.5rem;
+    margin-bottom: 0.9em;
 
+    /* Functional list marker, tinted from the inherited ink so it reads on
+       both the cream and the inverted surface. */
     &::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0.5em;
-      width: 0.6em;
-      height: 0.6em;
-      background: var(--color-green);
-      clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+      left: 0.15rem;
+      top: 0.72em;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.45;
     }
   }
 }

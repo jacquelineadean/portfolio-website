@@ -12,5 +12,4 @@ import { CASE_STUDIES } from './data/case-studies.data';
 })
 export class Work {
   protected readonly caseStudies = CASE_STUDIES;
-  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
 }

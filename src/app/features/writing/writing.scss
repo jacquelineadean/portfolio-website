@@ -1,3 +1,9 @@
+/* ---------------------------------------------------------------------------
+ * Writing index — Labs-quiet list. No mono, no micro-caps, no long easing.
+ * The row itself is styled by .post-row in _utilities.scss; only the filter
+ * rail and the meta line are local.
+ * ------------------------------------------------------------------------- */
+
 .tag-filters {
   display: flex;
   gap: var(--space-xs);
@@ -6,13 +12,13 @@
 }
 
 .tag-filter {
-  padding: 0.45rem 1.2rem;
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
+  padding: 0.5rem 1.15rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-secondary);
+  background: transparent;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   transition:
@@ -22,13 +28,14 @@
 
   &:hover {
     border-color: var(--color-border-hover);
-    color: var(--color-ink);
+    background: var(--color-bg-card-hover);
+    color: var(--color-text-primary);
   }
 
   &.active {
-    color: var(--color-paper);
-    border-color: var(--color-ink);
-    background: var(--color-ink);
+    color: var(--color-text-inverse);
+    border-color: var(--color-text-primary);
+    background: var(--color-text-primary);
   }
 }
 
@@ -47,9 +54,8 @@
   gap: var(--space-xs);
   flex-wrap: wrap;
   margin-top: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-secondary);
 }

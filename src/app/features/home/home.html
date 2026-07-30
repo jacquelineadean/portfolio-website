@@ -1,23 +1,39 @@
-<section class="hero">
-  <div class="hero-inner container">
-    <div class="hero-decoration" aria-hidden="true">
-      <span class="sparkle sparkle--yellow deco deco-1 spin-slow"></span>
-      <span class="sparkle sparkle--red deco deco-2"></span>
-      <span class="sparkle sparkle--green deco deco-3"></span>
-      <span class="sparkle sparkle--blue deco deco-4"></span>
-      <div class="blob"></div>
-    </div>
+<section class="hero section--inverse">
+  <div class="hero-mosaic" aria-hidden="true">
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+    <span class="hero-tile"></span>
+  </div>
 
+  <div class="hero-inner container">
     <div class="hero-content">
       <app-scroll-reveal>
-        <p class="chip hero-chip">
-          <span class="sparkle sparkle--blue" aria-hidden="true"></span>
-          Jacqueline Dean · Software Engineer
-        </p>
+        <p class="eyebrow hero-eyebrow">Jacqueline Dean · Software Engineer</p>
       </app-scroll-reveal>
 
       <app-scroll-reveal [delay]="0.1">
-        <h1 class="hero-title">This is where <em>ideas</em> become <em>systems</em>.</h1>
+        <h1 class="hero-title">This is where ideas become systems.</h1>
       </app-scroll-reveal>
 
       <app-scroll-reveal [delay]="0.25">
@@ -40,13 +56,13 @@
     <div class="marquee-track">
       @for (skill of skills; track skill) {
         <span>{{ skill }}</span>
-        <span class="sparkle"></span>
+        <span class="marquee-sep"></span>
       }
     </div>
     <div class="marquee-track">
       @for (skill of skills; track skill) {
         <span>{{ skill }}</span>
-        <span class="sparkle"></span>
+        <span class="marquee-sep"></span>
       }
     </div>
   </div>
@@ -56,8 +72,7 @@
   <div class="featured-head">
     <app-section-header
       eyebrow="Featured work"
-      sparkleColor="blue"
-      title="Recent <em>experiments</em>, shipped to production."
+      title="Recent experiments, shipped to production."
     />
     <a routerLink="/work" class="text-link featured-all">All case studies</a>
   </div>
@@ -66,10 +81,7 @@
     @for (study of caseStudies; track study.slug; let i = $index) {
       <app-scroll-reveal [delay]="i * 0.12">
         <a [routerLink]="['/work', study.slug]" class="work-card">
-          <div class="work-card-tile" [class]="'work-card-tile tile--' + tileColors[i % 5]">
-            <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
-            <span class="sparkle" aria-hidden="true"></span>
-          </div>
+          <div class="work-card-tile" aria-hidden="true"></div>
           <div class="work-card-body">
             <div class="work-card-chips">
               @for (tag of study.tags.slice(0, 3); track tag) {
@@ -89,17 +101,14 @@
   </div>
 </section>
 
-<section class="section statement">
+<section class="section section--inverse philosophy">
   <div class="container">
     <app-scroll-reveal>
-      <p class="eyebrow">
-        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
-        A working philosophy
+      <p class="eyebrow">A working philosophy</p>
+      <p class="statement philosophy-text">
+        The best code isn't clever — it's confident, extensible, and easy to hand off.
       </p>
-      <p class="statement-text">
-        The best code isn't <em>clever</em> — it's confident, extensible, and easy to hand off.
-      </p>
-      <div class="statement-chips">
+      <div class="philosophy-chips">
         @for (principle of principles; track principle) {
           <span class="chip">{{ principle }}</span>
         }
@@ -110,11 +119,7 @@
 
 <section class="section writing-preview container">
   <div class="featured-head">
-    <app-section-header
-      eyebrow="Notes from the lab"
-      sparkleColor="green"
-      title="Latest <em>writing</em>."
-    />
+    <app-section-header eyebrow="Notes from the lab" title="Latest writing." />
     <a routerLink="/writing" class="text-link featured-all">All writing</a>
   </div>
 

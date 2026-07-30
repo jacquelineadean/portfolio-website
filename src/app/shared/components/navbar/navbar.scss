@@ -8,16 +8,12 @@
 }
 
 nav {
-  transition:
-    background-color var(--duration-normal) ease,
-    backdrop-filter var(--duration-normal) ease,
-    border-color var(--duration-normal) ease;
+  background-color: var(--color-surface);
   border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-out-quart);
 
   &.scrolled {
-    background-color: rgba(247, 245, 240, 0.82);
-    backdrop-filter: blur(14px);
-    border-bottom-color: var(--color-border);
+    border-bottom-color: var(--color-hairline);
   }
 }
 
@@ -25,30 +21,21 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4.75rem;
+  height: var(--nav-height);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
   z-index: 10;
-
-  .sparkle {
-    font-size: 1rem;
-    transition: transform var(--duration-slow) var(--ease-out-expo);
-  }
-
-  &:hover .sparkle {
-    transform: rotate(180deg);
-  }
 }
 
 .logo-text {
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 500;
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-on-surface);
 }
 
 .nav-links {
@@ -63,37 +50,14 @@ nav {
   align-items: center;
 
   li a {
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--color-ink-soft);
-    transition: color var(--duration-fast) ease;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 50%;
-      translate: -50% 0;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--color-ink);
-      opacity: 0;
-      scale: 0;
-      transition:
-        opacity var(--duration-normal) var(--ease-out-expo),
-        scale var(--duration-normal) var(--ease-out-expo);
-    }
+    color: var(--color-on-surface-subtle);
+    transition: color var(--duration-fast) var(--ease-out-quart);
 
     &:hover,
     &.active {
-      color: var(--color-ink);
-    }
-
-    &.active::after {
-      opacity: 1;
-      scale: 1;
+      color: var(--color-on-surface);
     }
   }
 }
@@ -101,19 +65,20 @@ nav {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  padding: 0.55rem 1.35rem;
-  font-size: 0.9rem;
+  padding: 0.7rem 1.6rem;
+  font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-paper);
-  background: var(--color-ink);
+  color: var(--color-on-surface);
+  background: transparent;
+  border: 0.2rem solid var(--color-hairline);
   border-radius: var(--radius-pill);
   transition:
-    transform var(--duration-fast) ease,
-    background-color var(--duration-fast) ease;
+    background-color var(--duration-fast) var(--ease-out-quart),
+    border-color var(--duration-fast) var(--ease-out-quart);
 
   &:hover {
-    background: #000;
-    transform: scale(1.04);
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
   }
 }
 
@@ -130,9 +95,9 @@ nav {
   width: 26px;
   height: 2px;
   border-radius: 2px;
-  background: var(--color-ink);
+  background: var(--color-on-surface);
   transition:
-    transform var(--duration-normal) ease,
+    transform var(--duration-normal) var(--ease-out-quart),
     opacity var(--duration-fast) ease;
 }
 
@@ -147,7 +112,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     gap: var(--space-xl);
-    background: var(--color-paper);
+    background: var(--color-surface);
     opacity: 0;
     visibility: hidden;
     transition:
@@ -168,19 +133,13 @@ nav {
     li a {
       font-size: var(--text-2xl);
       font-weight: 500;
-      letter-spacing: var(--tracking-tight);
-
-      &::after {
-        bottom: -2px;
-        width: 6px;
-        height: 6px;
-      }
+      letter-spacing: var(--tracking-normal);
     }
   }
 
   .nav-cta {
     font-size: var(--text-base);
-    padding: 0.8rem 2.2rem;
+    padding: 0.9rem 2.2rem;
   }
 
   nav.menu-open {
@@ -191,5 +150,15 @@ nav {
     .hamburger-line:nth-child(2) {
       transform: translateY(-4px) rotate(-45deg);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav,
+  .nav-list li a,
+  .nav-cta,
+  .hamburger-line,
+  .nav-links {
+    transition: none;
   }
 }

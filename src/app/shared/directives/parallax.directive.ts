@@ -1,4 +1,15 @@
-import { Directive, ElementRef, NgZone, OnDestroy, afterNextRender, inject, input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  afterNextRender,
+  inject,
+  input,
+} from '@angular/core';
+
+/** Maximum drift, in pixels, across the full viewport traverse. */
+const MAX_SHIFT_PX = 12;
 
 @Directive({
   selector: '[appParallax]',
@@ -13,15 +24,26 @@ export class ParallaxDirective implements OnDestroy {
 
   constructor() {
     afterNextRender(() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
       this.zone.runOutsideAngular(() => {
+        const element = this.el.nativeElement as HTMLElement;
+
         const onScroll = () => {
+          cancelAnimationFrame(this.rafId);
           this.rafId = requestAnimationFrame(() => {
-            const rect = this.el.nativeElement.getBoundingClientRect();
-            const offset = (window.innerHeight - rect.top) * this.speed();
-            this.el.nativeElement.style.transform = `translateY(${offset}px)`;
+            const rect = element.getBoundingClientRect();
+            // Normalised -1..1 progress as the element crosses the viewport,
+            // scaled by a small fixed travel so the drift stays subtle.
+            const progress =
+              (rect.top + rect.height / 2 - window.innerHeight / 2) / (window.innerHeight || 1);
+            const clamped = Math.max(-1, Math.min(1, progress));
+            const offset = clamped * MAX_SHIFT_PX * Math.min(Math.max(this.speed(), 0), 1);
+            element.style.transform = `translateY(${offset.toFixed(2)}px)`;
           });
         };
         window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
         this.cleanup = () => window.removeEventListener('scroll', onScroll);
       });
     });

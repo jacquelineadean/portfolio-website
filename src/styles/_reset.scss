@@ -53,8 +53,7 @@ ol {
 }
 
 /* On dark bands the ink-colored ring would disappear */
-.section--inverse :focus-visible,
-.hero--inverse :focus-visible {
+.section--inverse :focus-visible {
   outline-color: var(--color-text-inverse-strong);
 }
 

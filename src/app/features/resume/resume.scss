@@ -1,48 +1,33 @@
+/* The resume page reads as a document: a narrow measure, warm hairline rules
+ * between blocks, no panel, no shadow, no color accent. */
 .resume-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 55vh;
+  max-width: 46rem;
 }
 
-.resume-panel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-md);
-  max-width: 620px;
-  padding: clamp(2.5rem, 6vw, 4.5rem);
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-card);
-}
-
-.panel-sparkle {
-  position: absolute;
-  top: -1.4rem;
-  right: 8%;
-  font-size: 2.75rem;
-}
-
-.resume-title {
-  font-size: var(--text-2xl);
-  font-weight: 500;
+.resume-hero {
+  margin-bottom: 0;
+  padding-bottom: clamp(var(--space-lg), 5vw, var(--space-2xl));
+  border-bottom: 1px solid var(--color-border);
 }
 
 .resume-description {
-  font-size: var(--text-base);
-  color: var(--color-ink-soft);
-  line-height: var(--leading-relaxed);
-  max-width: 42ch;
+  max-width: 52ch;
+  margin-bottom: 0;
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: clamp(var(--space-lg), 5vw, var(--space-2xl));
+  border-bottom: 1px solid var(--color-border);
 }
 
 .resume-note {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.08em;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-text-tertiary);
 }

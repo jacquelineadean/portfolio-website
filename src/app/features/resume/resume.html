@@ -1,17 +1,18 @@
 <section class="page container">
   <div class="resume-content">
     <app-scroll-reveal>
-      <div class="resume-panel">
-        <span class="sparkle sparkle--blue panel-sparkle spin-slow" aria-hidden="true"></span>
-        <p class="eyebrow">
-          <span class="sparkle sparkle--purple" aria-hidden="true"></span>
-          Resume
-        </p>
-        <h1 class="resume-title">The short <em>version</em>.</h1>
-        <p class="resume-description">
+      <header class="page-hero resume-hero">
+        <p class="eyebrow">Resume</p>
+        <h1 class="page-hero-title">The short version.</h1>
+        <p class="page-hero-sub resume-description">
           A concise overview of my experience, the systems I've built, and the technical skills I
           bring to a team — in one tidy PDF.
         </p>
+      </header>
+    </app-scroll-reveal>
+
+    <app-scroll-reveal [delay]="0.1">
+      <div class="resume-actions">
         <app-button label="Download resume" href="/resume.pdf" variant="primary" />
         <p class="resume-note">PDF · Updated 2026</p>
       </div>

@@ -1,19 +1,16 @@
 <section class="page container">
   <header class="page-hero">
     <app-scroll-reveal>
-      <p class="eyebrow">
-        <span class="sparkle sparkle--red" aria-hidden="true"></span>
-        About
-      </p>
-      <h1 class="page-hero-title">Engineer, builder, <em>systems thinker</em>.</h1>
+      <p class="eyebrow">About</p>
+      <h1 class="page-hero-title">Engineer, builder, systems thinker.</h1>
     </app-scroll-reveal>
   </header>
 
   <div class="about-bio">
     <app-scroll-reveal>
       <p class="bio-lead">
-        I thrive at the intersection of <em>complexity</em> and <em>clarity</em> — modernizing
-        large legacy platforms into modular, cloud-native systems.
+        I thrive at the intersection of complexity and clarity — modernizing large legacy platforms
+        into modular, cloud-native systems.
       </p>
     </app-scroll-reveal>
 
@@ -31,26 +28,32 @@
       <app-scroll-reveal [delay]="0.2">
         <p>
           I value clear ownership, thoughtful abstractions, and engineering decisions that balance
-          correctness with pragmatism. The best code isn't clever — it's confident, extensible,
-          and easy to hand off.
+          correctness with pragmatism.
         </p>
       </app-scroll-reveal>
     </div>
   </div>
 
+  <div class="section--inverse about-statement">
+    <app-scroll-reveal>
+      <div class="about-statement-inner">
+        <p class="eyebrow">How I work</p>
+        <p class="statement">
+          The best code isn't clever — it's confident, extensible, and easy to hand off.
+        </p>
+      </div>
+    </app-scroll-reveal>
+  </div>
+
   <div class="about-focus">
     <app-scroll-reveal>
-      <p class="eyebrow">
-        <span class="sparkle sparkle--green" aria-hidden="true"></span>
-        Current focus
-      </p>
+      <p class="eyebrow">Current focus</p>
     </app-scroll-reveal>
 
     <div class="focus-list">
       @for (interest of interests; track interest.label; let i = $index) {
         <app-scroll-reveal [delay]="0.05 + i * 0.06">
           <div class="focus-row">
-            <span class="focus-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
             <h3 class="focus-label">{{ interest.label }}</h3>
             <p class="focus-desc">{{ interest.description }}</p>
           </div>

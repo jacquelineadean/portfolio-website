@@ -37,24 +37,30 @@
  * the surface, not by introducing hue.
  * ------------------------------------------------------------------------- */
 .section--inverse {
+  /* Rebind the ink scale for the whole band rather than patching individual
+     classes. Custom properties inherit down the DOM and are resolved at use
+     time, so component styles pick the inverse ink up automatically — a
+     descendant rule like `.section--inverse .eyebrow` cannot, because Angular
+     emits component selectors as `.foo[_ngcontent-*]` at (0,2,0) and outranks
+     it. Any class anywhere that reads --color-text-* is covered by this. */
+  --color-text-primary: var(--color-text-inverse-strong);
+  --color-text-secondary: var(--color-text-inverse);
+  --color-text-tertiary: var(--color-gray-muted);
+
   background: var(--color-bg-inverse);
   color: var(--color-text-inverse);
   padding-block: clamp(4rem, 9vw, 9.6rem);
   margin-bottom: clamp(4rem, 8vw, 8rem);
 
+  /* Headings only. There is deliberately no `p` rule here: a type selector
+     would outrank single-class rules like `.eyebrow` and flatten them to body
+     ink. Paragraphs already inherit the band `color` above, and anything that
+     sets its own color does so through the rebound tokens. */
   h1,
   h2,
   h3,
   h4 {
     color: var(--color-text-inverse-strong);
-  }
-
-  p {
-    color: var(--color-text-inverse);
-  }
-
-  .eyebrow {
-    color: var(--color-gray-muted);
   }
 
   .chip {
@@ -165,7 +171,15 @@
 /* ---------------------------------------------------------------------------
  * Marquee — scrolling ticker divider
  * ------------------------------------------------------------------------- */
+/* The marquee re-establishes the cream surface, and it is nested inside the
+   dark hero band — so it has to restore the cream ink scale that
+   .section--inverse rebound. */
 .marquee {
+  --color-text-primary: var(--color-on-surface);
+  --color-text-secondary: var(--color-on-surface-subtle);
+  --color-text-tertiary: var(--color-on-surface-dim);
+
+  color: var(--color-text-primary);
   overflow: hidden;
   white-space: nowrap;
   display: flex;
@@ -221,12 +235,15 @@
  * Work card — uniform neutral card. Separated from the page by the warm
  * hairline rather than by shadow or a colored tile.
  * ------------------------------------------------------------------------- */
+/* Labs' cards carry full-bleed imagery, so its 1.15:1 hairline is enough to
+   read as an edge. These cards are typographic, so they take the stronger warm
+   border — at the faint hairline the card outline all but disappears. */
 .work-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-hover);
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition:
@@ -375,6 +392,10 @@
   &::after {
     content: '→';
     transition: transform var(--duration-normal) ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
   }
 
   &:hover {
@@ -382,6 +403,10 @@
 
     &::after {
       transform: translateX(4px);
+
+      @media (prefers-reduced-motion: reduce) {
+        transform: none;
+      }
     }
   }
 }

@@ -6,8 +6,8 @@ import { BLOG_POSTS } from '../../features/writing/data/blog-posts.generated';
 export class BlogService {
   private readonly posts = signal<BlogPost[]>(
     BLOG_POSTS.filter((p) => p.published).sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    )
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    ),
   );
 
   readonly allPosts = this.posts.asReadonly();

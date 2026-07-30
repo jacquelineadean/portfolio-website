@@ -8,7 +8,6 @@ export const writingRoutes: Routes = [
   },
   {
     path: ':slug',
-    loadComponent: () =>
-      import('./components/post-detail/post-detail').then((m) => m.PostDetail),
+    loadComponent: () => import('./components/post-detail/post-detail').then((m) => m.PostDetail),
   },
 ];
