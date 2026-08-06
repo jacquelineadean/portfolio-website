@@ -269,7 +269,13 @@
   justify-content: space-between;
   padding: var(--space-md);
   min-height: clamp(9rem, 16vw, 13rem);
-  background: var(--color-accent-soft);
+  /* Same quiet plotting grid as the carousel cards. A flat panel here reads as
+     an image that failed to load; the grid reads as a deliberate surface. */
+  background-color: var(--color-accent-soft);
+  background-image:
+    linear-gradient(var(--color-card) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-card) 1px, transparent 1px);
+  background-size: 1.75rem 1.75rem;
   border-bottom: 1px solid var(--color-border);
 }
 

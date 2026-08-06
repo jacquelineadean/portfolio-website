@@ -1,54 +1,42 @@
 <section class="hero section--inverse">
-  <div class="hero-mosaic" aria-hidden="true">
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
-    <span class="hero-tile"></span>
+  <!-- The mosaic is the page-load entrance: it opens through an expanding soft
+       mask and then drifts. Purely decorative, so it is hidden from assistive
+       tech and carries no content of its own. -->
+  <!-- Three layers, one job each, because none of them can share an element:
+       the bloom mask and the ambient drift both own the `animation` shorthand,
+       and the mosaic's own directional fade is a second mask. Outside-in the
+       order matters too — the mask stays put while the grid drifts inside it. -->
+  <div class="hero-bloom bloom" aria-hidden="true">
+    <div class="hero-drift float">
+      <div class="hero-mosaic">
+        @for (tile of tiles; track $index) {
+          <span class="hero-tile"></span>
+        }
+      </div>
+    </div>
   </div>
 
   <div class="hero-inner container">
     <div class="hero-content">
-      <app-scroll-reveal>
-        <p class="eyebrow hero-eyebrow">Jacqueline Dean · Software Engineer</p>
-      </app-scroll-reveal>
+      <!-- `.rise` is a CSS entrance with `both` fill, so the resting state is
+           the end state and prerendered output is correct without JS. -->
+      <p class="eyebrow hero-eyebrow rise" style="--rise-delay: 120ms">
+        Jacqueline Dean · Senior Software Engineer
+      </p>
 
-      <app-scroll-reveal [delay]="0.1">
-        <h1 class="hero-title">This is where ideas become systems.</h1>
-      </app-scroll-reveal>
+      <h1 class="hero-title rise" style="--rise-delay: 200ms">
+        I rebuild the systems businesses depend on.
+      </h1>
 
-      <app-scroll-reveal [delay]="0.25">
-        <p class="hero-sub">
-          I'm a full-stack engineer who turns aging, tangled platforms into clean, cloud-native
-          systems — built for correctness, clarity, and the long run.
-        </p>
-      </app-scroll-reveal>
+      <p class="hero-sub rise" style="--rise-delay: 290ms">
+        I take aging, tightly coupled platforms and re-architect them into modular, cloud-native
+        services — designed for correctness, clear ownership, and long-term maintainability.
+      </p>
 
-      <app-scroll-reveal [delay]="0.4">
-        <div class="hero-links">
-          <app-button label="Explore my work" routerPath="/work" variant="primary" />
-          <app-button label="More about me" routerPath="/about" variant="secondary" />
-        </div>
-      </app-scroll-reveal>
+      <div class="hero-links rise" style="--rise-delay: 380ms">
+        <app-button label="View case studies" routerPath="/work" variant="primary" />
+        <app-button label="About me" routerPath="/about" variant="secondary" />
+      </div>
     </div>
   </div>
 
@@ -70,10 +58,7 @@
 
 <section class="section featured container">
   <div class="featured-head">
-    <app-section-header
-      eyebrow="Featured work"
-      title="Recent experiments, shipped to production."
-    />
+    <app-section-header eyebrow="Selected work" title="Systems in production." />
     <a routerLink="/work" class="text-link featured-all">All case studies</a>
   </div>
 
@@ -104,9 +89,10 @@
 <section class="section section--inverse philosophy">
   <div class="container">
     <app-scroll-reveal>
-      <p class="eyebrow">A working philosophy</p>
+      <p class="eyebrow">How I work</p>
       <p class="statement philosophy-text">
-        The best code isn't clever — it's confident, extensible, and easy to hand off.
+        Most of the risk in a modernization isn't the new system. It's the transition — so that's
+        what I design for first.
       </p>
       <div class="philosophy-chips">
         @for (principle of principles; track principle) {
@@ -119,7 +105,7 @@
 
 <section class="section writing-preview container">
   <div class="featured-head">
-    <app-section-header eyebrow="Notes from the lab" title="Latest writing." />
+    <app-section-header eyebrow="Writing" title="Recent posts." />
     <a routerLink="/writing" class="text-link featured-all">All writing</a>
   </div>
 

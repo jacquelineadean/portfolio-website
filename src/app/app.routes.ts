@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./features/home/home').then((m) => m.Home),
-    title: 'Jacqueline Dean — Software Engineer',
+    title: 'Jacqueline Dean — Senior Software Engineer',
   },
   {
     path: 'about',
@@ -22,7 +22,7 @@ export const routes: Routes = [
   {
     path: 'reading',
     loadComponent: () => import('./features/reading/reading').then((m) => m.Reading),
-    title: 'Reading & Ideas — Jacqueline Dean',
+    title: 'Reading — Jacqueline Dean',
   },
   {
     path: 'resume',

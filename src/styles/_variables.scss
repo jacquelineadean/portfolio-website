@@ -110,6 +110,30 @@
   --duration-normal: 200ms;
   --duration-slow: 200ms;
 
+  /* ── Entrance motion ─────────────────────────────────────────────────
+     A separate, longer budget from the UI-transition durations above. Those
+     govern hover and state changes and stay at 120-200ms; an entrance is a
+     one-off piece of choreography and needs room to settle. */
+  --duration-bloom: 1100ms;
+  --duration-enter: 620ms;
+  --duration-rise: 460ms;
+  --stagger-rise: 70ms;
+  /* Decelerating with no bounce — the motion arrives and stops rather than
+     springing, which is what keeps it reading as composed rather than playful. */
+  --ease-bloom: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-enter: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* The mask opening needs a far gentler curve than the settles above: it moves
+     through a 6x size range, so an expo curve puts the visible sweep entirely
+     inside the first third of the duration and the rest reads as a flash. */
+  --ease-open: cubic-bezier(0.42, 0.05, 0.24, 1);
+
+  /* Ambient float defaults. Every floating element overrides these; the
+     amplitudes here are the calm end of the range on purpose. */
+  --float-amp-x: 0.5rem;
+  --float-amp-y: 0.7rem;
+  --float-amp-r: 1.5deg;
+  --float-duration: 9s;
+
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;

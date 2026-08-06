@@ -36,6 +36,9 @@ export class Home {
     'API-first design',
     'Incremental over big-bang',
     'Data correctness',
-    'Boring on purpose',
+    'Reversible decisions',
   ];
+
+  /** Backing list for the decorative hero grid — 24 tiles, no content. */
+  protected readonly tiles = Array.from({ length: 24 });
 }

@@ -1,0 +1,85 @@
+<section
+  class="carousel"
+  role="group"
+  aria-roledescription="carousel"
+  [attr.aria-label]="label()"
+  (keydown)="onKeydown($event)"
+>
+  <div
+    #stage
+    class="carousel-stage"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+  >
+    <div class="wheel" [class.is-dragging]="dragging()" [style.--position]="position()">
+      @for (project of projects(); track project.slug; let i = $index) {
+        <!-- Every slide is a real link, centred or not: that keeps the whole set
+             reachable by keyboard and without JS, and clicking an off-centre card
+             does the obvious thing. Focusing one brings it to the centre so the
+             focus ring is never on a card that is clipped out of view. -->
+        <div class="slot" [style.--i]="i" [class.is-centered]="i === active()">
+          <a
+            class="project-card"
+            [routerLink]="['/work', project.slug]"
+            (focus)="onCardFocus($event, i)"
+            (click)="onCardClick($event)"
+          >
+            <span class="project-card-media" aria-hidden="true">
+              <span class="project-card-index">{{ pad(i + 1) }}</span>
+            </span>
+            <span class="project-card-body">
+              <span class="project-card-tags">
+                @for (tag of project.tags.slice(0, 2); track tag) {
+                  <span class="chip">{{ tag }}</span>
+                }
+              </span>
+              <span class="project-card-title">{{ project.title }}</span>
+              <span class="project-card-desc">{{ project.subtitle }}</span>
+              <span class="project-card-cta">
+                View case study
+                <span class="project-card-arrow" aria-hidden="true">&#8594;</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <div class="carousel-nav-group">
+      <button
+        type="button"
+        class="carousel-nav"
+        (click)="prev()"
+        [disabled]="atStart()"
+        aria-label="Previous case study"
+      >
+        <span aria-hidden="true">&#8592;</span>
+      </button>
+      <button
+        type="button"
+        class="carousel-nav"
+        (click)="next()"
+        [disabled]="atEnd()"
+        aria-label="Next case study"
+      >
+        <span aria-hidden="true">&#8594;</span>
+      </button>
+    </div>
+
+    <p class="carousel-counter" aria-hidden="true">
+      <span class="carousel-counter-current">{{ pad(active() + 1) }}</span>
+      <span class="carousel-track">
+        @for (project of projects(); track project.slug; let i = $index) {
+          <span class="carousel-track-seg" [class.is-active]="i === active()"></span>
+        }
+      </span>
+      <span>{{ pad(count()) }}</span>
+    </p>
+  </div>
+
+  <p class="sr-only" aria-live="polite">{{ announcement() }}</p>
+</section>

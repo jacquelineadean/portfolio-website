@@ -1,0 +1,306 @@
+// Wheel carousel geometry.
+//
+// Every card is placed on the rim of one very large circle. Card `i` sits at
+// `i * --step` around the rim and is pre-rotated by the same angle, so when the
+// wheel counter-rotates to `-position * --step` the active card is upright and
+// dead centre while its neighbours tilt away.
+//
+// The radius is derived from the card pitch rather than picked: the chord
+// between two adjacent cards is `2r * sin(step / 2)`, so setting
+// `r = pitch / (2 * sin(step / 2))` makes the spacing along the rim exactly the
+// card pitch. For an 8deg step that multiplier is 7.167 — change `--step` and
+// this constant has to be recomputed with it.
+//
+// Comments in this file are `//` rather than `/* */` on purpose: component
+// styles are subject to a per-component size budget, and Sass strips these
+// while it preserves CSS block comments.
+
+:host {
+  display: block;
+
+  --card-w: clamp(16.5rem, 22vw, 20.5rem);
+  --card-h: calc(var(--card-w) * 1.6);
+  // Kept in step with PITCH_RATIO in the component class — a drag converts
+  // pixels to slides through it, so the two must agree.
+  --card-gap: calc(var(--card-w) * 0.17);
+  --pitch: calc(var(--card-w) + var(--card-gap));
+  --step: 8deg;
+  --wheel-r: calc(var(--pitch) * 7.167);
+}
+
+.carousel-stage {
+  position: relative;
+  height: calc(var(--card-h) + 4rem);
+  overflow: hidden;
+  cursor: grab;
+  // Horizontal drags belong to the carousel; vertical ones stay with the page,
+  // so a touch user can still scroll straight through the section.
+  touch-action: pan-y;
+  user-select: none;
+
+  &:has(.wheel.is-dragging) {
+    cursor: grabbing;
+  }
+}
+
+.wheel {
+  position: absolute;
+  left: 50%;
+  // Drops the circle's centre far below the stage so the top of the rim runs
+  // through the middle of the card row.
+  top: calc(var(--wheel-r) + var(--card-h) / 2 + 1rem);
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  transform: rotate(calc(var(--position, 0) * var(--step) * -1));
+  // The settle. Suppressed mid-drag so the wheel tracks the pointer exactly
+  // rather than lagging a transition behind it.
+  transition: transform var(--duration-enter) var(--ease-bloom);
+
+  &.is-dragging {
+    transition: none;
+  }
+}
+
+// The rim itself, drawn as a hairline just below the cards. It makes the
+// mechanism legible — the cards visibly ride a track rather than floating — and
+// gives the stage something to hold when the set is short enough that one side
+// of the wheel is empty. Concentric with the wheel, so it rotates invisibly
+// along with it.
+.wheel::before {
+  --guide-r: calc(var(--wheel-r) - var(--card-h) / 2 - 1.25rem);
+
+  content: '';
+  position: absolute;
+  left: calc(var(--guide-r) * -1);
+  top: calc(var(--guide-r) * -1);
+  width: calc(var(--guide-r) * 2);
+  height: calc(var(--guide-r) * 2);
+  border: 1px solid var(--color-border-hover);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.slot {
+  position: absolute;
+  left: calc(var(--card-w) / -2);
+  top: calc(var(--card-h) / -2);
+  width: var(--card-w);
+  height: var(--card-h);
+  transform: rotate(calc(var(--i) * var(--step))) translateY(calc(var(--wheel-r) * -1));
+}
+
+// Off-centre cards keep full opacity. Fading them would be the obvious way to
+// push them back, but it drags their body copy under the contrast floor for no
+// gain — the tilt and the centred card's heavier border already carry the
+// hierarchy.
+.project-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-normal) ease,
+    background-color var(--duration-normal) ease;
+}
+
+.slot.is-centered .project-card {
+  border-color: var(--color-border-strong);
+}
+
+.project-card:hover {
+  background: var(--color-bg-card-hover);
+  border-color: var(--color-border-strong);
+
+  .project-card-arrow {
+    transform: translateX(4px);
+  }
+}
+
+.project-card-media {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: calc(var(--card-w) * 0.5);
+  padding: var(--space-sm);
+  background-color: var(--color-accent-soft);
+  // A quiet plotting grid rather than a stock image — the case studies have no
+  // artwork, and a blank tile reads as a missing asset.
+  background-image:
+    linear-gradient(var(--color-card) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-card) 1px, transparent 1px);
+  background-size: 1.75rem 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-card-index {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-tertiary);
+}
+
+.project-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+}
+
+// One row only. The cards are narrow enough that a second row of chips pushes
+// the CTA out of the card, and the full tag list is on the case study itself.
+.project-card-tags {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.15rem;
+  overflow: hidden;
+
+  .chip {
+    flex-shrink: 0;
+  }
+}
+
+.project-card-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+// Clamped rather than left to flow: the card is a fixed-height tile on the rim,
+// so a long subtitle would otherwise push the CTA off the bottom edge.
+.project-card-desc {
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+}
+
+.project-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.project-card-arrow {
+  transition: transform var(--duration-normal) ease;
+}
+
+// The stage is full-bleed so the wheel is clipped by the window edge, but the
+// controls belong back on the page grid with everything else.
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-lg);
+  max-width: var(--container-max);
+  margin-top: var(--space-lg);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.carousel-nav-group {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.carousel-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.15rem;
+  color: var(--color-text-primary);
+  background: transparent;
+  // A control's outline is its only affordance here, so it takes the 3:1
+  // interactive border rather than the decorative hairline.
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-normal) ease,
+    border-color var(--duration-normal) ease,
+    color var(--duration-normal) ease,
+    opacity var(--duration-normal) ease;
+
+  &:hover:not(:disabled) {
+    background: var(--color-on-surface);
+    border-color: var(--color-on-surface);
+    color: var(--color-surface);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+.carousel-counter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-tertiary);
+}
+
+.carousel-counter-current {
+  color: var(--color-text-primary);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 4px;
+}
+
+.carousel-track-seg {
+  width: 1.75rem;
+  height: 2px;
+  background: var(--color-border-hover);
+  transition: background-color var(--duration-normal) ease;
+
+  &.is-active {
+    background: var(--color-on-surface);
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-track-seg {
+    width: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel,
+  .project-card-arrow {
+    transition: none;
+  }
+}

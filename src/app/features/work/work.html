@@ -1,34 +1,14 @@
-<section class="page container">
-  <header class="page-hero">
+<section class="page">
+  <header class="page-hero container">
     <app-scroll-reveal>
       <p class="eyebrow">Case studies</p>
-      <h1 class="page-hero-title">The experiments that shipped.</h1>
+      <h1 class="page-hero-title">Systems I've designed, built, and shipped.</h1>
       <p class="page-hero-sub">
-        Systems I've designed, built, and carried into production — and what each one taught me.
+        Each one covers the context, the design decisions and their tradeoffs, what I owned, and
+        what it changed once it was in production.
       </p>
     </app-scroll-reveal>
   </header>
 
-  <div class="case-studies">
-    @for (study of caseStudies; track study.slug; let i = $index) {
-      <app-scroll-reveal [delay]="i * 0.12">
-        <a [routerLink]="['/work', study.slug]" class="work-card">
-          <div class="work-card-tile" aria-hidden="true"></div>
-          <div class="work-card-body">
-            <div class="work-card-chips">
-              @for (tag of study.tags; track tag) {
-                <span class="chip">{{ tag }}</span>
-              }
-            </div>
-            <h3>{{ study.title }}</h3>
-            <p>{{ study.subtitle }}</p>
-            <span class="work-card-cta">
-              View case study
-              <span class="arrow-circle" aria-hidden="true">→</span>
-            </span>
-          </div>
-        </a>
-      </app-scroll-reveal>
-    }
-  </div>
+  <app-project-carousel [projects]="caseStudies" label="Case studies" />
 </section>

@@ -62,6 +62,30 @@
 
 /* Decorative tile mosaic — CSS only, no assets, no motion. Kept at very low
  * luminance so the headline keeps its full contrast against #1a1a1a. */
+/* Bloom + drift wrapper. Overscanned so the ambient float can never pull an
+   edge of the grid into the band, and the float amplitudes are a fraction of
+   the reference's — this sits behind the headline, so it has to stay at the
+   edge of perception rather than draw the eye. */
+.hero-bloom {
+  position: absolute;
+  inset: -4%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-drift {
+  position: absolute;
+  inset: 0;
+
+  --float-amp-x: 0.75rem;
+  --float-amp-y: 1rem;
+  --float-amp-r: 0.35deg;
+  --float-duration: 11s;
+  --float-delay: -3.4s;
+  --float-delay-y: -7.1s;
+  --float-delay-r: -1.8s;
+}
+
 .hero-mosaic {
   position: absolute;
   inset: 0;
