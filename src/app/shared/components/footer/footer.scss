@@ -29,7 +29,7 @@ footer {
   margin-bottom: var(--space-lg);
 }
 
-.footer-mail {
+.footer-contact {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -39,13 +39,13 @@ footer {
   line-height: var(--leading-tight);
   color: var(--color-on-surface);
   background: transparent;
-  border: 0.2rem solid var(--color-hairline);
+  border: 0.2rem solid var(--color-border-strong);
   border-radius: var(--radius-pill);
   transition:
     background-color var(--duration-fast) var(--ease-out-quart),
     border-color var(--duration-fast) var(--ease-out-quart);
 
-  .mail-arrow {
+  .contact-arrow {
     transition: transform var(--duration-fast) var(--ease-out-quart);
   }
 
@@ -53,7 +53,7 @@ footer {
     background: var(--color-accent-soft);
     border-color: var(--color-accent);
 
-    .mail-arrow {
+    .contact-arrow {
       transform: translateX(0.3rem);
     }
   }
@@ -108,13 +108,13 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .footer-mail,
-  .footer-mail .mail-arrow,
+  .footer-contact,
+  .footer-contact .contact-arrow,
   .footer-nav a {
     transition: none;
   }
 
-  .footer-mail:hover .mail-arrow {
+  .footer-contact:hover .contact-arrow {
     transform: none;
   }
 }

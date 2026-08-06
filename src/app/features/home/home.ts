@@ -4,7 +4,7 @@ import { ScrollReveal } from '../../shared/components/scroll-reveal/scroll-revea
 import { Button } from '../../shared/components/button/button';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { BlogService } from '../../core/services/blog.service';
-import { CASE_STUDIES } from '../work/data/case-studies.data';
+import { PROJECTS } from '../work/data/projects.data';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ import { CASE_STUDIES } from '../work/data/case-studies.data';
 export class Home {
   private readonly blogService = inject(BlogService);
 
-  protected readonly caseStudies = CASE_STUDIES;
+  protected readonly projects = PROJECTS;
   protected readonly recentPosts = this.blogService.recentPosts().slice(0, 3);
 
   protected readonly skills = [

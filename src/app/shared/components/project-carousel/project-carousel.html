@@ -5,6 +5,9 @@
   [attr.aria-label]="label()"
   (keydown)="onKeydown($event)"
 >
+  <!-- pointerleave is only reachable before the drag takes capture: once
+       captured, boundary events stop firing, so it cannot cut a real drag
+       short. It ends a press that left the stage without ever becoming one. -->
   <div
     #stage
     class="carousel-stage"
@@ -12,50 +15,94 @@
     (pointermove)="onPointerMove($event)"
     (pointerup)="onPointerUp($event)"
     (pointercancel)="onPointerUp($event)"
+    (pointerleave)="onPointerUp($event)"
   >
     <div class="wheel" [class.is-dragging]="dragging()" [style.--position]="position()">
       @for (project of projects(); track project.slug; let i = $index) {
-        <!-- Every slide is a real link, centred or not: that keeps the whole set
-             reachable by keyboard and without JS, and clicking an off-centre card
-             does the obvious thing. Focusing one brings it to the centre so the
-             focus ring is never on a card that is clipped out of view. -->
-        <div class="slot" [style.--i]="i" [class.is-centered]="i === active()">
-          <a
-            class="project-card"
-            [routerLink]="['/work', project.slug]"
-            (focus)="onCardFocus($event, i)"
-            (click)="onCardClick($event)"
-          >
+        <!-- focusin is bound on the slot so it covers every link inside the
+             card — focusing any of them recentres the wheel. The click that ends
+             a drag is cancelled by a capture listener on the stage instead. -->
+        <div
+          class="slot"
+          [style.--i]="i"
+          [class.is-centered]="i === active()"
+          (focusin)="onCardFocus($event, i)"
+        >
+          <article class="project-card">
             <span class="project-card-media" aria-hidden="true">
               <span class="project-card-index">{{ pad(i + 1) }}</span>
             </span>
-            <span class="project-card-body">
-              <span class="project-card-tags">
-                @for (tag of project.tags.slice(0, 2); track tag) {
+
+            <div class="project-card-body">
+              <div class="project-card-tags">
+                @if (showsStatus(project)) {
+                  <span class="chip chip--status">{{ project.statusLabel }}</span>
+                }
+                @for (tag of visibleTags(project); track tag) {
                   <span class="chip">{{ tag }}</span>
                 }
+              </div>
+
+              <!-- The title link is stretched over the whole card via ::after, so
+                   the card is one big target while still being exactly one link.
+                   The external links sit above it on the z-axis. -->
+              <!-- draggable="false" on every anchor in the card: an anchor is
+                   natively draggable, so a press that starts on one begins a
+                   link drag and the browser fires pointercancel — the wheel
+                   gesture dies wherever the cards are, which is most of the
+                   stage. -->
+              <h3 class="project-card-title">
+                <a
+                  class="project-card-link"
+                  draggable="false"
+                  [routerLink]="['/work', project.slug]"
+                >
+                  {{ project.title }}
+                </a>
+              </h3>
+
+              <p class="project-card-desc">{{ project.subtitle }}</p>
+
+              @if (project.links.length) {
+                <div class="project-card-actions">
+                  @for (link of project.links; track link.href) {
+                    <a
+                      class="project-card-action"
+                      draggable="false"
+                      [href]="link.href"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {{ link.label }}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  }
+                </div>
+              }
+
+              <span class="project-card-cta" aria-hidden="true">
+                Read the write-up
+                <span class="project-card-arrow">→</span>
               </span>
-              <span class="project-card-title">{{ project.title }}</span>
-              <span class="project-card-desc">{{ project.subtitle }}</span>
-              <span class="project-card-cta">
-                View case study
-                <span class="project-card-arrow" aria-hidden="true">&#8594;</span>
-              </span>
-            </span>
-          </a>
+            </div>
+          </article>
         </div>
       }
     </div>
   </div>
 
   <div class="carousel-controls">
+    <!-- aria-disabled rather than disabled: with only a couple of projects the
+         first press already lands on a boundary, and disabling a focused button
+         blurs it — focus falls to <body> and the next Tab restarts from the top
+         of the page. These stay focusable and no-op instead; goTo() clamps. -->
     <div class="carousel-nav-group">
       <button
         type="button"
         class="carousel-nav"
         (click)="prev()"
-        [disabled]="atStart()"
-        aria-label="Previous case study"
+        [attr.aria-disabled]="atStart()"
+        aria-label="Previous project"
       >
         <span aria-hidden="true">&#8592;</span>
       </button>
@@ -63,8 +110,8 @@
         type="button"
         class="carousel-nav"
         (click)="next()"
-        [disabled]="atEnd()"
-        aria-label="Next case study"
+        [attr.aria-disabled]="atEnd()"
+        aria-label="Next project"
       >
         <span aria-hidden="true">&#8594;</span>
       </button>

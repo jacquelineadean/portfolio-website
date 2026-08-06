@@ -1,20 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
+  afterNextRender,
   computed,
+  inject,
   input,
   signal,
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-export interface CarouselProject {
-  slug: string;
-  title: string;
-  subtitle: string;
-  tags: string[];
-}
+import { Project } from '../../../core/models/project.model';
 
 /**
  * Wheel carousel.
@@ -40,8 +37,8 @@ export interface CarouselProject {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCarousel {
-  projects = input.required<CarouselProject[]>();
-  label = input('Case studies');
+  projects = input.required<Project[]>();
+  label = input('Projects');
 
   private readonly stage = viewChild.required<ElementRef<HTMLElement>>('stage');
 
@@ -69,8 +66,52 @@ export class ProjectCarousel {
   /** Set when a drag travelled far enough that the release should not navigate. */
   private suppressClick = false;
 
+  constructor() {
+    // A native capture-phase listener rather than a template binding, because a
+    // template binding runs on the bubble: RouterLink handles its own click on
+    // the anchor, during the target phase, so a guard waiting for the bubble has
+    // already lost. Capturing at the stage is the only point where the click
+    // that ends a drag can be stopped before either kind of link acts on it.
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(() => {
+      const stage = this.stage().nativeElement;
+      stage.addEventListener('click', this.guardDragRelease, { capture: true });
+      destroyRef.onDestroy(() =>
+        stage.removeEventListener('click', this.guardDragRelease, { capture: true }),
+      );
+    });
+  }
+
+  private readonly guardDragRelease = (event: Event): void => {
+    if (!this.suppressClick) return;
+    this.suppressClick = false;
+
+    // detail 0 marks a click synthesised by Enter or Space on a link. There is
+    // no gesture behind it, so the drag guard must never swallow it — otherwise
+    // a drag released over bare stage leaves the flag standing and the next
+    // keyboard activation silently does nothing.
+    if ((event as MouseEvent).detail === 0) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   protected pad(n: number): string {
     return n < 10 ? `0${n}` : `${n}`;
+  }
+
+  /**
+   * A "Live" chip next to a "Live site" link is noise; a status chip earns its
+   * place only when it says something the rest of the card does not — i.e. when
+   * the project has not been built yet.
+   */
+  protected showsStatus(project: Project): boolean {
+    return project.status !== 'shipped';
+  }
+
+  /** Chips are one non-wrapping row, so the status chip has to buy its width. */
+  protected visibleTags(project: Project): string[] {
+    return project.tags.slice(0, this.showsStatus(project) ? 1 : 2);
   }
 
   protected goTo(index: number): void {
@@ -115,9 +156,29 @@ export class ProjectCarousel {
       default:
         return;
     }
+    this.followFocusToCentre();
     // Only reached when the key was one we handled, so the page does not also
     // scroll horizontally or jump to top on Home/End.
     event.preventDefault();
+  }
+
+  /**
+   * The stage clips, so rotating the wheel while a card holds focus would carry
+   * the focus ring out of view — the user is left driving something they cannot
+   * see. If focus is inside a card that just left the centre, it moves to the
+   * card that took its place.
+   *
+   * Focus on the prev/next buttons is left alone: those live outside the stage,
+   * so they are never the ones being rotated away.
+   */
+  private followFocusToCentre(): void {
+    const stage = this.stage().nativeElement;
+    const focused = document.activeElement;
+    if (!(focused instanceof HTMLElement) || !stage.contains(focused)) return;
+
+    const centred = stage.querySelectorAll<HTMLElement>('.slot')[this.active()];
+    if (!centred || centred.contains(focused)) return;
+    centred.querySelector<HTMLElement>('.project-card-link')?.focus();
   }
 
   protected onPointerDown(event: PointerEvent): void {
@@ -134,7 +195,6 @@ export class ProjectCarousel {
     this.dragStartX = event.clientX;
     this.suppressClick = false;
     this.dragging.set(true);
-    stage.setPointerCapture(event.pointerId);
   }
 
   protected onPointerMove(event: PointerEvent): void {
@@ -142,7 +202,15 @@ export class ProjectCarousel {
 
     // Past this much travel the gesture is a drag, not a click on a card, and
     // releasing must not follow the link underneath.
-    if (Math.abs(event.clientX - this.dragStartX) > CLICK_SLOP_PX) this.suppressClick = true;
+    if (!this.suppressClick && Math.abs(event.clientX - this.dragStartX) > CLICK_SLOP_PX) {
+      this.suppressClick = true;
+      // Capture is taken here, not on pointerdown. While a pointer is captured
+      // the browser retargets the resulting click to the capture element, so
+      // capturing up front sends every card click to the stage and the card
+      // never navigates at all. Taking it only once the gesture has become a
+      // real drag leaves plain clicks on their links.
+      this.stage().nativeElement.setPointerCapture(event.pointerId);
+    }
 
     const slides = (this.dragStartX - event.clientX) / this.pitchPx;
     // Clamped one slide past each end so a drag at the boundary still gives a
@@ -164,14 +232,6 @@ export class ProjectCarousel {
     this.dragging.set(false);
     this.dragOffset.set(0);
     this.goTo(landed);
-  }
-
-  protected onCardClick(event: MouseEvent): void {
-    if (!this.suppressClick) return;
-    // The click that ends a drag would otherwise navigate to whichever card the
-    // pointer happened to be released over.
-    event.preventDefault();
-    this.suppressClick = false;
   }
 }
 

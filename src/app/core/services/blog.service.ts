@@ -1,6 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { BlogPost } from '../models/blog-post.model';
-import { BLOG_POSTS } from '../../features/writing/data/blog-posts.generated';
+import { BLOG_POSTS } from '../../features/notes/data/blog-posts.generated';
 
 @Injectable({ providedIn: 'root' })
 export class BlogService {

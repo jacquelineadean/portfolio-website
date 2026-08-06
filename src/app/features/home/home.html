@@ -34,7 +34,7 @@
       </p>
 
       <div class="hero-links rise" style="--rise-delay: 380ms">
-        <app-button label="View case studies" routerPath="/work" variant="primary" />
+        <app-button label="View my projects" routerPath="/work" variant="primary" />
         <app-button label="About me" routerPath="/about" variant="secondary" />
       </div>
     </div>
@@ -58,25 +58,35 @@
 
 <section class="section featured container">
   <div class="featured-head">
-    <app-section-header eyebrow="Selected work" title="Systems in production." />
-    <a routerLink="/work" class="text-link featured-all">All case studies</a>
+    <!-- The hero above describes professional work that cannot be shown, so this
+         header says so rather than letting two side projects read as the
+         evidence for it. -->
+    <app-section-header
+      eyebrow="Projects"
+      title="Things I build on my own time."
+      subtitle="The platform work I do professionally isn't mine to publish, so what's here is personal."
+    />
+    <a routerLink="/work" class="text-link featured-all">All projects</a>
   </div>
 
   <div class="featured-grid">
-    @for (study of caseStudies; track study.slug; let i = $index) {
+    @for (project of projects; track project.slug; let i = $index) {
       <app-scroll-reveal [delay]="i * 0.12">
-        <a [routerLink]="['/work', study.slug]" class="work-card">
+        <a [routerLink]="['/work', project.slug]" class="work-card">
           <div class="work-card-tile" aria-hidden="true"></div>
           <div class="work-card-body">
             <div class="work-card-chips">
-              @for (tag of study.tags.slice(0, 3); track tag) {
+              @if (project.status !== 'shipped') {
+                <span class="chip chip--status">{{ project.statusLabel }}</span>
+              }
+              @for (tag of project.tags.slice(0, 3); track tag) {
                 <span class="chip">{{ tag }}</span>
               }
             </div>
-            <h3>{{ study.title }}</h3>
-            <p>{{ study.subtitle }}</p>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.subtitle }}</p>
             <span class="work-card-cta">
-              View case study
+              Read the write-up
               <span class="arrow-circle" aria-hidden="true">→</span>
             </span>
           </div>
@@ -106,21 +116,23 @@
 <section class="section writing-preview container">
   <div class="featured-head">
     <app-section-header eyebrow="Writing" title="Recent posts." />
-    <a routerLink="/writing" class="text-link featured-all">All writing</a>
+    <a routerLink="/notes" class="text-link featured-all">All notes</a>
   </div>
 
-  <div class="post-list">
+  <ul class="post-list" role="list">
     @for (post of recentPosts; track post.slug; let i = $index) {
-      <app-scroll-reveal [delay]="i * 0.08">
-        <a [routerLink]="['/writing', post.slug]" class="post-row">
-          <time>{{ post.date }}</time>
-          <span class="post-row-main">
-            <span class="post-row-title">{{ post.title }}</span>
-            <span class="post-row-excerpt">{{ post.excerpt }}</span>
-          </span>
-          <span class="arrow-circle" aria-hidden="true">→</span>
-        </a>
-      </app-scroll-reveal>
+      <li>
+        <app-scroll-reveal [delay]="i * 0.08">
+          <a [routerLink]="['/notes', post.slug]" class="post-row">
+            <time>{{ post.date }}</time>
+            <span class="post-row-main">
+              <span class="post-row-title">{{ post.title }}</span>
+              <span class="post-row-excerpt">{{ post.excerpt }}</span>
+            </span>
+            <span class="arrow-circle" aria-hidden="true">→</span>
+          </a>
+        </app-scroll-reveal>
+      </li>
     }
-  </div>
+  </ul>
 </section>

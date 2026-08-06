@@ -19,7 +19,12 @@
   display: block;
 
   --card-w: clamp(16.5rem, 22vw, 20.5rem);
-  --card-h: calc(var(--card-w) * 1.6);
+  // Sized for the worst case, not the average one: the card is a fixed-height
+  // tile, so a two-line title next to a two-row action list has to fit without
+  // eating the body's bottom padding. Below ~1200px --card-w is pinned at its
+  // 16.5rem floor while the copy keeps its width, which is where the squeeze is
+  // tightest — the ratio is set from there.
+  --card-h: calc(var(--card-w) * 1.86);
   // Kept in step with PITCH_RATIO in the component class — a drag converts
   // pixels to slides through it, so the two must agree.
   --card-gap: calc(var(--card-w) * 0.17);
@@ -95,14 +100,12 @@
 // gain — the tilt and the centred card's heavier border already carry the
 // hierarchy.
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 0;
   margin: 0;
-  text-align: left;
-  font: inherit;
   color: var(--color-text-primary);
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-hover);
@@ -126,6 +129,37 @@
   }
 }
 
+// Stretched link: the title anchor covers the whole card, so the card is one
+// large target while remaining exactly one link in the accessibility tree. The
+// external links sit above it on the z-axis so they stay clickable.
+.project-card-link {
+  color: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+}
+
+// The stretched pseudo-element swallows the anchor's own focus ring, so the ring
+// is drawn on the card instead of on the two words of the title. Suppressing the
+// anchor's own outline is gated on :has() support, because that is what draws the
+// replacement — :focus-visible and :has() did not ship together, and in an engine
+// with the first but not the second an unguarded `outline: none` would leave the
+// card's primary link with no focus indicator at all.
+@supports selector(:has(*)) {
+  .project-card-link:focus-visible {
+    outline: none;
+  }
+}
+
+.project-card:has(.project-card-link:focus-visible) {
+  outline: 2px solid var(--color-on-surface);
+  outline-offset: 2px;
+}
+
 .project-card-media {
   position: relative;
   display: flex;
@@ -133,7 +167,7 @@
   min-height: calc(var(--card-w) * 0.5);
   padding: var(--space-sm);
   background-color: var(--color-accent-soft);
-  // A quiet plotting grid rather than a stock image — the case studies have no
+  // A quiet plotting grid rather than a stock image — the projects have no
   // artwork, and a blank tile reads as a missing asset.
   background-image:
     linear-gradient(var(--color-card) 1px, transparent 1px),
@@ -160,7 +194,7 @@
 }
 
 // One row only. The cards are narrow enough that a second row of chips pushes
-// the CTA out of the card, and the full tag list is on the case study itself.
+// the actions out of the card, and the full tag list is on the write-up itself.
 .project-card-tags {
   display: flex;
   gap: 0.35rem;
@@ -185,7 +219,6 @@
 // Clamped rather than left to flow: the card is a fixed-height tile on the rim,
 // so a long subtitle would otherwise push the CTA off the bottom edge.
 .project-card-desc {
-  flex: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
@@ -196,14 +229,49 @@
   color: var(--color-text-secondary);
 }
 
+// Outbound links to the live site and the source, pushed to the bottom of the
+// card so every card's action row lines up regardless of copy length.
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-top: auto;
+  padding-top: var(--space-sm);
+}
+
+// The raise is on the anchors, not on their container: raising the container
+// would lift its padding band and all its trailing free space out of the
+// stretched title link too, leaving a wide strip of the card inert.
+.project-card-action {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border-strong);
+  padding-bottom: 1px;
+  transition: border-color var(--duration-normal) ease;
+
+  &:hover {
+    border-color: var(--color-on-surface);
+  }
+}
+
+// Affordance only, not a control: the whole card already navigates here via the
+// stretched title link, so this is aria-hidden and carries no separate target.
 .project-card-cta {
   display: flex;
   align-items: center;
   gap: 0.45em;
-  margin-top: var(--space-xs);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-text-primary);
+  color: var(--color-text-tertiary);
 }
 
 .project-card-arrow {
@@ -249,13 +317,13 @@
     color var(--duration-normal) ease,
     opacity var(--duration-normal) ease;
 
-  &:hover:not(:disabled) {
+  &:hover:not([aria-disabled='true']) {
     background: var(--color-on-surface);
     border-color: var(--color-on-surface);
     color: var(--color-surface);
   }
 
-  &:disabled {
+  &[aria-disabled='true'] {
     opacity: 0.35;
     cursor: default;
   }

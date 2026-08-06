@@ -63,7 +63,7 @@
     color: var(--color-text-inverse-strong);
   }
 
-  .chip {
+  .chip:not(.chip--status) {
     color: var(--color-text-inverse);
     border-color: var(--color-border-inverse);
   }
@@ -119,6 +119,19 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   white-space: nowrap;
+}
+
+/* Status variant — filled, so it reads before the technology tags beside it.
+   One of the projects has not been built yet and nothing on the page should
+   read as a claim that it has. #323232 on #ddd3c7 is 8.7:1. */
+.chip--status {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-surface);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
 /* ---------------------------------------------------------------------------
@@ -449,4 +462,85 @@
     background: var(--color-on-surface);
     color: var(--color-surface);
   }
+}
+
+/* ---------------------------------------------------------------------------
+ * Book card — same family as .work-card and .post-row: a neutral surface
+ * separated by the warm hairline, never by shadow. Global rather than scoped to
+ * the Notes page so the card patterns stay in one place.
+ * ------------------------------------------------------------------------- */
+.books-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1180px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  > *,
+  > li > * {
+    min-width: 0;
+    height: 100%;
+  }
+}
+
+.book-card {
+  display: flex;
+  height: 100%;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition:
+    background-color var(--duration-normal) ease,
+    border-color var(--duration-normal) ease;
+
+  &:hover {
+    background: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+  }
+}
+
+.book-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.book-title {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  color: var(--color-text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.book-author {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-md);
+}
+
+.book-reflection {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-md);
+  flex: 1;
+}
+
+.book-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
 }

@@ -2,4 +2,4 @@ dist
 .angular
 # Generated from the markdown source by the blog build step — formatting it here
 # just churns the diff on every regeneration.
-src/app/features/writing/data/blog-posts.generated.ts
+src/app/features/notes/data/blog-posts.generated.ts

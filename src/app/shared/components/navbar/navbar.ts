@@ -1,5 +1,6 @@
 import { Component, signal, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SITE_LINKS } from '../../../core/site';
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,12 @@ export class Navbar {
 
   protected readonly navLinks = [
     { path: '/about', label: 'About', exact: false },
-    { path: '/work', label: 'Work', exact: false },
-    { path: '/writing', label: 'Writing', exact: false },
-    { path: '/reading', label: 'Reading', exact: false },
+    { path: '/work', label: 'Projects', exact: false },
+    { path: '/notes', label: 'Notes', exact: false },
   ];
+
+  /** The site's only contact channel — there is deliberately no email on the page. */
+  protected readonly linkedInUrl = SITE_LINKS.linkedin;
 
   @HostListener('window:scroll')
   onScroll(): void {

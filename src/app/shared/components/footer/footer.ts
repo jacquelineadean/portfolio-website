@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SITE_LINKS } from '../../../core/site';
 
 @Component({
   selector: 'app-footer',
@@ -10,4 +11,5 @@ import { RouterLink } from '@angular/router';
 })
 export class Footer {
   protected readonly currentYear = new Date().getFullYear();
+  protected readonly links = SITE_LINKS;
 }

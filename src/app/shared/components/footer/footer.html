@@ -1,11 +1,13 @@
 <footer>
   <div class="footer-inner container">
+    <!-- LinkedIn is the only contact route on the site: no address is published
+         here or anywhere else, so this link has to carry the whole CTA. -->
     <div class="footer-cta">
       <p class="eyebrow footer-eyebrow">Contact</p>
       <h2 class="footer-headline">Let's talk.</h2>
-      <a href="mailto:jacquelineadean&#64;gmail.com" class="footer-mail">
-        jacquelineadean&#64;gmail.com
-        <span class="mail-arrow" aria-hidden="true">→</span>
+      <a [href]="links.linkedin" class="footer-contact" target="_blank" rel="noopener noreferrer">
+        Reach me on LinkedIn
+        <span class="contact-arrow" aria-hidden="true">→</span>
       </a>
     </div>
 
@@ -15,21 +17,16 @@
         <nav class="footer-nav">
           <a routerLink="/">Home</a>
           <a routerLink="/about">About</a>
-          <a routerLink="/work">Work</a>
-          <a routerLink="/writing">Writing</a>
-          <a routerLink="/reading">Reading</a>
-          <a routerLink="/resume">Resume</a>
+          <a routerLink="/work">Projects</a>
+          <a routerLink="/notes">Notes</a>
         </nav>
       </div>
 
       <div class="footer-col">
         <p class="footer-col-title">Elsewhere</p>
         <nav class="footer-nav">
-          <a href="https://github.com/jacquelineadean" target="_blank" rel="noopener noreferrer"
-            >GitHub</a
-          >
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:jacquelineadean&#64;gmail.com">Email</a>
+          <a [href]="links.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a [href]="links.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </nav>
       </div>
     </div>

@@ -1,7 +1,6 @@
-/* Case study detail — Labs long-form rhythm: a dark full-bleed hero band, a
-   run of cream sections on the "eyebrow label + reading-measure body" grid,
-   and a single inverted band for Impact so the flip punctuates the page
-   rather than dominating it. */
+/* Project detail — Labs long-form rhythm: a dark full-bleed hero band carrying
+   the title, status and outbound links, then a run of cream sections on the
+   "eyebrow label + reading-measure body" grid. */
 
 .back-link {
   margin-bottom: var(--space-lg);
@@ -29,6 +28,35 @@
     gap: var(--space-xs);
     margin-top: var(--space-lg);
   }
+
+  .study-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  /* On the inverted band the decorative hairline is invisible, so these take the
+     inverse outline token — they are the only outbound controls on the page. */
+  .study-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.5rem 1.15rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-inverse-strong);
+    border: 1px solid var(--color-text-inverse);
+    border-radius: var(--radius-pill);
+    transition:
+      background-color var(--duration-normal) ease,
+      color var(--duration-normal) ease;
+
+    &:hover {
+      background: var(--color-text-inverse-strong);
+      color: var(--color-surface-dark);
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -44,12 +72,6 @@
   &:not(.section--inverse) {
     padding-block: clamp(2.5rem, 5vw, 4rem);
     border-top: 1px solid var(--color-border);
-  }
-
-  /* Impact reads as the second inverted band (inverse #2 of 2). */
-  &.section--inverse {
-    border-top: none;
-    margin-block: clamp(2rem, 5vw, 4rem);
   }
 }
 

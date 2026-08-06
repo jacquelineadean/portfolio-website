@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 
-export const writingRoutes: Routes = [
+export const notesRoutes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./writing').then((m) => m.Writing),
-    title: 'Writing — Jacqueline Dean',
+    loadComponent: () => import('./notes').then((m) => m.Notes),
+    title: 'Notes — Jacqueline Dean',
   },
   {
     path: ':slug',
