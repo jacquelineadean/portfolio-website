@@ -1,7 +1,7 @@
 @if (post(); as post) {
   <article class="page container">
     <app-scroll-reveal>
-      <a routerLink="/writing" class="back-link">← All writing</a>
+      <a routerLink="/notes" class="back-link">← All notes</a>
     </app-scroll-reveal>
 
     <app-scroll-reveal [delay]="0.1">
@@ -33,6 +33,6 @@
 } @else {
   <div class="page container">
     <p class="not-found">Post not found.</p>
-    <a routerLink="/writing" class="back-link">← All writing</a>
+    <a routerLink="/notes" class="back-link">← All notes</a>
   </div>
 }

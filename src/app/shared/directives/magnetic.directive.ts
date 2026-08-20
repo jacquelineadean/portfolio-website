@@ -1,4 +1,12 @@
-import { Directive, ElementRef, NgZone, OnDestroy, afterNextRender, inject, input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  afterNextRender,
+  inject,
+  input,
+} from '@angular/core';
 
 @Directive({
   selector: '[appMagnetic]',
@@ -36,7 +44,7 @@ export class MagneticDirective implements OnDestroy {
 
         this.cleanups.push(
           () => element.removeEventListener('mousemove', onMove),
-          () => element.removeEventListener('mouseleave', onLeave)
+          () => element.removeEventListener('mouseleave', onLeave),
         );
       });
     });

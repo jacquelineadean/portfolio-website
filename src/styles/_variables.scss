@@ -5,7 +5,10 @@
   --color-card: #fffdf9;
   --color-ink: #1f1e1a;
   --color-ink-soft: #47463f;
-  --color-ink-muted: #767469;
+  /* Darkened from #767469, which renders at 4.31:1 on paper and 4.05:1 on the
+     warm panels — under the 4.5:1 floor for body-size text. This clears it on
+     all three surfaces (4.89 / 5.25 / 4.60). */
+  --color-ink-muted: #6e6b61;
   --color-ink-faint: rgba(31, 30, 26, 0.08);
 
   /* Primary accent colors, used sparingly as dots, sparkles & highlights */

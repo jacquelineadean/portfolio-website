@@ -28,7 +28,7 @@ footer {
   margin-bottom: var(--space-lg);
 }
 
-.footer-mail {
+.footer-contact {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -40,14 +40,14 @@ footer {
   border-radius: var(--radius-pill);
   transition: transform var(--duration-normal) var(--ease-out-expo);
 
-  .mail-arrow {
+  .contact-arrow {
     transition: transform var(--duration-normal) var(--ease-out-expo);
   }
 
   &:hover {
     transform: scale(1.03);
 
-    .mail-arrow {
+    .contact-arrow {
       transform: translateX(4px);
     }
   }

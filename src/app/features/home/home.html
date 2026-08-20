@@ -12,7 +12,7 @@
       <app-scroll-reveal>
         <p class="chip hero-chip">
           <span class="sparkle sparkle--blue" aria-hidden="true"></span>
-          Jacqueline Dean · Software Engineer
+          Jacqueline Dean · Senior Software Engineer
         </p>
       </app-scroll-reveal>
 
@@ -55,31 +55,36 @@
 <section class="section featured container">
   <div class="featured-head">
     <app-section-header
-      eyebrow="Featured work"
+      eyebrow="Projects"
       sparkleColor="blue"
-      title="Recent <em>experiments</em>, shipped to production."
+      title="Things I build on my <em>own time</em>."
     />
-    <a routerLink="/work" class="text-link featured-all">All case studies</a>
+    <a routerLink="/work" class="text-link featured-all">All projects</a>
   </div>
 
   <div class="featured-grid">
-    @for (study of caseStudies; track study.slug; let i = $index) {
+    @for (project of projects; track project.slug; let i = $index) {
       <app-scroll-reveal [delay]="i * 0.12">
-        <a [routerLink]="['/work', study.slug]" class="work-card">
+        <a [routerLink]="['/work', project.slug]" class="work-card">
           <div class="work-card-tile" [class]="'work-card-tile tile--' + tileColors[i % 5]">
             <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
             <span class="sparkle" aria-hidden="true"></span>
           </div>
           <div class="work-card-body">
             <div class="work-card-chips">
-              @for (tag of study.tags.slice(0, 3); track tag) {
+              <!-- A status chip earns its place only when it says something the
+                   rest of the card does not — i.e. the project isn't built yet. -->
+              @if (project.status !== 'shipped') {
+                <span class="chip chip--status">{{ project.statusLabel }}</span>
+              }
+              @for (tag of project.tags.slice(0, 3); track tag) {
                 <span class="chip">{{ tag }}</span>
               }
             </div>
-            <h3>{{ study.title }}</h3>
-            <p>{{ study.subtitle }}</p>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.subtitle }}</p>
             <span class="work-card-cta">
-              View case study
+              Read the write-up
               <span class="arrow-circle" aria-hidden="true">→</span>
             </span>
           </div>
@@ -115,21 +120,23 @@
       sparkleColor="green"
       title="Latest <em>writing</em>."
     />
-    <a routerLink="/writing" class="text-link featured-all">All writing</a>
+    <a routerLink="/notes" class="text-link featured-all">All notes</a>
   </div>
 
-  <div class="post-list">
+  <ul class="post-list" role="list">
     @for (post of recentPosts; track post.slug; let i = $index) {
-      <app-scroll-reveal [delay]="i * 0.08">
-        <a [routerLink]="['/writing', post.slug]" class="post-row">
-          <time>{{ post.date }}</time>
-          <span class="post-row-main">
-            <span class="post-row-title">{{ post.title }}</span>
-            <span class="post-row-excerpt">{{ post.excerpt }}</span>
-          </span>
-          <span class="arrow-circle" aria-hidden="true">→</span>
-        </a>
-      </app-scroll-reveal>
+      <li>
+        <app-scroll-reveal [delay]="i * 0.08">
+          <a [routerLink]="['/notes', post.slug]" class="post-row">
+            <time>{{ post.date }}</time>
+            <span class="post-row-main">
+              <span class="post-row-title">{{ post.title }}</span>
+              <span class="post-row-excerpt">{{ post.excerpt }}</span>
+            </span>
+            <span class="arrow-circle" aria-hidden="true">→</span>
+          </a>
+        </app-scroll-reveal>
+      </li>
     }
-  </div>
+  </ul>
 </section>

@@ -30,7 +30,16 @@
           </li>
         }
       </ul>
-      <a routerLink="/resume" class="nav-cta" (click)="closeMenu()">Resume</a>
+      <!-- LinkedIn is the only contact route on the site, so it takes the
+           nav's single call to action. -->
+      <a
+        [href]="linkedInUrl"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+        (click)="closeMenu()"
+        >LinkedIn</a
+      >
     </div>
   </div>
 </nav>

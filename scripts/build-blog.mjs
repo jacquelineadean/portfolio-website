@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 
 const BLOG_DIR = join(import.meta.dirname, '..', 'src', 'content', 'blog');
-const OUTPUT_DIR = join(import.meta.dirname, '..', 'src', 'app', 'features', 'writing', 'data');
+const OUTPUT_DIR = join(import.meta.dirname, '..', 'src', 'app', 'features', 'notes', 'data');
 const OUTPUT_FILE = join(OUTPUT_DIR, 'blog-posts.generated.ts');
 
 if (!existsSync(OUTPUT_DIR)) {

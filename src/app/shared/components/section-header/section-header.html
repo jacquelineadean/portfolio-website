@@ -2,7 +2,11 @@
   <div class="section-header" [class.center]="align() === 'center'">
     @if (eyebrow(); as eb) {
       <p class="eyebrow">
-        <span class="sparkle" [class]="'sparkle sparkle--' + sparkleColor()" aria-hidden="true"></span>
+        <span
+          class="sparkle"
+          [class]="'sparkle sparkle--' + sparkleColor()"
+          aria-hidden="true"
+        ></span>
         {{ eb }}
       </p>
     }

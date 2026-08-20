@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./features/home/home').then((m) => m.Home),
-    title: 'Jacqueline Dean — Software Engineer',
+    title: 'Jacqueline Dean — Senior Software Engineer',
   },
   {
     path: 'about',
@@ -16,19 +16,14 @@ export const routes: Routes = [
     loadChildren: () => import('./features/work/work.routes').then((m) => m.workRoutes),
   },
   {
-    path: 'writing',
-    loadChildren: () => import('./features/writing/writing.routes').then((m) => m.writingRoutes),
+    path: 'notes',
+    loadChildren: () => import('./features/notes/notes.routes').then((m) => m.notesRoutes),
   },
-  {
-    path: 'reading',
-    loadComponent: () => import('./features/reading/reading').then((m) => m.Reading),
-    title: 'Reading & Ideas — Jacqueline Dean',
-  },
-  {
-    path: 'resume',
-    loadComponent: () => import('./features/resume/resume').then((m) => m.Resume),
-    title: 'Resume — Jacqueline Dean',
-  },
+  // Writing and Reading were separate sections; they are one now. Keep the old
+  // paths resolving so existing links to individual posts do not break.
+  { path: 'writing', pathMatch: 'full', redirectTo: 'notes' },
+  { path: 'writing/:slug', redirectTo: 'notes/:slug' },
+  { path: 'reading', pathMatch: 'full', redirectTo: 'notes' },
   {
     path: '**',
     redirectTo: '',

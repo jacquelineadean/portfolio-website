@@ -104,6 +104,14 @@
   white-space: nowrap;
 }
 
+/* Status variant — reserved for projects that are not built yet, so the label
+   never reads as a claim about shipped work. */
+.chip--status {
+  color: var(--color-ink);
+  background: var(--tint-yellow);
+  border-color: transparent;
+}
+
 /* ---------------------------------------------------------------------------
  * Arrow circle — circular icon button that fills on hover
  * ------------------------------------------------------------------------- */
@@ -428,5 +436,115 @@
     border-color: var(--color-ink);
     background: var(--color-ink);
     color: var(--color-paper);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Book card — bookshelf tile with a coloured spine
+ * ------------------------------------------------------------------------- */
+.books-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1180px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  > li,
+  > li > * {
+    min-width: 0;
+    height: 100%;
+  }
+}
+
+.book-card {
+  display: flex;
+  height: 100%;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform var(--duration-normal) var(--ease-out-expo),
+    box-shadow var(--duration-normal) ease,
+    border-color var(--duration-normal) ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+.book-spine {
+  width: 0.75rem;
+  flex-shrink: 0;
+}
+
+.spine--blue {
+  background: var(--color-blue);
+}
+.spine--red {
+  background: var(--color-red);
+}
+.spine--yellow {
+  background: var(--color-yellow);
+}
+.spine--green {
+  background: var(--color-green);
+}
+.spine--purple {
+  background: var(--color-purple);
+}
+
+.book-body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.book-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--text-xl);
+  margin-bottom: 0.35rem;
+}
+
+.book-author {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-md);
+}
+
+.book-reflection {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-md);
+  flex: 1;
+}
+
+.book-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-card {
+    transition: none;
+  }
+
+  .book-card:hover {
+    transform: none;
   }
 }

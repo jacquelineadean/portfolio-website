@@ -17,6 +17,13 @@
   }
 }
 
+.study-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
 .study-sections {
   display: flex;
   flex-direction: column;
@@ -32,14 +39,6 @@
 
   @media (min-width: 768px) {
     grid-template-columns: 220px 1fr;
-  }
-
-  &.highlight {
-    background: var(--tint-green);
-    border-top: none;
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    margin-top: var(--space-sm);
   }
 }
 

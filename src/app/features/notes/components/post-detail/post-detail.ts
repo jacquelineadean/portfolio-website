@@ -1,4 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Title } from '@angular/platform-browser';
@@ -20,17 +21,28 @@ export class PostDetail {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly titleService = inject(Title);
 
+  /**
+   * The param map as a signal, not `route.snapshot`. The router reuses this
+   * component instance between two `/notes/:slug` routes, so a computed reading
+   * `snapshot` has nothing to invalidate it and keeps serving the post you
+   * arrived from.
+   */
+  private readonly params = toSignal(this.route.paramMap);
+
   protected readonly post = computed(() => {
-    const slug = this.route.snapshot.paramMap.get('slug');
-    const found = slug ? this.blogService.getPostBySlug(slug) : undefined;
-    if (found) {
-      this.titleService.setTitle(`${found.title} — Jacqueline Dean`);
-    }
-    return found;
+    const slug = this.params()?.get('slug');
+    return slug ? this.blogService.getPostBySlug(slug) : undefined;
   });
 
   protected readonly safeContent = computed(() => {
     const p = this.post();
     return p ? this.sanitizer.bypassSecurityTrustHtml(p.content) : '';
   });
+
+  constructor() {
+    effect(() => {
+      const post = this.post();
+      if (post) this.titleService.setTitle(`${post.title} — Jacqueline Dean`);
+    });
+  }
 }

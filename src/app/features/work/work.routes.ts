@@ -4,11 +4,11 @@ export const workRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./work').then((m) => m.Work),
-    title: 'Work — Jacqueline Dean',
+    title: 'Projects — Jacqueline Dean',
   },
   {
     path: ':slug',
     loadComponent: () =>
-      import('./components/case-study-detail/case-study-detail').then((m) => m.CaseStudyDetail),
+      import('./components/project-detail/project-detail').then((m) => m.ProjectDetail),
   },
 ];

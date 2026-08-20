@@ -1,4 +1,12 @@
-import { Directive, ElementRef, NgZone, OnDestroy, afterNextRender, inject, input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  afterNextRender,
+  inject,
+  input,
+} from '@angular/core';
 
 @Directive({
   selector: '[appParallax]',

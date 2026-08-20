@@ -1,5 +1,8 @@
 import { Component, ElementRef, afterNextRender, inject, input } from '@angular/core';
-import { ScrollAnimationService, RevealAnimation } from '../../../core/services/scroll-animation.service';
+import {
+  ScrollAnimationService,
+  RevealAnimation,
+} from '../../../core/services/scroll-animation.service';
 
 @Component({
   selector: 'app-scroll-reveal',

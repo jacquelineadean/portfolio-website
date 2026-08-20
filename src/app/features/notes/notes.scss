@@ -1,0 +1,318 @@
+// Notes index — writing, books, listening and references on one page.
+//
+// The post rows, book cards, chips and text links are shared classes; what is
+// local here is the section rhythm, the jump nav, and the two blocks that did
+// not exist as separate pages (podcasts and references).
+//
+// `//` comments rather than `/* */` so they do not count against the
+// per-component style budget.
+
+// ---------------------------------------------------------------------------
+// Section rhythm & jump nav
+// ---------------------------------------------------------------------------
+
+// The navbar is fixed and the sections are scroll targets, so each one needs
+// clearance above it or its heading lands underneath the bar.
+.notes-section {
+  scroll-margin-top: 7rem;
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // The sections are focus targets for the jump nav (tabindex="-1"), not
+  // controls. Their heading is the visible landmark; a ring around a whole
+  // section would read as a control that isn't one.
+  &:focus {
+    outline: none;
+  }
+}
+
+.notes-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+
+  .sparkle {
+    font-size: 0.7em;
+  }
+}
+
+.notes-section-intro {
+  max-width: 62ch;
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.notes-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+  padding-bottom: var(--space-md);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.notes-jump-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--color-ink);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Writing
+// ---------------------------------------------------------------------------
+
+.tag-filters {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.tag-filter {
+  padding: 0.45rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition:
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
+
+  &:hover {
+    border-color: var(--color-border-hover);
+    color: var(--color-ink);
+  }
+
+  &.active {
+    color: var(--color-paper);
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+  }
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+
+  > :last-child .post-row {
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.post-row-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Listening
+//
+// Spotify's player is a fixed, branded block that will never match this page.
+// Rather than fight it, the card puts our own type beside it and lets the embed
+// be visibly a third-party object in its own panel.
+// ---------------------------------------------------------------------------
+
+.podcast-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.podcast-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  }
+}
+
+.podcast-title {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  margin-bottom: 0.35rem;
+}
+
+.podcast-host {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-md);
+}
+
+.podcast-note {
+  max-width: 56ch;
+  margin-bottom: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.podcast-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: var(--radius-md);
+}
+
+// Stands in for the player at the same height, so loading it does not shift the
+// rest of the page.
+.podcast-load {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 352px;
+  padding: var(--space-md);
+  text-align: center;
+  background: var(--color-paper-warm);
+  border: 1px dashed var(--color-border-hover);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-normal) ease,
+    border-color var(--duration-normal) ease;
+
+  &:hover {
+    background: var(--tint-blue);
+    border-color: var(--color-blue);
+  }
+}
+
+.podcast-load-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.podcast-load-label {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.podcast-load-note {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--color-ink-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Papers & articles
+// ---------------------------------------------------------------------------
+
+.reference-list {
+  > li:last-child .reference-row {
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.reference-row {
+  display: block;
+  padding: var(--space-md) 0.25rem;
+  border-top: 1px solid var(--color-border);
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background: rgba(255, 253, 249, 0.9);
+
+    .reference-title {
+      color: var(--color-blue);
+    }
+
+    .reference-external {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.reference-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.reference-title {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  transition: color var(--duration-fast) ease;
+}
+
+.reference-external {
+  display: inline-block;
+  font-size: 0.8em;
+  transition: transform var(--duration-normal) ease;
+}
+
+.reference-byline {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.reference-note {
+  max-width: 78ch;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reference-external,
+  .reference-row {
+    transition: none;
+  }
+
+  .reference-row:hover .reference-external {
+    transform: none;
+  }
+}

@@ -1,13 +1,12 @@
-.case-studies {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
+/* The carousel is deliberately not inside `.container`: its stage runs the full
+   width of the viewport so the off-centre cards are clipped by the window edge
+   rather than by a gutter, which is what makes the wheel read as continuing
+   past the page. The page hero above it keeps the normal measure. */
+app-project-carousel {
+  display: block;
+  margin-top: clamp(1rem, 3vw, 2.5rem);
+}
 
-  @media (min-width: 820px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  > * {
-    min-width: 0;
-  }
+.page-hero {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
 }
