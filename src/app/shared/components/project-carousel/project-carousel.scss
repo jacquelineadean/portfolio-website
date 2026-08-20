@@ -29,6 +29,14 @@
   // the CTA at 1024px and wastes 120px of card at 1440px. Measured natural
   // heights across 390-1440 peak at 506px; this is that, plus headroom.
   --card-h: 33rem;
+
+  // The peak is not at the narrow end. Between roughly 700 and 1200 the card
+  // width sits on its floor while the type keeps growing, so that band needs the
+  // full 33rem; below 640 the same copy needs 459px, and holding the card at
+  // 33rem there just parks 70px of empty white under the CTA.
+  @media (max-width: 640px) {
+    --card-h: 29.5rem;
+  }
   // Kept in step with PITCH_RATIO in the component class — a drag converts
   // pixels to slides through it, so the two must agree.
   --card-gap: calc(var(--card-w) * 0.17);
@@ -114,6 +122,11 @@
 
 // The shared tile is sized for a two-up grid; on the rim it would eat half the
 // card, so it takes a share of the card width instead of a viewport clamp.
+//
+// Fixed, not flexible. Letting it absorb the card's slack sounds right and looks
+// wrong: the tile's aspect ratio then swings from 2.8 to 0.7 between viewports,
+// and the drawing is cropped to fill, so it ends up magnified two and a half
+// times on a phone — a handful of enormous dots instead of a field of them.
 .project-card .work-card-tile {
   min-height: calc(var(--card-w) * 0.36);
 }
@@ -154,8 +167,11 @@
 //
 // `flex: 0 0 auto` undoes the shared card's `p { flex: 1 }`, which fights a line
 // clamp: it stretches the box past the clamped lines, so the ellipsis lands on
-// line three while line four is still painted below it. The slack moves to the
-// card's tail instead, where the auto margin below absorbs it.
+// line three while line four is still painted below it.
+//
+// With nothing in the body set to grow, the card's spare height collects after
+// the last row instead — which reads as generous bottom padding rather than as
+// a hole punched between the description and the links.
 .project-card-desc {
   flex: 0 0 auto;
   display: -webkit-box;
@@ -170,14 +186,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
-  margin-top: auto;
   padding-top: 0.15rem;
-}
-
-// When a project has no outbound links the CTA is the tail, so it takes the
-// slack instead.
-.project-card:not(:has(.project-card-actions)) .work-card-cta {
-  margin-top: auto;
 }
 
 // The raise is on the anchors, not on their container: raising the container

@@ -91,6 +91,24 @@
   rotate: -12deg;
 }
 
+/* Two pencil arcs, sized in viewport units so they stay a gesture across the
+   page rather than a fixed-size ornament. They sit under the type: the hero
+   decoration layer is behind .hero-inner's content and takes no pointer events,
+   so a stroke crossing a word can never take a click meant for it. */
+.deco-sweep {
+  width: clamp(16rem, 32vw, 30rem);
+  height: clamp(5rem, 9vw, 9rem);
+  top: 14%;
+  right: 3%;
+}
+
+.deco-corner {
+  width: clamp(11rem, 20vw, 18rem);
+  height: clamp(6rem, 11vw, 10rem);
+  bottom: 8%;
+  left: -3%;
+}
+
 .blob {
   position: absolute;
   width: clamp(16rem, 30vw, 26rem);
@@ -110,7 +128,8 @@
   }
 
   .deco-3,
-  .deco-4 {
+  .deco-4,
+  .deco-sweep {
     display: none;
   }
 }
@@ -151,6 +170,24 @@
   .eyebrow {
     margin-bottom: var(--space-md);
   }
+}
+
+/* Words on one side, the drawing on the other. The sketch is the claim's
+   evidence — it is what "incremental over big-bang" looks like on a whiteboard
+   — so it sits level with the line rather than under it. */
+.statement-inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  align-items: center;
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 33rem);
+  }
+}
+
+.statement-sketch {
+  max-width: 34rem;
+  margin-inline: auto;
 }
 
 .statement-text {

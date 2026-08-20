@@ -5,11 +5,15 @@ import { Button } from '../../shared/components/button/button';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { BlogService } from '../../core/services/blog.service';
 import { PROJECTS } from '../work/data/projects.data';
+import { ProjectArt } from '../../shared/components/project-art/project-art';
+import { Doodle } from '../../shared/components/doodle/doodle';
+import { SystemSketch } from '../../shared/components/system-sketch/system-sketch';
+import { TileTint, tintFor } from '../../shared/art/tints';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, Button, SectionHeader],
+  imports: [RouterLink, ScrollReveal, Button, SectionHeader, ProjectArt, Doodle, SystemSketch],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -18,8 +22,6 @@ export class Home {
 
   protected readonly projects = PROJECTS;
   protected readonly recentPosts = this.blogService.recentPosts().slice(0, 3);
-
-  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
 
   protected readonly skills = [
     'System design',
@@ -33,6 +35,10 @@ export class Home {
     'Cloud native',
     'API-first',
   ];
+
+  protected tint(index: number): TileTint {
+    return tintFor(index);
+  }
 
   protected readonly principles = [
     'API-first design',

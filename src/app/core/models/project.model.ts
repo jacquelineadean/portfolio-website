@@ -1,3 +1,5 @@
+import { ArtVariant } from '../../shared/art/generators';
+
 export interface ProjectSection {
   title: string;
   content: string[];
@@ -24,5 +26,7 @@ export interface Project {
   /** Rendered as the status chip and in the detail hero. */
   statusLabel: string;
   links: ProjectLink[];
+  /** Which generated drawing stands in for the project. */
+  art: ArtVariant;
   sections: ProjectSection[];
 }

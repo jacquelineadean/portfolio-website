@@ -12,6 +12,7 @@ export const PROJECTS: Project[] = [
       { label: 'Live site', href: 'https://jacquelineadean.github.io/AlgorithmVisualizer/' },
       { label: 'Source', href: 'https://github.com/jacquelineadean/AlgorithmVisualizer' },
     ],
+    art: 'sieve',
     sections: [
       {
         title: 'Context',
@@ -69,6 +70,7 @@ export const PROJECTS: Project[] = [
         href: 'https://blog.google/innovation-and-ai/technology/research/helping-communities-prepare-for-natural-disasters/',
       },
     ],
+    art: 'footprints',
     sections: [
       {
         title: 'Status',
