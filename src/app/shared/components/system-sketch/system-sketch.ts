@@ -31,7 +31,7 @@ import { systemSketch } from '../../art/system-sketch';
       preserveAspectRatio="xMidYMid meet"
     >
       @for (stroke of sketch().strokes; track $index; let i = $index) {
-        <path [attr.d]="stroke" pathLength="1" [style.animation-delay.ms]="i * 55" />
+        <path [attr.d]="stroke" pathLength="1" [style.animation-delay.ms]="strokeDelay(i)" />
       }
       @for (label of sketch().labels; track label.text; let i = $index) {
         <text
@@ -39,7 +39,7 @@ import { systemSketch } from '../../art/system-sketch';
           [attr.y]="label.y"
           [attr.text-anchor]="label.anchor ?? 'middle'"
           [class.aside]="label.aside"
-          [style.animation-delay.ms]="900 + i * 90"
+          [style.animation-delay.ms]="labelDelay(i)"
         >
           {{ label.text }}
         </text>
@@ -79,6 +79,21 @@ import { systemSketch } from '../../art/system-sketch';
       fill: var(--color-ink-muted);
     }
 
+    /* Below the two-column breakpoint the diagram is only as wide as the text
+       column, so at 390px it draws at 0.56 of its own units and 15px type lands
+       at 8.5px on screen. The frame is fixed by the geometry, so the type grows
+       instead. The labels still clear their boxes at this size — the boxes were
+       cut wide enough for it. */
+    @media (max-width: 700px) {
+      text {
+        font-size: 20px;
+      }
+
+      .aside {
+        font-size: 16px;
+      }
+    }
+
     .is-drawing path {
       stroke-dasharray: 1;
       animation: draw 620ms var(--ease-out-quart) backwards;
@@ -116,6 +131,14 @@ export class SystemSketch {
   protected readonly drawing = signal(false);
   protected readonly sketch = computed(() => systemSketch(this.seed()));
 
+  /**
+   * Derived from the stroke count rather than hard-coded, so a diagram with
+   * more boxes in it does not start naming its parts while half of them are
+   * still being drawn. The whole sequence is held to roughly a second and a
+   * half however many strokes there are.
+   */
+  private readonly step = computed(() => Math.min(55, 1500 / this.sketch().strokes.length));
+
   constructor() {
     const destroyRef = inject(DestroyRef);
     afterNextRender(() => {
@@ -131,5 +154,13 @@ export class SystemSketch {
       observer.observe(this.host.nativeElement as HTMLElement);
       destroyRef.onDestroy(() => observer.disconnect());
     });
+  }
+
+  protected strokeDelay(index: number): number {
+    return Math.round(index * this.step());
+  }
+
+  protected labelDelay(index: number): number {
+    return Math.round(this.sketch().strokes.length * this.step() + index * 70);
   }
 }

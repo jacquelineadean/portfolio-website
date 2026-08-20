@@ -40,10 +40,16 @@ export class Home {
     return tintFor(index);
   }
 
+  /**
+   * All four are about the arrows rather than the boxes, which is what the
+   * statement beside them claims and what the diagram draws. "One writer per
+   * record" was the fourth and had to go: the diagram has a service and a worker
+   * both writing to the store, so the chip contradicted the picture next to it.
+   */
   protected readonly principles = [
-    'API-first design',
-    'Incremental over big-bang',
-    'Data correctness',
-    'Boring on purpose',
+    'Design for partial failure',
+    'Idempotent by default',
+    'Backpressure over buffering',
+    'Timeouts on every hop',
   ];
 }
