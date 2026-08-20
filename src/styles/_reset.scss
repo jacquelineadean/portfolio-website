@@ -47,19 +47,14 @@ ol {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-on-surface);
+  outline: 2px solid var(--color-blue);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* On dark bands the ink-colored ring would disappear */
-.section--inverse :focus-visible {
-  outline-color: var(--color-text-inverse-strong);
-}
-
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-on-surface);
+  background: var(--color-yellow);
+  color: var(--color-ink);
 }
 
 ::-webkit-scrollbar {
@@ -67,16 +62,16 @@ ol {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: var(--color-paper);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(50, 50, 50, 0.22);
+  background: rgba(31, 30, 26, 0.22);
   border-radius: 5px;
-  border: 2px solid var(--color-surface);
+  border: 2px solid var(--color-paper);
 
   &:hover {
-    background: rgba(50, 50, 50, 0.38);
+    background: rgba(31, 30, 26, 0.38);
   }
 }
 

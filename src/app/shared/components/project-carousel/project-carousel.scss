@@ -11,6 +11,10 @@
 // card pitch. For an 8deg step that multiplier is 7.167 — change `--step` and
 // this constant has to be recomputed with it.
 //
+// The card itself is the site-wide `.work-card`, the same component the home
+// grid uses. Only what a fixed-height tile on a rotating rim needs differently
+// is overridden below, so the two never drift apart visually.
+//
 // Comments in this file are `//` rather than `/* */` on purpose: component
 // styles are subject to a per-component size budget, and Sass strips these
 // while it preserves CSS block comments.
@@ -19,12 +23,12 @@
   display: block;
 
   --card-w: clamp(16.5rem, 22vw, 20.5rem);
-  // Sized for the worst case, not the average one: the card is a fixed-height
-  // tile, so a two-line title next to a two-row action list has to fit without
-  // eating the body's bottom padding. Below ~1200px --card-w is pinned at its
-  // 16.5rem floor while the copy keeps its width, which is where the squeeze is
-  // tightest — the ratio is set from there.
-  --card-h: calc(var(--card-w) * 1.86);
+  // An absolute height rather than a ratio of the width, because the two do not
+  // move together: below ~1200px --card-w sits on its 16.5rem floor while the
+  // type keeps growing with the viewport, so a ratio that fits at 640px clips
+  // the CTA at 1024px and wastes 120px of card at 1440px. Measured natural
+  // heights across 390-1440 peak at 506px; this is that, plus headroom.
+  --card-h: 33rem;
   // Kept in step with PITCH_RATIO in the component class — a drag converts
   // pixels to slides through it, so the two must agree.
   --card-gap: calc(var(--card-w) * 0.17);
@@ -60,7 +64,7 @@
   transform: rotate(calc(var(--position, 0) * var(--step) * -1));
   // The settle. Suppressed mid-drag so the wheel tracks the pointer exactly
   // rather than lagging a transition behind it.
-  transition: transform var(--duration-enter) var(--ease-bloom);
+  transition: transform var(--duration-slow) var(--ease-out-expo);
 
   &.is-dragging {
     transition: none;
@@ -81,7 +85,7 @@
   top: calc(var(--guide-r) * -1);
   width: calc(var(--guide-r) * 2);
   height: calc(var(--guide-r) * 2);
-  border: 1px solid var(--color-border-hover);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -97,36 +101,21 @@
 
 // Off-centre cards keep full opacity. Fading them would be the obvious way to
 // push them back, but it drags their body copy under the contrast floor for no
-// gain — the tilt and the centred card's heavier border already carry the
-// hierarchy.
+// gain — the tilt and the centred card's shadow already carry the hierarchy.
 .project-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
   height: 100%;
-  margin: 0;
-  color: var(--color-text-primary);
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border-hover);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  transition:
-    border-color var(--duration-normal) ease,
-    background-color var(--duration-normal) ease;
 }
 
 .slot.is-centered .project-card {
-  border-color: var(--color-border-strong);
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-card);
 }
 
-.project-card:hover {
-  background: var(--color-bg-card-hover);
-  border-color: var(--color-border-strong);
-
-  .project-card-arrow {
-    transform: translateX(4px);
-  }
+// The shared tile is sized for a two-up grid; on the rim it would eat half the
+// card, so it takes a share of the card width instead of a viewport clamp.
+.project-card .work-card-tile {
+  min-height: calc(var(--card-w) * 0.36);
 }
 
 // Stretched link: the title anchor covers the whole card, so the card is one
@@ -156,87 +145,39 @@
 }
 
 .project-card:has(.project-card-link:focus-visible) {
-  outline: 2px solid var(--color-on-surface);
+  outline: 2px solid var(--color-ink);
   outline-offset: 2px;
-}
-
-.project-card-media {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: calc(var(--card-w) * 0.5);
-  padding: var(--space-sm);
-  background-color: var(--color-accent-soft);
-  // A quiet plotting grid rather than a stock image — the projects have no
-  // artwork, and a blank tile reads as a missing asset.
-  background-image:
-    linear-gradient(var(--color-card) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-card) 1px, transparent 1px);
-  background-size: 1.75rem 1.75rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.project-card-index {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-text-tertiary);
-}
-
-.project-card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-}
-
-// One row only. The cards are narrow enough that a second row of chips pushes
-// the actions out of the card, and the full tag list is on the write-up itself.
-.project-card-tags {
-  display: flex;
-  gap: 0.35rem;
-  margin-bottom: 0.15rem;
-  overflow: hidden;
-
-  .chip {
-    flex-shrink: 0;
-  }
-}
-
-.project-card-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: 500;
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-text-primary);
-  text-wrap: balance;
 }
 
 // Clamped rather than left to flow: the card is a fixed-height tile on the rim,
 // so a long subtitle would otherwise push the CTA off the bottom edge.
+//
+// `flex: 0 0 auto` undoes the shared card's `p { flex: 1 }`, which fights a line
+// clamp: it stretches the box past the clamped lines, so the ellipsis lands on
+// line three while line four is still painted below it. The slack moves to the
+// card's tail instead, where the auto margin below absorbs it.
 .project-card-desc {
+  flex: 0 0 auto;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
-  color: var(--color-text-secondary);
 }
 
-// Outbound links to the live site and the source, pushed to the bottom of the
-// card so every card's action row lines up regardless of copy length.
+// Outbound links to the live site and the source.
 .project-card-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
   margin-top: auto;
-  padding-top: var(--space-sm);
+  padding-top: 0.15rem;
+}
+
+// When a project has no outbound links the CTA is the tail, so it takes the
+// slack instead.
+.project-card:not(:has(.project-card-actions)) .work-card-cta {
+  margin-top: auto;
 }
 
 // The raise is on the anchors, not on their container: raising the container
@@ -250,32 +191,17 @@
   gap: 0.3em;
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-text-primary);
-  border-bottom: 1px solid var(--color-border-strong);
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-border-hover);
   padding-bottom: 1px;
-  transition: border-color var(--duration-normal) ease;
+  transition:
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
 
   &:hover {
-    border-color: var(--color-on-surface);
+    color: var(--color-blue);
+    border-color: var(--color-blue);
   }
-}
-
-// Affordance only, not a control: the whole card already navigates here via the
-// stretched title link, so this is aria-hidden and carries no separate target.
-.project-card-cta {
-  display: flex;
-  align-items: center;
-  gap: 0.45em;
-  margin-top: var(--space-sm);
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--color-border);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-}
-
-.project-card-arrow {
-  transition: transform var(--duration-normal) ease;
 }
 
 // The stage is full-bleed so the wheel is clipped by the window edge, but the
@@ -286,10 +212,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--space-md) var(--space-lg);
-  max-width: var(--container-max);
   margin-top: var(--space-lg);
-  margin-inline: auto;
-  padding-inline: var(--container-padding);
 }
 
 .carousel-nav-group {
@@ -297,30 +220,28 @@
   gap: var(--space-xs);
 }
 
+// Same circle as the site's .arrow-circle, but a real control: it carries a
+// hover fill and a disabled state the decorative one never needs.
 .carousel-nav {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.15rem;
-  color: var(--color-text-primary);
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.1rem;
+  color: var(--color-ink);
   background: transparent;
-  // A control's outline is its only affordance here, so it takes the 3:1
-  // interactive border rather than the decorative hairline.
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-hover);
+  border-radius: 50%;
   cursor: pointer;
   transition:
-    background-color var(--duration-normal) ease,
-    border-color var(--duration-normal) ease,
-    color var(--duration-normal) ease,
+    background-color var(--duration-normal) var(--ease-out-quart),
+    color var(--duration-normal) var(--ease-out-quart),
     opacity var(--duration-normal) ease;
 
   &:hover:not([aria-disabled='true']) {
-    background: var(--color-on-surface);
-    border-color: var(--color-on-surface);
-    color: var(--color-surface);
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 
   &[aria-disabled='true'] {
@@ -333,15 +254,15 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tracking-wide);
-  color: var(--color-text-tertiary);
+  letter-spacing: 0.08em;
+  color: var(--color-ink-muted);
 }
 
 .carousel-counter-current {
-  color: var(--color-text-primary);
+  color: var(--color-ink);
 }
 
 .carousel-track {
@@ -352,11 +273,11 @@
 .carousel-track-seg {
   width: 1.75rem;
   height: 2px;
-  background: var(--color-border-hover);
+  background: var(--color-border);
   transition: background-color var(--duration-normal) ease;
 
   &.is-active {
-    background: var(--color-on-surface);
+    background: var(--color-blue);
   }
 }
 
@@ -367,8 +288,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wheel,
-  .project-card-arrow {
+  .wheel {
     transition: none;
   }
 }

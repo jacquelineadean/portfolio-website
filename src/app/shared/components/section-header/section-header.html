@@ -1,7 +1,14 @@
 <app-scroll-reveal>
   <div class="section-header" [class.center]="align() === 'center'">
     @if (eyebrow(); as eb) {
-      <p class="eyebrow">{{ eb }}</p>
+      <p class="eyebrow">
+        <span
+          class="sparkle"
+          [class]="'sparkle sparkle--' + sparkleColor()"
+          aria-hidden="true"
+        ></span>
+        {{ eb }}
+      </p>
     }
     <h2 class="section-title" [innerHTML]="title()"></h2>
     @if (subtitle(); as sub) {

@@ -1,28 +1,29 @@
 <section class="page container">
   <header class="page-hero">
     <app-scroll-reveal>
-      <p class="eyebrow">About</p>
-      <h1 class="page-hero-title">I work on the systems that are hard to change.</h1>
+      <p class="eyebrow">
+        <span class="sparkle sparkle--red" aria-hidden="true"></span>
+        About
+      </p>
+      <h1 class="page-hero-title">Engineer, builder, <em>systems thinker</em>.</h1>
     </app-scroll-reveal>
   </header>
 
   <div class="about-bio">
     <app-scroll-reveal>
       <p class="bio-lead">
-        Most of my work is on large legacy platforms — pulling them apart into modular, cloud-native
-        services without interrupting the business running on top of them.
+        I thrive at the intersection of <em>complexity</em> and <em>clarity</em> — modernizing large
+        legacy platforms into modular, cloud-native systems.
       </p>
     </app-scroll-reveal>
 
     <div class="bio-body">
       <app-scroll-reveal [delay]="0.1">
         <p>
-          That work is as much sequencing as it is engineering: which seam to cut first, what has to
-          keep running while you cut it, and how to prove the new path is correct before the old one
-          is retired. I'm drawn to the problems where system boundaries are blurred, requirements
-          move mid-flight, and every decision is a tradeoff. Backend service design, API
-          development, data modeling, frontend integration — I work across the stack, with an
-          emphasis on maintainability, performance, and operational clarity.
+          I enjoy the problems where system boundaries are blurred, requirements evolve mid-flight,
+          and every decision is a tradeoff. Backend service design, API development, data modeling,
+          frontend integration — I operate across the stack with an emphasis on maintainability,
+          performance, and operational clarity.
         </p>
       </app-scroll-reveal>
 
@@ -35,26 +36,19 @@
     </div>
   </div>
 
-  <div class="section--inverse about-statement">
-    <app-scroll-reveal>
-      <div class="about-statement-inner">
-        <p class="eyebrow">Principles</p>
-        <p class="statement">
-          The best code isn't clever — it's confident, extensible, and easy to hand off.
-        </p>
-      </div>
-    </app-scroll-reveal>
-  </div>
-
   <div class="about-focus">
     <app-scroll-reveal>
-      <p class="eyebrow">Current focus</p>
+      <p class="eyebrow">
+        <span class="sparkle sparkle--green" aria-hidden="true"></span>
+        Current focus
+      </p>
     </app-scroll-reveal>
 
     <div class="focus-list">
       @for (interest of interests; track interest.label; let i = $index) {
         <app-scroll-reveal [delay]="0.05 + i * 0.06">
           <div class="focus-row">
+            <span class="focus-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
             <h3 class="focus-label">{{ interest.label }}</h3>
             <p class="focus-desc">{{ interest.description }}</p>
           </div>

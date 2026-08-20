@@ -3,10 +3,13 @@
     <!-- LinkedIn is the only contact route on the site: no address is published
          here or anywhere else, so this link has to carry the whole CTA. -->
     <div class="footer-cta">
-      <p class="eyebrow footer-eyebrow">Contact</p>
-      <h2 class="footer-headline">Let's talk.</h2>
+      <p class="eyebrow footer-eyebrow">
+        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+        Get in touch
+      </p>
+      <h2 class="footer-headline">Let's build something <em>durable</em>.</h2>
       <a [href]="links.linkedin" class="footer-contact" target="_blank" rel="noopener noreferrer">
-        Reach me on LinkedIn
+        Find me on LinkedIn
         <span class="contact-arrow" aria-hidden="true">→</span>
       </a>
     </div>
@@ -33,7 +36,11 @@
 
     <div class="footer-bottom">
       <p>&copy; {{ currentYear }} Jacqueline Dean</p>
-      <p class="footer-note">Built with Angular</p>
+      <p class="footer-note">
+        Built with curiosity
+        <span class="sparkle sparkle--green" aria-hidden="true"></span>
+        and Angular
+      </p>
     </div>
   </div>
 </footer>

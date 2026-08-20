@@ -4,8 +4,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'algorithm-visualizer',
     title: 'Algorithm Visualizer',
-    subtitle:
-      'Eight classic algorithms, traced step by step — and every step declares whether it follows the original paper or a teaching simplification.',
+    subtitle: 'Eight classic algorithms, traced step by step — each step citing its source.',
     tags: ['React', 'Vite', 'Vitest', 'Data visualization'],
     status: 'shipped',
     statusLabel: 'Live',
@@ -59,15 +58,14 @@ export const PROJECTS: Project[] = [
   {
     slug: 'disaster-exposure-modeling',
     title: 'Disaster exposure modeling',
-    subtitle:
-      'Turning a hazard forecast into an estimate of which structures — and how many people — sit in its path, using open building-footprint data.',
+    subtitle: 'Estimating which buildings, and how many people, sit in a hazard\u2019s path.',
     tags: ['Geospatial', 'Open data'],
     status: 'in-design',
     statusLabel: 'In design',
     links: [
-      { label: 'Open Buildings', href: 'https://sites.research.google/gr/open-buildings/' },
+      { label: 'Dataset', href: 'https://sites.research.google/gr/open-buildings/' },
       {
-        label: 'Source article',
+        label: 'Article',
         href: 'https://blog.google/innovation-and-ai/technology/research/helping-communities-prepare-for-natural-disasters/',
       },
     ],

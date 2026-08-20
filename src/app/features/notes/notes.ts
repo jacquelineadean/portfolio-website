@@ -30,6 +30,9 @@ export class Notes {
   protected readonly podcasts = PODCASTS;
   protected readonly references = REFERENCES;
 
+  /** Book spine tints, cycled so no two neighbours in the grid repeat. */
+  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
+
   protected readonly sections = [
     { id: 'writing', label: 'Writing' },
     { id: 'books', label: 'Books' },

@@ -1,42 +1,38 @@
-<section class="hero section--inverse">
-  <!-- The mosaic is the page-load entrance: it opens through an expanding soft
-       mask and then drifts. Purely decorative, so it is hidden from assistive
-       tech and carries no content of its own. -->
-  <!-- Three layers, one job each, because none of them can share an element:
-       the bloom mask and the ambient drift both own the `animation` shorthand,
-       and the mosaic's own directional fade is a second mask. Outside-in the
-       order matters too — the mask stays put while the grid drifts inside it. -->
-  <div class="hero-bloom bloom" aria-hidden="true">
-    <div class="hero-drift float">
-      <div class="hero-mosaic">
-        @for (tile of tiles; track $index) {
-          <span class="hero-tile"></span>
-        }
-      </div>
-    </div>
-  </div>
-
+<section class="hero">
   <div class="hero-inner container">
+    <div class="hero-decoration" aria-hidden="true">
+      <span class="sparkle sparkle--yellow deco deco-1 spin-slow"></span>
+      <span class="sparkle sparkle--red deco deco-2"></span>
+      <span class="sparkle sparkle--green deco deco-3"></span>
+      <span class="sparkle sparkle--blue deco deco-4"></span>
+      <div class="blob"></div>
+    </div>
+
     <div class="hero-content">
-      <!-- `.rise` is a CSS entrance with `both` fill, so the resting state is
-           the end state and prerendered output is correct without JS. -->
-      <p class="eyebrow hero-eyebrow rise" style="--rise-delay: 120ms">
-        Jacqueline Dean · Senior Software Engineer
-      </p>
+      <app-scroll-reveal>
+        <p class="chip hero-chip">
+          <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+          Jacqueline Dean · Senior Software Engineer
+        </p>
+      </app-scroll-reveal>
 
-      <h1 class="hero-title rise" style="--rise-delay: 200ms">
-        I rebuild the systems businesses depend on.
-      </h1>
+      <app-scroll-reveal [delay]="0.1">
+        <h1 class="hero-title">This is where <em>ideas</em> become <em>systems</em>.</h1>
+      </app-scroll-reveal>
 
-      <p class="hero-sub rise" style="--rise-delay: 290ms">
-        I take aging, tightly coupled platforms and re-architect them into modular, cloud-native
-        services — designed for correctness, clear ownership, and long-term maintainability.
-      </p>
+      <app-scroll-reveal [delay]="0.25">
+        <p class="hero-sub">
+          I'm a full-stack engineer who turns aging, tangled platforms into clean, cloud-native
+          systems — built for correctness, clarity, and the long run.
+        </p>
+      </app-scroll-reveal>
 
-      <div class="hero-links rise" style="--rise-delay: 380ms">
-        <app-button label="View my projects" routerPath="/work" variant="primary" />
-        <app-button label="About me" routerPath="/about" variant="secondary" />
-      </div>
+      <app-scroll-reveal [delay]="0.4">
+        <div class="hero-links">
+          <app-button label="Explore my work" routerPath="/work" variant="primary" />
+          <app-button label="More about me" routerPath="/about" variant="secondary" />
+        </div>
+      </app-scroll-reveal>
     </div>
   </div>
 
@@ -44,13 +40,13 @@
     <div class="marquee-track">
       @for (skill of skills; track skill) {
         <span>{{ skill }}</span>
-        <span class="marquee-sep"></span>
+        <span class="sparkle"></span>
       }
     </div>
     <div class="marquee-track">
       @for (skill of skills; track skill) {
         <span>{{ skill }}</span>
-        <span class="marquee-sep"></span>
+        <span class="sparkle"></span>
       }
     </div>
   </div>
@@ -58,13 +54,10 @@
 
 <section class="section featured container">
   <div class="featured-head">
-    <!-- The hero above describes professional work that cannot be shown, so this
-         header says so rather than letting two side projects read as the
-         evidence for it. -->
     <app-section-header
       eyebrow="Projects"
-      title="Things I build on my own time."
-      subtitle="The platform work I do professionally isn't mine to publish, so what's here is personal."
+      sparkleColor="blue"
+      title="Things I build on my <em>own time</em>."
     />
     <a routerLink="/work" class="text-link featured-all">All projects</a>
   </div>
@@ -73,9 +66,14 @@
     @for (project of projects; track project.slug; let i = $index) {
       <app-scroll-reveal [delay]="i * 0.12">
         <a [routerLink]="['/work', project.slug]" class="work-card">
-          <div class="work-card-tile" aria-hidden="true"></div>
+          <div class="work-card-tile" [class]="'work-card-tile tile--' + tileColors[i % 5]">
+            <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <span class="sparkle" aria-hidden="true"></span>
+          </div>
           <div class="work-card-body">
             <div class="work-card-chips">
+              <!-- A status chip earns its place only when it says something the
+                   rest of the card does not — i.e. the project isn't built yet. -->
               @if (project.status !== 'shipped') {
                 <span class="chip chip--status">{{ project.statusLabel }}</span>
               }
@@ -96,15 +94,17 @@
   </div>
 </section>
 
-<section class="section section--inverse philosophy">
+<section class="section statement">
   <div class="container">
     <app-scroll-reveal>
-      <p class="eyebrow">How I work</p>
-      <p class="statement philosophy-text">
-        Most of the risk in a modernization isn't the new system. It's the transition — so that's
-        what I design for first.
+      <p class="eyebrow">
+        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+        A working philosophy
       </p>
-      <div class="philosophy-chips">
+      <p class="statement-text">
+        The best code isn't <em>clever</em> — it's confident, extensible, and easy to hand off.
+      </p>
+      <div class="statement-chips">
         @for (principle of principles; track principle) {
           <span class="chip">{{ principle }}</span>
         }
@@ -115,7 +115,11 @@
 
 <section class="section writing-preview container">
   <div class="featured-head">
-    <app-section-header eyebrow="Writing" title="Recent posts." />
+    <app-section-header
+      eyebrow="Notes from the lab"
+      sparkleColor="green"
+      title="Latest <em>writing</em>."
+    />
     <a routerLink="/notes" class="text-link featured-all">All notes</a>
   </div>
 

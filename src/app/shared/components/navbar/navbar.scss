@@ -8,12 +8,16 @@
 }
 
 nav {
-  background-color: var(--color-surface);
+  transition:
+    background-color var(--duration-normal) ease,
+    backdrop-filter var(--duration-normal) ease,
+    border-color var(--duration-normal) ease;
   border-bottom: 1px solid transparent;
-  transition: border-color var(--duration-fast) var(--ease-out-quart);
 
   &.scrolled {
-    border-bottom-color: var(--color-hairline);
+    background-color: rgba(247, 245, 240, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--color-border);
   }
 }
 
@@ -21,21 +25,30 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--nav-height);
+  height: 4.75rem;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  gap: 0.6rem;
   z-index: 10;
+
+  .sparkle {
+    font-size: 1rem;
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+  }
+
+  &:hover .sparkle {
+    transform: rotate(180deg);
+  }
 }
 
 .logo-text {
-  font-family: var(--font-heading);
-  font-size: var(--text-base);
-  font-weight: 500;
-  letter-spacing: var(--tracking-normal);
-  color: var(--color-on-surface);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
 }
 
 .nav-links {
@@ -50,14 +63,37 @@ nav {
   align-items: center;
 
   li a {
-    font-size: var(--text-sm);
+    font-size: 0.95rem;
     font-weight: 500;
-    color: var(--color-on-surface-subtle);
-    transition: color var(--duration-fast) var(--ease-out-quart);
+    color: var(--color-ink-soft);
+    transition: color var(--duration-fast) ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      translate: -50% 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-ink);
+      opacity: 0;
+      scale: 0;
+      transition:
+        opacity var(--duration-normal) var(--ease-out-expo),
+        scale var(--duration-normal) var(--ease-out-expo);
+    }
 
     &:hover,
     &.active {
-      color: var(--color-on-surface);
+      color: var(--color-ink);
+    }
+
+    &.active::after {
+      opacity: 1;
+      scale: 1;
     }
   }
 }
@@ -65,24 +101,19 @@ nav {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.4em;
-  padding: 0.7rem 1.6rem;
-  font-size: var(--text-sm);
+  padding: 0.55rem 1.35rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-on-surface);
-  background: transparent;
-  /* This is the site's only contact control now that the email is gone, so its
-     outline has to clear the 3:1 non-text floor rather than use the 1.15:1
-     decorative hairline. */
-  border: 0.2rem solid var(--color-border-strong);
+  color: var(--color-paper);
+  background: var(--color-ink);
   border-radius: var(--radius-pill);
   transition:
-    background-color var(--duration-fast) var(--ease-out-quart),
-    border-color var(--duration-fast) var(--ease-out-quart);
+    transform var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
 
   &:hover {
-    background: var(--color-accent-soft);
-    border-color: var(--color-accent);
+    background: #000;
+    transform: scale(1.04);
   }
 }
 
@@ -99,9 +130,9 @@ nav {
   width: 26px;
   height: 2px;
   border-radius: 2px;
-  background: var(--color-on-surface);
+  background: var(--color-ink);
   transition:
-    transform var(--duration-normal) var(--ease-out-quart),
+    transform var(--duration-normal) ease,
     opacity var(--duration-fast) ease;
 }
 
@@ -116,7 +147,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     gap: var(--space-xl);
-    background: var(--color-surface);
+    background: var(--color-paper);
     opacity: 0;
     visibility: hidden;
     transition:
@@ -137,13 +168,19 @@ nav {
     li a {
       font-size: var(--text-2xl);
       font-weight: 500;
-      letter-spacing: var(--tracking-normal);
+      letter-spacing: var(--tracking-tight);
+
+      &::after {
+        bottom: -2px;
+        width: 6px;
+        height: 6px;
+      }
     }
   }
 
   .nav-cta {
     font-size: var(--text-base);
-    padding: 0.9rem 2.2rem;
+    padding: 0.8rem 2.2rem;
   }
 
   nav.menu-open {
@@ -154,15 +191,5 @@ nav {
     .hamburger-line:nth-child(2) {
       transform: translateY(-4px) rotate(-45deg);
     }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  nav,
-  .nav-list li a,
-  .nav-cta,
-  .hamburger-line,
-  .nav-links {
-    transition: none;
   }
 }

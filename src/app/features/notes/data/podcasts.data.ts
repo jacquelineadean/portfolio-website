@@ -9,7 +9,7 @@ export const PODCASTS: Podcast[] = [
   {
     name: 'System Design Deep Dive',
     publisher: 'System Sage',
-    note: 'Walks a system design problem end to end — notification fan-out, distributed schedulers, marketplace pricing — from database fundamentals up to distributed-systems patterns. Useful for keeping the vocabulary sharp between the times I actually get to make these decisions.',
+    note: 'One system design problem an episode, end to end — notification fan-out, distributed schedulers — from database fundamentals up to distributed-systems patterns.',
     embedUrl: 'https://open.spotify.com/embed/show/3KAkF0bZXEYkYVHhVQdvia?utm_source=generator',
     url: 'https://open.spotify.com/show/3KAkF0bZXEYkYVHhVQdvia',
   },

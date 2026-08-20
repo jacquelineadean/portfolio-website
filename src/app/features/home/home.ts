@@ -19,6 +19,8 @@ export class Home {
   protected readonly projects = PROJECTS;
   protected readonly recentPosts = this.blogService.recentPosts().slice(0, 3);
 
+  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
+
   protected readonly skills = [
     'System design',
     'Spring Boot',
@@ -36,9 +38,6 @@ export class Home {
     'API-first design',
     'Incremental over big-bang',
     'Data correctness',
-    'Reversible decisions',
+    'Boring on purpose',
   ];
-
-  /** Backing list for the decorative hero grid — 24 tiles, no content. */
-  protected readonly tiles = Array.from({ length: 24 });
 }

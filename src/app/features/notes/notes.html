@@ -1,12 +1,11 @@
 <section class="page container">
   <header class="page-hero">
     <app-scroll-reveal>
-      <p class="eyebrow">Notes</p>
-      <h1 class="page-hero-title">What I'm writing and reading.</h1>
-      <p class="page-hero-sub">
-        Posts on tradeoffs and design decisions I've hit in production, plus the books, shows and
-        papers I keep going back to.
+      <p class="eyebrow">
+        <span class="sparkle sparkle--green" aria-hidden="true"></span>
+        Field notes
       </p>
+      <h1 class="page-hero-title">Notes from the <em>lab</em>.</h1>
     </app-scroll-reveal>
   </header>
 
@@ -29,7 +28,10 @@
 
   <section id="writing" class="notes-section" tabindex="-1">
     <app-scroll-reveal>
-      <h2 class="notes-section-title">Writing</h2>
+      <h2 class="notes-section-title">
+        <span class="sparkle sparkle--green" aria-hidden="true"></span>
+        Writing
+      </h2>
     </app-scroll-reveal>
 
     <!-- aria-pressed, not just a class: the filter's selected state is otherwise
@@ -85,10 +87,12 @@
 
   <section id="books" class="notes-section" tabindex="-1">
     <app-scroll-reveal>
-      <h2 class="notes-section-title">Books</h2>
+      <h2 class="notes-section-title">
+        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+        Books
+      </h2>
       <p class="notes-section-intro">
-        Writing that shaped how I think about systems, complexity and decisions under uncertainty —
-        inside software engineering and well outside it.
+        Ideas worth borrowing — from inside software engineering and well outside it.
       </p>
     </app-scroll-reveal>
 
@@ -97,6 +101,11 @@
         <li>
           <app-scroll-reveal [delay]="0.05 + i * 0.08">
             <div class="book-card">
+              <div
+                class="book-spine"
+                [class]="'book-spine spine--' + tileColors[i % 5]"
+                aria-hidden="true"
+              ></div>
               <div class="book-body">
                 <h3 class="book-title">{{ book.title }}</h3>
                 <p class="book-author">{{ book.author }}</p>
@@ -116,8 +125,10 @@
 
   <section id="listening" class="notes-section" tabindex="-1">
     <app-scroll-reveal>
-      <h2 class="notes-section-title">Listening</h2>
-      <p class="notes-section-intro">Shows I'm working through at the moment.</p>
+      <h2 class="notes-section-title">
+        <span class="sparkle sparkle--purple" aria-hidden="true"></span>
+        Listening
+      </h2>
     </app-scroll-reveal>
 
     <ul class="podcast-list" role="list">
@@ -127,7 +138,7 @@
             <article class="podcast-card">
               <div class="podcast-meta">
                 <h3 class="podcast-title">{{ podcast.name }}</h3>
-                <p class="podcast-host">Hosted by {{ podcast.publisher }}</p>
+                <p class="podcast-host">{{ podcast.publisher }}</p>
                 <p class="podcast-note">{{ podcast.note }}</p>
                 <a class="text-link" [href]="podcast.url" target="_blank" rel="noopener noreferrer"
                   >Open in Spotify</a
@@ -166,7 +177,10 @@
 
   <section id="papers" class="notes-section" tabindex="-1">
     <app-scroll-reveal>
-      <h2 class="notes-section-title">Papers &amp; articles</h2>
+      <h2 class="notes-section-title">
+        <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+        Papers &amp; articles
+      </h2>
       <p class="notes-section-intro">Things I re-read, and send to people.</p>
     </app-scroll-reveal>
 

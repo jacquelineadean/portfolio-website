@@ -1,9 +1,7 @@
-/* Long-form article body. Deliberately stays at a comfortable reading measure
-   and size — the Labs display scale applies to page furniture, not to prose. */
 .prose {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
-  color: var(--color-text-secondary);
+  color: var(--color-ink-soft);
 
   h1,
   h2,
@@ -11,41 +9,31 @@
   h4 {
     margin-top: 2em;
     margin-bottom: 0.75em;
-    color: var(--color-text-primary);
+    color: var(--color-ink);
   }
 
   h2 {
-    font-size: var(--text-lg);
-    font-weight: 500;
+    font-size: var(--text-xl);
   }
 
   h3 {
-    font-size: var(--text-base);
-    font-weight: 500;
+    font-size: var(--text-lg);
   }
 
   p {
     margin-bottom: 1.25em;
   }
 
-  /* Author emphasis in an article is real emphasis — the no-italic rule
-     applies to decorative heading accents, not to prose. */
-  em {
-    font-style: italic;
-  }
-
   a {
-    color: var(--color-text-primary);
+    color: var(--color-ink);
     text-decoration: underline;
-    text-decoration-color: var(--color-border-hover);
+    text-decoration-color: var(--color-blue);
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
-    transition:
-      color var(--duration-fast) ease,
-      text-decoration-color var(--duration-fast) ease;
+    transition: color var(--duration-fast) ease;
 
     &:hover {
-      text-decoration-color: var(--color-on-surface);
+      color: var(--color-blue);
     }
   }
 
@@ -67,21 +55,23 @@
     margin-bottom: 0.5em;
 
     &::marker {
-      color: var(--color-text-tertiary);
+      color: var(--color-ink-muted);
     }
   }
 
   blockquote {
-    border-left: 2px solid var(--color-accent);
+    border-left: 3px solid var(--color-yellow);
     padding-left: var(--space-md);
     margin: 1.5em 0;
-    font-size: 1.05em;
-    color: var(--color-text-secondary);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15em;
+    color: var(--color-ink-soft);
   }
 
   pre {
-    background: var(--color-surface-dark);
-    color: var(--color-text-inverse);
+    background: var(--color-ink);
+    color: var(--color-paper);
     border-radius: var(--radius-md);
     padding: var(--space-md);
     overflow-x: auto;
@@ -89,7 +79,6 @@
 
     code {
       background: none;
-      border: none;
       padding: 0;
       color: inherit;
       font-size: var(--text-sm);
@@ -99,8 +88,7 @@
   code {
     font-family: var(--font-mono);
     font-size: 0.9em;
-    background: var(--color-surface-alt);
-    border: 1px solid var(--color-border);
+    background: var(--color-paper-warm);
     padding: 0.15em 0.4em;
     border-radius: var(--radius-sm);
   }
@@ -117,7 +105,7 @@
   }
 
   strong {
-    color: var(--color-text-primary);
-    font-weight: 500;
+    color: var(--color-ink);
+    font-weight: 600;
   }
 }

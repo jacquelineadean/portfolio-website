@@ -17,7 +17,7 @@ import { Project } from '../../../core/models/project.model';
  * Wheel carousel.
  *
  * The slides are not on a translating rail — they ride the rim of a very large
- * circle, so advancing rotates the whole wheel and the neighbouring cards tilt
+ * circle, so advancing rotates the whole wheel and the neighboring cards tilt
  * away from the centre instead of merely sliding. The geometry lives in the
  * stylesheet; this class owns only the position along the wheel.
  *
@@ -47,6 +47,9 @@ export class ProjectCarousel {
   /** Fractional offset contributed by an in-flight drag, in slides. */
   protected readonly dragOffset = signal(0);
   protected readonly dragging = signal(false);
+
+  /** Tile tints, cycled so adjacent cards on the rim never repeat a colour. */
+  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
 
   protected readonly count = computed(() => this.projects().length);
   protected readonly position = computed(() => this.active() + this.dragOffset());

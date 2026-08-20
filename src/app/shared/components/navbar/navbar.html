@@ -1,6 +1,7 @@
 <nav [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
   <div class="nav-inner container">
     <a routerLink="/" class="logo" (click)="closeMenu()">
+      <span class="sparkle sparkle--blue" aria-hidden="true"></span>
       <span class="logo-text">Jacqueline Dean</span>
     </a>
 
@@ -29,16 +30,16 @@
           </li>
         }
       </ul>
+      <!-- LinkedIn is the only contact route on the site, so it takes the
+           nav's single call to action. -->
       <a
         [href]="linkedInUrl"
         class="nav-cta"
         target="_blank"
         rel="noopener noreferrer"
         (click)="closeMenu()"
+        >LinkedIn</a
       >
-        LinkedIn
-        <span class="nav-cta-icon" aria-hidden="true">↗</span>
-      </a>
     </div>
   </div>
 </nav>

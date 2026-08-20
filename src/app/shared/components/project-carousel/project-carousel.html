@@ -28,13 +28,18 @@
           [class.is-centered]="i === active()"
           (focusin)="onCardFocus($event, i)"
         >
-          <article class="project-card">
-            <span class="project-card-media" aria-hidden="true">
-              <span class="project-card-index">{{ pad(i + 1) }}</span>
-            </span>
+          <article class="work-card project-card">
+            <div
+              class="work-card-tile"
+              [class]="'work-card-tile tile--' + tileColors[i % 5]"
+              aria-hidden="true"
+            >
+              <span class="tile-index">{{ pad(i + 1) }}</span>
+              <span class="sparkle"></span>
+            </div>
 
-            <div class="project-card-body">
-              <div class="project-card-tags">
+            <div class="work-card-body">
+              <div class="work-card-chips">
                 @if (showsStatus(project)) {
                   <span class="chip chip--status">{{ project.statusLabel }}</span>
                 }
@@ -51,7 +56,7 @@
                    link drag and the browser fires pointercancel — the wheel
                    gesture dies wherever the cards are, which is most of the
                    stage. -->
-              <h3 class="project-card-title">
+              <h3>
                 <a
                   class="project-card-link"
                   draggable="false"
@@ -80,9 +85,9 @@
                 </div>
               }
 
-              <span class="project-card-cta" aria-hidden="true">
+              <span class="work-card-cta">
                 Read the write-up
-                <span class="project-card-arrow">→</span>
+                <span class="arrow-circle" aria-hidden="true">→</span>
               </span>
             </div>
           </article>
@@ -91,7 +96,7 @@
     </div>
   </div>
 
-  <div class="carousel-controls">
+  <div class="carousel-controls container">
     <!-- aria-disabled rather than disabled: with only a couple of projects the
          first press already lands on a boundary, and disabling a focused button
          blurs it — focus falls to <body> and the next Tab restarts from the top

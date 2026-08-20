@@ -9,9 +9,10 @@ import { ScrollReveal } from '../scroll-reveal/scroll-reveal';
   styleUrl: './section-header.scss',
 })
 export class SectionHeader {
-  /** Title text; may contain <em>, which renders upright (no italic in this system). */
+  /** Title text; may contain <em> for italic serif accent words. */
   title = input.required<string>();
   subtitle = input<string>();
   eyebrow = input<string>();
+  sparkleColor = input<'blue' | 'red' | 'yellow' | 'green' | 'purple'>('blue');
   align = input<'left' | 'center'>('left');
 }
