@@ -29,6 +29,21 @@
       </app-scroll-reveal>
     </header>
 
+    <app-scroll-reveal>
+      <!-- The same drawing as the project's card, at banner width. It is the
+           card's tile enlarged rather than a second illustration, so arriving
+           here from the carousel lands on something already recognised. -->
+      <div class="study-art" [class]="'study-art tile--' + tint()">
+        <app-project-art
+          class="tile-art"
+          [variant]="project.art"
+          [seed]="project.slug"
+          [width]="1200"
+          [height]="300"
+        />
+      </div>
+    </app-scroll-reveal>
+
     <div class="study-sections">
       @for (section of project.sections; track section.title; let i = $index) {
         <app-scroll-reveal [delay]="i * 0.05">

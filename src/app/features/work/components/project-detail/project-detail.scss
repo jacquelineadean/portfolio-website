@@ -24,6 +24,18 @@
   margin-top: var(--space-lg);
 }
 
+/* Banner height is set here rather than by the drawing's aspect ratio: the SVG
+   is cropped to fill, so the band can be the proportion the page wants and the
+   drawing carries on past its edges. */
+.study-art {
+  position: relative;
+  height: clamp(9rem, 22vw, 15rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
 .study-sections {
   display: flex;
   flex-direction: column;

@@ -252,6 +252,7 @@
   min-height: clamp(9rem, 16vw, 13rem);
 
   .tile-index {
+    position: relative;
     font-family: var(--font-mono);
     font-size: var(--text-2xl);
     line-height: 1;
@@ -279,6 +280,35 @@
 }
 .tile--purple {
   background: var(--tint-purple);
+}
+
+/* The generated drawing fills the tile behind the index numeral. It is clipped
+   by the tile's own overflow, which is the point: the drawing carries on past
+   the edge rather than being composed to fit, the way a plate is cropped out of
+   a larger sheet. */
+.tile-art {
+  position: absolute;
+  inset: 0;
+}
+
+/* Every drawing has one highlighted element — the primes, the exposed
+   footprints, the chosen route — and it takes a colour the tile does not, so it
+   separates instead of sinking into the tint. Red goes on the hazard tile
+   deliberately; the highlight there means buildings in the path of something. */
+.tile--blue .tile-art {
+  --art-accent: var(--color-green);
+}
+.tile--yellow .tile-art {
+  --art-accent: var(--color-red);
+}
+.tile--green .tile-art {
+  --art-accent: var(--color-purple);
+}
+.tile--red .tile-art {
+  --art-accent: var(--color-blue);
+}
+.tile--purple .tile-art {
+  --art-accent: var(--color-blue);
 }
 
 .work-card-body {

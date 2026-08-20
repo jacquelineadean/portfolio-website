@@ -5,6 +5,10 @@
       <span class="sparkle sparkle--red deco deco-2"></span>
       <span class="sparkle sparkle--green deco deco-3"></span>
       <span class="sparkle sparkle--blue deco deco-4"></span>
+      <!-- Pencil marks in the margin of the page. Two shapes, two seeds, so the
+           pair reads as drawn rather than as one asset flipped. -->
+      <app-doodle class="deco deco-sweep" shape="sweep" seed="hero" />
+      <app-doodle class="deco deco-corner" shape="corner" seed="hero" />
       <div class="blob"></div>
     </div>
 
@@ -66,9 +70,9 @@
     @for (project of projects; track project.slug; let i = $index) {
       <app-scroll-reveal [delay]="i * 0.12">
         <a [routerLink]="['/work', project.slug]" class="work-card">
-          <div class="work-card-tile" [class]="'work-card-tile tile--' + tileColors[i % 5]">
+          <div class="work-card-tile" [class]="'work-card-tile tile--' + tint(i)">
+            <app-project-art class="tile-art" [variant]="project.art" [seed]="project.slug" />
             <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
-            <span class="sparkle" aria-hidden="true"></span>
           </div>
           <div class="work-card-body">
             <div class="work-card-chips">
@@ -95,7 +99,7 @@
 </section>
 
 <section class="section statement">
-  <div class="container">
+  <div class="container statement-inner">
     <app-scroll-reveal>
       <p class="eyebrow">
         <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
@@ -109,6 +113,10 @@
           <span class="chip">{{ principle }}</span>
         }
       </div>
+    </app-scroll-reveal>
+
+    <app-scroll-reveal [delay]="0.15">
+      <app-system-sketch class="statement-sketch" />
     </app-scroll-reveal>
   </div>
 </section>

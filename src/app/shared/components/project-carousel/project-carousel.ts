@@ -12,6 +12,8 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Project } from '../../../core/models/project.model';
+import { ProjectArt } from '../project-art/project-art';
+import { TileTint, tintFor } from '../../art/tints';
 
 /**
  * Wheel carousel.
@@ -31,7 +33,7 @@ import { Project } from '../../../core/models/project.model';
 @Component({
   selector: 'app-project-carousel',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ProjectArt],
   templateUrl: './project-carousel.html',
   styleUrl: './project-carousel.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,9 +49,6 @@ export class ProjectCarousel {
   /** Fractional offset contributed by an in-flight drag, in slides. */
   protected readonly dragOffset = signal(0);
   protected readonly dragging = signal(false);
-
-  /** Tile tints, cycled so adjacent cards on the rim never repeat a colour. */
-  protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
 
   protected readonly count = computed(() => this.projects().length);
   protected readonly position = computed(() => this.active() + this.dragOffset());
@@ -98,6 +97,11 @@ export class ProjectCarousel {
     event.preventDefault();
     event.stopPropagation();
   };
+
+  /** Shared with the card grid, so a project keeps one colour across the site. */
+  protected tint(index: number): TileTint {
+    return tintFor(index);
+  }
 
   protected pad(n: number): string {
     return n < 10 ? `0${n}` : `${n}`;

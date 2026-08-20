@@ -31,11 +31,11 @@
           <article class="work-card project-card">
             <div
               class="work-card-tile"
-              [class]="'work-card-tile tile--' + tileColors[i % 5]"
+              [class]="'work-card-tile tile--' + tint(i)"
               aria-hidden="true"
             >
+              <app-project-art class="tile-art" [variant]="project.art" [seed]="project.slug" />
               <span class="tile-index">{{ pad(i + 1) }}</span>
-              <span class="sparkle"></span>
             </div>
 
             <div class="work-card-body">
