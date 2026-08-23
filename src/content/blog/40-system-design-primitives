@@ -1,0 +1,54 @@
+# 40 System Design Primitives Every Engineer Should Know
+
+_Primitive first, vendor second._
+
+When whiteboarding a solution architecture, these are the 40 design primitives every engineer should know and the tradeoffs associated with each. 
+
+|Category|Primitives|
+|--|--|
+|[Storage](#storage)| <ul><li>[Row-Oriented Relational Databases](#row-oriented-database)</li><li>Column-Oriented Relational Database</li></ul> |
+
+---
+## Storage 
+
+<table>
+    <tr>
+        <th>Primitive</th>
+        <th>Mechanics</th>
+        <th>Advantages</th>
+        <th>Trade-offs</th>
+        <th>Vendor(s)</th>
+    </tr>
+    <tr>
+        <td>Row-Oriented Relational Databases</td>
+        <td>Entire record is stored sequentially on the physical storage block<br>Ex. To fetch a user profile, the disk head seeks once, grabs the entire block, and pulls row into memory.</td>
+        <td>Designed for online transaction processing (OLTP)<br>Atomicity, consistency, isolation, durability, referential integrity</td><td></td>
+        <td>PostgreSQL, MySQL</td>
+    </tr>
+    <tr>
+        <td>Column-Oriented Relational Databases</td>
+        <td>Data stored column-by-column; built for heavy aggregations over massive scans<br>Ex. To calculate average price across 10 billion transactions, seeks the price column on the disk, streams dataset of  integers into the CPU, and processes using single instructuons multiple data (SIMD)</td>
+        <td>Designed for online analytics processing (OLAP)</td><td></td>
+        <td>ClickHouse, Snowflake, Duck DB</td>
+    </tr>
+    <tr>
+        <td>Distributed Sequel Relational Databases</td>
+        <td></td>
+        <td>Designed for online analytics processing (OLAP)</td><td></td>
+        <td>ClickHouse, Snowflake, Duck DB</td>
+    </tr>
+</table>
+
+---
+### Row-Oriented Relational Database 
+
+### Column-Oriented Relational Database
+
+---
+## Queues & Streaming 
+
+---
+## Compute
+
+---
+## Monitoring / Observability 

@@ -34,7 +34,7 @@ export class Notes {
   protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
 
   protected readonly sections = [
-    { id: 'writing', label: 'Writing' },
+    { id: 'writing', label: 'Blog' },
     { id: 'books', label: 'Books' },
     { id: 'listening', label: 'Listening' },
     { id: 'papers', label: 'Papers & articles' },
