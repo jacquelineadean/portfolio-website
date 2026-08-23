@@ -4,8 +4,8 @@ export const PROJECTS: Project[] = [
   {
     slug: 'algorithm-visualizer',
     title: 'Algorithm Visualizer',
-    subtitle: 'Eight classic algorithms, traced step by step — each step citing its source.',
-    tags: ['React', 'Vite', 'Vitest', 'Data visualization'],
+    subtitle: 'Classic algorithms, traced step by step — each step citing its source.',
+    tags: ['React'],
     status: 'shipped',
     statusLabel: 'Live',
     links: [
