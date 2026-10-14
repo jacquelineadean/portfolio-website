@@ -1,0 +1,297 @@
+/* ---------------------------------------------------------------------------
+ * Labs: the interactive figures on Home and About.
+ *
+ * Each lab is a drawing plus the controls that change it, the numbers that
+ * result, and one sentence reading those numbers out. The layout follows the
+ * labs in the Four Mental Models post. The type and colours are the site's own.
+ *
+ * Global rather than per component: four components share these rules, and
+ * the per-component style budget is 6 kB.
+ * ------------------------------------------------------------------------- */
+
+.lab-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  .sparkle {
+    font-size: 0.9em;
+  }
+}
+
+.lab-title {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  margin-bottom: 0.5rem;
+}
+
+.lab-desc {
+  max-width: 60ch;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  line-height: var(--leading-normal);
+}
+
+/* The drawing's frame: a card the figure sits on, the way a plate sits on a
+   page. Figures draw on the card colour so their tints read as tints. */
+.lab-plate {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.lab-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs) var(--space-sm);
+}
+
+/* Segmented control: one choice from a few, each a toggle button with
+   aria-pressed so the selected one is announced as selected. */
+.lab-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+
+  button {
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    border-radius: var(--radius-pill);
+    transition:
+      background-color var(--duration-fast) ease,
+      color var(--duration-fast) ease;
+
+    &:hover {
+      color: var(--color-ink);
+    }
+
+    &[aria-pressed='true'] {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+  }
+}
+
+/* A plain action, drawn like a chip. */
+.lab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.55rem 1.05rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-card);
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+
+  &:hover:not(:disabled) {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+}
+
+/* On/off switch: role="switch" with aria-checked. The track carries the state
+   in shape as well as colour (the thumb moves), so it reads without colour. */
+.lab-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+
+  .lab-switch-track {
+    position: relative;
+    width: 2.1rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-red);
+    transition: background-color var(--duration-normal) ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0.15rem;
+      left: 0.15rem;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      background: var(--color-card);
+      transition: translate var(--duration-normal) var(--ease-out-expo);
+    }
+  }
+
+  &[aria-checked='true'] .lab-switch-track {
+    background: var(--color-green);
+
+    &::after {
+      translate: 0.9rem 0;
+    }
+  }
+
+  .lab-switch-state {
+    color: var(--color-ink-muted);
+  }
+}
+
+/* Numbers set like the post's: a large serif numeral over a short label, with
+   a coloured rule that ties the number to its colour in the drawing. */
+.lab-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: var(--space-sm) var(--space-md);
+}
+
+.lab-stat {
+  padding-top: 0.55rem;
+  border-top: 2px solid var(--stat-color, var(--color-ink));
+}
+
+.lab-stat-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+
+  small {
+    font-size: 0.5em;
+    color: var(--color-ink-muted);
+    margin-left: 0.1em;
+  }
+}
+
+.lab-stat-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: var(--text-xs);
+  line-height: 1.35;
+  color: var(--color-ink-muted);
+}
+
+.lab-readout {
+  max-width: 62ch;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-soft);
+
+  b {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
+
+.lab-hint {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--color-ink-muted);
+}
+
+/* Legend swatches, keyed to the drawing. */
+.lab-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+  }
+
+  i {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--swatch);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-seg button,
+  .lab-btn,
+  .lab-switch-track,
+  .lab-switch-track::after {
+    transition: none;
+  }
+}
+
+/* A lab laid out as a row: heading and controls on the left, the drawing on
+   the right. On a phone the drawing sits between the heading and the controls,
+   so the controls stay next to what they change. */
+.lab-row {
+  display: grid;
+  gap: var(--space-md) clamp(2.5rem, 5vw, 4.5rem);
+  grid-template-areas: 'head' 'fig' 'body';
+
+  @media (min-width: 960px) {
+    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 'head fig' 'body fig';
+    align-items: start;
+  }
+}
+
+.lab-row-head {
+  grid-area: head;
+}
+
+.lab-row-fig {
+  grid-area: fig;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.lab-row-body {
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.lab-row-body .lab-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}

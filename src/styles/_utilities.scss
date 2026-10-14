@@ -160,57 +160,6 @@
 }
 
 /* ---------------------------------------------------------------------------
- * Marquee — scrolling ticker divider
- * ------------------------------------------------------------------------- */
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  user-select: none;
-  border-block: 1px solid var(--color-border);
-  padding-block: 1.1rem;
-  position: relative;
-  z-index: 1;
-  background: var(--color-paper);
-}
-
-.marquee-track {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  padding-right: 2.5rem;
-  flex-shrink: 0;
-  min-width: 100%;
-  justify-content: space-around;
-  animation: marquee 36s linear infinite;
-
-  span {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-ink-soft);
-  }
-
-  .sparkle {
-    font-size: 0.6rem;
-    color: var(--color-yellow);
-  }
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
-}
-
-/* ---------------------------------------------------------------------------
  * Work card — experiment-style card with a pastel tile header
  * ------------------------------------------------------------------------- */
 .work-card {
@@ -470,7 +419,8 @@
 }
 
 /* ---------------------------------------------------------------------------
- * Book card — bookshelf tile with a coloured spine
+ * Reading card: a bookshelf tile with a coloured spine. Books, papers and
+ * articles all use it; the ones readable online render it as a link.
  * ------------------------------------------------------------------------- */
 .books-grid {
   display: grid;
@@ -511,6 +461,11 @@
   }
 }
 
+a.book-card:hover .book-external {
+  transform: translate(2px, -2px);
+  color: var(--color-blue);
+}
+
 .book-spine {
   width: 0.75rem;
   flex-shrink: 0;
@@ -538,6 +493,15 @@
   padding: var(--space-lg) var(--space-md);
 }
 
+.book-kind {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-sm);
+}
+
 .book-title {
   font-family: var(--font-serif);
   font-style: italic;
@@ -555,26 +519,32 @@
   margin-bottom: var(--space-md);
 }
 
+.book-external {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.6em;
+  vertical-align: 0.35em;
+  margin-left: 0.15em;
+  transition:
+    transform var(--duration-normal) ease,
+    color var(--duration-fast) ease;
+}
+
 .book-reflection {
   font-size: var(--text-sm);
   color: var(--color-ink-soft);
   line-height: var(--leading-normal);
-  margin-bottom: var(--space-md);
-  flex: 1;
-}
-
-.book-tags {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .book-card {
+  .book-card,
+  .book-external {
     transition: none;
   }
 
-  .book-card:hover {
+  .book-card:hover,
+  a.book-card:hover .book-external {
     transform: none;
   }
 }

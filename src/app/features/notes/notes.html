@@ -3,7 +3,7 @@
     <app-scroll-reveal>
       <p class="eyebrow">
         <span class="sparkle sparkle--green" aria-hidden="true"></span>
-        currated collection of my thoughts and others
+        curated collection of my thoughts and others
       </p>
       <h1 class="page-hero-title">worth <em>noting</em>.</h1>
     </app-scroll-reveal>
@@ -34,35 +34,8 @@
       </h2>
     </app-scroll-reveal>
 
-    <!-- aria-pressed, not just a class: the filter's selected state is otherwise
-         visual only, and activating one silently swaps the list underneath. -->
-    <app-scroll-reveal>
-      <div class="tag-filters">
-        <button
-          class="tag-filter"
-          [class.active]="!activeTag()"
-          [attr.aria-pressed]="!activeTag()"
-          (click)="setTag(null)"
-        >
-          All
-        </button>
-        @for (tag of allTags; track tag) {
-          <button
-            class="tag-filter"
-            [class.active]="activeTag() === tag"
-            [attr.aria-pressed]="activeTag() === tag"
-            (click)="setTag(tag)"
-          >
-            {{ tag }}
-          </button>
-        }
-      </div>
-    </app-scroll-reveal>
-
-    <p class="sr-only" aria-live="polite">{{ filterAnnouncement() }}</p>
-
     <ul class="post-list" role="list">
-      @for (post of filteredPosts(); track post.slug; let i = $index) {
+      @for (post of posts(); track post.slug; let i = $index) {
         <li>
           <app-scroll-reveal [delay]="i * 0.06">
             <a [routerLink]="['/notes', post.slug]" class="post-row">
@@ -70,12 +43,7 @@
               <span class="post-row-main">
                 <span class="post-row-title">{{ post.title }}</span>
                 <span class="post-row-excerpt">{{ post.excerpt }}</span>
-                <span class="post-row-meta">
-                  {{ post.readingTime }} min read
-                  @for (tag of post.tags; track tag) {
-                    <span class="chip">{{ tag }}</span>
-                  }
-                </span>
+                <span class="post-row-meta">{{ post.readingTime }} min read</span>
               </span>
               <span class="arrow-circle" aria-hidden="true">→</span>
             </a>
@@ -85,42 +53,47 @@
     </ul>
   </section>
 
-  <section id="books" class="notes-section" tabindex="-1">
+  <section id="reading" class="notes-section" tabindex="-1">
     <app-scroll-reveal>
       <h2 class="notes-section-title">
         <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
-        Books
+        Reading
       </h2>
-      <p class="notes-section-intro">
-        Ideas worth borrowing — from inside software engineering and well outside it.
-      </p>
     </app-scroll-reveal>
 
     <ul class="books-grid" role="list">
-      @for (book of books; track book.title; let i = $index) {
+      @for (item of reading; track item.title; let i = $index) {
         <li>
-          <app-scroll-reveal [delay]="0.05 + i * 0.08">
-            <div class="book-card">
-              <div
-                class="book-spine"
-                [class]="'book-spine spine--' + tileColors[i % 5]"
-                aria-hidden="true"
-              ></div>
-              <div class="book-body">
-                <h3 class="book-title">{{ book.title }}</h3>
-                <p class="book-author">{{ book.author }}</p>
-                <p class="book-reflection">{{ book.reflection }}</p>
-                <div class="book-tags">
-                  @for (tag of book.tags; track tag) {
-                    <span class="chip">{{ tag }}</span>
-                  }
-                </div>
+          <app-scroll-reveal [delay]="0.05 + i * 0.06">
+            <!-- Anything readable online is a link as a whole card; books are not. -->
+            @if (item.url; as url) {
+              <a class="book-card" [href]="url" target="_blank" rel="noopener noreferrer">
+                <ng-container *ngTemplateOutlet="card; context: { $implicit: item, index: i }" />
+              </a>
+            } @else {
+              <div class="book-card">
+                <ng-container *ngTemplateOutlet="card; context: { $implicit: item, index: i }" />
               </div>
-            </div>
+            }
           </app-scroll-reveal>
         </li>
       }
     </ul>
+
+    <ng-template #card let-item let-index="index">
+      <div [class]="'book-spine spine--' + tileColors[index % 5]" aria-hidden="true"></div>
+      <div class="book-body">
+        <p class="book-kind">{{ kindLine(item) }}</p>
+        <h3 class="book-title">
+          {{ item.title }}
+          @if (item.url) {
+            <span class="book-external" aria-hidden="true">↗</span>
+          }
+        </h3>
+        <p class="book-author">{{ item.authors }}</p>
+        <p class="book-reflection">{{ item.note }}</p>
+      </div>
+    </ng-template>
   </section>
 
   <section id="listening" class="notes-section" tabindex="-1">
@@ -169,44 +142,6 @@
                 }
               </div>
             </article>
-          </app-scroll-reveal>
-        </li>
-      }
-    </ul>
-  </section>
-
-  <section id="papers" class="notes-section" tabindex="-1">
-    <app-scroll-reveal>
-      <h2 class="notes-section-title">
-        <span class="sparkle sparkle--blue" aria-hidden="true"></span>
-        Papers &amp; articles
-      </h2>
-      <p class="notes-section-intro">Things I re-read, and send to people.</p>
-    </app-scroll-reveal>
-
-    <!-- role="list" is not redundant: WebKit drops list semantics from a <ul>
-         whose list-style is none, and the site reset sets that globally. -->
-    <ul class="reference-list" role="list">
-      @for (reference of references; track reference.url; let i = $index) {
-        <li>
-          <app-scroll-reveal [delay]="0.05 + i * 0.08">
-            <a
-              class="reference-row"
-              [href]="reference.url"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="reference-main">
-                <span class="reference-title">
-                  {{ reference.title }}
-                  <span class="reference-external" aria-hidden="true">↗</span>
-                </span>
-                <span class="reference-byline">
-                  {{ reference.authors }} · {{ reference.publisher }} · {{ reference.year }}
-                </span>
-                <span class="reference-note">{{ reference.note }}</span>
-              </span>
-            </a>
           </app-scroll-reveal>
         </li>
       }

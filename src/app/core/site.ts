@@ -9,4 +9,5 @@
 export const SITE_LINKS = {
   linkedin: 'https://www.linkedin.com/in/jacquelineadean',
   github: 'https://github.com/jacquelineadean',
+  source: 'https://github.com/jacquelineadean/portfolio-website',
 } as const;

@@ -3,7 +3,9 @@ title: "Refactoring a Legacy System Without Breaking the Business"
 date: "2026-04-10"
 excerpt: "Legacy modernization isn't a technical problem — it's a trust problem. Here's how I approach it."
 tags: ["architecture", "legacy", "engineering"]
-published: true
+# Unpublished: a general essay with no figures, numbers or worked examples.
+# Set back to true once it has them.
+published: false
 ---
 
 There's a specific kind of dread that comes with opening a codebase you didn't write, built on a framework you've never used, supporting a business process no one fully understands. That's legacy modernization.

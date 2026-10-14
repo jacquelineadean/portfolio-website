@@ -3,7 +3,9 @@ title: "Why Data Migrations Are Never 'Just a Script'"
 date: "2026-01-28"
 excerpt: "Data migration looks simple on a whiteboard. In production, it's where assumptions go to die."
 tags: ["data", "engineering", "legacy"]
-published: true
+# Unpublished: a general essay with no figures, numbers or worked examples.
+# Set back to true once it has them.
+published: false
 ---
 
 "It's just a migration script. How hard can it be?"

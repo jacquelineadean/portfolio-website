@@ -3,7 +3,9 @@ title: "When Clean Architecture Meets Real-World Constraints"
 date: "2026-03-22"
 excerpt: "Clean architecture is a compass, not a map. Here's what happens when theory hits production."
 tags: ["architecture", "design", "tradeoffs"]
-published: true
+# Unpublished: a general essay with no figures, numbers or worked examples.
+# Set back to true once it has them.
+published: false
 ---
 
 Clean Architecture is one of those ideas that makes perfect sense in a conference talk and gets messy the moment you try to implement it in a codebase with deadlines, team turnover, and a product manager asking why the feature isn't done yet.
