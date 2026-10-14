@@ -27,7 +27,8 @@ const posts = files.map((file) => {
     date: data.date || new Date().toISOString().split('T')[0],
     excerpt: data.excerpt || '',
     tags: data.tags || [],
-    readingTime,
+    // Interactive posts keep their text outside the markdown and set it by hand.
+    readingTime: data.readingTime ?? readingTime,
     published: data.published !== false,
     content: html,
   };

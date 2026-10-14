@@ -1,0 +1,647 @@
+<header class="clockbar" id="clockbar" aria-label="Interview clock">
+  <svg class="clockface" viewBox="0 0 40 40" aria-hidden="true">
+    <circle class="rim" cx="20" cy="20" r="18"/>
+    <path class="elapsed" id="cf-arc" d=""/>
+    <g id="cf-ticks"></g>
+    <line class="hand" id="cf-hand" x1="20" y1="20" x2="20" y2="7"/>
+    <circle class="hub" cx="20" cy="20" r="2.4"/>
+  </svg>
+  <div class="clock-read">
+    <div class="clock-time" id="ck-time">Before the round<small></small></div>
+    <div class="clock-phase" id="ck-phase">A 45-minute system design interview</div>
+  </div>
+  <nav class="phases" aria-label="Jump to a mental model">
+    <a href="#m1" data-p="1"><i></i><span>1<em>&nbsp;Understand</em></span></a>
+    <a href="#m2" data-p="2"><i></i><span>2<em>&nbsp;Blocks</em></span></a>
+    <a href="#m3" data-p="3"><i></i><span>3<em>&nbsp;Go deeper</em></span></a>
+    <a href="#m4" data-p="4"><i></i><span>4<em>&nbsp;Discuss</em></span></a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+<section class="hero col" id="top">
+  <p class="kicker">An illustrated companion to System Design Deep Dive</p>
+  <h1>Four Mental <em>Models</em></h1>
+  <p class="dek">System design rounds at AI frontier labs and FAANG companies have no test cases, only an interviewer's mental model of a good answer. This episode lays out four mental models that work on any open-ended prompt: understand the question, pick the right building blocks, go deep where it counts, and course-correct as you talk. Judgment and depth make up 62 percent of the score, and both grade the quality of reasoning.</p>
+  <div class="byline">
+    <span><b>Episode</b> How to Ace System Design at AI Frontier Labs and FAANG: The Mental Models Behind Every Interview</span>
+    <span>Released 7 August 2026</span>
+    <span>68 min 55 s</span>
+    <a href="https://open.spotify.com/episode/6CMNqvPPlzDBtVL5wYtPgE" target="_blank" rel="noopener">Listen on Spotify</a>
+  </div>
+</section>
+
+<figure class="plate wide pan develop pre" id="hero-plate" style="--ar: 2400 / 1350">
+  <div class="frame">
+    <div class="stage">
+      <img src="blog/four-mental-models/hero.webp" width="2400" height="1350" alt="Watercolor of an interview room: a whiteboard covered in blue marker boxes and arrows, a wall clock, a window with half-drawn blinds, and on the table a coffee cup, a red marker and the interviewer's notepad.">
+      <svg class="ov" viewBox="0 0 2400 1350" aria-hidden="true">
+        <g id="hero-labels">
+          <text class="lbl" x="865" y="515" text-anchor="middle">Clients</text>
+          <text class="lbl sm" x="1145" y="495" text-anchor="middle">API</text>
+          <text class="lbl sm" x="1145" y="532" text-anchor="middle">gateway</text>
+          <text class="lbl" x="1435" y="345" text-anchor="middle">Ingest</text>
+          <text class="lbl" x="1435" y="685" text-anchor="middle">Inference</text>
+          <text class="lbl" x="1740" y="268" text-anchor="middle">Kafka</text>
+          <text class="lbl" x="1735" y="685" text-anchor="middle">KV cache</text>
+          <text class="lbl sm" x="2115" y="450" text-anchor="middle">Postgres shards</text>
+          <text class="lbl sm" x="2065" y="702" text-anchor="middle">GPU workers</text>
+        </g>
+        <g id="hero-red">
+          <text class="redq pop" x="1268" y="398">?</text>
+          <text class="redq pop" x="1572" y="300">?</text>
+          <text class="redq pop" x="1888" y="300">?</text>
+          <text class="redq pop" x="1772" y="520">?</text>
+          <text class="note pop" x="790" y="640" style="font-size:36px">why this? what breaks?</text>
+        </g>
+        <g transform="rotate(-4 1180 1220)" id="hero-pad">
+          <text class="pencil pop" x="1040" y="1186">judgment: 32 pts</text>
+          <text class="pencil pop" x="1040" y="1234">depth: 30 pts</text>
+          <text class="pencil strong pop" x="1040" y="1282">reasoning: 62 of 100</text>
+        </g>
+        <line class="clockhand" id="hero-hour" x1="588" y1="290" x2="588" y2="255"/>
+        <line class="clockhand min" id="hero-min" x1="588" y1="290" x2="588" y2="238"/>
+      </svg>
+    </div>
+  </div>
+  <span class="pan-hint">The painting pans as you scroll.</span>
+  <figcaption>A design round in progress. The red marks ask what each box costs and how it fails, which is where most of the rubric's points sit. Original watercolor, painted in code.</figcaption>
+</figure>
+
+<section class="col chapter" id="prologue">
+  <p class="ch-meta">Overview</p>
+  <h2>What the episode covers</h2>
+  <p style="margin-top:1.4rem">The episode's central claim is that most candidates who fail system design rounds know the material. What they lack is a method for thinking through an open-ended problem while an interviewer watches and grades. Earlier episodes in the series each walked one specific question. This one steps up a level, to four mental models that apply to any prompt.</p>
+  <nav class="summary" aria-label="The four mental models">
+    <a href="#m1"><span class="ch-num"><img src="blog/four-mental-models/blot-blue.webp" alt=""><b>1</b></span><span><h4>Understand the question</h4><p>Pull out the constraints with an eight-item checklist, ask who consumes the output, offer a naive design to draw signals, and ask for a hint.</p></span></a>
+    <a href="#m2"><span class="ch-num"><img src="blog/four-mental-models/blot-ink.webp" alt=""><b>2</b></span><span><h4>Pick the right building blocks</h4><p>Know 40 primitives. Start from the access pattern, choose the primitive that serves it, and name a vendor last.</p></span></a>
+    <a href="#m3"><span class="ch-num"><img src="blog/four-mental-models/blot-green.webp" alt=""><b>3</b></span><span><h4>Go deeper, on purpose</h4><p>Cascade through five layers of depth, and spend the depth budget where a part is load-bearing, novel and close to the interviewer's team.</p></span></a>
+    <a href="#m4"><span class="ch-num"><img src="blog/four-mental-models/blot-red.webp" alt=""><b>4</b></span><span><h4>Discuss, and course-correct</h4><p>Read six interviewer signals, check direction in three seconds, keep five escape hatches ready, and end strong.</p></span></a>
+  </nav>
+  <p style="margin-top:1.4rem">This page follows the four models in order. Where a model touches a technical idea, it goes further into the mechanism and the numbers: capacity math, latency costs and tradeoff pairs, plus labs that run Kafka partitioning, PagedAttention memory, batching and resharding in your browser.</p>
+</section>
+
+<figure class="fig wide" id="rubric">
+  <div class="col" style="max-width:var(--wide)">
+    <div class="fig-head">
+      <p class="fig-title">Where the points are</p>
+      <p class="fig-sub">The episode's rubric weights, one square per point. Judgment and depth both grade the quality of reasoning. Neither grades how many components a candidate can name.</p>
+    </div>
+    <div class="ctl-row">
+      <div class="seg" role="group" aria-label="Candidate type">
+        <button type="button" id="rb-full" aria-pressed="true">Reasons about tradeoffs</button>
+        <button type="button" id="rb-recall" aria-pressed="false">Recalls components only</button>
+      </div>
+    </div>
+    <div class="rubric">
+      <svg class="waffle" id="waffle" viewBox="0 0 220 220" role="img" aria-label="Waffle chart: 32 squares judgment, 30 squares depth, 38 squares other rubric lines."></svg>
+      <div class="rubric-read">
+        <div class="big" id="rb-big">62<small>of 100 points grade reasoning</small></div>
+        <div class="keyrow"><i style="background:var(--blue)"></i><b>32</b><span>Judgment: choosing between options and saying why</span></div>
+        <div class="keyrow"><i style="background:var(--green)"></i><b>30</b><span>Depth: going below the box on the parts that matter</span></div>
+        <div class="keyrow"><i style="background:var(--grey-sq)"></i><b>38</b><span>The rest of the rubric. The episode does not break these points down.</span></div>
+        <p class="fig-note" id="rb-note" style="margin:0">Toggle the candidate type to see what recall alone can earn.</p>
+      </div>
+    </div>
+  </div>
+</figure>
+
+<figure class="fig wide" id="numbers">
+  <div class="fig-head">
+    <p class="fig-title">The episode by its numbers</p>
+    <p class="fig-sub">Every count in the episode, in the order it takes them. Each one links to its section.</p>
+  </div>
+  <div class="nums">
+    <a href="#m1" style="--c:#2449A0"><b>8</b><span>requirement questions before drawing</span></a>
+    <a href="#consumer" style="--c:#2449A0"><b>1</b><span>consumer question that reshapes the design</span></a>
+    <a href="#prims-fig" style="--c:#5A6070"><b>40</b><span>primitives to know cold</span></a>
+    <a href="#anti" style="--c:#5A6070"><b>4</b><span>anti-patterns that disqualify</span></a>
+    <a href="#strata-fig" style="--c:#2B7650"><b>5</b><span>layers of depth, cascaded on purpose</span></a>
+    <a href="#venn-fig" style="--c:#2B7650"><b>3</b><span>tests for where depth goes</span></a>
+    <a href="#signals-fig" style="--c:#C23A2C"><b>6</b><span>interviewer signals to read</span></a>
+    <a href="#game-fig" style="--c:#C23A2C"><b>3<small>s</small></b><span>to catch a wrong direction</span></a>
+    <a href="#hatches-fig" style="--c:#C23A2C"><b>5</b><span>escape hatches, phrased in advance</span></a>
+    <a href="#rubric" style="--c:#1D2024"><b>62<small>%</small></b><span>of the score grades reasoning</span></a>
+  </div>
+</figure>
+
+<!-- ===================================================== MODEL 1 -->
+<p class="part col"><span>Mental model 1</span></p>
+<section class="col chapter" id="m1" data-phase="1">
+  <div class="ch-head">
+    <div class="ch-num"><img src="blog/four-mental-models/blot-blue.webp" alt=""><b>1</b></div>
+    <div>
+      <p class="ch-meta">Suggested pacing · minutes 0 to 8 of a 45-minute round</p>
+      <h2>Understand the question</h2>
+    </div>
+  </div>
+  <p>The first model has four tools: an eight-item requirements checklist, the consumer question, a naive solution offered first, and a direct request for a hint.</p>
+  <p>A design prompt is underspecified on purpose. The interviewer holds the missing constraints, and these four tools pull them out before anything is drawn.</p>
+</section>
+
+<figure class="fig col">
+  <div class="fig-head">
+    <p class="fig-title">Eight questions before the first box</p>
+    <p class="fig-sub">One version of the eight. Tick each question once you have an answer. Each one decides something on the board.</p>
+  </div>
+  <div class="check" id="checklist"></div>
+  <div class="meter"><span id="ck-count">Constraints known: 0 of 8</span><div class="bar"><i id="ck-bar"></i></div></div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Turn the answers into numbers</h3>
+  <p>The answers are only useful once they become arithmetic. Users and requests per day give an arrival rate. Little's law turns that rate into concurrency: the number of requests in flight equals the arrival rate times the time each one spends in the system, L = λW. For an LLM service, concurrency then turns into memory, because every live stream keeps its attention keys and values on the GPU.</p>
+  <p>That memory is easy to compute from a model's config. Each token stores one key and one value vector per layer, for each key-value head: 2 × layers × KV heads × head size × 2 bytes at 16-bit precision. Llama 3 8B needs 128 KiB per token. Llama 2 13B, which has no grouped-query attention, needs 800 KiB. That factor of six is a design decision you can say out loud.</p>
+</section>
+
+<figure class="fig wide" id="capacity">
+  <div class="fig-head">
+    <p class="fig-title">From requirements to GPUs</p>
+    <p class="fig-sub">Set the answers to the checklist. The painting shows one 8-GPU server at peak: dark fill is model weights, green is KV cache, dashed outlines group GPUs that serve one model replica.</p>
+  </div>
+  <div class="lab-grid est">
+    <div class="ctl">
+      <label for="e-model">Model
+        <select id="e-model"><option value="l8">Llama 3 8B</option><option value="l13">Llama 2 13B</option><option value="l70">Llama 3 70B</option></select></label>
+      <label for="e-gpu">GPU
+        <select id="e-gpu"><option value="h100">H100 SXM 80 GB</option><option value="a100">A100 SXM 80 GB</option></select></label>
+      <label for="e-dau"><span class="row"><span>Daily active users</span><output id="e-dau-o"></output></span><input type="range" id="e-dau" min="0" max="8" step="1" value="3"></label>
+      <label for="e-rpd"><span class="row"><span>Requests per user per day</span><output id="e-rpd-o"></output></span><input type="range" id="e-rpd" min="1" max="50" step="1" value="10"></label>
+      <label for="e-peak"><span class="row"><span>Peak over average</span><output id="e-peak-o"></output></span><input type="range" id="e-peak" min="1" max="6" step="0.5" value="3"></label>
+      <label for="e-in"><span class="row"><span>Prompt tokens</span><output id="e-in-o"></output></span><input type="range" id="e-in" min="0" max="6" step="1" value="3"></label>
+      <label for="e-out"><span class="row"><span>Output tokens</span><output id="e-out-o"></output></span><input type="range" id="e-out" min="0" max="6" step="1" value="3"></label>
+      <label for="e-spd"><span class="row"><span>Tokens/s per stream</span><output id="e-spd-o"></output></span><input type="range" id="e-spd" min="10" max="100" step="5" value="30"></label>
+    </div>
+    <div>
+      <figure class="plate" style="margin:0">
+        <div class="frame"><div class="stage">
+          <img src="blog/four-mental-models/gpu-node.webp" width="2400" height="1300" loading="lazy" alt="Watercolor of an 8-GPU server board seen from above: two rows of four GPU modules with finned silver heatsinks on a green circuit board, switch chips between the rows, connectors along both edges.">
+          <svg class="ov gpu-ov" id="gpu-ov" viewBox="0 0 2400 1300" aria-hidden="true"></svg>
+        </div></div>
+      </figure>
+      <p class="warn" id="e-warn" hidden></p>
+      <div class="tiles" id="e-tiles"></div>
+    </div>
+  </div>
+  <details class="math" open><summary>Show the arithmetic</summary><ol id="e-math"></ol></details>
+  <p class="assume">Simplified model: 16-bit weights and KV cache, 90% of GPU memory usable, 80% of peak memory bandwidth and 50% of dense peak FLOPs achieved, tensor parallelism sized so weights take at most half a GPU's usable memory, average context of prompt plus half the output, no prefix sharing. Real deployments land below these upper bounds.</p>
+</figure>
+
+<section class="col">
+  <h3 class="sub">The consumer question</h3>
+  <p>The episode gives one question its own line: the consumer question. Who consumes the output, and what do they do with it? The figure below runs it on one prompt, an LLM inference service, for three different consumers. The rest of the design follows from the answer, and so do the numbers you write next to it.</p>
+</section>
+
+<figure class="fig wide" id="consumer">
+  <div class="fig-head">
+    <p class="fig-title">Same prompt, three consumers: “Design an LLM inference service”</p>
+  </div>
+  <div class="ctl-row">
+    <div class="seg" role="group" aria-label="Consumer">
+      <button type="button" data-c="chat" aria-pressed="true">Chat users</button>
+      <button type="button" data-c="eval" aria-pressed="false">Evaluation jobs</button>
+      <button type="button" data-c="agent" aria-pressed="false">Other agents</button>
+    </div>
+  </div>
+  <p class="goal" id="cs-goal"><span>Optimize for</span>Time to first token, then a steady stream for each person.</p>
+  <p class="goal-n" id="cs-nums"></p>
+  <div class="chain" id="cs-chain"></div>
+  <p class="drops" id="cs-drops"></p>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Offer the naive solution first</h3>
+  <p>The third tool sounds backwards. Put a deliberately simple design on the board early, then watch where the interviewer pushes. The episode frames it as a trap: the naive design gets the interviewer to signal which direction they care about. Each push shows where they want you to go.</p>
+</section>
+
+<figure class="fig col" id="poke">
+  <div class="fig-head">
+    <p class="fig-title">The poke test</p>
+    <p class="fig-sub">A two-minute naive design. Tap a red mark to read what the interviewer's push signals.</p>
+  </div>
+  <div class="board">
+    <svg viewBox="0 0 640 260" role="group" aria-label="Naive design with four interviewer pushes">
+      <rect class="bx" x="30" y="100" width="120" height="64" rx="3"/><text class="bt" x="90" y="139" text-anchor="middle">Client</text>
+      <rect class="bx" x="260" y="100" width="130" height="64" rx="3"/><text class="bt" x="325" y="139" text-anchor="middle">App server</text>
+      <path class="bx" d="M500 96 q50 -18 100 0 v76 q-50 18 -100 0 z M500 96 q50 18 100 0"/><text class="bt" x="550" y="146" text-anchor="middle">Postgres</text>
+      <path class="ar" d="M152 132 H252 M244 125 l9 7 -9 7"/>
+      <path class="ar" d="M392 132 H492 M484 125 l9 7 -9 7"/>
+      <g class="poke" tabindex="0" role="button" data-k="0" aria-label="Push: p99?"><ellipse cx="205" cy="92" rx="42" ry="24"/><text x="205" y="99" text-anchor="middle">p99?</text></g>
+      <g class="poke" tabindex="0" role="button" data-k="1" aria-label="Push: it dies?"><ellipse cx="325" cy="214" rx="54" ry="24"/><text x="325" y="221" text-anchor="middle">it dies?</text></g>
+      <g class="poke" tabindex="0" role="button" data-k="2" aria-label="Push: ten times the writes?"><ellipse cx="550" cy="56" rx="66" ry="24"/><text x="550" y="63" text-anchor="middle">10× writes?</text></g>
+      <g class="poke" tabindex="0" role="button" data-k="3" aria-label="Push: who reads it?"><ellipse cx="96" cy="214" rx="78" ry="24"/><text x="96" y="221" text-anchor="middle">who reads it?</text></g>
+    </svg>
+  </div>
+  <p class="readout" id="poke-out" aria-live="polite"><b>Nothing pushed yet.</b> The naive design is there to be pushed on.</p>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Ask for the hint</h3>
+  <p>The last tool is the most direct. The episode calls a direct hint request a Staff+ move. A staff engineer already asks stakeholders what matters before spending a week on the wrong part, so the same question in an interview reads as seniority. It costs one sentence.</p>
+  <div class="index-card" style="margin:1.4rem 0 .4rem">
+    <p class="tag">Say it this way</p>
+    <p class="say">“I can go deeper on the write path or on failure handling. Which matters more for your team?”</p>
+  </div>
+</section>
+
+<!-- ===================================================== MODEL 2 -->
+<p class="part col"><span>Mental model 2</span></p>
+<section class="col chapter" id="m2" data-phase="2">
+  <div class="ch-head">
+    <div class="ch-num"><img src="blog/four-mental-models/blot-ink.webp" alt=""><b>2</b></div>
+    <div>
+      <p class="ch-meta">Suggested pacing · minutes 8 to 18</p>
+      <h2>Pick the right building blocks</h2>
+    </div>
+  </div>
+  <p>The second model is about parts. The episode asks for 40 primitives memorized, and pairs the list with an order of choosing: start from the access pattern, pick the primitive that serves it, and name a vendor last.</p>
+  <p>That order is easy to check from the outside. A candidate who says “Kafka” before saying what the data looks like has skipped two steps, and the interviewer hears it.</p>
+</section>
+
+<figure class="fig wide" id="prims-fig">
+  <div class="fig-head">
+    <p class="fig-title">Forty primitives</p>
+    <p class="fig-sub">One way to fill the list of 40, grouped by job. Pick an access pattern first. The primitives that serve it light up. Vendors stay hidden until you ask for them.</p>
+  </div>
+  <div class="chips" id="patterns" role="group" aria-label="Access patterns"></div>
+  <div class="ctl-row"><label class="switch"><input type="checkbox" id="show-vendors"> Show vendors</label></div>
+  <div class="prims" id="prims"></div>
+  <div class="prim-detail" id="prim-detail" aria-live="polite"><h4>Choose a primitive</h4>Tap any tile to see what it is for, when to reach for it, and which products implement it.</div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">What each primitive costs</h3>
+  <p>Knowing a primitive includes knowing its price in time. A cache hit in the same process costs about a memory reference. The same hit over the network costs a datacenter round trip, about 5,000 times longer. Synchronous replication to another continent adds a round trip that is 300 times longer again. These ratios decide designs before any vendor is named.</p>
+</section>
+
+<figure class="fig wide" id="ladder-fig">
+  <div class="fig-head">
+    <p class="fig-title">The latency ladder</p>
+    <p class="fig-sub">Approximate costs from the widely shared “latency numbers every programmer should know” table, dated around 2012. Modern SSDs and networks are faster, but the orders of magnitude still hold. Log scale.</p>
+  </div>
+  <div class="ctl-row"><label class="switch"><input type="checkbox" id="ladder-human"> Stretch to human time (1 ns becomes 1 s)</label></div>
+  <svg class="ladder" id="ladder" viewBox="0 0 760 400" role="img" aria-label="Log-scale bar chart of nine latency numbers, from 0.5 nanoseconds for an L1 cache reference to 150 milliseconds for a California to Netherlands round trip."></svg>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Every choice is a pair</h3>
+  <p>The rubric pays most for judgment, and judgment shows up as tradeoffs. A tradeoff is two primitives that solve the same access pattern at different prices. Saying which one you picked, what it costs, and when you would switch is the judgment line on the rubric.</p>
+</section>
+
+<figure class="fig wide" id="pairs-fig">
+  <div class="fig-head">
+    <p class="fig-title">Six tradeoffs worth having ready</p>
+    <p class="fig-sub">Each pair serves one access pattern. Pick a pair to compare what each side gives, what it costs, and the number to say out loud.</p>
+  </div>
+  <div class="chips" id="pair-pick" role="group" aria-label="Tradeoff pair"></div>
+  <div class="pair" id="pair"></div>
+</figure>
+
+<figure class="fig wide" id="quorum-fig">
+  <div class="fig-head">
+    <p class="fig-title">Quorums: R + W &gt; N</p>
+    <p class="fig-sub">Leaderless stores replicate each key to N nodes. A write waits for W acknowledgements and a read asks R nodes. With strict quorums, R + W &gt; N makes every read set overlap every write set, so a read reaches at least one node holding the latest acknowledged write. Dynamo's common setting is N = 3, W = 2, R = 2. During failures Dynamo uses sloppy quorums, which relax this guarantee.</p>
+  </div>
+  <div class="lab-grid">
+    <div class="ctl">
+      <label for="q-n"><span class="row"><span>Replicas N</span><output id="q-n-o"></output></span><input type="range" id="q-n" min="1" max="7" step="1" value="3"></label>
+      <label for="q-w"><span class="row"><span>Write quorum W</span><output id="q-w-o"></output></span><input type="range" id="q-w" min="1" max="7" step="1" value="2"></label>
+      <label for="q-r"><span class="row"><span>Read quorum R</span><output id="q-r-o"></output></span><input type="range" id="q-r" min="1" max="7" step="1" value="2"></label>
+      <span class="ctl-l" style="margin:0">Presets, as N / W / R</span>
+      <div class="chips" id="q-presets" role="group" aria-label="Presets, as N / W / R" style="margin:0">
+        <button type="button" class="chip" data-p="3,2,2">3 / 2 / 2</button>
+        <button type="button" class="chip" data-p="3,3,1">3 / 3 / 1</button>
+        <button type="button" class="chip" data-p="3,1,3">3 / 1 / 3</button>
+        <button type="button" class="chip" data-p="3,1,1">3 / 1 / 1</button>
+        <button type="button" class="chip" data-p="5,3,3">5 / 3 / 3</button>
+      </div>
+    </div>
+    <div>
+      <svg class="quorum" id="quorum" viewBox="0 0 560 120" role="img" aria-label="Replica nodes with the write set and read set highlighted"></svg>
+      <div class="q-read" id="q-read" aria-live="polite"></div>
+    </div>
+  </div>
+</figure>
+
+<figure class="fig wide" id="anti">
+  <div class="fig-head">
+    <p class="fig-title">Four ways to disqualify yourself</p>
+    <p class="fig-sub">The episode counts four disqualifying anti-patterns. Four common ones, each with its fix:</p>
+  </div>
+  <div class="anti">
+    <article><h4>Vendor first</h4><p>Naming Kafka, Redis or Pinecone before stating the access pattern.</p><p class="fix">Say the pattern, then the primitive, then the product.</p></article>
+    <article><h4>Boxes without reasons</h4><p>A component appears because systems like this usually have one.</p><p class="fix">Tie every box to a requirement from the first eight minutes.</p></article>
+    <article><h4>No costs stated</h4><p>Every choice is presented as free, which leaves the judgment line of the rubric empty.</p><p class="fix">For each choice, say what it gives up and when you would switch.</p></article>
+    <article><h4>No numbers</h4><p>No estimate of traffic, data size or latency, so no choice can be checked.</p><p class="fix">Write three numbers on the board before the second box.</p></article>
+  </div>
+</figure>
+
+<!-- ===================================================== MODEL 3 -->
+<p class="part col"><span>Mental model 3</span></p>
+<section class="col chapter" id="m3" data-phase="3">
+  <div class="ch-head">
+    <div class="ch-num"><img src="blog/four-mental-models/blot-green.webp" alt=""><b>3</b></div>
+    <div>
+      <p class="ch-meta">Suggested pacing · minutes 18 to 36</p>
+      <h2>Go deeper, on purpose</h2>
+    </div>
+  </div>
+  <p>The third model decides how far down to go, and where. The episode describes five layers of depth and says to cascade through them consciously. In practice that means knowing which layer you are on, and choosing to go down.</p>
+</section>
+
+<figure class="fig wide" id="strata-fig">
+  <div class="fig-head">
+    <p class="fig-title">Five layers, three components</p>
+    <p class="fig-sub">Three components the episode names: Kafka, PagedAttention and sharded Postgres. Pick one, then drill down a layer at a time.</p>
+  </div>
+  <div class="ctl-row">
+    <div class="seg" role="group" aria-label="Component" id="strata-comp">
+      <button type="button" data-k="kafka" aria-pressed="true">Kafka log</button>
+      <button type="button" data-k="paged" aria-pressed="false">PagedAttention KV cache</button>
+      <button type="button" data-k="pg" aria-pressed="false">Sharded Postgres</button>
+    </div>
+  </div>
+  <div class="strata">
+    <div>
+      <div class="stage"><img src="blog/four-mental-models/strata.webp" width="2000" height="1150" loading="lazy" alt="Watercolor cross-section of five earth layers, from grassy topsoil down to dark bedrock, with a bore hole drilled through all five."><span class="probe" id="probe"></span></div>
+      <div class="layers" id="layers"></div>
+    </div>
+    <div class="layer-card" aria-live="polite">
+      <div class="lk" id="lc-k">Layer 1 · Role</div>
+      <h4 id="lc-h">Kafka log</h4>
+      <p id="lc-p"></p>
+    </div>
+  </div>
+</figure>
+
+<section class="col">
+  <p>Knowing a component usually covers layers 1 to 3. Layers 4 and 5 hold the numbers and the failures, and that is where depth is graded. Cascading consciously means saying out loud which layer you are on and why you are going down.</p>
+  <div class="index-card" style="margin:1.4rem 0 .4rem">
+    <p class="tag">Say it this way</p>
+    <p class="say">“That's its role. What matters for this design is how it fails, so let me go there.”</p>
+  </div>
+  <h3 class="sub">Layers 4 and 5, worked</h3>
+  <p>Here is what going down looks like for each of the three components. Each lab runs the real mechanism in your browser: Kafka's own key hash, vLLM's 16-token blocks, and three ways to place shards.</p>
+</section>
+
+<figure class="fig wide" id="kafka-lab">
+  <div class="fig-head">
+    <p class="dd-k">Deep dive · Kafka</p>
+    <p class="fig-title">Keys, partitions and the hot partition</p>
+    <p class="fig-sub">Kafka sends a keyed record to partition murmur2(key) mod N. This lab hashes 5,000 user keys with that same function. Real traffic is skewed, so key popularity here follows a Zipf curve: key k gets weight 1 / k<sup>s</sup>.</p>
+  </div>
+  <div class="lab-grid">
+    <div class="ctl">
+      <label for="k-n"><span class="row"><span>Partitions N</span><output id="k-n-o"></output></span><input type="range" id="k-n" min="3" max="48" step="1" value="12"></label>
+      <label for="k-s"><span class="row"><span>Skew s</span><output id="k-s-o"></output></span><input type="range" id="k-s" min="0" max="1.5" step="0.1" value="1"></label>
+      <label class="switch" for="k-salt"><input type="checkbox" id="k-salt"> Salt the hottest key into 8 sub-keys</label>
+      <button class="btn" type="button" id="k-add">Add one partition</button>
+    </div>
+    <div>
+      <svg class="bars" id="k-bars" viewBox="0 0 640 230" role="img" aria-label="Share of messages per partition"></svg>
+      <div class="lab-read" id="k-read" aria-live="polite"></div>
+    </div>
+  </div>
+</figure>
+
+<figure class="fig wide" id="kv-lab">
+  <div class="fig-head">
+    <p class="dd-k">Deep dive · PagedAttention</p>
+    <p class="fig-title">Where the KV cache memory goes</p>
+    <p class="fig-sub">One H100 serving Llama 3 8B has room for about 467,000 tokens of KV cache under the assumptions above, drawn here as 29,200 blocks of 16 tokens. Every request carries the same 1,000-token system prompt plus 48 to 1,048 tokens of its own, so no request exceeds 2,048 tokens.</p>
+  </div>
+  <div class="ctl-row">
+    <div class="seg" role="group" aria-label="Allocation scheme" id="kv-mode">
+      <button type="button" data-m="reserve" aria-pressed="true">Reserve 2,048 per request</button>
+      <button type="button" data-m="paged" aria-pressed="false">Paged, 16-token blocks</button>
+      <button type="button" data-m="shared" aria-pressed="false">Paged + shared prefix</button>
+    </div>
+  </div>
+  <canvas id="kv-canvas" width="960" height="490" role="img" aria-label="Grid of KV cache blocks colored by request, with reserved but unused blocks shown in grey"></canvas>
+  <div class="kv-key" aria-hidden="true"><span><i class="k-used"></i>Holds a token</span><span><i class="k-waste"></i>Reserved, never used</span><span><i class="k-shared"></i>Shared system prompt</span><span><i class="k-free"></i>Free</span></div>
+  <div class="tiles" id="kv-tiles"></div>
+  <p class="lab-read" id="kv-read"></p>
+</figure>
+
+<figure class="fig wide" id="batch-lab">
+  <div class="fig-head">
+    <p class="dd-k">Deep dive · Why memory becomes throughput</p>
+    <p class="fig-title">One decode step, many streams</p>
+    <p class="fig-sub">Each decode step reads every weight once and produces one token per stream in the batch. At small batches the step is bound by memory bandwidth, so extra streams ride almost free. The KV cache sets how large the batch can get.</p>
+  </div>
+  <div class="lab-grid">
+    <div class="ctl">
+      <label for="b-model">Model
+        <select id="b-model"><option value="l8">Llama 3 8B</option><option value="l13">Llama 2 13B</option><option value="l70">Llama 3 70B</option></select></label>
+      <label for="b-gpu">GPU
+        <select id="b-gpu"><option value="h100">H100 SXM 80 GB</option><option value="a100">A100 SXM 80 GB</option></select></label>
+      <label for="b-ctx"><span class="row"><span>Context per stream</span><output id="b-ctx-o"></output></span><input type="range" id="b-ctx" min="0" max="4" step="1" value="1"></label>
+      <label for="b-b"><span class="row"><span>Batch size</span><output id="b-b-o"></output></span><input type="range" id="b-b" min="0" max="10" step="1" value="6"></label>
+    </div>
+    <div>
+      <svg class="chart2" id="b-chart" viewBox="0 0 640 380" role="img" aria-label="Two line charts against batch size: total tokens per second for the replica, and tokens per second for each stream"></svg>
+      <div class="lab-read" id="b-read" aria-live="polite"></div>
+    </div>
+  </div>
+</figure>
+
+<figure class="fig wide" id="shard-lab">
+  <div class="fig-head">
+    <p class="dd-k">Deep dive · Sharded Postgres</p>
+    <p class="fig-title">Adding one node: how much data moves?</p>
+    <p class="fig-sub">20,000 rows, hashed with the same murmur2. Three ways to map rows to nodes, compared when one node is added. The ideal is that only 1 / (N + 1) of rows move, all of them onto the new node.</p>
+  </div>
+  <div class="lab-grid">
+    <div class="ctl">
+      <label for="s-n"><span class="row"><span>Nodes before</span><output id="s-n-o"></output></span><input type="range" id="s-n" min="2" max="15" step="1" value="4"></label>
+      <div><span class="ctl-l">Logical shards</span>
+        <div class="seg" role="group" aria-label="Logical shard count" id="s-S"><button type="button" data-s="32" aria-pressed="true">32</button><button type="button" data-s="128" aria-pressed="false">128</button></div>
+      </div>
+      <p class="assume" style="margin:0">32 is Citus's default shard count. The ring uses 100 virtual nodes per server.</p>
+    </div>
+    <div>
+      <svg class="shard" id="s-chart" viewBox="0 0 640 296" role="img" aria-label="Bars showing the share of rows moved and the load balance after adding a node, for three placement schemes"></svg>
+      <div class="lab-read" id="s-read" aria-live="polite"></div>
+    </div>
+  </div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Spend the depth budget</h3>
+  <p>The episode gives a three-part test for where to spend the depth budget: components that are load-bearing, components that are novel, and components close to the interviewer's own team. Depth costs minutes, which is why it needs a budget. Drawn as circles, the test puts the deepest dive where all three overlap.</p>
+</section>
+
+<figure class="fig wide" id="venn-fig">
+  <div class="fig-head">
+    <p class="fig-title">Where the depth goes</p>
+    <p class="fig-sub">Example prompt: chat serving for an AI lab's public API. Change the interviewer's team and watch the red circle's contents change.</p>
+  </div>
+  <div class="ctl-row">
+    <span>Interviewer's team</span>
+    <div class="seg" role="group" aria-label="Interviewer's team" id="team">
+      <button type="button" data-t="inference" aria-pressed="true">Inference</button>
+      <button type="button" data-t="api" aria-pressed="false">API platform</button>
+      <button type="button" data-t="storage" aria-pressed="false">Storage</button>
+    </div>
+  </div>
+  <div class="venn-wrap">
+    <div class="venn" id="venn">
+      <div class="stage"><img src="blog/four-mental-models/venn.webp" width="1500" height="1320" loading="lazy" alt="Three overlapping watercolor circles in blue, green and red."></div>
+      <span class="vlabel" style="left:21%;top:8%;color:#22479C">Load-bearing</span>
+      <span class="vlabel" style="left:79%;top:8%;color:#2B7650">Novel</span>
+      <span class="vlabel" style="left:50%;top:96%;color:#A83125">Interviewer's team</span>
+    </div>
+    <div>
+      <div class="sig-card" aria-live="polite" id="venn-card"><div class="lk" style="color:var(--red-text)">Tap a component</div><h4>Spend depth in the middle</h4><p>Components where all three circles overlap get the deep dive. Everything outside the circles gets one sentence.</p></div>
+      <ol class="vlist" id="venn-list"></ol>
+      <p class="lot" id="venn-lot"></p>
+    </div>
+  </div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Breadth works against you</h3>
+  <p>The chapter's counter-intuitive rule: breadth is negatively correlated with level. Covering more components tends to signal a lower level. One mechanism is the clock. Minutes spent placing a twelfth box are minutes not spent on the reasoning that makes up 62 percent of the score.</p>
+</section>
+
+<figure class="fig col" id="toy">
+  <div class="fig-head">
+    <p class="fig-title">A toy model of the clock</p>
+    <p class="fig-sub">Assume 30 minutes of design time. Placing and justifying a component costs 1.5 minutes. Each layer of depth past the first costs 3 more. What is left goes to two deep dives.</p>
+  </div>
+  <div class="toy">
+    <div class="range-row"><label for="toy-n">Components named</label><input type="range" id="toy-n" min="4" max="20" value="12"><output id="toy-n-out" for="toy-n">12</output></div>
+    <svg id="toy-svg" viewBox="0 0 600 220" role="img" aria-label="Bars showing depth reached per component"></svg>
+    <p class="toy-out" id="toy-out"></p>
+  </div>
+</figure>
+
+<!-- ===================================================== MODEL 4 -->
+<p class="part col"><span>Mental model 4</span></p>
+<section class="col chapter" id="m4" data-phase="4">
+  <div class="ch-head">
+    <div class="ch-num"><img src="blog/four-mental-models/blot-red.webp" alt=""><b>4</b></div>
+    <div>
+      <p class="ch-meta">Suggested pacing · the whole round, and minutes 36 to 45</p>
+      <h2>Discuss, and course-correct</h2>
+    </div>
+  </div>
+  <p>The fourth model covers the conversation itself. The episode lists six interviewer signals to read, a three-second detector for a wrong direction, five escape hatches whose exact phrasing the host says to memorize, and a way to end strong.</p>
+  <p>A design round is a dialogue, and the interviewer gives away information all the way through it.</p>
+</section>
+
+<figure class="fig wide" id="signals-fig">
+  <div class="fig-head">
+    <p class="fig-title">Six signals</p>
+    <p class="fig-sub">Read the panel. Each lit switch is one thing an interviewer does, and what it usually means.</p>
+  </div>
+  <div class="signals">
+    <figure class="plate" style="margin:0">
+      <div class="frame"><div class="stage" id="panel">
+        <img src="blog/four-mental-models/panel-wc.webp" width="1600" height="1276" loading="lazy" alt="Watercolor of a Space Shuttle Discovery flight-deck panel: rows of yellow- and red-ringed switches on a slate-grey panel.">
+      </div></div>
+      <figcaption>Painted from a NASA photograph of Discovery's flight-deck panels, STS-103 (1999). Public domain.</figcaption>
+    </figure>
+    <div>
+      <div class="sig-card" aria-live="polite"><div class="lk" id="sg-k">Signal 1 of 6</div><h4 id="sg-h"></h4><p id="sg-p"></p></div>
+      <ul class="sig-list" id="sig-list"></ul>
+    </div>
+  </div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">The three-second check</h3>
+  <p>The episode describes a three-second wrong-direction detector. After each reaction from the interviewer, take three seconds to decide whether you are still on their path. The game below gives you six reactions and three seconds for each.</p>
+</section>
+
+<figure class="fig col" id="game-fig">
+  <div class="fig-head">
+    <p class="fig-title">Keep going, or re-anchor?</p>
+  </div>
+  <div class="game" id="game">
+    <div class="game-top"><span id="gm-count">Six reactions</span>
+      <svg class="timer" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="23"/><circle class="fg" id="gm-ring" cx="27" cy="27" r="23"/><text x="27" y="27" id="gm-sec">3</text></svg>
+    </div>
+    <p class="scenario" id="gm-text">Each card describes a moment in a design round. Decide within three seconds whether to keep going or to stop and re-anchor on the requirements.</p>
+    <div class="game-btns" id="gm-btns"><button class="btn primary" type="button" id="gm-start">Start</button></div>
+    <p class="verdict" id="gm-verdict" aria-live="polite"></p>
+  </div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Five escape hatches</h3>
+  <p>The episode lists five escape hatches and says to memorize the exact phrasings. Here are five drafts. Copy them, then rewrite them in your own voice before an interview.</p>
+</section>
+
+<figure class="fig wide" id="hatches-fig">
+  <div class="hatches" id="hatches"></div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">Fail one box at a time</h3>
+  <p>A strong ending names the biggest risk and how you would see it coming. The fastest way to find it is to fail each box in turn and ask three questions. What do users see? Which metric moves first? What limits the damage?</p>
+</section>
+
+<figure class="fig wide" id="drill-fig">
+  <div class="fig-head">
+    <p class="fig-title">Failure drill: chat serving</p>
+    <p class="fig-sub">Tap a box, or pick a failure below. The failed part turns red and everything that depends on it dims.</p>
+  </div>
+  <div class="drill">
+    <div class="board"><svg id="drill" viewBox="0 0 780 360" role="group" aria-label="Chat-serving architecture with failable components"></svg></div>
+    <span class="pan-hint" style="padding:0">Scroll the diagram sideways to see every box.</span>
+    <div class="chips" id="drill-pick" role="group" aria-label="Failures"></div>
+    <div class="drill-card" id="drill-card" aria-live="polite"></div>
+  </div>
+</figure>
+
+<section class="col">
+  <h3 class="sub">End strong</h3>
+  <p>The episode closes the fourth model with how to end strong. One form that works is a four-line summary in the final two minutes, aimed at judgment and depth, the two rubric lines worth 62 points.</p>
+</section>
+
+<figure class="fig col" id="close-fig">
+  <div class="fig-head">
+    <p class="fig-title">The last two minutes</p>
+    <p class="fig-sub">Worked example for the chat-serving design. Step through it, or copy the blank template.</p>
+  </div>
+  <div class="close-steps" id="close-steps"></div>
+  <div class="ctl-row" style="margin-top:1.1rem"><button class="btn primary" type="button" id="close-next">Next line</button><button class="btn" type="button" id="close-copy">Copy blank template</button></div>
+</figure>
+
+<!-- ===================================================== CODA -->
+<p class="part col"><span>Debrief</span></p>
+<section class="col chapter" id="coda" data-phase="5">
+  <p class="ch-meta">The bar-raiser observation</p>
+  <h2>Almost never a knowledge gap</h2>
+  <p style="margin-top:1.4rem">The episode ends where it began. The host's bar-raiser observation: every rejection you have seen in a system design round is almost certainly a mental-model failure, and almost never a knowledge failure. The notes end the line with two words: every one.</p>
+  <p>Read against the four models, a candidate who names components without their costs fails twice: in the second model, which picks blocks for stated reasons, and in the fourth, which talks those reasons through.</p>
+</section>
+
+<section class="col">
+  <a class="btn primary listen" href="https://open.spotify.com/episode/6CMNqvPPlzDBtVL5wYtPgE" target="_blank" rel="noopener">Listen to the episode on Spotify</a>
+
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://open.spotify.com/episode/6CMNqvPPlzDBtVL5wYtPgE" target="_blank" rel="noopener">System Design Deep Dive, episode page and show notes</a> (Spotify, 7 August 2026)</li>
+      <li><a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener">Kwon et al., Efficient Memory Management for LLM Serving with PagedAttention (SOSP 2023)</a> and <a href="https://vllm.ai/blog/2023-06-20-vllm" target="_blank" rel="noopener">the vLLM launch post</a></li>
+      <li><a href="https://www.usenix.org/conference/osdi22/presentation/yu" target="_blank" rel="noopener">Yu et al., Orca: A Distributed Serving System for Transformer-Based Generative Models (OSDI 2022)</a></li>
+      <li>Model configs: <a href="https://huggingface.co/NousResearch/Meta-Llama-3-8B/raw/main/config.json" target="_blank" rel="noopener">Llama 3 8B</a>, <a href="https://huggingface.co/NousResearch/Meta-Llama-3-70B/raw/main/config.json" target="_blank" rel="noopener">Llama 3 70B</a> and <a href="https://huggingface.co/NousResearch/Llama-2-13b-hf/raw/main/config.json" target="_blank" rel="noopener">Llama 2 13B</a> (Hugging Face mirrors)</li>
+      <li>GPU specifications: <a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener">NVIDIA H100</a> and <a href="https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet-us-nvidia-1758950-r4-web.pdf" target="_blank" rel="noopener">NVIDIA A100 datasheet</a>. The H100 page lists 1,979 BF16 TFLOPS with sparsity; this page uses the dense half, 989.</li>
+      <li><a href="https://pubsonline.informs.org/doi/10.1287/opre.9.3.383" target="_blank" rel="noopener">J. D. C. Little, A Proof for the Queuing Formula L = λW (Operations Research, 1961)</a></li>
+      <li><a href="https://gist.github.com/jboner/2841832" target="_blank" rel="noopener">Latency numbers every programmer should know</a> (table credited to Jeff Dean and Peter Norvig, about 2012)</li>
+      <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf" target="_blank" rel="noopener">DeCandia et al., Dynamo: Amazon's Highly Available Key-value Store (SOSP 2007)</a></li>
+      <li><a href="https://github.com/apache/kafka/blob/trunk/clients/src/main/java/org/apache/kafka/clients/producer/internals/BuiltInPartitioner.java" target="_blank" rel="noopener">Apache Kafka source: BuiltInPartitioner (murmur2 key hashing)</a>, <a href="https://kafka.apache.org/41/operations/basic-kafka-operations/" target="_blank" rel="noopener">basic operations</a> and <a href="https://kafka.apache.org/41/configuration/topic-configs/" target="_blank" rel="noopener">topic configs</a></li>
+      <li><a href="https://docs.citusdata.com/en/stable/develop/api_guc.html" target="_blank" rel="noopener">Citus documentation: configuration reference (citus.shard_count)</a></li>
+    </ol>
+    <p class="colophon">The structure and counts follow the episode's show notes. The lists, examples and deep dives were written for this page.</p>
+    <h3>Pictures</h3>
+    <ul>
+      <li>Original watercolors (interview room, 8-GPU server, strata, circles, chapter marks) painted in Python with OpenCV and NumPy for this page.</li>
+      <li>Flight-deck panel: NASA STS-103 photograph s103e0163, public domain, repainted as a watercolor with the same toolkit.</li>
+    </ul>
+  </div>
+</section>
+</div>
