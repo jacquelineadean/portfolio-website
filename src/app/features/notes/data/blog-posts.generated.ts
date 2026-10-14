@@ -45,6 +45,20 @@ export const BLOG_POSTS: BlogPost[] = [
     "content": "<p>Every API you design is a promise. It&#39;s a contract between your system and every system that depends on it — including systems that don&#39;t exist yet, built by engineers you&#39;ll never meet.</p>\n<p>That&#39;s a heavy responsibility, and it changes how you should think about design.</p>\n<h2>Predictability over cleverness</h2>\n<p>The best APIs aren&#39;t the most powerful ones. They&#39;re the most predictable. When a consumer reads your endpoint, they should be able to guess what the response looks like before they read the docs.</p>\n<p>This means:</p>\n<ul>\n<li><strong>Consistent naming conventions.</strong> If one endpoint uses <code>created_at</code>, every endpoint should. If one uses camelCase, all should.</li>\n<li><strong>Consistent error shapes.</strong> Every error response should have the same structure. The consumer shouldn&#39;t need to handle ten different error formats.</li>\n<li><strong>Consistent pagination.</strong> Pick a pattern — offset, cursor, keyset — and use it everywhere.</li>\n</ul>\n<h2>Design for the consumer, not the database</h2>\n<p>A common mistake is modeling your API response directly after your database schema. This couples your consumers to your internal implementation. When you refactor your tables, you break their integration.</p>\n<p>Instead, design your API as a view of your domain. The response should represent what the consumer needs, not how you store it. This creates a buffer between internal evolution and external stability.</p>\n<h2>Version from day one</h2>\n<p>You don&#39;t need to build a versioning strategy on day one. But you need to <em>decide</em> on one. Whether it&#39;s URL-based (<code>/v1/</code>), header-based, or content negotiation — pick your approach before you have consumers, because retrofitting versioning is painful.</p>\n<h2>Make breaking changes visible</h2>\n<p>The hardest part of API design isn&#39;t the initial release. It&#39;s evolution. When you need to change a field type, remove an endpoint, or restructure a response, the discipline of backward compatibility becomes essential.</p>\n<p>My approach: additive changes are safe, removal requires deprecation notices and migration windows, and structural changes get a new version. No exceptions.</p>\n<h2>The long game</h2>\n<p>Most of the APIs I&#39;ve built will outlive my time on their respective teams. That&#39;s not a problem — it&#39;s the goal. A well-designed API shouldn&#39;t need its original author to be maintainable. It should be self-documenting, consistent, and predictable enough that any competent engineer can extend it.</p>\n<p>Design for the engineer who inherits your code at 2 AM during an incident. They&#39;ll thank you.</p>\n"
   },
   {
+    "slug": "four-mental-models-illustrated",
+    "title": "Four Mental Models, Illustrated",
+    "date": "2026-10-14",
+    "excerpt": "An illustrated, interactive guide to the four mental models behind Staff+ system design interviews, with labs for capacity math, Kafka partitioning, PagedAttention and resharding.",
+    "tags": [
+      "system-design",
+      "interviews",
+      "tradeoffs"
+    ],
+    "readingTime": 20,
+    "published": true,
+    "content": ""
+  },
+  {
     "slug": "refactoring-legacy-systems",
     "title": "Refactoring a Legacy System Without Breaking the Business",
     "date": "2026-04-10",

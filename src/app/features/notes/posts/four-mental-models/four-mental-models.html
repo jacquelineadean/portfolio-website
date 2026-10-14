@@ -1,0 +1,35 @@
+<article class="page">
+  <div class="container">
+    <app-scroll-reveal>
+      <a routerLink="/notes" class="back-link">← All notes</a>
+    </app-scroll-reveal>
+
+    @if (post; as post) {
+      <app-scroll-reveal [delay]="0.1">
+        <div class="post-meta">
+          <time>{{ post.date }}</time>
+          <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+          <span>{{ post.readingTime }} min read</span>
+          <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
+          <span>Interactive</span>
+        </div>
+        <div class="post-tags">
+          @for (tag of post.tags; track tag) {
+            <app-tag [label]="tag" />
+          }
+        </div>
+      </app-scroll-reveal>
+    }
+  </div>
+
+  <!-- Full width: the article sets its own reading column and wider figures.
+       Not inside app-scroll-reveal, whose transform would break the sticky
+       interview clock. -->
+  <div #article class="article"></div>
+
+  <div class="container">
+    <div class="post-footer">
+      <app-share-buttons [title]="title" />
+    </div>
+  </div>
+</article>
