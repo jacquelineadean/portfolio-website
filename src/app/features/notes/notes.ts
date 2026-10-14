@@ -1,22 +1,22 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { ScrollReveal } from '../../shared/components/scroll-reveal/scroll-reveal';
 import { BlogService } from '../../core/services/blog.service';
-import { BOOKS } from './data/books.data';
 import { PODCASTS } from './data/podcasts.data';
-import { REFERENCES } from './data/references.data';
+import { READING } from './data/reading.data';
 import { Podcast } from '../../core/models/podcast.model';
+import { ReadingItem } from '../../core/models/reading.model';
 
 /**
- * Writing and Reading used to be two sections. They are one page now, in two
- * halves: what I've written, and what I'm reading, listening to and returning
- * to. The jump nav at the top is what keeps it navigable rather than a scroll.
+ * One page in three sections: posts, reading (books, papers and articles on one
+ * card grid) and listening. The jump nav at the top links to each section.
  */
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [RouterLink, ScrollReveal],
+  imports: [RouterLink, ScrollReveal, NgTemplateOutlet],
   templateUrl: './notes.html',
   styleUrl: './notes.scss',
 })
@@ -24,38 +24,23 @@ export class Notes {
   private readonly blogService = inject(BlogService);
   private readonly sanitizer = inject(DomSanitizer);
 
-  protected readonly activeTag = signal<string | null>(null);
-  protected readonly allTags = this.blogService.getAllTags();
-  protected readonly books = BOOKS;
+  protected readonly posts = this.blogService.allPosts;
+  protected readonly reading = READING;
   protected readonly podcasts = PODCASTS;
-  protected readonly references = REFERENCES;
 
-  /** Book spine tints, cycled so no two neighbours in the grid repeat. */
+  /** Card spine tints, cycled so no two neighbours in the grid repeat. */
   protected readonly tileColors = ['blue', 'yellow', 'green', 'red', 'purple'];
 
   protected readonly sections = [
     { id: 'writing', label: 'Blog' },
-    { id: 'books', label: 'Books' },
+    { id: 'reading', label: 'Reading' },
     { id: 'listening', label: 'Listening' },
-    { id: 'papers', label: 'Papers & articles' },
   ];
 
-  protected readonly filteredPosts = computed(() => {
-    const tag = this.activeTag();
-    if (!tag) return this.blogService.allPosts();
-    return this.blogService.getPostsByTag(tag);
-  });
-
-  /** Filtering swaps the list silently, so the result is announced. */
-  protected readonly filterAnnouncement = computed(() => {
-    const count = this.filteredPosts().length;
-    const tag = this.activeTag();
-    const noun = count === 1 ? 'post' : 'posts';
-    return tag ? `${count} ${noun} tagged ${tag}` : `${count} ${noun}, all tags`;
-  });
-
-  protected setTag(tag: string | null): void {
-    this.activeTag.set(tag === this.activeTag() ? null : tag);
+  /** "Book", or "Paper · Communications of the ACM · 2013". */
+  protected kindLine(item: ReadingItem): string {
+    const kind = item.kind[0].toUpperCase() + item.kind.slice(1);
+    return [kind, item.source, item.year].filter(Boolean).join(' · ');
   }
 
   /**

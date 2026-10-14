@@ -3,7 +3,9 @@ title: "Designing APIs for Systems That Will Outlive You"
 date: "2026-02-15"
 excerpt: "The best APIs aren't clever — they're predictable. Principles for designing contracts that age well."
 tags: ["api-design", "engineering", "architecture"]
-published: true
+# Unpublished: a general essay with no figures, numbers or worked examples.
+# Set back to true once it has them.
+published: false
 ---
 
 Every API you design is a promise. It's a contract between your system and every system that depends on it — including systems that don't exist yet, built by engineers you'll never meet.

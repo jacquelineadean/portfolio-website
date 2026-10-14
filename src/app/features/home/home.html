@@ -3,49 +3,23 @@
     <div class="hero-decoration" aria-hidden="true">
       <span class="sparkle sparkle--yellow deco deco-1 spin-slow"></span>
       <span class="sparkle sparkle--red deco deco-2"></span>
-      <span class="sparkle sparkle--green deco deco-3"></span>
-      <span class="sparkle sparkle--blue deco deco-4"></span>
-      <!-- Pencil marks in the margin of the page. Two shapes, two seeds, so the
-           pair reads as drawn rather than as one asset flipped. -->
-      <app-doodle class="deco deco-sweep" shape="sweep" seed="hero" />
-      <app-doodle class="deco deco-corner" shape="corner" seed="hero" />
-      <div class="blob"></div>
     </div>
 
-    <div class="hero-content">
-      <app-scroll-reveal>
-        <p class="chip hero-chip">
-          <span class="sparkle sparkle--blue" aria-hidden="true"></span>
-          Jacqueline Dean · Senior Software Engineer
-        </p>
-      </app-scroll-reveal>
+    <app-scroll-reveal>
+      <h1 class="chip hero-chip">
+        <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+        Jacqueline Dean
+      </h1>
+    </app-scroll-reveal>
 
-      <app-scroll-reveal [delay]="0.1">
-        <h1 class="hero-title">This is where <em>ideas</em> become <em>systems</em>.</h1>
-      </app-scroll-reveal>
-
-      <app-scroll-reveal [delay]="0.4">
+    <app-scroll-reveal [delay]="0.1">
+      <app-pathfinder>
         <div class="hero-links">
           <app-button label="Explore my work" routerPath="/work" variant="primary" />
           <app-button label="More about me" routerPath="/about" variant="secondary" />
         </div>
-      </app-scroll-reveal>
-    </div>
-  </div>
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      @for (skill of skills; track skill) {
-        <span>{{ skill }}</span>
-        <span class="sparkle"></span>
-      }
-    </div>
-    <div class="marquee-track">
-      @for (skill of skills; track skill) {
-        <span>{{ skill }}</span>
-        <span class="sparkle"></span>
-      }
-    </div>
+      </app-pathfinder>
+    </app-scroll-reveal>
   </div>
 </section>
 
@@ -92,36 +66,16 @@
 </section>
 
 <section class="section statement">
-  <div class="container statement-inner">
+  <div class="container">
     <app-scroll-reveal>
-      <p class="eyebrow">
-        <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
-        A working philosophy
-      </p>
-      <p class="statement-text">
-        The hard part of a distributed system isn't the <em>boxes</em> — it's the arrows between
-        them.
-      </p>
-      <div class="statement-chips">
-        @for (principle of principles; track principle) {
-          <span class="chip">{{ principle }}</span>
-        }
-      </div>
-    </app-scroll-reveal>
-
-    <app-scroll-reveal [delay]="0.15">
-      <app-system-sketch class="statement-sketch" />
+      <app-request-flow />
     </app-scroll-reveal>
   </div>
 </section>
 
 <section class="section writing-preview container">
   <div class="featured-head">
-    <app-section-header
-      eyebrow="Notes from the lab"
-      sparkleColor="green"
-      title="Latest <em>writing</em>."
-    />
+    <app-section-header eyebrow="Notes" sparkleColor="green" title="Latest <em>writing</em>." />
     <a routerLink="/notes" class="text-link featured-all">All notes</a>
   </div>
 

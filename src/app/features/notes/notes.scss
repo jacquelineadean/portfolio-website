@@ -1,8 +1,7 @@
-// Notes index — writing, books, listening and references on one page.
+// Notes index: posts, reading and listening on one page.
 //
-// The post rows, book cards, chips and text links are shared classes; what is
-// local here is the section rhythm, the jump nav, and the two blocks that did
-// not exist as separate pages (podcasts and references).
+// The post rows, reading cards and text links are shared classes. What is local
+// here is the section rhythm, the jump nav and the podcast block.
 //
 // `//` comments rather than `/* */` so they do not count against the
 // per-component style budget.
@@ -75,42 +74,8 @@
 }
 
 // ---------------------------------------------------------------------------
-// Writing
+// Blog
 // ---------------------------------------------------------------------------
-
-.tag-filters {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
-  margin-bottom: var(--space-lg);
-}
-
-.tag-filter {
-  padding: 0.45rem 1.2rem;
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  transition:
-    color var(--duration-fast) ease,
-    border-color var(--duration-fast) ease,
-    background-color var(--duration-fast) ease;
-
-  &:hover {
-    border-color: var(--color-border-hover);
-    color: var(--color-ink);
-  }
-
-  &.active {
-    color: var(--color-paper);
-    border-color: var(--color-ink);
-    background: var(--color-ink);
-  }
-}
 
 .post-list {
   display: flex;
@@ -122,10 +87,6 @@
 }
 
 .post-row-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
   margin-top: 0.35rem;
   font-family: var(--font-mono);
   font-size: var(--text-2xs);
@@ -237,82 +198,4 @@
   font-size: var(--text-2xs);
   letter-spacing: 0.06em;
   color: var(--color-ink-muted);
-}
-
-// ---------------------------------------------------------------------------
-// Papers & articles
-// ---------------------------------------------------------------------------
-
-.reference-list {
-  > li:last-child .reference-row {
-    border-bottom: 1px solid var(--color-border);
-  }
-}
-
-.reference-row {
-  display: block;
-  padding: var(--space-md) 0.25rem;
-  border-top: 1px solid var(--color-border);
-  transition: background-color var(--duration-fast) ease;
-
-  &:hover {
-    background: rgba(255, 253, 249, 0.9);
-
-    .reference-title {
-      color: var(--color-blue);
-    }
-
-    .reference-external {
-      transform: translate(2px, -2px);
-    }
-  }
-}
-
-.reference-main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.reference-title {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.4em;
-  font-size: var(--text-lg);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
-  transition: color var(--duration-fast) ease;
-}
-
-.reference-external {
-  display: inline-block;
-  font-size: 0.8em;
-  transition: transform var(--duration-normal) ease;
-}
-
-.reference-byline {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-}
-
-.reference-note {
-  max-width: 78ch;
-  font-size: var(--text-sm);
-  color: var(--color-ink-soft);
-  line-height: var(--leading-normal);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reference-external,
-  .reference-row {
-    transition: none;
-  }
-
-  .reference-row:hover .reference-external {
-    transform: none;
-  }
 }
