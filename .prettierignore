@@ -5,3 +5,4 @@ dist
 src/app/features/notes/data/blog-posts.generated.ts
 # Kept close to the published artifact it came from, so a new version diffs cleanly.
 src/app/features/notes/posts/four-mental-models/artifact/
+src/app/features/notes/posts/ai-inference-stack/artifact/

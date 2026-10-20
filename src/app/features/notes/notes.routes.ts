@@ -14,6 +14,11 @@ export const notesRoutes: Routes = [
       import('./posts/four-mental-models/four-mental-models').then((m) => m.FourMentalModels),
   },
   {
+    path: 'ai-inference-stack',
+    loadComponent: () =>
+      import('./posts/ai-inference-stack/ai-inference-stack').then((m) => m.AiInferenceStack),
+  },
+  {
     path: ':slug',
     loadComponent: () => import('./components/post-detail/post-detail').then((m) => m.PostDetail),
   },

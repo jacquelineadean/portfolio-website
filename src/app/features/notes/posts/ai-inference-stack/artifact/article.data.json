@@ -1,0 +1,1788 @@
+{
+  "mods": {
+    "panels": {
+      "tps": 209,
+      "layers2023": "2023 picture: two boxes",
+      "layers2026": "2026 stack: seven layers"
+    },
+    "flow-hero": {
+      "paths": [
+        {
+          "d": "M962 176 L962 734",
+          "count": 1,
+          "r": 12,
+          "dur": 3.6,
+          "color": "var(--token)"
+        }
+      ]
+    },
+    "trace": {
+      "layers": [
+        {
+          "id": "l1",
+          "name": "Your app",
+          "products": "OpenAI-style SDKs",
+          "head": "Build the prompt, open the stream",
+          "does": "Your code assembles tools, the system prompt, documents and the conversation, then calls the SDK. The order of those parts decides how much of the prompt a cache can reuse.",
+          "owner": "you"
+        },
+        {
+          "id": "l2",
+          "name": "AI gateway",
+          "products": "LiteLLM, Portkey",
+          "head": "Check the key, count the tokens, pick a provider",
+          "does": "The gateway maps a virtual key to a real provider key, checks the token budget, routes by model and price, and writes the cost of the call to a log.",
+          "owner": "your platform team"
+        },
+        {
+          "id": "l3",
+          "name": "Inference platform",
+          "products": "NVIDIA Dynamo, llm-d",
+          "head": "Pick the replica that already holds the prefix",
+          "does": "The platform sees the whole fleet. It routes the request to a replica with this prompt's KV cache in memory, and it can send prefill and decode to separate GPU pools.",
+          "owner": "NVIDIA, Red Hat and your team"
+        },
+        {
+          "id": "l4",
+          "name": "Inference engine",
+          "products": "vLLM, SGLang, TensorRT-LLM",
+          "head": "Join the running batch at the next step",
+          "does": "The engine slots the request into its batch at the next forward pass, keeps its KV cache in paged blocks and reuses any cached prefix.",
+          "owner": "open-source engine projects"
+        },
+        {
+          "id": "l5",
+          "name": "Framework",
+          "products": "PyTorch, torch.compile, CUDA graphs",
+          "head": "Run the forward pass",
+          "does": "PyTorch defines the model's layers and runs the forward pass. Compilation and CUDA graphs cut the CPU time spent launching GPU work each step.",
+          "owner": "PyTorch"
+        },
+        {
+          "id": "l6",
+          "name": "Kernels",
+          "products": "FlashAttention, FlashMLA, DeepGEMM, Triton",
+          "head": "Do the attention and the matrix math",
+          "does": "Hand-tuned GPU programs run the hot operations. FlashAttention keeps attention scores in on-chip memory so they never round-trip through HBM.",
+          "owner": "kernel authors"
+        },
+        {
+          "id": "l7",
+          "name": "GPU",
+          "products": "H100, HBM, NVLink, CUDA driver",
+          "head": "Stream weights from memory, do the math",
+          "does": "The GPU reads every weight and the batch's KV cache from HBM, multiplies, and hands back one new token per request.",
+          "owner": "NVIDIA"
+        }
+      ],
+      "intro": "A request leaves your code as one SDK call. Watch it fall through the seven layers, then watch the answer stream back up one token at a time.",
+      "outro": "Prefill is done and the KV cache is built. Decode now adds one token per step, and each token travels back up through every layer to your app.",
+      "tripGoing": "Request on its way down.",
+      "tripDone": "Arrived at the GPU. Prefill runs once per request; decode runs once per output token."
+    },
+    "morph": {
+      "layers": [
+        {
+          "id": "l1",
+          "name": "Your app",
+          "products": "OpenAI-style SDKs"
+        },
+        {
+          "id": "l2",
+          "name": "AI gateway",
+          "products": "LiteLLM, Portkey"
+        },
+        {
+          "id": "l3",
+          "name": "Inference platform",
+          "products": "NVIDIA Dynamo, llm-d"
+        },
+        {
+          "id": "l4",
+          "name": "Inference engine",
+          "products": "vLLM, SGLang, TensorRT-LLM"
+        },
+        {
+          "id": "l5",
+          "name": "Framework",
+          "products": "PyTorch, torch.compile, CUDA graphs"
+        },
+        {
+          "id": "l6",
+          "name": "Kernels",
+          "products": "FlashAttention, FlashMLA, DeepGEMM, Triton"
+        },
+        {
+          "id": "l7",
+          "name": "GPU",
+          "products": "H100, HBM, NVLink, CUDA driver"
+        }
+      ],
+      "note2023": "<b>A common 2023 picture:</b> your code, vLLM and “the model”. Everything below the engine was one box, and nothing sat between your code and the engine.",
+      "note2026": "<b>The 2026 stack:</b> seven layers. A gateway and a platform sit above the engine, and PyTorch, the kernels and the GPU each have their own owner."
+    },
+    "phases": {
+      "prompt": [
+        "Explain",
+        "the",
+        "KV",
+        "cache",
+        "in",
+        "one",
+        "line"
+      ],
+      "output": [
+        "It",
+        "stores",
+        "each",
+        "token's",
+        "keys",
+        "and",
+        "values."
+      ]
+    },
+    "kvcalc": {
+      "mem": 80,
+      "models": [
+        {
+          "name": "Llama 3 8B",
+          "kv_kb": 131.072,
+          "formula": "2 × 32 layers × 8 KV heads × 128 dims × 2 bytes (BF16) = <b>131,072 bytes per token</b>"
+        },
+        {
+          "name": "Llama 3 70B",
+          "kv_kb": 327.68,
+          "formula": "2 × 80 layers × 8 KV heads × 128 dims × 2 bytes (BF16) = <b>327,680 bytes per token</b>"
+        },
+        {
+          "name": "Llama 3 405B",
+          "kv_kb": 516.096,
+          "formula": "2 × 126 layers × 8 KV heads × 128 dims × 2 bytes (BF16) = <b>516,096 bytes per token</b>"
+        },
+        {
+          "name": "DeepSeek-V3 (MLA)",
+          "kv_kb": 70.272,
+          "formula": "Latent attention stores a compressed vector per layer: <b>70,272 bytes per token</b>, as published by DeepSeek"
+        }
+      ]
+    },
+    "latency": {
+      "text": "Prefill reads the prompt in one pass and fills the KV cache. Decode then adds one token per step, reading every weight and every cached key and value each time. That is why a long answer feels slow even when the first word arrives quickly: the wait is the step time multiplied by the number of tokens, and every request in the batch shares each step. Batching more users raises throughput but can stretch each step, so the service trades one user's speed against total tokens per second. Caching a long shared prefix shortens prefill, which is why time to first token falls when the cache hits."
+    },
+    "roofline": {
+      "bf16": 989,
+      "fp8": 1979,
+      "bw": 3.35
+    },
+    "glossary": {
+      "terms": [
+        {
+          "t": "Token",
+          "d": "The unit of text a model reads and writes. Prices, limits and speeds all count tokens.",
+          "l": [
+            1
+          ]
+        },
+        {
+          "t": "Prefill",
+          "d": "The forward pass over the whole prompt at once. It builds the KV cache and is usually limited by compute.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Decode",
+          "d": "Generating the answer one token per step per request. Each step reads every weight, so memory bandwidth limits it.",
+          "l": [
+            4,
+            7
+          ]
+        },
+        {
+          "t": "KV cache",
+          "d": "The attention keys and values stored for every token so far. It grows linearly with tokens and requests.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "TTFT",
+          "d": "Time to first token: queueing plus prefill. What a user feels as the wait before anything appears.",
+          "l": [
+            3,
+            4
+          ]
+        },
+        {
+          "t": "TPOT / ITL",
+          "d": "Time per output token, or inter-token latency: the decode step time one user sees.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Throughput",
+          "d": "Tokens per second across all requests on a GPU or fleet.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Goodput",
+          "d": "Requests per second that meet their latency targets. DistServe optimizes for it.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "Continuous batching",
+          "d": "Scheduling one iteration at a time so requests join and leave the batch at every step (Orca).",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Chunked prefill",
+          "d": "Cutting a long prefill into pieces that share steps with decode, so answers in progress keep flowing.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "PagedAttention",
+          "d": "Keeping the KV cache in fixed-size blocks mapped by a per-request block table, like virtual memory (vLLM).",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Prefix caching",
+          "d": "Reusing the KV cache of a prompt prefix that an earlier request already computed.",
+          "l": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "t": "RadixAttention",
+          "d": "SGLang's prefix cache, stored as a radix tree of token sequences.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Preemption",
+          "d": "Evicting a running request's KV cache when memory is full, then recomputing it later.",
+          "l": [
+            4
+          ]
+        },
+        {
+          "t": "Disaggregated serving",
+          "d": "Running prefill and decode on separate GPU pools and moving the KV cache between them.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "KV-aware routing",
+          "d": "Sending a request to the replica that already holds its prefix in cache.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "NIXL",
+          "d": "NVIDIA's Inference Xfer Library for moving KV cache between GPUs; Dynamo and llm-d use it.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "Mooncake",
+          "d": "Moonshot AI's KV-cache-centric serving design for Kimi, with a shared KV pool in CPU memory and SSD.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "LMCache",
+          "d": "A KV cache offload and sharing layer; llm-d uses it to move cache to CPU memory or network storage.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "AI gateway",
+          "d": "One API in front of many model providers, with virtual keys, token budgets, routing, retries and cost logs.",
+          "l": [
+            2
+          ]
+        },
+        {
+          "t": "Virtual key",
+          "d": "A key the gateway issues to a team or service and maps to a real provider key.",
+          "l": [
+            2
+          ]
+        },
+        {
+          "t": "Tokens per minute (TPM)",
+          "d": "A rate limit counted in tokens, the unit that tracks cost.",
+          "l": [
+            2
+          ]
+        },
+        {
+          "t": "Fallback",
+          "d": "Sending a failed call to the next model or provider on a list.",
+          "l": [
+            2
+          ]
+        },
+        {
+          "t": "Mixture of experts (MoE)",
+          "d": "A model where each token activates only a few expert sub-networks. DeepSeek-V3 activates 8 of 256 routed experts per layer.",
+          "l": [
+            5
+          ]
+        },
+        {
+          "t": "Grouped-query attention (GQA)",
+          "d": "Several query heads share one key/value head, shrinking the KV cache. Every Llama 3 size has 8 KV heads.",
+          "l": [
+            5
+          ]
+        },
+        {
+          "t": "Multi-head latent attention (MLA)",
+          "d": "DeepSeek's attention that stores a compressed latent instead of full keys and values.",
+          "l": [
+            5,
+            6
+          ]
+        },
+        {
+          "t": "Tensor parallelism",
+          "d": "Splitting each layer's matrices across GPUs so one replica can span a node.",
+          "l": [
+            5,
+            7
+          ]
+        },
+        {
+          "t": "Expert parallelism",
+          "d": "Spreading a mixture-of-experts model's experts across many GPUs.",
+          "l": [
+            3,
+            7
+          ]
+        },
+        {
+          "t": "torch.compile",
+          "d": "PyTorch's compiler: it traces Python code and fuses operations into fewer GPU kernels.",
+          "l": [
+            5
+          ]
+        },
+        {
+          "t": "CUDA graph",
+          "d": "A recorded sequence of GPU launches that replays with one launch.",
+          "l": [
+            5
+          ]
+        },
+        {
+          "t": "Kernel",
+          "d": "A program that runs on the GPU, usually one hot operation such as attention or matrix multiply.",
+          "l": [
+            6
+          ]
+        },
+        {
+          "t": "GEMM",
+          "d": "General matrix multiply, where most of a transformer's math happens.",
+          "l": [
+            6
+          ]
+        },
+        {
+          "t": "FlashAttention",
+          "d": "An attention kernel that computes in tiles held in on-chip SRAM, so the score matrix never round-trips through HBM.",
+          "l": [
+            6
+          ]
+        },
+        {
+          "t": "Triton (OpenAI)",
+          "d": "A Python-like language for writing GPU kernels.",
+          "l": [
+            6
+          ]
+        },
+        {
+          "t": "Dynamo-Triton",
+          "d": "NVIDIA's model server, formerly Triton Inference Server, now part of the Dynamo platform.",
+          "l": [
+            3
+          ]
+        },
+        {
+          "t": "HBM",
+          "d": "High-bandwidth memory stacked beside the GPU die. It holds weights and the KV cache.",
+          "l": [
+            7
+          ]
+        },
+        {
+          "t": "Arithmetic intensity",
+          "d": "FLOPs performed per byte moved from memory.",
+          "l": [
+            7
+          ]
+        },
+        {
+          "t": "Roofline",
+          "d": "A performance model: attainable FLOPS = the smaller of peak compute and bandwidth × arithmetic intensity.",
+          "l": [
+            7
+          ]
+        },
+        {
+          "t": "NVLink",
+          "d": "The GPU-to-GPU link inside a node.",
+          "l": [
+            7
+          ]
+        },
+        {
+          "t": "FP8",
+          "d": "An 8-bit floating-point format; half the bytes of BF16 per value.",
+          "l": [
+            6,
+            7
+          ]
+        },
+        {
+          "t": "Speculative decoding",
+          "d": "Drafting several tokens cheaply and verifying them in one pass. DeepSeek's multi-token prediction raised generation throughput 1.8×.",
+          "l": [
+            4
+          ]
+        }
+      ]
+    },
+    "promptlab": {
+      "read_pct": 10,
+      "blocks": [
+        {
+          "k": "time",
+          "name": "Current time",
+          "tokens": 20,
+          "changes": true,
+          "note": ""
+        },
+        {
+          "k": "tools",
+          "name": "Tool definitions",
+          "tokens": 1800,
+          "changes": false,
+          "note": "same every request"
+        },
+        {
+          "k": "system",
+          "name": "System prompt",
+          "tokens": 2400,
+          "changes": false,
+          "note": "same every request"
+        },
+        {
+          "k": "docs",
+          "name": "Product docs",
+          "tokens": 6000,
+          "changes": false,
+          "note": "same every request"
+        },
+        {
+          "k": "history",
+          "name": "Conversation so far",
+          "tokens": 3200,
+          "changes": false,
+          "note": "only grows at the end"
+        },
+        {
+          "k": "user",
+          "name": "New user message",
+          "tokens": 120,
+          "changes": true,
+          "note": ""
+        }
+      ],
+      "start": [
+        "time",
+        "system",
+        "tools",
+        "docs",
+        "history",
+        "user"
+      ],
+      "best": [
+        "tools",
+        "system",
+        "docs",
+        "history",
+        "time",
+        "user"
+      ]
+    },
+    "drill-l1": {
+      "scenario": "A support bot sends: the current time, a long system prompt, the customer&#x27;s account record, the conversation so far and the new message. Costs are high and time to first token is slow. Lay out the prompt again.",
+      "scarce": "Prefill compute on repeated tokens. Every request recomputes thousands of tokens that did not change since the last turn.",
+      "steps": [
+        {
+          "l": 1,
+          "title": "Order by stability",
+          "text": "System prompt and tools first, then the account record, then the conversation, then the time and the new message."
+        },
+        {
+          "l": 1,
+          "title": "Mark the cache breakpoints",
+          "text": "Cache up to the end of the conversation so far. Each new turn appends to it."
+        },
+        {
+          "l": 2,
+          "title": "Watch the hit rate",
+          "text": "Log <code>cache_read_input_tokens</code> per route in the gateway and alert when the share drops after a deploy."
+        }
+      ],
+      "switches": [
+        "If the account record changes every turn, move it after the conversation.",
+        "If prompts are below the provider&#x27;s minimum cacheable length, caching does nothing; spend effort on shorter prompts instead."
+      ]
+    },
+    "gwsim": {
+      "ratio": 12
+    },
+    "drill-l2": {
+      "scenario": "Design a multi-tenant gateway in front of two model providers for forty internal teams, each with its own monthly budget.",
+      "scarce": "Money, metered in tokens, shared across tenants. Second: provider capacity, which fails independently of your code.",
+      "steps": [
+        {
+          "l": 2,
+          "title": "Identity and budgets",
+          "text": "Issue a virtual key per team and service. Store budgets in tokens and dollars per key."
+        },
+        {
+          "l": 2,
+          "title": "Admission",
+          "text": "A token bucket per key, charged with an estimate at admission and corrected from the provider&#x27;s usage record."
+        },
+        {
+          "l": 2,
+          "title": "Routing and failure",
+          "text": "Route by model and price. Retry with capped backoff, then fall back to the next provider. Log every retry as cost."
+        },
+        {
+          "l": 3,
+          "title": "Self-hosted fleet behind it",
+          "text": "Treat your own fleet as one more provider with its own capacity signal."
+        }
+      ],
+      "switches": [
+        "A single team and a single provider: use the SDK library and skip the proxy hop.",
+        "Strict data residency: route by region before price."
+      ]
+    },
+    "pdsim": {
+      "say0": "<b>One pool.</b> A long prompt's prefill takes the whole GPU for several steps, and every user mid-answer waits for it.",
+      "say1": "<b>Chunked prefill.</b> The engine cuts each prompt into pieces that ride along with decode steps. Steps get a little longer, and the long pauses disappear.",
+      "say2": "<b>Split pools.</b> Prefill GPUs read prompts while decode GPUs stream answers. The KV cache moves between them, and DistServe served 7.4× more requests within latency targets this way."
+    },
+    "drill-l3": {
+      "scenario": "Long-document question answering: prompts of tens of thousands of tokens, short answers, and a strict target for time per output token.",
+      "scarce": "Decode smoothness. Long prefills on shared GPUs stall every answer in progress.",
+      "steps": [
+        {
+          "l": 3,
+          "title": "Split the pools",
+          "text": "Prefill GPUs read documents; decode GPUs stream answers; NIXL or RDMA moves the KV cache between them."
+        },
+        {
+          "l": 3,
+          "title": "Route by document",
+          "text": "Send repeat questions about the same document to the replica that holds its KV cache, and offload cold documents to CPU memory or SSD."
+        },
+        {
+          "l": 4,
+          "title": "Tune each engine for its job",
+          "text": "Prefill workers take large token budgets; decode workers take many concurrent sequences."
+        }
+      ],
+      "switches": [
+        "If documents are rarely reused, the KV pool buys little; size it small.",
+        "If the fleet is a single node, start with chunked prefill on one pool."
+      ]
+    },
+    "batchsim": {
+      "orca": "36.9×"
+    },
+    "pagedsim": {
+      "saySlab": "<b>Slabs.</b> Every request reserves room for the longest possible answer. The hatched blocks sit empty, and new requests wait for a long enough free run.",
+      "sayPage": "<b>Pages.</b> Blocks are taken one at a time as answers grow, anywhere in memory. Almost every block holds real tokens, so more requests run at once.",
+      "sayShare": "<b>Pages with a shared prefix.</b> Every request starts with the same system prompt, so its first block is stored once and shared. That shared block is the seed of prefix caching."
+    },
+    "drill-l4": {
+      "scenario": "An engine serving a 70B-class model shows high throughput but users complain that answers stutter. KV cache usage sits near 100%.",
+      "scarce": "GPU memory for KV cache.",
+      "steps": [
+        {
+          "l": 4,
+          "title": "Confirm preemption",
+          "text": "Check preemption and recompute counters. A full KV cache forces the engine to evict and recompute requests."
+        },
+        {
+          "l": 4,
+          "title": "Cap concurrency",
+          "text": "Lower the maximum concurrent sequences so admitted requests finish without eviction."
+        },
+        {
+          "l": 6,
+          "title": "Shrink the cache",
+          "text": "Use an FP8 KV cache where the kernels support it, halving bytes per token."
+        },
+        {
+          "l": 3,
+          "title": "Add capacity sideways",
+          "text": "Add replicas and route by prefix so shared prompts are stored once."
+        }
+      ],
+      "switches": [
+        "If prompts share long prefixes, prefix caching may free enough memory on its own.",
+        "If latency targets are loose, accept a longer queue instead of more GPUs."
+      ]
+    },
+    "launch": {
+      "says": [
+        "<b>Eager.</b> The CPU launches eight small kernels one after another. The GPU finishes each one before the next launch arrives, so it sits idle in the gaps.",
+        "<b>Compiled.</b> Fusion turns eight operations into three larger kernels. Fewer launches, fewer gaps.",
+        "<b>Compiled plus a CUDA graph.</b> One launch replays the whole step, and the kernels run back to back."
+      ]
+    },
+    "drill-l5": {
+      "scenario": "A profile of a decode step shows the GPU busy less than half the time, with gaps between many short kernels.",
+      "scarce": "CPU time to launch GPU work.",
+      "steps": [
+        {
+          "l": 5,
+          "title": "Compile",
+          "text": "Turn on torch.compile so small operations fuse into fewer kernels."
+        },
+        {
+          "l": 5,
+          "title": "Capture",
+          "text": "Capture CUDA graphs for the batch sizes you serve; pad to the nearest one."
+        },
+        {
+          "l": 4,
+          "title": "Grow the step",
+          "text": "A bigger batch makes each kernel longer, so launch overhead becomes a smaller share."
+        }
+      ],
+      "switches": [
+        "If shapes vary wildly, graphs will miss often; fix the shape buckets first.",
+        "If gaps remain, look for host-side work such as sampling or detokenization on the critical path."
+      ]
+    },
+    "flash": {
+      "say": "Standard attention writes the score matrix to HBM, reads it back for the softmax, writes the result and reads it again. The traffic grows with the square of the prompt. FlashAttention computes each tile of scores in on-chip SRAM and writes only the output."
+    },
+    "drill-l6": {
+      "scenario": "A new model uses an attention variant your engine has no fast kernel for. Throughput is a third of a similar-sized model.",
+      "scarce": "Kernel coverage for this shape.",
+      "steps": [
+        {
+          "l": 6,
+          "title": "Profile first",
+          "text": "Confirm attention dominates the step, and measure achieved bandwidth against the GPU&#x27;s peak."
+        },
+        {
+          "l": 6,
+          "title": "Prototype in Triton",
+          "text": "Write a fused, tiled version quickly and check numerical accuracy against the reference."
+        },
+        {
+          "l": 6,
+          "title": "Harden if it matters",
+          "text": "If the kernel still dominates, port the hot path to CUDA or CUTLASS for the last stretch of speed."
+        }
+      ],
+      "switches": [
+        "If the engine community already has a kernel in progress, contribute there instead of forking.",
+        "If the model is short-lived, accept the slow path and spend the time elsewhere."
+      ]
+    },
+    "flow-gpu": {
+      "paths": [
+        {
+          "d": "M633.4 359.6 L697.2 355.1",
+          "count": 2,
+          "r": 5.5,
+          "dur": 0.8,
+          "color": "#ffb562",
+          "stroke": "#7a3b00",
+          "sw": 1.5
+        },
+        {
+          "d": "M892.8 341.5 L828.9 345.9",
+          "count": 2,
+          "r": 5.5,
+          "dur": 0.8,
+          "color": "#ffb562",
+          "stroke": "#7a3b00",
+          "sw": 1.5
+        },
+        {
+          "d": "M638.7 435.4 L702.5 431.0",
+          "count": 2,
+          "r": 5.5,
+          "dur": 0.8,
+          "color": "#ffb562",
+          "stroke": "#7a3b00",
+          "sw": 1.5
+        },
+        {
+          "d": "M898.1 417.3 L834.2 421.8",
+          "count": 2,
+          "r": 5.5,
+          "dur": 0.8,
+          "color": "#ffb562",
+          "stroke": "#7a3b00",
+          "sw": 1.5
+        },
+        {
+          "d": "M644.0 511.2 L707.8 506.8",
+          "count": 2,
+          "r": 5.5,
+          "dur": 0.8,
+          "color": "#ffb562",
+          "stroke": "#7a3b00",
+          "sw": 1.5
+        },
+        {
+          "d": "M903.4 493.1 L839.5 497.6",
+          "count": 2,
+          "r": 5.5,
+          "dur": 0.8,
+          "color": "#ffb562",
+          "stroke": "#7a3b00",
+          "sw": 1.5
+        }
+      ]
+    },
+    "batchlab": {
+      "mem": 80,
+      "bw": 3.35,
+      "bf16": 989,
+      "fp8": 1979,
+      "price": 2,
+      "models": [
+        {
+          "name": "8B on one GPU",
+          "params": 8,
+          "kv_kb": 131.072,
+          "gpus": 1
+        },
+        {
+          "name": "70B on four GPUs",
+          "params": 70,
+          "kv_kb": 327.68,
+          "gpus": 4
+        }
+      ]
+    },
+    "drill-l7": {
+      "scenario": "Choose hardware for a 70B-class chat model where one user&#x27;s tokens per second matter more than total throughput.",
+      "scarce": "Memory bandwidth per replica.",
+      "steps": [
+        {
+          "l": 7,
+          "title": "Fit the weights",
+          "text": "BF16 weights exceed one GPU, so split with tensor parallelism across a node&#x27;s NVLink-connected GPUs."
+        },
+        {
+          "l": 7,
+          "title": "Buy bandwidth",
+          "text": "More GPUs per replica means more combined HBM bandwidth per step, which lowers time per output token."
+        },
+        {
+          "l": 6,
+          "title": "Halve the bytes",
+          "text": "FP8 weights halve the bytes each step reads, if the quality holds."
+        },
+        {
+          "l": 4,
+          "title": "Keep batches modest",
+          "text": "Small batches keep each step short; add replicas for more users."
+        }
+      ],
+      "switches": [
+        "If total throughput matters more, use fewer GPUs per replica and bigger batches.",
+        "If the model is mixture-of-experts, interconnect bandwidth becomes the next limit."
+      ]
+    },
+    "radix": {
+      "read_pct": 10,
+      "sayA": "A returning conversation matches everything it sent before. Only the newest turn is computed.",
+      "sayB": "User B matches the shared system prompt and their own first question.",
+      "sayNew": "A new user still matches the shared system prompt and tools, so even a first request is mostly cached.",
+      "sayMiss": "<b>Silent miss.</b> A timestamp ahead of the system prompt changes token one, so nothing matches. The response still succeeds, and every request pays full price."
+    },
+    "dsday": {
+      "prefillLabel": "Prefill unit · 4 nodes · EP32",
+      "decodeLabel": "Decode unit · 18 nodes · EP144",
+      "hitLine": "56.3% of input tokens hit this cache",
+      "hit": 56.3
+    },
+    "flow-deepseek": {
+      "paths": [
+        {
+          "d": "M300 176 C360 110 640 104 760 170",
+          "count": 4,
+          "r": 9,
+          "dur": 2.6,
+          "color": "#2fb39a"
+        }
+      ]
+    },
+    "dash": {
+      "calm": "Cache hits are high and first tokens arrive fast. Deploy the new template and watch which panels notice.",
+      "broken": "<b>Nothing on the left changed.</b> The new template puts a timestamp first, every request misses the cache, prefill repeats work, and first tokens slow down.",
+      "fixed": "Rolled back. Hit rate recovers within minutes and time to first token follows it down."
+    },
+    "billcut": {
+      "read_pct": 10,
+      "small_ratio": 12,
+      "batch_discount": 50,
+      "ds_hit": 56.3
+    },
+    "drill-x-chat": {
+      "scenario": "Design the serving stack for a chat assistant with many thousands of concurrent users. Product wants a fast first token and a steady stream of text.",
+      "scarce": "GPU memory for KV cache, and decode bandwidth. Concurrency is bounded by how many conversations&#x27; caches fit; stream speed by how many bytes each step reads.",
+      "steps": [
+        {
+          "l": 1,
+          "title": "Prompt layout",
+          "text": "Stable system prompt and tools first so every user shares one cached prefix."
+        },
+        {
+          "l": 2,
+          "title": "Gateway",
+          "text": "Token-per-minute limits per tenant; route simple turns to a smaller model."
+        },
+        {
+          "l": 3,
+          "title": "Platform",
+          "text": "KV-aware routing keeps a conversation on the replica holding its history; offload idle conversations to CPU memory."
+        },
+        {
+          "l": 4,
+          "title": "Engine",
+          "text": "Continuous batching with paged KV and chunked prefill; cap concurrency below the preemption point."
+        },
+        {
+          "l": 6,
+          "title": "Kernels",
+          "text": "FlashAttention for long histories; FP8 if quality holds."
+        },
+        {
+          "l": 7,
+          "title": "Hardware",
+          "text": "Size replicas so weights plus a healthy KV budget fit; scale out with replicas, not wider ones."
+        }
+      ],
+      "switches": [
+        "Long prompts with short answers: split prefill and decode.",
+        "A small fleet: one pool with chunked prefill is simpler and nearly as good.",
+        "Strict per-user speed: fewer users per replica, more replicas."
+      ]
+    },
+    "drill-x-tenant": {
+      "scenario": "Forty teams share two model providers and one self-hosted fleet. Finance wants per-team budgets; platform wants one place to change routing.",
+      "scarce": "Money, metered in tokens, plus provider capacity that fails independently.",
+      "steps": [
+        {
+          "l": 2,
+          "title": "Identity",
+          "text": "Virtual keys per team and service, mapped to provider keys held only by the gateway."
+        },
+        {
+          "l": 2,
+          "title": "Admission",
+          "text": "Token buckets per key: reserve input tokens plus <code>max_tokens</code> at admission, reconcile actual usage after."
+        },
+        {
+          "l": 2,
+          "title": "Routing",
+          "text": "Rules by model, price and health; capped retries; fallback chains that are tested for answer quality."
+        },
+        {
+          "l": 3,
+          "title": "Own fleet",
+          "text": "Expose the self-hosted platform as one more provider with a capacity signal the gateway can read."
+        },
+        {
+          "l": 1,
+          "title": "Clients",
+          "text": "One SDK config: base URL and virtual key. Teams never hold provider keys."
+        }
+      ],
+      "switches": [
+        "One team, one provider: the SDK library alone is enough.",
+        "Data residency rules: route by region before price."
+      ]
+    },
+    "drill-x-rag": {
+      "scenario": "A document question-answering product sends long retrieved passages with every question. The monthly bill doubled in a quarter; latency is acceptable.",
+      "scarce": "Input tokens. Most of the bill is prompt, and most of the prompt repeats.",
+      "steps": [
+        {
+          "l": 1,
+          "title": "Measure",
+          "text": "Split spend into input, output and cache reads per route; find the share of input that repeats."
+        },
+        {
+          "l": 1,
+          "title": "Reorder",
+          "text": "Put instructions and the most reused passages first; move per-question context to the end."
+        },
+        {
+          "l": 2,
+          "title": "Route",
+          "text": "Send lookups and classification to a smaller model; keep synthesis on the large one."
+        },
+        {
+          "l": 2,
+          "title": "Batch",
+          "text": "Move nightly re-indexing and evaluation runs to a batch API."
+        },
+        {
+          "l": 3,
+          "title": "If self-hosted",
+          "text": "Route by document so repeated passages hit one replica&#x27;s cache; offload cold documents to SSD."
+        }
+      ],
+      "switches": [
+        "If passages rarely repeat, caching buys little; shorten retrieval instead.",
+        "If output dominates, cap answer length and use stop sequences first."
+      ]
+    },
+    "drill-x-debug": {
+      "scenario": "Time to first token at p95 doubled after Tuesday&#x27;s deploy. Error rate is zero, GPU utilization is high, and no alert fired.",
+      "scarce": "Attention. Every success metric is green, so the cause is a change in the shape of the work.",
+      "steps": [
+        {
+          "l": 1,
+          "title": "Diff the prompt",
+          "text": "Compare prompt templates before and after; look for anything new ahead of the stable prefix."
+        },
+        {
+          "l": 2,
+          "title": "Check cache fields",
+          "text": "Plot cache read tokens against cache creation tokens per route across the deploy."
+        },
+        {
+          "l": 4,
+          "title": "Check the engine",
+          "text": "Look at queue time, KV cache usage and preemptions; longer prompts can push the cache past full."
+        },
+        {
+          "l": 3,
+          "title": "Check routing",
+          "text": "A routing change can scatter one prefix across replicas and turn hits into misses."
+        }
+      ],
+      "switches": [
+        "If cache metrics are flat, look at traffic mix: longer prompts raise TTFT on their own.",
+        "If only one replica is slow, look for a prefix hot spot."
+      ]
+    }
+  },
+  "diagrams": {
+    "stack": [
+      {
+        "title": "The two-box picture",
+        "text": "vLLM on top of “the model”. Everything below the engine was one box, and everything above it was your code.",
+        "focus": [
+          "stack-L4",
+          "stack-L5",
+          "stack-L6",
+          "stack-L7",
+          "stack-old"
+        ]
+      },
+      {
+        "title": "The front door",
+        "text": "Your code and the gateway. Both bill by the token, and both decide what reaches a GPU at all.",
+        "focus": [
+          "stack-L1",
+          "stack-L2"
+        ]
+      },
+      {
+        "title": "The new tier",
+        "text": "The inference platform sees the fleet: which replica holds which cache, which pool is busy. NVIDIA Dynamo and llm-d both launched in 2025.",
+        "focus": [
+          "stack-L3",
+          "stack-tier"
+        ]
+      },
+      {
+        "title": "The engine",
+        "text": "One replica, one batch, one block table. Its job is keeping the batch full.",
+        "focus": [
+          "stack-L4"
+        ]
+      },
+      {
+        "title": "Below the engine",
+        "text": "PyTorch, the kernels and the GPU. A model trick such as DeepSeek&#x27;s latent attention pays off only once a kernel (FlashMLA) runs it fast.",
+        "focus": [
+          "stack-L5",
+          "stack-L6",
+          "stack-L7"
+        ]
+      },
+      {
+        "title": "Two Tritons",
+        "text": "NVIDIA&#x27;s Triton Inference Server, renamed Dynamo-Triton in 2025, serves models at L3. OpenAI&#x27;s Triton is a language for writing GPU kernels at L6.",
+        "focus": [
+          "stack-triton",
+          "stack-L3",
+          "stack-L6"
+        ]
+      }
+    ],
+    "gateway": [
+      {
+        "title": "One endpoint",
+        "text": "Your app holds one virtual key and one OpenAI-style endpoint. The gateway holds the real provider keys.",
+        "focus": [
+          "gateway-app",
+          "gateway-gw",
+          "gateway-keys"
+        ]
+      },
+      {
+        "title": "Metered in tokens",
+        "text": "Budgets count tokens and dollars, per team and per service.",
+        "focus": [
+          "gateway-gw",
+          "gateway-budget"
+        ]
+      },
+      {
+        "title": "Retries and fallbacks",
+        "text": "A failed call is retried with backoff, then sent to the next model on the list. Every retry is billed again.",
+        "focus": [
+          "gateway-gw",
+          "gateway-retry",
+          "gateway-fallback",
+          "gateway-prov",
+          "gateway-paths"
+        ]
+      },
+      {
+        "title": "Routing and the cost log",
+        "text": "Easy requests go to a smaller model. Every call is logged with its tokens, cache hits and cost.",
+        "focus": [
+          "gateway-gw",
+          "gateway-route",
+          "gateway-logs",
+          "gateway-prov"
+        ]
+      }
+    ],
+    "disagg": [
+      {
+        "title": "Two phases, one pool",
+        "text": "A long prompt&#x27;s prefill runs as one long step. Every user mid-answer waits for it.",
+        "focus": [
+          "disagg-colo",
+          "disagg-stall"
+        ]
+      },
+      {
+        "title": "The engine's fix",
+        "text": "Chunked prefill cuts the prompt into pieces that ride along with decode steps. vLLM V1&#x27;s scheduler treats prompt and output tokens alike.",
+        "focus": [
+          "disagg-chunk"
+        ]
+      },
+      {
+        "title": "The platform's fix",
+        "text": "Separate pools: prefill GPUs build the KV cache, NIXL moves it, decode GPUs stream the answer.",
+        "focus": [
+          "disagg-router",
+          "disagg-prefill",
+          "disagg-xfer",
+          "disagg-decode"
+        ]
+      },
+      {
+        "title": "KV cache as a shared asset",
+        "text": "Mooncake keeps KV blocks in CPU memory and SSD across the cluster and routes by cache. Kimi handled <span class=\"f\" tabindex=\"0\" data-tip=\"Qin et al., “Mooncake” (Moonshot AI): more requests Kimi handled under real workloads\">75%</span> more requests under real load.",
+        "focus": [
+          "disagg-kvpool",
+          "disagg-router"
+        ]
+      },
+      {
+        "title": "The planner",
+        "text": "The mix of long prompts and long answers shifts through the day. The planner moves GPUs between pools to follow it.",
+        "focus": [
+          "disagg-planner"
+        ]
+      }
+    ],
+    "paged": [
+      {
+        "title": "Slabs",
+        "text": "Each request reserves room for its longest possible answer. The empty part cannot be lent to anyone, so fewer requests fit in the batch.",
+        "focus": [
+          "paged-contig",
+          "paged-waste"
+        ]
+      },
+      {
+        "title": "Pages",
+        "text": "Each request gets a block table. A new block is taken only when the last one fills, and blocks can sit anywhere in memory.",
+        "focus": [
+          "paged-logical",
+          "paged-table",
+          "paged-phys"
+        ]
+      },
+      {
+        "title": "Sharing",
+        "text": "Two requests with the same system prompt point at one physical block. The prefix is stored once.",
+        "focus": [
+          "paged-logical",
+          "paged-shared"
+        ]
+      }
+    ]
+  },
+  "charts": {
+    "ttft": {
+      "categories": [
+        "Chat with a book",
+        "Many-shot prompt",
+        "Multi-turn chat"
+      ],
+      "series": [
+        {
+          "name": "Without caching",
+          "values": [
+            11.5,
+            1.6,
+            10
+          ],
+          "color": "--old"
+        },
+        {
+          "name": "With caching",
+          "values": [
+            2.4,
+            1.1,
+            2.5
+          ],
+          "color": "--layer"
+        }
+      ],
+      "unit": "s",
+      "ticks": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "labels": "all",
+      "alt": "Bar chart of time to first token with and without prompt caching"
+    },
+    "kv": {
+      "categories": [
+        "DeepSeek-V3",
+        "Qwen-2.5 72B",
+        "Llama-3.1 405B"
+      ],
+      "series": [
+        {
+          "name": "KV cache per token",
+          "values": [
+            70.272,
+            327.68,
+            516.096
+          ],
+          "color": "--layer"
+        }
+      ],
+      "unit": "KB",
+      "ticks": [
+        0,
+        200,
+        400,
+        600
+      ],
+      "labels": "all",
+      "alt": "Bar chart of KV cache per token for three models"
+    }
+  },
+  "timelines": {
+    "years": {
+      "title": "From smart engines to a fleet layer above them",
+      "sub": "Filled dots are product launches; open dots are papers. Press Play to walk the years.",
+      "start": "2022-05-01",
+      "end": "2025-09-01",
+      "eras": [
+        {
+          "from": "2022-05-01",
+          "to": "2024-12-31",
+          "label": "Engines get smart"
+        },
+        {
+          "from": "2025-01-01",
+          "to": "2025-09-01",
+          "label": "A platform above"
+        }
+      ],
+      "events": [
+        {
+          "date": "2022-07-11",
+          "kind": "milestone",
+          "label": "Jul 2022",
+          "title": "Orca",
+          "text": "Iteration-level scheduling: requests join and leave the batch at every step. <span class=\"f\" tabindex=\"0\" data-tip=\"Yu et al., “Orca” (OSDI 2022): throughput vs FasterTransformer at equal latency, GPT-3 175B\">36.9×</span> the throughput of FasterTransformer at equal latency."
+        },
+        {
+          "date": "2023-09-12",
+          "kind": "milestone",
+          "label": "Sep 2023",
+          "title": "PagedAttention and vLLM",
+          "text": "KV cache kept in fixed-size pages, like virtual memory. <span class=\"f\" tabindex=\"0\" data-tip=\"Kwon et al., “PagedAttention” (SOSP 2023): throughput vs FasterTransformer and Orca at similar latency, low end\">2×</span> to <span class=\"f\" tabindex=\"0\" data-tip=\"Kwon et al., “PagedAttention” (SOSP 2023): throughput vs FasterTransformer and Orca at similar latency, high end\">4×</span> the throughput of FasterTransformer and Orca."
+        },
+        {
+          "date": "2023-12-12",
+          "kind": "milestone",
+          "label": "Dec 2023",
+          "title": "SGLang and RadixAttention",
+          "text": "Prefix reuse through a radix tree of cached KV. Up to <span class=\"f\" tabindex=\"0\" data-tip=\"Zheng et al., “SGLang” (2024): throughput vs state-of-the-art systems, up to\">6.4×</span> the throughput of earlier systems."
+        },
+        {
+          "date": "2024-01-18",
+          "kind": "milestone",
+          "label": "Jan 2024",
+          "title": "DistServe",
+          "text": "Prefill and decode on separate GPUs: <span class=\"f\" tabindex=\"0\" data-tip=\"Zhong et al., “DistServe” (OSDI 2024): more requests served within latency targets\">7.4×</span> more requests within latency targets."
+        },
+        {
+          "date": "2024-06-24",
+          "kind": "milestone",
+          "label": "Jun 2024",
+          "title": "Mooncake",
+          "text": "Kimi&#x27;s serving platform: a shared KV pool in CPU memory and SSD, <span class=\"f\" tabindex=\"0\" data-tip=\"Qin et al., “Mooncake” (Moonshot AI): more requests Kimi handled under real workloads\">75%</span> more requests under real load."
+        },
+        {
+          "date": "2024-07-11",
+          "kind": "milestone",
+          "label": "Jul 2024",
+          "title": "FlashAttention-3",
+          "text": "An attention kernel for Hopper GPUs at <span class=\"f\" tabindex=\"0\" data-tip=\"Shah et al., “FlashAttention-3” (2024): FlashAttention-3 FP16 on H100, up to\">740 TFLOPS</span>, <span class=\"f\" tabindex=\"0\" data-tip=\"Shah et al., “FlashAttention-3” (2024): share of H100 peak FP16 throughput reached\">75%</span> of peak."
+        },
+        {
+          "date": "2024-08-14",
+          "kind": "launch",
+          "label": "Aug 2024",
+          "title": "Anthropic prompt caching",
+          "text": "Cached prompt prefixes bill at <span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: cache read price as a share of the base input-token price\">10%</span> of the input price."
+        },
+        {
+          "date": "2024-12-27",
+          "kind": "launch",
+          "label": "Dec 2024",
+          "title": "DeepSeek-V3",
+          "text": "<span class=\"f\" tabindex=\"0\" data-tip=\"DeepSeek-AI, “DeepSeek-V3 Technical Report” (2024): total parameters in DeepSeek-V3\">671 billion</span> parameters, <span class=\"f\" tabindex=\"0\" data-tip=\"DeepSeek-AI, “DeepSeek-V3 Technical Report” (2024): parameters activated for each token\">37 billion</span> active for each token."
+        },
+        {
+          "date": "2025-01-27",
+          "kind": "launch",
+          "label": "Jan 2025",
+          "title": "vLLM V1",
+          "text": "A rewritten core: one scheduler for prompt and output tokens, prefix caching on by default, <span class=\"f\" tabindex=\"0\" data-tip=\"vLLM project: vLLM V1 throughput vs V0 without multi-step scheduling\">1.7×</span> the throughput of V0."
+        },
+        {
+          "date": "2025-02-24",
+          "kind": "launch",
+          "label": "Feb 2025",
+          "title": "DeepSeek Open Source Week",
+          "text": "FlashMLA, DeepEP, DeepGEMM, EPLB and 3FS, then an inference system overview with real cost and traffic numbers."
+        },
+        {
+          "date": "2025-03-18",
+          "kind": "launch",
+          "label": "Mar 2025",
+          "title": "NVIDIA Dynamo",
+          "text": "An open-source platform above vLLM, SGLang and TensorRT-LLM. Triton Inference Server becomes Dynamo-Triton."
+        },
+        {
+          "date": "2025-05-05",
+          "kind": "milestone",
+          "label": "May 2025",
+          "title": "LMSYS rebuilds DeepSeek's serving",
+          "text": "SGLang on <span class=\"f\" tabindex=\"0\" data-tip=\"LMSYS, DeepSeek on H100s with SGLang (2025): H100 GPUs, 12 nodes of 8\">96 GPUs</span>: an estimated <span class=\"f\" tabindex=\"0\" data-tip=\"LMSYS, DeepSeek on H100s with SGLang (2025): cost per million output tokens, about a fifth of DeepSeek&#x27;s API price\">$0.2</span> per million output tokens."
+        },
+        {
+          "date": "2025-05-20",
+          "kind": "launch",
+          "label": "May 2025",
+          "title": "llm-d",
+          "text": "Kubernetes-native distributed serving on vLLM, from Red Hat, Google Cloud, IBM Research, NVIDIA and CoreWeave."
+        }
+      ]
+    }
+  },
+  "quizzes": {
+    "pq-l1": {
+      "questions": [
+        {
+          "q": "Your agent serializes its tool definitions from a dictionary whose key order changes between processes. What happens to prompt caching?",
+          "options": [
+            "Nothing: providers sort JSON before hashing",
+            "Requests from different processes miss the cache",
+            "The provider rejects the request",
+            "Only output tokens change"
+          ],
+          "answer": 1,
+          "explain": "Caches match token for token from the start. A different key order changes the first tokens. Serialize tools deterministically, for example with sorted keys."
+        },
+        {
+          "q": "Which parameter caps the most expensive tokens in a request?",
+          "options": [
+            "temperature",
+            "<code>max_tokens</code>",
+            "top_p",
+            "stream"
+          ],
+          "answer": 1,
+          "explain": "Output tokens cost more than input tokens, and <code>max_tokens</code> bounds them. An answer that hits the cap still returns success, with <code>finish_reason</code> set to length."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "pq-l2": {
+      "questions": [
+        {
+          "q": "Why is a requests-per-second limit a poor guard for an LLM budget?",
+          "options": [
+            "Requests are always the same size",
+            "One long request can cost as much as thousands of short ones",
+            "Providers ignore rate limits",
+            "Gateways cannot count requests"
+          ],
+          "answer": 1,
+          "explain": "Cost scales with tokens. Limit tokens per minute and dollars per month, and keep a request limit as a secondary guard."
+        },
+        {
+          "q": "Output length is unknown when a request arrives. How does a gateway enforce a token budget?",
+          "options": [
+            "It cannot",
+            "It reserves an estimate such as input tokens plus <code>max_tokens</code>, then reconciles the real usage",
+            "It waits for the answer before admitting the request",
+            "It only counts input tokens"
+          ],
+          "answer": 1,
+          "explain": "Reserve-then-reconcile is the standard pattern for metering work whose size is known only afterward."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "pq-l3": {
+      "questions": [
+        {
+          "q": "A router can send a request to the least-loaded replica or to the replica holding its prefix. What does a good KV-aware router do?",
+          "options": [
+            "Always the least-loaded replica",
+            "Always the replica with the prefix",
+            "Weigh cache overlap against load",
+            "Pick at random"
+          ],
+          "answer": 2,
+          "explain": "Pure affinity creates hot spots; pure load balancing throws away cached work. Score both."
+        },
+        {
+          "q": "When is splitting prefill and decode onto separate GPU pools least worth it?",
+          "options": [
+            "Long prompts and tight latency targets",
+            "Short prompts on a small fleet",
+            "Mixed traffic at scale",
+            "Long answers and long prompts"
+          ],
+          "answer": 1,
+          "explain": "With short prompts, prefill interference is small and moving the KV cache between GPUs costs more than it saves."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "pq-l4": {
+      "questions": [
+        {
+          "q": "Why does raising the batch size eventually make each user&#x27;s tokens slower?",
+          "options": [
+            "The tokenizer slows down",
+            "Each step does more work once the GPU becomes compute-bound, and reads more KV cache",
+            "The gateway throttles",
+            "Prefix caching turns off"
+          ],
+          "answer": 1,
+          "explain": "In the memory-bound region extra requests are nearly free. Past the ridge point, and as KV reads grow, each step takes longer."
+        },
+        {
+          "q": "What does PagedAttention borrow from operating systems?",
+          "options": [
+            "Process scheduling",
+            "Virtual memory with page tables",
+            "File systems",
+            "Interrupt handling"
+          ],
+          "answer": 1,
+          "explain": "Fixed-size blocks, block tables per request and copy-on-write sharing, the way virtual memory maps pages."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "pq-l5": {
+      "questions": [
+        {
+          "q": "Why do engines pad batches to a fixed set of sizes?",
+          "options": [
+            "Tokenizers need it",
+            "CUDA graphs replay fixed shapes",
+            "GPUs only accept powers of two",
+            "It improves accuracy"
+          ],
+          "answer": 1,
+          "explain": "A captured CUDA graph replays one exact sequence of launches for one shape. Padding reuses a captured graph."
+        },
+        {
+          "q": "Eager PyTorch launches each operation separately. When does that overhead matter most?",
+          "options": [
+            "Long prefills",
+            "Small decode steps with tiny kernels",
+            "Training",
+            "Loading weights"
+          ],
+          "answer": 1,
+          "explain": "Decode kernels are short, so CPU launch time can rival the GPU work. Fusion and CUDA graphs remove most of it."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "pq-l6": {
+      "questions": [
+        {
+          "q": "Why does FlashAttention help long prompts more than short ones?",
+          "options": [
+            "It caches prompts",
+            "The score matrix it avoids writing grows with the square of the prompt length",
+            "It skips tokens",
+            "It runs on the CPU"
+          ],
+          "answer": 1,
+          "explain": "Standard attention writes and reads an N by N score matrix in HBM. FlashAttention keeps tiles of it in on-chip memory."
+        },
+        {
+          "q": "Which “Triton” do you use to write a fused GPU kernel?",
+          "options": [
+            "OpenAI&#x27;s Triton",
+            "NVIDIA&#x27;s Triton Inference Server",
+            "Either",
+            "Neither"
+          ],
+          "answer": 0,
+          "explain": "OpenAI&#x27;s Triton is a kernel language. NVIDIA&#x27;s Triton serves models and is now Dynamo-Triton."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "pq-l7": {
+      "questions": [
+        {
+          "q": "A 70B-parameter model in BF16 needs how much memory for weights alone?",
+          "options": [
+            "About 35 GB",
+            "About 70 GB",
+            "About 140 GB",
+            "About 280 GB"
+          ],
+          "answer": 2,
+          "explain": "Two bytes per parameter: about 140 GB, more than one 80 GB H100, so the replica spans at least two GPUs."
+        },
+        {
+          "q": "Which number limits decode speed at small batch sizes on an H100?",
+          "options": [
+            "Dense BF16 TFLOPS",
+            "Memory bandwidth",
+            "Power draw",
+            "NVLink bandwidth"
+          ],
+          "answer": 1,
+          "explain": "Each step reads every weight once to make one token per request, so bytes per second set the floor."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Review the Spec tab",
+          "text": "The Spec tab covers both answers."
+        },
+        {
+          "min": 0.5,
+          "label": "Nearly there",
+          "text": "One more pass through the Spec tab will close the gap."
+        },
+        {
+          "min": 1,
+          "label": "Both right",
+          "text": "Try the design drill below."
+        }
+      ]
+    },
+    "q": {
+      "questions": [
+        {
+          "q": "Which phase of a request is usually limited by memory bandwidth?",
+          "options": [
+            "Prefill",
+            "Decode",
+            "Tokenization",
+            "Routing"
+          ],
+          "answer": 1,
+          "explain": "Decode reads every weight to make one token per request, so bytes per second set its pace."
+        },
+        {
+          "q": "What grows linearly with both context length and the number of requests in memory?",
+          "options": [
+            "The model weights",
+            "The KV cache",
+            "The tokenizer vocabulary",
+            "The CUDA graph"
+          ],
+          "answer": 1,
+          "explain": "Every token of every request stores keys and values in every layer."
+        },
+        {
+          "q": "End-to-end latency for one answer is roughly:",
+          "options": [
+            "TTFT × output tokens",
+            "TTFT + (output tokens − 1) × TPOT",
+            "TPOT ÷ TTFT",
+            "Throughput ÷ requests"
+          ],
+          "answer": 1,
+          "explain": "The first token arrives after TTFT; each later token adds one step."
+        },
+        {
+          "q": "NVIDIA Dynamo belongs to which layer?",
+          "options": [
+            "The inference engine",
+            "The inference platform",
+            "The kernels",
+            "The AI gateway"
+          ],
+          "answer": 1,
+          "explain": "Dynamo sits above engines such as vLLM, SGLang and TensorRT-LLM. It routes requests across replicas, splits prefill from decode and resizes GPU pools."
+        },
+        {
+          "q": "Which “Triton” is a language for writing GPU kernels?",
+          "options": [
+            "OpenAI&#x27;s Triton",
+            "NVIDIA&#x27;s Triton Inference Server",
+            "Both",
+            "Neither"
+          ],
+          "answer": 0,
+          "explain": "OpenAI&#x27;s Triton writes kernels (L6). NVIDIA&#x27;s Triton Inference Server serves models and was renamed Dynamo-Triton in 2025."
+        },
+        {
+          "q": "Why does decode at batch size one waste most of a GPU?",
+          "options": [
+            "Attention is quadratic in prompt length",
+            "Each step reads every weight to make one token per request",
+            "The gateway adds latency",
+            "Tokenization runs on the CPU"
+          ],
+          "answer": 1,
+          "explain": "An H100 needs about <span class=\"f\" tabindex=\"0\" data-tip=\"NVIDIA H100 specifications: 989 TFLOPS / 3.35 TB/s: work per byte needed to be compute-bound\">295 FLOPs per byte</span> of math per byte read to be compute-bound. Decode at batch one does about one."
+        },
+        {
+          "q": "A cached input token on Anthropic&#x27;s API bills at what share of the base input price?",
+          "options": [
+            "<span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: cache read price as a share of the base input-token price\">10%</span>",
+            "<span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: surcharge on the base input price to write a 5-minute cache entry\">25%</span>",
+            "<span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: Message Batches API discount on standard prices\">50%</span>",
+            "<span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: cost reduction for long prompts, up to\">90%</span>"
+          ],
+          "answer": 0,
+          "explain": "Reads bill at <span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: cache read price as a share of the base input-token price\">10%</span>. Writing the entry costs <span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: surcharge on the base input price to write a 5-minute cache entry\">25%</span> extra, once per <span class=\"f\" tabindex=\"0\" data-tip=\"Anthropic: default cache lifetime, refreshed free on each hit\">5 min</span> window."
+        },
+        {
+          "q": "Where does the split between prefill and decode live?",
+          "options": [
+            "Only in the engine",
+            "Only in the platform",
+            "In both: the engine mixes them per step, the platform can split them across GPU pools",
+            "In the kernels"
+          ],
+          "answer": 2,
+          "explain": "Chunked prefill mixes the phases inside one engine. Disaggregated serving gives each phase its own GPUs across the fleet."
+        },
+        {
+          "q": "What does a CUDA graph remove?",
+          "options": [
+            "Memory traffic",
+            "CPU launch overhead between kernels",
+            "The KV cache",
+            "Network hops"
+          ],
+          "answer": 1,
+          "explain": "It records the step&#x27;s launches once and replays them with a single launch."
+        },
+        {
+          "q": "A prompt opens with the current timestamp, then a long system prompt. What happens to the cache?",
+          "options": [
+            "Every request misses, with no error",
+            "The gateway rejects the request",
+            "The cache ignores timestamps",
+            "You pay the write surcharge once, then hit"
+          ],
+          "answer": 0,
+          "explain": "Caches match from token one. A different first token means no match, and the response still succeeds."
+        }
+      ],
+      "results": [
+        {
+          "min": 0,
+          "label": "Back to the concepts",
+          "text": "Start with Concepts, then step through Ownership on the overview."
+        },
+        {
+          "min": 0.6,
+          "label": "Most of the map",
+          "text": "Each layer's Spec tab will close the remaining gaps."
+        },
+        {
+          "min": 1,
+          "label": "Every piece placed",
+          "text": "Try the design drills next."
+        }
+      ]
+    }
+  }
+}
