@@ -3,6 +3,20 @@ import { BlogPost } from '../../../core/models/blog-post.model';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    "slug": "ai-inference-stack",
+    "title": "The AI Inference Stack",
+    "date": "2026-10-20",
+    "excerpt": "An illustrated, interactive field guide to the seven layers between an API call and a GPU, with labs for prefix caching, continuous batching, PagedAttention, FlashAttention and the decode roofline.",
+    "tags": [
+      "system-design",
+      "inference",
+      "gpus"
+    ],
+    "readingTime": 60,
+    "published": true,
+    "content": ""
+  },
+  {
     "slug": "four-mental-models-illustrated",
     "title": "Four Mental Models, Illustrated",
     "date": "2026-10-14",
