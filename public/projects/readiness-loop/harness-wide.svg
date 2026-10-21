@@ -1,0 +1,428 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 627" width="1280" height="627" class="chr-a chr-a-a-harness-before-model" role="img" aria-labelledby="a-harness-before-model-title a-harness-before-model-desc" data-theme="light"><title id="a-harness-before-model-title">Harness before model</title><desc id="a-harness-before-model-desc">A hashed contract governs every card, a model that reads its outcomes is rejected, and the test set opens once. Steps: 1. Every experiment runs under a pre-registered contract. 2. The contract hash is stamped on every card. 3. A model that reads its own outcomes is rejected. 4. The held-out test set opens once per contract. Sources: The Readiness Loop README.</desc><style>/* Theme: tokens derived by chronicle from the palette and fonts. */
+.chr-a-a-harness-before-model {
+  --paper: #FFFDF9;
+  --print: #FFFEFB;
+  --surface: #F6F4F0;
+  --surface-2: #FFFEFD;
+  --ink: #1F1E1A;
+  --ink-2: #575652;
+  --muted: #75736F;
+  --rule: #DDDCD8;
+  --rule-2: #EDEBE7;
+  --grid: #E9E7E3;
+  --accent: #4285F4;
+  --accent-text: #3B70C8;
+  --accent-wash: rgba(66, 133, 244, 0.10);
+  --legacy: #EA4335;
+  --legacy-text: #D13E32;
+  --good: #2F7D4F;
+  --warn: #9C6210;
+  --bad: #B23A2B;
+  --good-wash: rgba(47, 125, 79, 0.12);
+  --bad-wash: rgba(178, 58, 43, 0.12);
+  --tip-bg: #1F1E1A;
+  --tip-ink: #FFFDF9;
+  --on-accent: #FFFFFF;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #47463F;
+  --s6: #5F8A2E;
+  --seq-0: #F0F3F9;
+  --seq-1: #D5E3F8;
+  --seq-2: #B0CBF7;
+  --seq-3: #82AEF6;
+  --seq-4: #4285F4;
+  --seq-5: #345C9D;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-ui: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  .chr-a-a-harness-before-model:not([data-theme="light"]) {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark; }
+}
+.chr-a-a-harness-before-model[data-theme="dark"] {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+.chr-a-a-harness-before-model .f-accent { fill: var(--accent); } .chr-a-a-harness-before-model .s-accent { stroke: var(--accent); } .chr-a-a-harness-before-model .t-accent { color: var(--accent); }
+.chr-a-a-harness-before-model .f-legacy { fill: var(--legacy); } .chr-a-a-harness-before-model .s-legacy { stroke: var(--legacy); } .chr-a-a-harness-before-model .t-legacy { color: var(--legacy); }
+.chr-a-a-harness-before-model .f-ink { fill: var(--ink); } .chr-a-a-harness-before-model .s-ink { stroke: var(--ink); } .chr-a-a-harness-before-model .t-ink { color: var(--ink); }
+.chr-a-a-harness-before-model .f-muted { fill: var(--muted); } .chr-a-a-harness-before-model .s-muted { stroke: var(--muted); } .chr-a-a-harness-before-model .t-muted { color: var(--muted); }
+.chr-a-a-harness-before-model .f-paper { fill: var(--paper); } .chr-a-a-harness-before-model .s-paper { stroke: var(--paper); } .chr-a-a-harness-before-model .t-paper { color: var(--paper); }
+.chr-a-a-harness-before-model .f-surface { fill: var(--surface); } .chr-a-a-harness-before-model .s-surface { stroke: var(--surface); } .chr-a-a-harness-before-model .t-surface { color: var(--surface); }
+.chr-a-a-harness-before-model .f-good { fill: var(--good); } .chr-a-a-harness-before-model .s-good { stroke: var(--good); } .chr-a-a-harness-before-model .t-good { color: var(--good); }
+.chr-a-a-harness-before-model .f-bad { fill: var(--bad); } .chr-a-a-harness-before-model .s-bad { stroke: var(--bad); } .chr-a-a-harness-before-model .t-bad { color: var(--bad); }
+.chr-a-a-harness-before-model .f-s1 { fill: var(--s1); } .chr-a-a-harness-before-model .s-s1 { stroke: var(--s1); } .chr-a-a-harness-before-model .t-s1 { color: var(--s1); }
+.chr-a-a-harness-before-model .f-s2 { fill: var(--s2); } .chr-a-a-harness-before-model .s-s2 { stroke: var(--s2); } .chr-a-a-harness-before-model .t-s2 { color: var(--s2); }
+.chr-a-a-harness-before-model .f-s3 { fill: var(--s3); } .chr-a-a-harness-before-model .s-s3 { stroke: var(--s3); } .chr-a-a-harness-before-model .t-s3 { color: var(--s3); }
+.chr-a-a-harness-before-model .f-s4 { fill: var(--s4); } .chr-a-a-harness-before-model .s-s4 { stroke: var(--s4); } .chr-a-a-harness-before-model .t-s4 { color: var(--s4); }
+.chr-a-a-harness-before-model .f-s5 { fill: var(--s5); } .chr-a-a-harness-before-model .s-s5 { stroke: var(--s5); } .chr-a-a-harness-before-model .t-s5 { color: var(--s5); }
+.chr-a-a-harness-before-model .f-s6 { fill: var(--s6); } .chr-a-a-harness-before-model .s-s6 { stroke: var(--s6); } .chr-a-a-harness-before-model .t-s6 { color: var(--s6); }
+.chr-a-a-harness-before-model .f-green { fill: var(--c-green); } .chr-a-a-harness-before-model .s-green { stroke: var(--c-green); } .chr-a-a-harness-before-model .t-green { color: var(--c-green); }
+.chr-a-a-harness-before-model .f-yellow { fill: var(--c-yellow); } .chr-a-a-harness-before-model .s-yellow { stroke: var(--c-yellow); } .chr-a-a-harness-before-model .t-yellow { color: var(--c-yellow); }
+.chr-a-a-harness-before-model .f-purple { fill: var(--c-purple); } .chr-a-a-harness-before-model .s-purple { stroke: var(--c-purple); } .chr-a-a-harness-before-model .t-purple { color: var(--c-purple); }
+/* The frame of a standalone animation: background, title, captions and the step strip.
+   Every rule sits under .chr-a so an animation pasted into another page styles only
+   itself; its colors and fonts come from tokens set on .chr-a-&lt;slug>. */
+.chr-a { font-family: var(--f-body); }
+.chr-a .a-bg { fill: var(--paper); }
+.chr-a .a-bg.surface { fill: var(--surface); }
+.chr-a .a-kicker { font-family: var(--f-ui); font-weight: 700; letter-spacing: .12em; fill: var(--accent-text); }
+.chr-a .a-title { font-family: var(--f-display); fill: var(--ink); }
+.chr-a .a-credit { font-family: var(--f-ui); fill: var(--muted); }
+.chr-a .a-num { font-family: var(--f-mono); font-weight: 500; fill: var(--accent-text); }
+.chr-a .a-cap { font-family: var(--f-body); fill: var(--ink); }
+.chr-a .a-track { stroke: var(--rule); }
+.chr-a .a-fill { stroke: var(--accent); }
+
+/* Technical architecture diagrams: zones, components, lines, packets and state marks. */
+.chr-a .m-gfill { fill: none; }
+.chr-a .m-gfill.m-zone { fill: var(--surface); }
+.chr-a .m-gfill.m-cluster { fill: color-mix(in srgb, var(--tone) 7%, transparent); }
+.chr-a .m-gline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-gline.m-boundary { stroke: var(--muted); stroke-dasharray: 7 5; }
+.chr-a .m-gline.m-external { stroke: var(--muted); stroke-dasharray: .5 5; stroke-linecap: round; stroke-width: 1.6; }
+.chr-a .m-tinted .m-gline { stroke: color-mix(in srgb, var(--tone) 50%, transparent); }
+.chr-a .m-glabel { font-family: var(--f-ui); font-weight: 650; font-size: 11px; letter-spacing: .08em; fill: var(--muted); }
+.chr-a .m-tinted .m-glabel { fill: var(--tone); }
+.chr-a .m-gflash { fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0; }
+
+.chr-a .m-line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linejoin: round; }
+.chr-a .m-async .m-line { stroke-dasharray: 6 5; }
+.chr-a .m-head { fill: var(--ink-2); }
+.chr-a .m-async .m-head { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-hot { fill: none; stroke: var(--tone, var(--accent)); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.chr-a .m-mask { fill: none; stroke: #fff; stroke-width: 22; }
+.chr-a .m-elabel, .chr-a .m-legend { font-family: var(--f-ui); font-size: 12px; fill: var(--ink-2); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.chr-a .m-legend { fill: var(--muted); }
+.chr-a .m-line.m-new, .chr-a .m-line.m-legacy, .chr-a .m-line.m-bad { stroke-width: 2.2; }
+.chr-a .m-new.m-line { stroke: var(--accent); }
+.chr-a .m-new.m-head { fill: var(--accent); stroke: var(--accent); }
+.chr-a .m-legacy.m-line { stroke: var(--legacy); }
+.chr-a .m-legacy.m-head { fill: var(--legacy); stroke: var(--legacy); }
+.chr-a .m-bad.m-line, .chr-a .m-down.m-line { stroke: var(--bad); }
+.chr-a .m-bad.m-head, .chr-a .m-down.m-head { fill: var(--bad); stroke: var(--bad); }
+.chr-a .m-down.m-line { stroke-dasharray: 2 5; stroke-linecap: round; opacity: .7; }
+.chr-a .m-planned.m-line { stroke: var(--muted); stroke-dasharray: 4 5; opacity: .8; }
+.chr-a .m-planned.m-head { fill: var(--muted); stroke: var(--muted); opacity: .8; }
+
+.chr-a .m-halo, .chr-a .m-trail, .chr-a .m-dot { fill: none; stroke-linecap: round; }
+.chr-a .m-halo { stroke: var(--paper); stroke-width: 14; }
+.chr-a .m-trail { stroke: var(--tone); stroke-width: 4; opacity: .4; }
+.chr-a .m-dot { stroke: var(--tone); stroke-width: 9; }
+
+.chr-a .m-shadow { fill: var(--rule-2); }
+.chr-a .m-box, .chr-a .m-rep { fill: var(--surface-2); }
+.chr-a .m-rep { stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-outline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-tile { fill: color-mix(in srgb, var(--tone) 14%, transparent); }
+.chr-a .m-glyph { fill: none; stroke: var(--tone); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-nlabel { font-family: var(--f-ui); font-weight: 600; font-size: 14px; fill: var(--ink); }
+.chr-a .m-tech { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chr-a .m-ping { fill: none; stroke: var(--tone); stroke-width: 2; opacity: 0; }
+.chr-a .m-ring { fill: none; stroke-width: 2.2; }
+.chr-a .m-ring.m-new { stroke: var(--accent); }
+.chr-a .m-ring.m-legacy { stroke: var(--legacy); }
+.chr-a .m-ring.m-good { stroke: var(--good); }
+.chr-a .m-ring.m-warn { stroke: var(--warn); }
+.chr-a .m-ring.m-bad, .chr-a .m-ring.m-down { stroke: var(--bad); }
+.chr-a .m-ring.m-planned { stroke: var(--muted); stroke-dasharray: 5 4; }
+.chr-a .m-pill rect { fill: var(--paper); stroke: var(--rule); }
+.chr-a .m-pill text { font-family: var(--f-ui); font-weight: 700; font-size: 9.5px; letter-spacing: .06em; fill: var(--muted); }
+.chr-a .m-flag.m-new rect { fill: var(--accent); stroke: none; }
+.chr-a .m-flag.m-new text { fill: var(--on-accent); }
+.chr-a .m-flag.m-legacy rect { fill: var(--legacy-text); stroke: none; }
+.chr-a .m-flag.m-down rect { fill: var(--bad); stroke: none; }
+.chr-a .m-flag.m-legacy text, .chr-a .m-flag.m-down text { fill: var(--paper); }
+.chr-a .m-flag.m-planned rect { stroke: var(--muted); stroke-dasharray: 3 2; }
+.chr-a .m-badge.m-good { fill: var(--good); }
+.chr-a .m-badge.m-warn { fill: var(--warn); }
+.chr-a .m-badge.m-bad { fill: var(--bad); }
+.chr-a .m-sign { fill: none; stroke: var(--paper); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Drawn diagrams: packets that run along Claude's paths take the accent unless a part
+   sets its own --tone. */
+.chr-a .dg-svg .m-packet { --tone: var(--accent); }
+.chr-a .dg-svg { overflow: visible; }
+
+/* Painted scenes: the paper under the painting, the focus shade and the spots. Paintings
+   sit on paper in both themes, so callouts keep paper colors. */
+.chr-a .m-print { fill: var(--print); }
+.chr-a .m-shade { fill: #101218; }
+.chr-a .m-spot-dot { fill: var(--accent); stroke: #FCFBF7; stroke-width: 3; }
+.chr-a .m-spot-num { font-family: var(--f-ui); font-weight: 700; fill: #FFFFFF; }
+.chr-a .m-spot-pill { fill: rgba(252, 251, 247, .94); stroke: rgba(30, 32, 38, .25); }
+.chr-a .m-spot-label { font-family: var(--f-ui); font-weight: 600; fill: #1E2026; }
+/* ------------------------------------------------- drawn figure classes */
+/* Shared by story pages and standalone animations: the classes Claude writes in
+   diagrams, and the styles of live labels on paintings. */
+.dg-svg text { fill: var(--ink); font-size: 15px; }
+.dg-svg .label { fill: var(--ink-2); font-size: 13px; }
+.dg-svg .small { font-size: 12px; fill: var(--muted); }
+.dg-svg .hand { font-family: var(--f-hand); font-size: 20px; fill: var(--accent-text); }
+.dg-svg .title { font-weight: 700; }
+.dg-svg .box { fill: var(--surface-2); stroke: var(--ink); stroke-width: 1.5; }
+.dg-svg .box.soft { fill: var(--surface); stroke: var(--rule); }
+.dg-svg .box.accent { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; }
+.dg-svg .box.legacy { fill: color-mix(in srgb, var(--legacy) 12%, transparent); stroke: var(--legacy); stroke-width: 2; }
+.dg-svg .line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; }
+.dg-svg .line.accent { stroke: var(--accent); stroke-width: 2.2; }
+.dg-svg .line.legacy { stroke: var(--legacy); stroke-width: 2.2; }
+.dg-svg .line.dashed { stroke-dasharray: 5 4; }
+.dg-svg .head { fill: var(--ink-2); }
+.overlay .lbl { pointer-events: none; }
+.overlay .lbl-hand { font-family: var(--f-hand); font-weight: 600; }
+.overlay .lbl-label { font-family: var(--f-ui); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.overlay .lbl-caption { font-family: var(--f-body); font-style: italic; }
+.overlay .lbl-display { font-family: var(--f-display); }
+.overlay .lbl-mono, .overlay .lbl-number { font-family: var(--f-mono); font-weight: 500; }
+.overlay .lbl-number { font-variant-numeric: tabular-nums; }
+@keyframes a-harness-before-model-k0 { 0% { opacity: 0.000; } 3.035% { opacity: 0.000; } 4.805% { opacity: 1.000; } 19.885% { opacity: 1.000; } 21.655% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k1 { 0% { opacity: 0.000; } 20.77% { opacity: 0.000; } 22.54% { opacity: 1.000; } 43.254% { opacity: 1.000; } 45.024% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k2 { 0% { opacity: 0.000; } 44.139% { opacity: 0.000; } 45.909% { opacity: 1.000; } 64.466% { opacity: 1.000; } 66.237% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k3 { 0% { opacity: 0.000; } 65.352% { opacity: 0.000; } 67.122% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k4 { 0% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k5 { 0% { stroke-dashoffset: 299.00px; } 3.035% { stroke-dashoffset: 299.00px; } 20.77% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-harness-before-model-k6 { 0% { stroke-dashoffset: 299.00px; } 20.77% { stroke-dashoffset: 299.00px; } 44.139% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-harness-before-model-k7 { 0% { stroke-dashoffset: 299.00px; } 44.139% { stroke-dashoffset: 299.00px; } 65.352% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-harness-before-model-k8 { 0% { stroke-dashoffset: 299.00px; } 65.352% { stroke-dashoffset: 299.00px; } 84.825% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-harness-before-model-k9 { 0% { opacity: 1.000; } 100% { opacity: 1.000; }}
+@keyframes a-harness-before-model-k10 { 0% { opacity: 0.000; } 3.541% { opacity: 0.000; } 5.311% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k11 { 0% { opacity: 0.000; } 23.097% { opacity: 0.000; } 24.867% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k12 { 0% { opacity: 0.000; } 23.704% { opacity: 0.000; } 25.474% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k13 { 0% { opacity: 0.000; } 24.311% { opacity: 0.000; } 26.081% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k14 { 0% { opacity: 0.000; } 21.276% { opacity: 0.000; } 23.046% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k15 { 0% { opacity: 0.000; } 21.883% { opacity: 0.000; } 23.653% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k16 { 0% { opacity: 0.000; } 22.49% { opacity: 0.000; } 24.26% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k17 { 0% { opacity: 0.000; } 45.252% { opacity: 0.000; } 47.022% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k18 { 0% { opacity: 0.000; } 45.859% { opacity: 0.000; } 47.629% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k19 { 0% { opacity: 0.000; } 44.645% { opacity: 0.000; } 46.415% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k20 { 0% { opacity: 0.000; } 65.857% { opacity: 0.000; } 67.628% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k21 { 0% { opacity: 0.000; } 66.464% { opacity: 0.000; } 68.235% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k22 { 0% { scale: 1.000; } 48.185% { scale: 1.000; } 49.703% { scale: 1.060; } 51.22% { scale: 1.000; } 52.738% { scale: 1.060; } 54.255% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-harness-before-model-k23 { 0% { scale: 1.000; } 69.398% { scale: 1.000; } 70.916% { scale: 1.060; } 72.433% { scale: 1.000; } 73.95% { scale: 1.060; } 75.468% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-harness-before-model-k24 { 0% { stroke-dashoffset: 1.00px; } 3.541% { stroke-dashoffset: 1.00px; } 8.093% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k25 { 0% { stroke-dashoffset: 1.00px; } 21.276% { stroke-dashoffset: 1.00px; } 25.828% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k26 { 0% { stroke-dashoffset: 1.00px; } 21.883% { stroke-dashoffset: 1.00px; } 26.435% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k27 { 0% { stroke-dashoffset: 1.00px; } 22.49% { stroke-dashoffset: 1.00px; } 27.042% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k28 { 0% { stroke-dashoffset: 1.00px; } 44.645% { stroke-dashoffset: 1.00px; } 49.197% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k29 { 0% { stroke-dashoffset: 1.00px; } 45.252% { stroke-dashoffset: 1.00px; } 49.804% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k30 { 0% { stroke-dashoffset: 1.00px; } 65.857% { stroke-dashoffset: 1.00px; } 70.41% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k31 { 0% { stroke-dashoffset: 1.00px; } 66.464% { stroke-dashoffset: 1.00px; } 71.017% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k32 { 0% { stroke-dashoffset: 0.00px; } 25.828% { stroke-dashoffset: 0.00px; } 26.289% { stroke-dashoffset: -0.04px; } 26.75% { stroke-dashoffset: -0.15px; } 27.211% { stroke-dashoffset: -0.31px; } 27.672% { stroke-dashoffset: -0.50px; } 28.133% { stroke-dashoffset: -0.69px; } 28.594% { stroke-dashoffset: -0.85px; } 29.055% { stroke-dashoffset: -0.96px; } 29.516% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k33 { 0% { stroke-dashoffset: 0.07px; } 25.828% { stroke-dashoffset: 0.07px; } 26.289% { stroke-dashoffset: 0.03px; } 26.75% { stroke-dashoffset: -0.08px; } 27.211% { stroke-dashoffset: -0.24px; } 27.672% { stroke-dashoffset: -0.43px; } 28.133% { stroke-dashoffset: -0.62px; } 28.594% { stroke-dashoffset: -0.78px; } 29.055% { stroke-dashoffset: -0.89px; } 29.516% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k34 { 0% { opacity: 0.000; } 25.322% { opacity: 0.000; } 25.828% { opacity: 1.000; } 29.01% { opacity: 1.000; } 29.516% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k35 { 0% { stroke-dashoffset: 0.00px; } 29.837% { stroke-dashoffset: 0.00px; } 30.298% { stroke-dashoffset: -0.04px; } 30.759% { stroke-dashoffset: -0.15px; } 31.22% { stroke-dashoffset: -0.31px; } 31.681% { stroke-dashoffset: -0.50px; } 32.142% { stroke-dashoffset: -0.69px; } 32.603% { stroke-dashoffset: -0.85px; } 33.064% { stroke-dashoffset: -0.96px; } 33.525% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k36 { 0% { stroke-dashoffset: 0.07px; } 29.837% { stroke-dashoffset: 0.07px; } 30.298% { stroke-dashoffset: 0.03px; } 30.759% { stroke-dashoffset: -0.08px; } 31.22% { stroke-dashoffset: -0.24px; } 31.681% { stroke-dashoffset: -0.43px; } 32.142% { stroke-dashoffset: -0.62px; } 32.603% { stroke-dashoffset: -0.78px; } 33.064% { stroke-dashoffset: -0.89px; } 33.525% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k37 { 0% { opacity: 0.000; } 29.331% { opacity: 0.000; } 29.837% { opacity: 1.000; } 33.019% { opacity: 1.000; } 33.525% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k38 { 0% { stroke-dashoffset: 0.00px; } 33.845% { stroke-dashoffset: 0.00px; } 34.306% { stroke-dashoffset: -0.04px; } 34.767% { stroke-dashoffset: -0.15px; } 35.228% { stroke-dashoffset: -0.31px; } 35.689% { stroke-dashoffset: -0.50px; } 36.15% { stroke-dashoffset: -0.69px; } 36.611% { stroke-dashoffset: -0.85px; } 37.072% { stroke-dashoffset: -0.96px; } 37.533% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k39 { 0% { stroke-dashoffset: 0.07px; } 33.845% { stroke-dashoffset: 0.07px; } 34.306% { stroke-dashoffset: 0.03px; } 34.767% { stroke-dashoffset: -0.08px; } 35.228% { stroke-dashoffset: -0.24px; } 35.689% { stroke-dashoffset: -0.43px; } 36.15% { stroke-dashoffset: -0.62px; } 36.611% { stroke-dashoffset: -0.78px; } 37.072% { stroke-dashoffset: -0.89px; } 37.533% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k40 { 0% { opacity: 0.000; } 33.34% { opacity: 0.000; } 33.845% { opacity: 1.000; } 37.028% { opacity: 1.000; } 37.533% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k41 { 0% { stroke-dashoffset: 0.00px; } 37.854% { stroke-dashoffset: 0.00px; } 38.315% { stroke-dashoffset: -0.04px; } 38.776% { stroke-dashoffset: -0.15px; } 39.237% { stroke-dashoffset: -0.31px; } 39.698% { stroke-dashoffset: -0.50px; } 40.159% { stroke-dashoffset: -0.69px; } 40.62% { stroke-dashoffset: -0.85px; } 41.081% { stroke-dashoffset: -0.96px; } 41.542% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k42 { 0% { stroke-dashoffset: 0.07px; } 37.854% { stroke-dashoffset: 0.07px; } 38.315% { stroke-dashoffset: 0.03px; } 38.776% { stroke-dashoffset: -0.08px; } 39.237% { stroke-dashoffset: -0.24px; } 39.698% { stroke-dashoffset: -0.43px; } 40.159% { stroke-dashoffset: -0.62px; } 40.62% { stroke-dashoffset: -0.78px; } 41.081% { stroke-dashoffset: -0.89px; } 41.542% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k43 { 0% { opacity: 0.000; } 37.348% { opacity: 0.000; } 37.854% { opacity: 1.000; } 41.036% { opacity: 1.000; } 41.542% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k44 { 0% { stroke-dashoffset: 0.00px; } 49.197% { stroke-dashoffset: 0.00px; } 50.011% { stroke-dashoffset: -0.04px; } 50.826% { stroke-dashoffset: -0.15px; } 51.64% { stroke-dashoffset: -0.31px; } 52.454% { stroke-dashoffset: -0.50px; } 53.269% { stroke-dashoffset: -0.69px; } 54.083% { stroke-dashoffset: -0.85px; } 54.898% { stroke-dashoffset: -0.96px; } 55.712% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k45 { 0% { stroke-dashoffset: 0.07px; } 49.197% { stroke-dashoffset: 0.07px; } 50.011% { stroke-dashoffset: 0.03px; } 50.826% { stroke-dashoffset: -0.08px; } 51.64% { stroke-dashoffset: -0.24px; } 52.454% { stroke-dashoffset: -0.43px; } 53.269% { stroke-dashoffset: -0.62px; } 54.083% { stroke-dashoffset: -0.78px; } 54.898% { stroke-dashoffset: -0.89px; } 55.712% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k46 { 0% { opacity: 0.000; } 48.691% { opacity: 0.000; } 49.197% { opacity: 1.000; } 55.206% { opacity: 1.000; } 55.712% { opacity: 0.000; } 100% { opacity: 0.000; }}
+#a-harness-before-model-cap-0 { opacity: 0.000; animation: a-harness-before-model-k0 19.770s linear infinite both; }
+#a-harness-before-model-cap-1 { opacity: 0.000; animation: a-harness-before-model-k1 19.770s linear infinite both; }
+#a-harness-before-model-cap-2 { opacity: 0.000; animation: a-harness-before-model-k2 19.770s linear infinite both; }
+#a-harness-before-model-cap-3 { opacity: 0.000; animation: a-harness-before-model-k3 19.770s linear infinite both; }
+#a-harness-before-model-cap-rest { animation: a-harness-before-model-k4 19.770s linear infinite both; }
+#a-harness-before-model-fill-0 { animation: a-harness-before-model-k5 19.770s linear infinite both; }
+#a-harness-before-model-fill-1 { animation: a-harness-before-model-k6 19.770s linear infinite both; }
+#a-harness-before-model-fill-2 { animation: a-harness-before-model-k7 19.770s linear infinite both; }
+#a-harness-before-model-fill-3 { animation: a-harness-before-model-k8 19.770s linear infinite both; }
+#a-harness-before-model-strip { opacity: 0.000; animation: a-harness-before-model-k9 19.770s linear infinite both; }
+#a-harness-before-model-d-contract { animation: a-harness-before-model-k10 19.770s linear infinite both; }
+#a-harness-before-model-d-harness { animation: a-harness-before-model-k11 19.770s linear infinite both; }
+#a-harness-before-model-d-g-ch { animation: a-harness-before-model-k12 19.770s linear infinite both; }
+#a-harness-before-model-d-cards { animation: a-harness-before-model-k13 19.770s linear infinite both; }
+#a-harness-before-model-d-g-hc1 { animation: a-harness-before-model-k14 19.770s linear infinite both; }
+#a-harness-before-model-d-g-hc2 { animation: a-harness-before-model-k15 19.770s linear infinite both; }
+#a-harness-before-model-d-g-hc3 { animation: a-harness-before-model-k16 19.770s linear infinite both; }
+#a-harness-before-model-d-oracle { animation: a-harness-before-model-k17 19.770s linear infinite both; }
+#a-harness-before-model-d-g-oh { animation: a-harness-before-model-k18 19.770s linear infinite both; }
+#a-harness-before-model-d-rej { animation: a-harness-before-model-k19 19.770s linear infinite both; }
+#a-harness-before-model-d-test { animation: a-harness-before-model-k20 19.770s linear infinite both; }
+#a-harness-before-model-d-g-ht { animation: a-harness-before-model-k21 19.770s linear infinite both; }
+#a-harness-before-model-d-rej-u { transform-box: fill-box; transform-origin: center; animation: a-harness-before-model-k22 19.770s linear infinite both; }
+#a-harness-before-model-d-test-u { transform-box: fill-box; transform-origin: center; animation: a-harness-before-model-k23 19.770s linear infinite both; }
+#a-harness-before-model-d-w1 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w2 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w3 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w4 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w5 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w6 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w7 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w8 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w9 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w10 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w11 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w12 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w13 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w14 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w15 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w16 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w17 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w18 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w19 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w20 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w21 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-ch { animation: a-harness-before-model-k26 19.770s linear infinite both; }
+#a-harness-before-model-d-w23 { animation: a-harness-before-model-k26 19.770s linear infinite both; }
+#a-harness-before-model-d-w24 { animation: a-harness-before-model-k26 19.770s linear infinite both; }
+#a-harness-before-model-d-w25 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w26 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w27 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w28 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w29 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w30 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w31 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w32 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w33 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w34 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w35 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w36 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w37 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w38 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w39 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w40 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w41 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w42 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w43 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w44 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w45 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w46 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w47 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w48 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w49 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w50 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w51 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w52 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w53 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w54 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w55 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w56 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w57 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w58 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w59 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-oh { animation: a-harness-before-model-k29 19.770s linear infinite both; }
+#a-harness-before-model-d-w61 { animation: a-harness-before-model-k29 19.770s linear infinite both; }
+#a-harness-before-model-d-w62 { animation: a-harness-before-model-k29 19.770s linear infinite both; }
+#a-harness-before-model-d-w63 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w64 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w65 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w66 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w67 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w68 { animation: a-harness-before-model-k31 19.770s linear infinite both; }
+#a-harness-before-model-d-w69 { animation: a-harness-before-model-k31 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1-h { animation: a-harness-before-model-k32 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k33 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1-d { animation: a-harness-before-model-k32 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1 { opacity: 0.000; animation: a-harness-before-model-k34 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2-h { animation: a-harness-before-model-k35 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k36 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2-d { animation: a-harness-before-model-k35 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2 { opacity: 0.000; animation: a-harness-before-model-k37 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3-h { animation: a-harness-before-model-k38 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k39 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3-d { animation: a-harness-before-model-k38 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3 { opacity: 0.000; animation: a-harness-before-model-k40 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4-h { animation: a-harness-before-model-k41 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k42 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4-d { animation: a-harness-before-model-k41 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4 { opacity: 0.000; animation: a-harness-before-model-k43 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5-h { animation: a-harness-before-model-k44 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k45 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5-d { animation: a-harness-before-model-k44 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5 { opacity: 0.000; animation: a-harness-before-model-k46 19.770s linear infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .chr-a-a-harness-before-model, .chr-a-a-harness-before-model * { animation: none !important; }
+}
+</style><svg viewBox="0 0 1000 380" class="dg-svg" x="33.6" y="45.0" width="1212.8" height="460.9"><g id="a-harness-before-model-d-contract"><rect x="10" y="16" width="270" height="348" rx="10" fill="#fdf0d3" id="a-harness-before-model-d-w1" pathLength="1" stroke-dasharray="1 1" /><path d="M-8.05 16C-3.89 15.98,8.64 16.01,16.91 15.89C25.18 15.76,33.31 15.26,41.55 15.25C49.79 15.25,58.03 15.77,66.33 15.86C74.64 15.94,83.12 15.62,91.4 15.75C99.69 15.88,107.81 16.46,116.05 16.64C124.3 16.81,132.59 16.98,140.87 16.82C149.16 16.65,157.28 15.78,165.75 15.65C174.22 15.52,183.35 15.81,191.69 16.01C200.02 16.22,207.33 16.94,215.75 16.87C224.17 16.8,233.85 15.61,242.21 15.59C250.58 15.56,257.73 16.63,265.92 16.7C274.11 16.77,287.12 16.12,291.36 16" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w2" pathLength="1" stroke-dasharray="1 1" /><path d="M280 2.77C279.85 6.69,279.24 18.38,279.12 26.27C278.99 34.16,279.23 42.44,279.26 50.12C279.28 57.79,279.29 64.66,279.27 72.32C279.26 79.98,279.12 88.33,279.16 96.08C279.19 103.83,279.27 111.19,279.49 118.81C279.71 126.43,280.33 134.12,280.47 141.8C280.61 149.47,280.3 157.15,280.31 164.87C280.32 172.6,280.6 180.31,280.54 188.16C280.47 196.01,280.13 204.05,279.95 211.98C279.76 219.9,279.35 227.9,279.42 235.72C279.49 243.53,280.17 251.07,280.37 258.86C280.58 266.65,280.68 274.75,280.65 282.46C280.62 290.18,280.34 297.57,280.19 305.16C280.03 312.74,279.77 320.27,279.74 327.97C279.72 335.66,280 343.48,280.04 351.32C280.08 359.17,280.01 371.08,280 375.03" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w3" pathLength="1" stroke-dasharray="1 1" /><path d="M282.12 364C278.33 364.11,266.97 364.64,259.41 364.68C251.86 364.71,244.5 364.34,236.8 364.22C229.1 364.1,220.69 363.96,213.21 363.97C205.74 363.98,199.48 364.29,191.95 364.28C184.42 364.26,175.67 363.85,168.03 363.88C160.4 363.92,153.47 364.6,146.14 364.48C138.81 364.35,131.8 363.26,124.04 363.12C116.28 362.97,107.23 363.54,99.59 363.6C91.96 363.65,85.68 363.29,78.23 363.44C70.77 363.58,62.36 364.29,54.85 364.45C47.34 364.61,40.73 364.48,33.19 364.41C25.66 364.33,13.58 364.07,9.66 364" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w4" pathLength="1" stroke-dasharray="1 1" /><path d="M10 369.49C9.91 365.77,9.36 354.64,9.43 347.16C9.51 339.68,10.22 332.45,10.45 324.61C10.67 316.78,10.82 307.86,10.8 300.17C10.78 292.48,10.41 285.98,10.35 278.49C10.28 270.99,10.54 262.79,10.42 255.21C10.3 247.64,9.66 240.54,9.64 233.02C9.62 225.49,10.12 217.88,10.29 210.07C10.46 202.26,10.78 193.76,10.68 186.15C10.57 178.53,9.65 171.94,9.67 164.36C9.68 156.79,10.75 148.46,10.74 140.7C10.74 132.94,9.85 125.47,9.65 117.82C9.46 110.17,9.56 102.29,9.56 94.78C9.57 87.26,9.64 80.38,9.67 72.73C9.7 65.09,9.76 56.54,9.76 48.92C9.76 41.29,9.65 34.5,9.69 27C9.73 19.51,9.95 7.77,10 3.92" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w5" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 52) scale(1.2)" x="0" y="0" text-anchor="start" font-weight="600">Contract</text><text transform="translate(34 90) scale(0.92)" x="0" y="0" text-anchor="start">Hazard</text><path d="M34 100C37.73 100.02,49.03 100.17,56.4 100.14C63.77 100.11,70.82 99.84,78.21 99.81C85.59 99.79,93.3 99.95,100.71 99.99C108.12 100.02,115.29 100.06,122.67 100.01C130.05 99.97,137.57 99.66,144.97 99.71C152.36 99.75,159.65 100.22,167.05 100.29C174.44 100.37,181.95 100.21,189.34 100.15C196.73 100.09,203.96 99.93,211.37 99.92C218.79 99.91,226.39 100.1,233.83 100.12C241.27 100.13,252.31 100.02,256 100" fill="none" stroke="#d9d5cb" stroke-width="0.8" stroke-linecap="round" id="a-harness-before-model-d-w6" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 124) scale(0.92)" x="0" y="0" text-anchor="start">Geography</text><path d="M34 134C37.71 134,48.84 134.02,56.26 133.99C63.67 133.96,71.15 133.79,78.5 133.82C85.85 133.84,92.96 134.13,100.36 134.13C107.76 134.12,115.45 133.83,122.89 133.78C130.34 133.74,137.66 133.8,145.02 133.85C152.37 133.9,159.59 134.12,167.01 134.1C174.43 134.09,182.09 133.75,189.52 133.77C196.95 133.79,204.19 134.19,211.58 134.24C218.96 134.29,226.44 134.12,233.84 134.08C241.24 134.04,252.31 134.01,256 134" fill="none" stroke="#d9d5cb" stroke-width="0.8" stroke-linecap="round" id="a-harness-before-model-d-w7" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 158) scale(0.92)" x="0" y="0" text-anchor="start">Forecast period</text><path d="M34 168C37.68 168,48.66 167.96,56.1 167.99C63.53 168.01,71.21 168.11,78.61 168.14C86 168.16,93.17 168.12,100.49 168.13C107.81 168.14,115.09 168.2,122.52 168.18C129.96 168.15,137.65 168,145.13 167.98C152.61 167.96,160.03 168.01,167.41 168.05C174.78 168.1,182.03 168.24,189.39 168.24C196.75 168.24,204.17 168.1,211.56 168.04C218.95 167.98,226.32 167.89,233.72 167.88C241.13 167.87,252.29 167.98,256 168" fill="none" stroke="#d9d5cb" stroke-width="0.8" stroke-linecap="round" id="a-harness-before-model-d-w8" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 192) scale(0.92)" x="0" y="0" text-anchor="start">Damaging event</text><path d="M34 202C37.71 202.03,48.87 202.24,56.26 202.19C63.66 202.15,70.97 201.72,78.38 201.73C85.79 201.74,93.29 202.2,100.73 202.26C108.17 202.32,115.61 202.1,123.01 202.09C130.4 202.08,137.76 202.25,145.1 202.2C152.43 202.14,159.69 201.83,167.03 201.77C174.37 201.71,181.67 201.84,189.15 201.86C196.63 201.87,204.42 201.8,211.9 201.84C219.38 201.88,226.68 202.06,234.03 202.09C241.38 202.12,252.34 202.02,256 202" fill="none" stroke="#d9d5cb" stroke-width="0.8" stroke-linecap="round" id="a-harness-before-model-d-w9" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 226) scale(0.92)" x="0" y="0" text-anchor="start">Train · validate · test years</text><path d="M34 236C37.71 235.98,48.88 235.88,56.27 235.89C63.67 235.9,70.99 236.07,78.37 236.08C85.76 236.1,93.21 236.03,100.59 235.99C107.97 235.95,115.21 235.83,122.65 235.83C130.09 235.83,137.8 235.94,145.21 235.98C152.63 236.02,159.75 236.08,167.15 236.08C174.55 236.08,182.24 236.03,189.62 235.97C197 235.92,204.06 235.71,211.42 235.75C218.78 235.79,226.35 236.18,233.78 236.22C241.21 236.26,252.3 236.04,256 236" fill="none" stroke="#d9d5cb" stroke-width="0.8" stroke-linecap="round" id="a-harness-before-model-d-w10" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 260) scale(0.92)" x="0" y="0" text-anchor="start">Pass thresholds</text><path d="M34 270C37.72 270.02,48.93 270.13,56.32 270.13C63.7 270.13,70.89 270.03,78.3 269.98C85.72 269.93,93.44 269.82,100.81 269.83C108.19 269.85,115.21 270.08,122.56 270.07C129.91 270.07,137.44 269.86,144.89 269.81C152.34 269.76,159.83 269.71,167.25 269.78C174.67 269.86,182.07 270.21,189.43 270.26C196.78 270.31,203.99 270.17,211.39 270.11C218.79 270.04,226.41 269.88,233.85 269.86C241.28 269.85,252.31 269.98,256 270" fill="none" stroke="#d9d5cb" stroke-width="0.8" stroke-linecap="round" id="a-harness-before-model-d-w11" pathLength="1" stroke-dasharray="1 1" /><rect x="34" y="306" width="222" height="38" rx="19" fill="#efe3fd" id="a-harness-before-model-d-w12" pathLength="1" stroke-dasharray="1 1" /><path d="M31.67 306C35.5 306,47 306.09,54.65 306C62.31 305.91,70.05 305.5,77.59 305.47C85.13 305.44,92.53 305.77,99.91 305.83C107.28 305.9,114.22 305.82,121.84 305.87C129.47 305.92,137.94 306.15,145.68 306.13C153.43 306.1,160.76 305.69,168.31 305.72C175.86 305.75,183.55 306.27,191 306.32C198.45 306.37,205.63 306.07,213.02 306.04C220.4 306.01,227.7 306.15,235.29 306.14C242.87 306.13,254.65 306.02,258.52 306" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w13" pathLength="1" stroke-dasharray="1 1" /><path d="M256 305.57C256.03 308.76,256.2 318.26,256.2 324.76C256.2 331.26,256.03 341.27,256 344.57" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w14" pathLength="1" stroke-dasharray="1 1" /><path d="M258.03 344C254.25 344.04,242.98 344.17,235.37 344.27C227.76 344.36,219.88 344.53,212.39 344.57C204.9 344.61,197.9 344.61,190.45 344.53C183.01 344.46,175.31 344.14,167.72 344.11C160.13 344.08,152.58 344.27,144.9 344.34C137.22 344.42,129.19 344.55,121.66 344.55C114.12 344.55,107.15 344.4,99.68 344.35C92.2 344.29,84.39 344.3,76.82 344.2C69.24 344.11,61.83 343.79,54.22 343.76C46.6 343.72,34.97 343.96,31.12 344" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w15" pathLength="1" stroke-dasharray="1 1" /><path d="M34 347.11C33.95 343.65,33.68 333.46,33.68 326.36C33.68 319.25,33.95 308.12,34 304.47" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w16" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(145 329.6) scale(0.92)" x="0" y="0" text-anchor="middle" font-weight="600"># contract hash</text></g><g id="a-harness-before-model-d-harness"><rect x="400" y="150" width="190" height="84" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w17" pathLength="1" stroke-dasharray="1 1" /><path d="M395.71 150C399.29 150.1,409.91 150.72,417.19 150.59C424.46 150.45,431.78 149.27,439.37 149.2C446.96 149.13,455.16 149.91,462.72 150.16C470.28 150.41,477.55 150.58,484.72 150.7C491.89 150.82,498.38 150.92,505.75 150.88C513.12 150.83,521.42 150.5,528.94 150.44C536.47 150.37,543.67 150.54,550.89 150.47C558.11 150.41,564.9 150.13,572.26 150.05C579.62 149.97,591.26 150.01,595.06 150" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w18" pathLength="1" stroke-dasharray="1 1" /><path d="M590 144.98C590.09 148.83,590.65 160.56,590.54 168.09C590.42 175.61,589.43 182.87,589.31 190.14C589.18 197.41,589.7 204.38,589.81 211.7C589.93 219.03,589.97 230.34,590 234.07" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w19" pathLength="1" stroke-dasharray="1 1" /><path d="M593.99 234C590.27 233.96,579.04 233.87,571.65 233.74C564.25 233.61,556.75 233.13,549.62 233.22C542.48 233.32,536.03 234.06,528.84 234.32C521.65 234.59,513.73 234.78,506.47 234.81C499.2 234.85,492.58 234.78,485.28 234.52C477.97 234.27,469.82 233.38,462.63 233.3C455.43 233.21,449.38 234,442.12 234C434.85 234.01,426.38 233.33,419.04 233.33C411.69 233.33,401.55 233.89,398.05 234" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w20" pathLength="1" stroke-dasharray="1 1" /><path d="M400 234.96C399.94 231.22,399.72 219.95,399.63 212.52C399.54 205.09,399.44 197.79,399.44 190.37C399.44 182.95,399.53 175.61,399.63 168C399.72 160.39,399.94 148.6,400 144.73" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w21" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(495 186.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Harness</text><text transform="translate(495 216.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">fixed scorer</text></g><g id="a-harness-before-model-d-g-ch"><path id="a-harness-before-model-d-ch" d="M258 325C262.56 323.57,276.2 319.14,285.37 316.41C294.54 313.69,303.81 311.46,313.01 308.63C322.22 305.81,333.62 304.05,340.59 299.46C347.57 294.87,350.17 287.48,354.85 281.08C359.54 274.67,363.93 267.65,368.71 261.04C373.49 254.42,378.64 247.88,383.52 241.37C388.4 234.86,395.59 225.23,398 222" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-harness-before-model-d-pk1" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk1-h" d="M258 325C262.56 323.57,276.2 319.14,285.37 316.41C294.54 313.69,303.81 311.46,313.01 308.63C322.22 305.81,333.62 304.05,340.59 299.46C347.57 294.87,350.17 287.48,354.85 281.08C359.54 274.67,363.93 267.65,368.71 261.04C373.49 254.42,378.64 247.88,383.52 241.37C388.4 234.86,395.59 225.23,398 222" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk1-t" d="M258 325C262.56 323.57,276.2 319.14,285.37 316.41C294.54 313.69,303.81 311.46,313.01 308.63C322.22 305.81,333.62 304.05,340.59 299.46C347.57 294.87,350.17 287.48,354.85 281.08C359.54 274.67,363.93 267.65,368.71 261.04C373.49 254.42,378.64 247.88,383.52 241.37C388.4 234.86,395.59 225.23,398 222" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk1-d" d="M258 325C262.56 323.57,276.2 319.14,285.37 316.41C294.54 313.69,303.81 311.46,313.01 308.63C322.22 305.81,333.62 304.05,340.59 299.46C347.57 294.87,350.17 287.48,354.85 281.08C359.54 274.67,363.93 267.65,368.71 261.04C373.49 254.42,378.64 247.88,383.52 241.37C388.4 234.86,395.59 225.23,398 222" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M398 222C397.76 222.73,396.91 224.78,396.55 226.4C396.19 228.03,395.94 230.87,395.82 231.76" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w23" pathLength="1" stroke-dasharray="1 1" /><path d="M398 222C397.34 222.35,395.52 223.28,394.07 224.1C392.61 224.92,390.08 226.43,389.28 226.89" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w24" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-harness-before-model-d-cards"><rect x="720" y="70" width="270" height="80" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w25" pathLength="1" stroke-dasharray="1 1" /><path d="M717.76 70C721.67 69.96,733.59 69.65,741.22 69.76C748.84 69.86,755.84 70.47,763.51 70.63C771.19 70.79,779.56 70.84,787.26 70.72C794.96 70.6,802.01 70.06,809.72 69.92C817.43 69.78,825.66 69.97,833.54 69.9C841.41 69.84,849.16 69.58,856.97 69.53C864.78 69.47,872.69 69.6,880.42 69.57C888.14 69.53,895.7 69.22,903.34 69.33C910.97 69.43,918.55 70.11,926.21 70.2C933.86 70.28,941.44 69.78,949.27 69.84C957.09 69.91,965.42 70.58,973.16 70.6C980.91 70.63,991.96 70.1,995.72 70" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w26" pathLength="1" stroke-dasharray="1 1" /><path d="M990 67.61C990.12 71.03,990.68 81.21,990.72 88.11C990.76 95.01,990.28 101.96,990.22 109.03C990.16 116.1,990.4 123.39,990.37 130.52C990.33 137.66,990.06 148.28,990 151.83" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w27" pathLength="1" stroke-dasharray="1 1" /><path d="M992.66 150C988.85 150.02,977.54 150.14,969.81 150.12C962.08 150.11,953.85 150.04,946.29 149.89C938.73 149.74,932.11 149.35,924.44 149.23C916.77 149.1,907.97 148.87,900.27 149.13C892.58 149.39,885.74 150.72,878.26 150.79C870.78 150.86,863.24 149.59,855.37 149.58C847.51 149.57,838.71 150.64,831.05 150.72C823.39 150.8,816.94 150.07,809.4 150.04C801.86 150.02,793.69 150.59,785.81 150.58C777.93 150.57,769.71 150.18,762.1 149.96C754.49 149.74,747.7 149.25,740.15 149.26C732.59 149.27,720.66 149.88,716.77 150" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w28" pathLength="1" stroke-dasharray="1 1" /><path d="M720 151.99C720.04 148.57,720.16 138.36,720.27 131.44C720.37 124.52,720.65 117.56,720.62 110.48C720.59 103.4,720.19 95.94,720.09 88.99C719.98 82.04,720.01 72.14,720 68.77" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w29" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(738 98) scale(0.92)" x="0" y="0" text-anchor="start">experiment card</text><rect x="738" y="110" width="234" height="26" rx="13" fill="#efe3fd" id="a-harness-before-model-d-w30" pathLength="1" stroke-dasharray="1 1" /><path d="M734.59 110C738.21 109.93,749.13 109.58,756.32 109.55C763.52 109.52,770.42 109.8,777.77 109.8C785.12 109.8,793.01 109.55,800.44 109.54C807.87 109.53,815.15 109.58,822.34 109.74C829.53 109.9,836.44 110.49,843.59 110.5C850.74 110.5,857.99 109.86,865.24 109.77C872.49 109.68,879.78 109.84,887.06 109.97C894.34 110.1,901.57 110.55,908.91 110.54C916.25 110.53,923.72 110.03,931.1 109.91C938.49 109.79,945.93 109.81,953.2 109.83C960.46 109.84,971.11 109.97,974.69 110" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w31" pathLength="1" stroke-dasharray="1 1" /><path d="M972 107.3C971.98 109.92,971.9 117.8,971.9 123.01C971.9 128.22,971.98 135.98,972 138.57" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w32" pathLength="1" stroke-dasharray="1 1" /><path d="M972.71 136C969.04 136.01,957.93 136,950.7 136.08C943.47 136.16,936.28 136.49,929.33 136.5C922.37 136.51,916.11 136.23,908.95 136.14C901.8 136.04,893.65 136.02,886.37 135.93C879.09 135.84,872.36 135.55,865.26 135.58C858.15 135.61,850.75 136.14,843.74 136.12C836.72 136.1,830.27 135.46,823.15 135.45C816.03 135.44,808.35 136.04,801.01 136.07C793.67 136.11,786.3 135.58,779.12 135.64C771.94 135.71,764.99 136.4,757.93 136.46C750.88 136.52,740.31 136.08,736.78 136" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w33" pathLength="1" stroke-dasharray="1 1" /><path d="M738 139.32C738.02 136.76,738.1 129.05,738.1 123.92C738.1 118.78,738.02 111.1,738 108.53" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w34" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(855 127) scale(0.8)" x="0" y="0" text-anchor="middle"># contract hash</text><rect x="720" y="160" width="270" height="80" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w35" pathLength="1" stroke-dasharray="1 1" /><path d="M718.07 160C721.81 160.12,732.97 160.59,740.53 160.69C748.09 160.79,755.81 160.85,763.4 160.6C770.99 160.36,778.52 159.32,786.05 159.22C793.58 159.12,800.83 160,808.57 160.02C816.3 160.03,824.95 159.22,832.47 159.3C839.99 159.38,846.19 160.39,853.68 160.49C861.18 160.59,869.88 159.86,877.44 159.89C884.99 159.91,891.64 160.6,899.02 160.65C906.41 160.69,914.14 160.39,921.74 160.17C929.34 159.95,937.02 159.22,944.62 159.32C952.22 159.41,959.64 160.61,967.33 160.72C975.03 160.84,986.89 160.12,990.8 160" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w36" pathLength="1" stroke-dasharray="1 1" /><path d="M990 154.13C990.13 157.79,990.89 168.75,990.8 176.09C990.71 183.43,989.61 191.14,989.43 198.18C989.26 205.22,989.65 211.22,989.74 218.35C989.84 225.48,989.96 237.18,990 240.95" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w37" pathLength="1" stroke-dasharray="1 1" /><path d="M994.44 240C990.5 240.04,978.46 240.35,970.79 240.24C963.11 240.13,955.82 239.32,948.39 239.33C940.96 239.34,933.94 240.24,926.21 240.31C918.48 240.39,909.85 239.92,902 239.76C894.15 239.6,886.55 239.41,879.11 239.34C871.67 239.27,864.8 239.17,857.36 239.37C849.92 239.56,842.32 240.54,834.48 240.5C826.64 240.47,818.15 239.34,810.33 239.17C802.5 238.99,795.02 239.19,787.52 239.45C780.03 239.71,772.94 240.53,765.36 240.73C757.79 240.94,749.78 240.81,742.07 240.69C734.35 240.57,722.92 240.11,719.09 240" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w38" pathLength="1" stroke-dasharray="1 1" /><path d="M720 245.04C719.89 241.51,719.21 231.15,719.31 223.83C719.41 216.52,720.58 208.56,720.59 201.15C720.6 193.74,719.49 186.75,719.39 179.36C719.29 171.97,719.9 160.56,720 156.8" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w39" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(738 188) scale(0.92)" x="0" y="0" text-anchor="start">experiment card</text><rect x="738" y="200" width="234" height="26" rx="13" fill="#efe3fd" id="a-harness-before-model-d-w40" pathLength="1" stroke-dasharray="1 1" /><path d="M736.87 200C740.5 200.05,751.56 200.23,758.68 200.33C765.8 200.42,772.4 200.58,779.58 200.58C786.76 200.58,794.65 200.4,801.76 200.35C808.86 200.3,815.23 200.26,822.23 200.29C829.22 200.32,836.48 200.63,843.73 200.55C850.97 200.47,858.48 199.82,865.68 199.8C872.87 199.77,879.78 200.26,886.89 200.39C894.01 200.51,901.15 200.56,908.35 200.54C915.55 200.53,922.79 200.44,930.09 200.31C937.38 200.18,944.97 199.82,952.13 199.77C959.29 199.72,969.57 199.96,973.06 200" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w41" pathLength="1" stroke-dasharray="1 1" /><path d="M972 196.91C971.93 199.69,971.6 208.21,971.6 213.6C971.6 218.99,971.93 226.65,972 229.26" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w42" pathLength="1" stroke-dasharray="1 1" /><path d="M973.01 226C969.41 225.95,958.51 225.81,951.43 225.73C944.35 225.65,937.55 225.52,930.51 225.51C923.48 225.51,916.5 225.67,909.21 225.67C901.92 225.68,893.92 225.43,886.8 225.54C879.67 225.66,873.51 226.3,866.45 226.39C859.39 226.48,851.67 226.19,844.44 226.06C837.22 225.93,830.22 225.69,823.1 225.61C815.97 225.53,808.85 225.49,801.67 225.59C794.48 225.68,787.05 226.12,779.99 226.17C772.93 226.22,766.39 225.92,759.29 225.89C752.19 225.86,741.05 225.98,737.4 226" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w43" pathLength="1" stroke-dasharray="1 1" /><path d="M738 228.85C737.92 226.22,737.5 218.2,737.5 213.04C737.5 207.88,737.92 200.42,738 197.89" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w44" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(855 217) scale(0.8)" x="0" y="0" text-anchor="middle"># contract hash</text><rect x="720" y="250" width="270" height="80" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w45" pathLength="1" stroke-dasharray="1 1" /><path d="M716.18 250C720.07 249.88,731.98 249.16,739.53 249.3C747.08 249.44,754.04 250.74,761.5 250.84C768.95 250.94,776.68 249.98,784.25 249.91C791.82 249.84,799.29 250.54,806.91 250.42C814.53 250.31,822.24 249.37,829.95 249.22C837.66 249.07,845.57 249.46,853.15 249.52C860.73 249.59,867.74 249.53,875.43 249.62C883.11 249.71,891.65 249.96,899.25 250.06C906.85 250.16,913.62 250.38,921.02 250.24C928.42 250.1,935.94 249.37,943.67 249.21C951.39 249.06,959.61 249.16,967.34 249.29C975.08 249.42,986.29 249.88,990.08 250" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w46" pathLength="1" stroke-dasharray="1 1" /><path d="M990 247.23C990.11 251.05,990.53 262.75,990.66 270.19C990.79 277.63,991.03 284.47,990.78 291.87C990.52 299.26,989.25 307.17,989.12 314.56C988.99 321.95,989.85 332.6,990 336.21" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w47" pathLength="1" stroke-dasharray="1 1" /><path d="M993.24 330C989.43 329.87,978.29 329.33,970.4 329.24C962.52 329.15,953.73 329.34,945.94 329.43C938.14 329.53,931.11 329.6,923.62 329.83C916.13 330.05,908.76 330.75,900.99 330.79C893.22 330.83,884.84 330.14,877.02 330.04C869.2 329.94,861.87 330.25,854.06 330.18C846.25 330.11,838.03 329.71,830.16 329.6C822.29 329.49,814.62 329.6,806.85 329.53C799.08 329.46,791.22 329.21,783.51 329.18C775.81 329.15,768.28 329.17,760.63 329.36C752.98 329.54,745.31 330.2,737.61 330.3C729.91 330.41,718.3 330.05,714.43 330" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w48" pathLength="1" stroke-dasharray="1 1" /><path d="M720 334.71C720.05 331.25,720.21 321.2,720.28 313.96C720.34 306.72,720.42 298.74,720.4 291.25C720.38 283.77,720.23 276.24,720.16 269.05C720.1 261.87,720.03 251.62,720 248.14" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w49" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(738 278) scale(0.92)" x="0" y="0" text-anchor="start">experiment card</text><rect x="738" y="290" width="234" height="26" rx="13" fill="#efe3fd" id="a-harness-before-model-d-w50" pathLength="1" stroke-dasharray="1 1" /><path d="M736.17 290C739.71 289.91,750.22 289.49,757.41 289.43C764.61 289.38,771.99 289.46,779.33 289.65C786.68 289.83,794.17 290.43,801.51 290.56C808.84 290.69,816.15 290.54,823.36 290.45C830.57 290.35,837.53 289.99,844.76 289.98C852 289.97,859.52 290.41,866.77 290.39C874.02 290.36,880.98 289.87,888.26 289.81C895.54 289.74,903.17 290.03,910.47 290C917.76 289.97,924.96 289.72,932.04 289.65C939.12 289.58,945.76 289.54,952.92 289.59C960.08 289.65,971.34 289.93,975.02 290" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w51" pathLength="1" stroke-dasharray="1 1" /><path d="M972 287.81C971.99 290.43,971.92 298.33,971.92 303.52C971.92 308.71,971.99 316.38,972 318.95" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w52" pathLength="1" stroke-dasharray="1 1" /><path d="M974.76 316C971.22 315.98,960.79 315.96,953.52 315.9C946.25 315.84,938.48 315.72,931.16 315.64C923.84 315.57,916.9 315.46,909.58 315.45C902.26 315.44,894.54 315.5,887.23 315.58C879.92 315.67,872.86 315.82,865.72 315.95C858.58 316.09,851.57 316.32,844.4 316.39C837.23 316.47,830.08 316.5,822.69 316.42C815.3 316.34,807.45 315.96,800.06 315.92C792.68 315.87,785.62 316.08,778.39 316.16C771.16 316.25,763.86 316.46,756.68 316.43C749.5 316.4,738.87 316.07,735.31 316" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w53" pathLength="1" stroke-dasharray="1 1" /><path d="M738 317.89C737.92 315.38,737.55 308,737.55 302.84C737.55 297.69,737.92 289.6,738 286.95" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w54" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(855 307) scale(0.8)" x="0" y="0" text-anchor="middle"># contract hash</text></g><g id="a-harness-before-model-d-g-hc1"><path id="a-harness-before-model-d-hc1" d="M592 180C595.32 177.17,605.46 168.55,611.89 163.05C618.32 157.55,624.29 152.52,630.6 147.01C636.91 141.49,642.82 133.91,649.74 129.94C656.66 125.97,664.71 125.41,672.11 123.18C679.51 120.96,686.83 118.8,694.14 116.61C701.46 114.41,712.36 111.1,716 110" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><g id="a-harness-before-model-d-pk2" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk2-h" d="M592 180C595.32 177.17,605.46 168.55,611.89 163.05C618.32 157.55,624.29 152.52,630.6 147.01C636.91 141.49,642.82 133.91,649.74 129.94C656.66 125.97,664.71 125.41,672.11 123.18C679.51 120.96,686.83 118.8,694.14 116.61C701.46 114.41,712.36 111.1,716 110" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk2-t" d="M592 180C595.32 177.17,605.46 168.55,611.89 163.05C618.32 157.55,624.29 152.52,630.6 147.01C636.91 141.49,642.82 133.91,649.74 129.94C656.66 125.97,664.71 125.41,672.11 123.18C679.51 120.96,686.83 118.8,694.14 116.61C701.46 114.41,712.36 111.1,716 110" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk2-d" d="M592 180C595.32 177.17,605.46 168.55,611.89 163.05C618.32 157.55,624.29 152.52,630.6 147.01C636.91 141.49,642.82 133.91,649.74 129.94C656.66 125.97,664.71 125.41,672.11 123.18C679.51 120.96,686.83 118.8,694.14 116.61C701.46 114.41,712.36 111.1,716 110" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M716 110C715.41 110.55,713.72 112.23,712.46 113.32C711.2 114.41,709.11 116.01,708.44 116.55" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M716 110C715.23 109.87,713.06 109.44,711.41 109.23C709.75 109.02,706.97 108.83,706.08 108.75" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g><g id="a-harness-before-model-d-g-hc2"><path id="a-harness-before-model-d-hc2" d="M592 192C595.47 192.32,605.91 193.57,612.85 193.93C619.79 194.3,626.76 193.91,633.64 194.18C640.52 194.45,647.39 195.03,654.13 195.55C660.87 196.07,667.23 196.77,674.1 197.31C680.98 197.84,688.38 198.33,695.37 198.78C702.35 199.23,712.56 199.8,716 200" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><g id="a-harness-before-model-d-pk3" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk3-h" d="M592 192C595.47 192.32,605.91 193.57,612.85 193.93C619.79 194.3,626.76 193.91,633.64 194.18C640.52 194.45,647.39 195.03,654.13 195.55C660.87 196.07,667.23 196.77,674.1 197.31C680.98 197.84,688.38 198.33,695.37 198.78C702.35 199.23,712.56 199.8,716 200" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk3-t" d="M592 192C595.47 192.32,605.91 193.57,612.85 193.93C619.79 194.3,626.76 193.91,633.64 194.18C640.52 194.45,647.39 195.03,654.13 195.55C660.87 196.07,667.23 196.77,674.1 197.31C680.98 197.84,688.38 198.33,695.37 198.78C702.35 199.23,712.56 199.8,716 200" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk3-d" d="M592 192C595.47 192.32,605.91 193.57,612.85 193.93C619.79 194.3,626.76 193.91,633.64 194.18C640.52 194.45,647.39 195.03,654.13 195.55C660.87 196.07,667.23 196.77,674.1 197.31C680.98 197.84,688.38 198.33,695.37 198.78C702.35 199.23,712.56 199.8,716 200" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M716 200C715.2 200.22,712.77 200.75,711.2 201.33C709.64 201.91,707.39 203.12,706.63 203.48" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M716 200C715.31 199.67,713.32 198.81,711.85 198.04C710.37 197.26,707.93 195.79,707.15 195.34" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g><g id="a-harness-before-model-d-g-hc3"><path id="a-harness-before-model-d-hc3" d="M592 206C595.19 209.6,604.64 220.46,611.14 227.59C617.65 234.72,624.56 241.69,631.01 248.77C637.46 255.86,643.03 265.39,649.86 270.09C656.68 274.8,664.65 274.75,671.94 276.98C679.23 279.21,686.25 281.33,693.6 283.5C700.94 285.67,712.27 288.92,716 290" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><g id="a-harness-before-model-d-pk4" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk4-h" d="M592 206C595.19 209.6,604.64 220.46,611.14 227.59C617.65 234.72,624.56 241.69,631.01 248.77C637.46 255.86,643.03 265.39,649.86 270.09C656.68 274.8,664.65 274.75,671.94 276.98C679.23 279.21,686.25 281.33,693.6 283.5C700.94 285.67,712.27 288.92,716 290" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk4-t" d="M592 206C595.19 209.6,604.64 220.46,611.14 227.59C617.65 234.72,624.56 241.69,631.01 248.77C637.46 255.86,643.03 265.39,649.86 270.09C656.68 274.8,664.65 274.75,671.94 276.98C679.23 279.21,686.25 281.33,693.6 283.5C700.94 285.67,712.27 288.92,716 290" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk4-d" d="M592 206C595.19 209.6,604.64 220.46,611.14 227.59C617.65 234.72,624.56 241.69,631.01 248.77C637.46 255.86,643.03 265.39,649.86 270.09C656.68 274.8,664.65 274.75,671.94 276.98C679.23 279.21,686.25 281.33,693.6 283.5C700.94 285.67,712.27 288.92,716 290" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M716 290C715.14 290.05,712.47 290.1,710.81 290.31C709.16 290.52,706.87 291.1,706.08 291.25" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M716 290C715.4 289.48,713.63 287.95,712.37 286.86C711.11 285.77,709.1 284.02,708.44 283.45" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g><g id="a-harness-before-model-d-oracle"><rect x="400" y="10" width="190" height="76" rx="10" fill="#fce5e1" id="a-harness-before-model-d-w55" pathLength="1" stroke-dasharray="1 1" /><path d="M399.58 10C403.09 10.14,413.58 10.97,420.67 10.86C427.75 10.75,434.75 9.43,442.07 9.33C449.39 9.22,457.2 10.23,464.57 10.22C471.94 10.2,479.22 9.21,486.3 9.23C493.37 9.25,499.98 10.16,507.01 10.32C514.05 10.47,521.11 10.06,528.51 10.15C535.91 10.24,544.28 10.83,551.41 10.86C558.54 10.88,564.23 10.43,571.27 10.29C578.31 10.14,589.92 10.05,593.65 10" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w56" pathLength="1" stroke-dasharray="1 1" /><path d="M590 4.71C590.02 9.29,590.18 23.03,590.12 32.19C590.07 41.35,589.67 50.66,589.65 59.69C589.63 68.72,589.94 81.92,590 86.37" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w57" pathLength="1" stroke-dasharray="1 1" /><path d="M591.82 86C588.21 86.14,577.54 86.85,570.16 86.82C562.78 86.78,554.9 85.97,547.56 85.78C540.21 85.59,533.35 85.61,526.09 85.67C518.84 85.73,511.3 86.02,504.03 86.17C496.76 86.31,489.75 86.47,482.49 86.54C475.23 86.6,467.77 86.68,460.46 86.56C453.16 86.43,445.89 85.89,438.66 85.8C431.43 85.72,424.2 86.01,417.1 86.04C409.99 86.07,399.53 86.01,396.02 86" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w58" pathLength="1" stroke-dasharray="1 1" /><path d="M400 89.15C399.95 84.77,399.75 71.76,399.68 62.83C399.61 53.9,399.53 44.55,399.58 35.56C399.64 26.57,399.93 13.34,400 8.89" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w59" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(495 42.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Leaky model</text><text transform="translate(495 72.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">reads its outcomes</text></g><g id="a-harness-before-model-d-g-oh"><path id="a-harness-before-model-d-oh" d="M495 88C495.08 91.3,495.48 101.4,495.46 107.82C495.44 114.24,494.96 120.16,494.88 126.52C494.81 132.89,494.98 142.75,495 146" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-harness-before-model-d-pk5" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk5-h" d="M495 88C495.08 91.3,495.48 101.4,495.46 107.82C495.44 114.24,494.96 120.16,494.88 126.52C494.81 132.89,494.98 142.75,495 146" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk5-t" d="M495 88C495.08 91.3,495.48 101.4,495.46 107.82C495.44 114.24,494.96 120.16,494.88 126.52C494.81 132.89,494.98 142.75,495 146" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk5-d" d="M495 88C495.08 91.3,495.48 101.4,495.46 107.82C495.44 114.24,494.96 120.16,494.88 126.52C494.81 132.89,494.98 142.75,495 146" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M495 146C494.62 145.24,493.39 142.99,492.71 141.47C492.03 139.95,491.22 137.64,490.92 136.87" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w61" pathLength="1" stroke-dasharray="1 1" /><path d="M495 146C495.39 145.17,496.64 142.52,497.32 141C498 139.47,498.78 137.56,499.08 136.87" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w62" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-harness-before-model-d-rej-d"><g id="a-harness-before-model-d-rej-u"><g id="a-harness-before-model-d-rej"><path d="M486 108C487.44 109.55,491.66 114.32,494.66 117.32C497.66 120.32,502.44 124.55,504 126" fill="none" stroke="#ea4335" stroke-width="2.8" stroke-linecap="round" /><path d="M504 108C502.54 109.58,498.23 114.48,495.23 117.48C492.23 120.48,487.54 124.58,486 126" fill="none" stroke="#ea4335" stroke-width="2.8" stroke-linecap="round" /><text transform="translate(478 122) scale(0.95)" x="0" y="0" text-anchor="end" font-weight="600" class="f-legacy">rejected</text></g></g></g><g id="a-harness-before-model-d-test-d"><g id="a-harness-before-model-d-test-u"><g id="a-harness-before-model-d-test"><rect x="400" y="290" width="190" height="76" rx="10" fill="#e1f2e6" id="a-harness-before-model-d-w63" pathLength="1" stroke-dasharray="1 1" /><path d="M399.87 290C403.4 290.15,413.73 290.98,421.06 290.88C428.4 290.78,436.76 289.47,443.87 289.39C450.98 289.31,456.77 290.46,463.71 290.42C470.66 290.37,478.33 289.24,485.54 289.12C492.75 289,499.79 289.7,506.98 289.71C514.17 289.71,521.45 288.98,528.67 289.14C535.89 289.3,542.97 290.5,550.32 290.68C557.67 290.85,565.51 290.3,572.79 290.19C580.06 290.08,590.46 290.03,593.99 290" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w64" pathLength="1" stroke-dasharray="1 1" /><path d="M590 286.01C589.87 290.49,589.08 303.59,589.2 312.87C589.31 322.14,590.54 332.41,590.67 341.64C590.81 350.87,590.11 363.81,590 368.24" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w65" pathLength="1" stroke-dasharray="1 1" /><path d="M590.88 366C587.16 365.98,575.84 365.76,568.59 365.89C561.34 366.03,554.46 366.92,547.37 366.81C540.28 366.7,533.17 365.3,526.06 365.23C518.94 365.15,511.85 366.34,504.68 366.35C497.5 366.37,490.32 365.4,482.99 365.31C475.66 365.22,468.18 365.75,460.71 365.79C453.23 365.84,445.51 365.55,438.13 365.59C430.75 365.63,423.61 365.98,416.44 366.04C409.28 366.11,398.7 366.01,395.15 366" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w66" pathLength="1" stroke-dasharray="1 1" /><path d="M400 369.84C399.95 365.06,399.76 350.71,399.73 341.19C399.69 331.67,399.75 322.12,399.79 312.7C399.84 303.29,399.97 289.36,400 284.69" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w67" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(495 322.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Test set</text><text transform="translate(495 352.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">one touch per contract</text></g></g></g><g id="a-harness-before-model-d-g-ht"><path id="a-harness-before-model-d-ht" d="M495 236C494.99 240.19,494.97 252.79,494.97 261.13C494.97 269.46,494.99 281.85,495 286" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 5" /><path d="M495 286C494.65 285.17,493.56 282.56,492.88 281.04C492.2 279.52,491.25 277.56,490.92 276.87" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w68" pathLength="1" stroke-dasharray="1 1" /><path d="M495 286C495.36 285.23,496.47 282.89,497.15 281.36C497.83 279.84,498.76 277.62,499.08 276.87" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w69" pathLength="1" stroke-dasharray="1 1" /></g></svg><g id="a-harness-before-model-cap-0"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">01</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">Every experiment runs under a pre-registered contract.</tspan></text></g><g id="a-harness-before-model-cap-1"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">02</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">The contract hash is stamped on every card.</tspan></text></g><g id="a-harness-before-model-cap-2"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">03</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">A model that reads its own outcomes is rejected.</tspan></text></g><g id="a-harness-before-model-cap-3"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">04</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">The held-out test set opens once per contract.</tspan></text></g><g id="a-harness-before-model-cap-rest"><text x="33.6" y="542.4" class="a-cap" font-size="17.6"><tspan x="33.6" dy="0">A hashed contract governs every card, a model that reads its outcomes is rejected, and the test set opens once.</tspan></text></g><g id="a-harness-before-model-strip"><line class="a-track" stroke-width="2.8" x1="33.6" y1="592.0" x2="332.6" y2="592.0"></line><line id="a-harness-before-model-fill-0" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="33.6" y1="592.0" x2="332.6" y2="592.0"></line><line class="a-track" stroke-width="2.8" x1="338.2" y1="592.0" x2="637.2" y2="592.0"></line><line id="a-harness-before-model-fill-1" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="338.2" y1="592.0" x2="637.2" y2="592.0"></line><line class="a-track" stroke-width="2.8" x1="642.8" y1="592.0" x2="941.8" y2="592.0"></line><line id="a-harness-before-model-fill-2" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="642.8" y1="592.0" x2="941.8" y2="592.0"></line><line class="a-track" stroke-width="2.8" x1="947.4" y1="592.0" x2="1246.4" y2="592.0"></line><line id="a-harness-before-model-fill-3" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="947.4" y1="592.0" x2="1246.4" y2="592.0"></line></g></svg>

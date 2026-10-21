@@ -1,0 +1,419 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 627" width="1280" height="627" class="chr-a chr-a-a-one-directory-per-algori" role="img" aria-labelledby="a-one-directory-per-algori-title a-one-directory-per-algori-desc" data-theme="light"><title id="a-one-directory-per-algori-title">One directory per algorithm</title><desc id="a-one-directory-per-algori-desc">One defineVisualization call registers an algorithm directory, adding a catalog card and a hash route. Steps: 1. Each algorithm is one self-contained directory. 2. One defineVisualization call registers it. 3. The registry adds a catalog card and a hash route. 4. Shared instruments do the playback and drawing. Sources: Algorithm Visualizer README.</desc><style>/* Theme: tokens derived by chronicle from the palette and fonts. */
+.chr-a-a-one-directory-per-algori {
+  --paper: #FFFDF9;
+  --print: #FFFEFB;
+  --surface: #F6F4F0;
+  --surface-2: #FFFEFD;
+  --ink: #1F1E1A;
+  --ink-2: #575652;
+  --muted: #75736F;
+  --rule: #DDDCD8;
+  --rule-2: #EDEBE7;
+  --grid: #E9E7E3;
+  --accent: #4285F4;
+  --accent-text: #3B70C8;
+  --accent-wash: rgba(66, 133, 244, 0.10);
+  --legacy: #EA4335;
+  --legacy-text: #D13E32;
+  --good: #2F7D4F;
+  --warn: #9C6210;
+  --bad: #B23A2B;
+  --good-wash: rgba(47, 125, 79, 0.12);
+  --bad-wash: rgba(178, 58, 43, 0.12);
+  --tip-bg: #1F1E1A;
+  --tip-ink: #FFFDF9;
+  --on-accent: #FFFFFF;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #47463F;
+  --s6: #5F8A2E;
+  --seq-0: #F0F3F9;
+  --seq-1: #D5E3F8;
+  --seq-2: #B0CBF7;
+  --seq-3: #82AEF6;
+  --seq-4: #4285F4;
+  --seq-5: #345C9D;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-ui: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  .chr-a-a-one-directory-per-algori:not([data-theme="light"]) {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark; }
+}
+.chr-a-a-one-directory-per-algori[data-theme="dark"] {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+.chr-a-a-one-directory-per-algori .f-accent { fill: var(--accent); } .chr-a-a-one-directory-per-algori .s-accent { stroke: var(--accent); } .chr-a-a-one-directory-per-algori .t-accent { color: var(--accent); }
+.chr-a-a-one-directory-per-algori .f-legacy { fill: var(--legacy); } .chr-a-a-one-directory-per-algori .s-legacy { stroke: var(--legacy); } .chr-a-a-one-directory-per-algori .t-legacy { color: var(--legacy); }
+.chr-a-a-one-directory-per-algori .f-ink { fill: var(--ink); } .chr-a-a-one-directory-per-algori .s-ink { stroke: var(--ink); } .chr-a-a-one-directory-per-algori .t-ink { color: var(--ink); }
+.chr-a-a-one-directory-per-algori .f-muted { fill: var(--muted); } .chr-a-a-one-directory-per-algori .s-muted { stroke: var(--muted); } .chr-a-a-one-directory-per-algori .t-muted { color: var(--muted); }
+.chr-a-a-one-directory-per-algori .f-paper { fill: var(--paper); } .chr-a-a-one-directory-per-algori .s-paper { stroke: var(--paper); } .chr-a-a-one-directory-per-algori .t-paper { color: var(--paper); }
+.chr-a-a-one-directory-per-algori .f-surface { fill: var(--surface); } .chr-a-a-one-directory-per-algori .s-surface { stroke: var(--surface); } .chr-a-a-one-directory-per-algori .t-surface { color: var(--surface); }
+.chr-a-a-one-directory-per-algori .f-good { fill: var(--good); } .chr-a-a-one-directory-per-algori .s-good { stroke: var(--good); } .chr-a-a-one-directory-per-algori .t-good { color: var(--good); }
+.chr-a-a-one-directory-per-algori .f-bad { fill: var(--bad); } .chr-a-a-one-directory-per-algori .s-bad { stroke: var(--bad); } .chr-a-a-one-directory-per-algori .t-bad { color: var(--bad); }
+.chr-a-a-one-directory-per-algori .f-s1 { fill: var(--s1); } .chr-a-a-one-directory-per-algori .s-s1 { stroke: var(--s1); } .chr-a-a-one-directory-per-algori .t-s1 { color: var(--s1); }
+.chr-a-a-one-directory-per-algori .f-s2 { fill: var(--s2); } .chr-a-a-one-directory-per-algori .s-s2 { stroke: var(--s2); } .chr-a-a-one-directory-per-algori .t-s2 { color: var(--s2); }
+.chr-a-a-one-directory-per-algori .f-s3 { fill: var(--s3); } .chr-a-a-one-directory-per-algori .s-s3 { stroke: var(--s3); } .chr-a-a-one-directory-per-algori .t-s3 { color: var(--s3); }
+.chr-a-a-one-directory-per-algori .f-s4 { fill: var(--s4); } .chr-a-a-one-directory-per-algori .s-s4 { stroke: var(--s4); } .chr-a-a-one-directory-per-algori .t-s4 { color: var(--s4); }
+.chr-a-a-one-directory-per-algori .f-s5 { fill: var(--s5); } .chr-a-a-one-directory-per-algori .s-s5 { stroke: var(--s5); } .chr-a-a-one-directory-per-algori .t-s5 { color: var(--s5); }
+.chr-a-a-one-directory-per-algori .f-s6 { fill: var(--s6); } .chr-a-a-one-directory-per-algori .s-s6 { stroke: var(--s6); } .chr-a-a-one-directory-per-algori .t-s6 { color: var(--s6); }
+.chr-a-a-one-directory-per-algori .f-green { fill: var(--c-green); } .chr-a-a-one-directory-per-algori .s-green { stroke: var(--c-green); } .chr-a-a-one-directory-per-algori .t-green { color: var(--c-green); }
+.chr-a-a-one-directory-per-algori .f-yellow { fill: var(--c-yellow); } .chr-a-a-one-directory-per-algori .s-yellow { stroke: var(--c-yellow); } .chr-a-a-one-directory-per-algori .t-yellow { color: var(--c-yellow); }
+.chr-a-a-one-directory-per-algori .f-purple { fill: var(--c-purple); } .chr-a-a-one-directory-per-algori .s-purple { stroke: var(--c-purple); } .chr-a-a-one-directory-per-algori .t-purple { color: var(--c-purple); }
+/* The frame of a standalone animation: background, title, captions and the step strip.
+   Every rule sits under .chr-a so an animation pasted into another page styles only
+   itself; its colors and fonts come from tokens set on .chr-a-&lt;slug>. */
+.chr-a { font-family: var(--f-body); }
+.chr-a .a-bg { fill: var(--paper); }
+.chr-a .a-bg.surface { fill: var(--surface); }
+.chr-a .a-kicker { font-family: var(--f-ui); font-weight: 700; letter-spacing: .12em; fill: var(--accent-text); }
+.chr-a .a-title { font-family: var(--f-display); fill: var(--ink); }
+.chr-a .a-credit { font-family: var(--f-ui); fill: var(--muted); }
+.chr-a .a-num { font-family: var(--f-mono); font-weight: 500; fill: var(--accent-text); }
+.chr-a .a-cap { font-family: var(--f-body); fill: var(--ink); }
+.chr-a .a-track { stroke: var(--rule); }
+.chr-a .a-fill { stroke: var(--accent); }
+
+/* Technical architecture diagrams: zones, components, lines, packets and state marks. */
+.chr-a .m-gfill { fill: none; }
+.chr-a .m-gfill.m-zone { fill: var(--surface); }
+.chr-a .m-gfill.m-cluster { fill: color-mix(in srgb, var(--tone) 7%, transparent); }
+.chr-a .m-gline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-gline.m-boundary { stroke: var(--muted); stroke-dasharray: 7 5; }
+.chr-a .m-gline.m-external { stroke: var(--muted); stroke-dasharray: .5 5; stroke-linecap: round; stroke-width: 1.6; }
+.chr-a .m-tinted .m-gline { stroke: color-mix(in srgb, var(--tone) 50%, transparent); }
+.chr-a .m-glabel { font-family: var(--f-ui); font-weight: 650; font-size: 11px; letter-spacing: .08em; fill: var(--muted); }
+.chr-a .m-tinted .m-glabel { fill: var(--tone); }
+.chr-a .m-gflash { fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0; }
+
+.chr-a .m-line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linejoin: round; }
+.chr-a .m-async .m-line { stroke-dasharray: 6 5; }
+.chr-a .m-head { fill: var(--ink-2); }
+.chr-a .m-async .m-head { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-hot { fill: none; stroke: var(--tone, var(--accent)); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.chr-a .m-mask { fill: none; stroke: #fff; stroke-width: 22; }
+.chr-a .m-elabel, .chr-a .m-legend { font-family: var(--f-ui); font-size: 12px; fill: var(--ink-2); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.chr-a .m-legend { fill: var(--muted); }
+.chr-a .m-line.m-new, .chr-a .m-line.m-legacy, .chr-a .m-line.m-bad { stroke-width: 2.2; }
+.chr-a .m-new.m-line { stroke: var(--accent); }
+.chr-a .m-new.m-head { fill: var(--accent); stroke: var(--accent); }
+.chr-a .m-legacy.m-line { stroke: var(--legacy); }
+.chr-a .m-legacy.m-head { fill: var(--legacy); stroke: var(--legacy); }
+.chr-a .m-bad.m-line, .chr-a .m-down.m-line { stroke: var(--bad); }
+.chr-a .m-bad.m-head, .chr-a .m-down.m-head { fill: var(--bad); stroke: var(--bad); }
+.chr-a .m-down.m-line { stroke-dasharray: 2 5; stroke-linecap: round; opacity: .7; }
+.chr-a .m-planned.m-line { stroke: var(--muted); stroke-dasharray: 4 5; opacity: .8; }
+.chr-a .m-planned.m-head { fill: var(--muted); stroke: var(--muted); opacity: .8; }
+
+.chr-a .m-halo, .chr-a .m-trail, .chr-a .m-dot { fill: none; stroke-linecap: round; }
+.chr-a .m-halo { stroke: var(--paper); stroke-width: 14; }
+.chr-a .m-trail { stroke: var(--tone); stroke-width: 4; opacity: .4; }
+.chr-a .m-dot { stroke: var(--tone); stroke-width: 9; }
+
+.chr-a .m-shadow { fill: var(--rule-2); }
+.chr-a .m-box, .chr-a .m-rep { fill: var(--surface-2); }
+.chr-a .m-rep { stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-outline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-tile { fill: color-mix(in srgb, var(--tone) 14%, transparent); }
+.chr-a .m-glyph { fill: none; stroke: var(--tone); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-nlabel { font-family: var(--f-ui); font-weight: 600; font-size: 14px; fill: var(--ink); }
+.chr-a .m-tech { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chr-a .m-ping { fill: none; stroke: var(--tone); stroke-width: 2; opacity: 0; }
+.chr-a .m-ring { fill: none; stroke-width: 2.2; }
+.chr-a .m-ring.m-new { stroke: var(--accent); }
+.chr-a .m-ring.m-legacy { stroke: var(--legacy); }
+.chr-a .m-ring.m-good { stroke: var(--good); }
+.chr-a .m-ring.m-warn { stroke: var(--warn); }
+.chr-a .m-ring.m-bad, .chr-a .m-ring.m-down { stroke: var(--bad); }
+.chr-a .m-ring.m-planned { stroke: var(--muted); stroke-dasharray: 5 4; }
+.chr-a .m-pill rect { fill: var(--paper); stroke: var(--rule); }
+.chr-a .m-pill text { font-family: var(--f-ui); font-weight: 700; font-size: 9.5px; letter-spacing: .06em; fill: var(--muted); }
+.chr-a .m-flag.m-new rect { fill: var(--accent); stroke: none; }
+.chr-a .m-flag.m-new text { fill: var(--on-accent); }
+.chr-a .m-flag.m-legacy rect { fill: var(--legacy-text); stroke: none; }
+.chr-a .m-flag.m-down rect { fill: var(--bad); stroke: none; }
+.chr-a .m-flag.m-legacy text, .chr-a .m-flag.m-down text { fill: var(--paper); }
+.chr-a .m-flag.m-planned rect { stroke: var(--muted); stroke-dasharray: 3 2; }
+.chr-a .m-badge.m-good { fill: var(--good); }
+.chr-a .m-badge.m-warn { fill: var(--warn); }
+.chr-a .m-badge.m-bad { fill: var(--bad); }
+.chr-a .m-sign { fill: none; stroke: var(--paper); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Drawn diagrams: packets that run along Claude's paths take the accent unless a part
+   sets its own --tone. */
+.chr-a .dg-svg .m-packet { --tone: var(--accent); }
+.chr-a .dg-svg { overflow: visible; }
+
+/* Painted scenes: the paper under the painting, the focus shade and the spots. Paintings
+   sit on paper in both themes, so callouts keep paper colors. */
+.chr-a .m-print { fill: var(--print); }
+.chr-a .m-shade { fill: #101218; }
+.chr-a .m-spot-dot { fill: var(--accent); stroke: #FCFBF7; stroke-width: 3; }
+.chr-a .m-spot-num { font-family: var(--f-ui); font-weight: 700; fill: #FFFFFF; }
+.chr-a .m-spot-pill { fill: rgba(252, 251, 247, .94); stroke: rgba(30, 32, 38, .25); }
+.chr-a .m-spot-label { font-family: var(--f-ui); font-weight: 600; fill: #1E2026; }
+/* ------------------------------------------------- drawn figure classes */
+/* Shared by story pages and standalone animations: the classes Claude writes in
+   diagrams, and the styles of live labels on paintings. */
+.dg-svg text { fill: var(--ink); font-size: 15px; }
+.dg-svg .label { fill: var(--ink-2); font-size: 13px; }
+.dg-svg .small { font-size: 12px; fill: var(--muted); }
+.dg-svg .hand { font-family: var(--f-hand); font-size: 20px; fill: var(--accent-text); }
+.dg-svg .title { font-weight: 700; }
+.dg-svg .box { fill: var(--surface-2); stroke: var(--ink); stroke-width: 1.5; }
+.dg-svg .box.soft { fill: var(--surface); stroke: var(--rule); }
+.dg-svg .box.accent { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; }
+.dg-svg .box.legacy { fill: color-mix(in srgb, var(--legacy) 12%, transparent); stroke: var(--legacy); stroke-width: 2; }
+.dg-svg .line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; }
+.dg-svg .line.accent { stroke: var(--accent); stroke-width: 2.2; }
+.dg-svg .line.legacy { stroke: var(--legacy); stroke-width: 2.2; }
+.dg-svg .line.dashed { stroke-dasharray: 5 4; }
+.dg-svg .head { fill: var(--ink-2); }
+.overlay .lbl { pointer-events: none; }
+.overlay .lbl-hand { font-family: var(--f-hand); font-weight: 600; }
+.overlay .lbl-label { font-family: var(--f-ui); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.overlay .lbl-caption { font-family: var(--f-body); font-style: italic; }
+.overlay .lbl-display { font-family: var(--f-display); }
+.overlay .lbl-mono, .overlay .lbl-number { font-family: var(--f-mono); font-weight: 500; }
+.overlay .lbl-number { font-variant-numeric: tabular-nums; }
+@keyframes a-one-directory-per-algori-k0 { 0% { opacity: 0.000; } 3.396% { opacity: 0.000; } 5.377% { opacity: 1.000; } 20.307% { opacity: 1.000; } 22.288% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k1 { 0% { opacity: 0.000; } 21.298% { opacity: 0.000; } 23.279% { opacity: 1.000; } 36.496% { opacity: 1.000; } 38.477% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k2 { 0% { opacity: 0.000; } 37.487% { opacity: 0.000; } 39.468% { opacity: 1.000; } 62.181% { opacity: 1.000; } 64.162% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k3 { 0% { opacity: 0.000; } 63.171% { opacity: 0.000; } 65.152% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k4 { 0% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k5 { 0% { stroke-dashoffset: 299.00px; } 3.396% { stroke-dashoffset: 299.00px; } 21.298% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-one-directory-per-algori-k6 { 0% { stroke-dashoffset: 299.00px; } 21.298% { stroke-dashoffset: 299.00px; } 37.487% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-one-directory-per-algori-k7 { 0% { stroke-dashoffset: 299.00px; } 37.487% { stroke-dashoffset: 299.00px; } 63.171% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-one-directory-per-algori-k8 { 0% { stroke-dashoffset: 299.00px; } 63.171% { stroke-dashoffset: 299.00px; } 83.018% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 299.00px; }}
+@keyframes a-one-directory-per-algori-k9 { 0% { opacity: 1.000; } 100% { opacity: 1.000; }}
+@keyframes a-one-directory-per-algori-k10 { 0% { opacity: 0.000; } 3.962% { opacity: 0.000; } 5.944% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k11 { 0% { opacity: 0.000; } 21.864% { opacity: 0.000; } 23.845% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k12 { 0% { opacity: 0.000; } 22.543% { opacity: 0.000; } 24.524% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k13 { 0% { opacity: 0.000; } 23.222% { opacity: 0.000; } 25.203% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k14 { 0% { opacity: 0.000; } 23.902% { opacity: 0.000; } 25.883% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k15 { 0% { opacity: 0.000; } 38.053% { opacity: 0.000; } 40.034% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k16 { 0% { opacity: 0.000; } 39.411% { opacity: 0.000; } 41.392% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k17 { 0% { opacity: 0.000; } 38.732% { opacity: 0.000; } 40.713% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k18 { 0% { opacity: 0.000; } 40.091% { opacity: 0.000; } 42.072% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k19 { 0% { opacity: 0.000; } 63.737% { opacity: 0.000; } 65.719% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k20 { 0% { opacity: 0.000; } 64.417% { opacity: 0.000; } 66.398% { opacity: 1.000; } 98.019% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k21 { 0% { scale: 1.000; } 67.7% { scale: 1.000; } 69.398% { scale: 1.060; } 71.096% { scale: 1.000; } 72.794% { scale: 1.060; } 74.492% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-one-directory-per-algori-k22 { 0% { stroke-dashoffset: 1.00px; } 3.962% { stroke-dashoffset: 1.00px; } 9.057% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k23 { 0% { stroke-dashoffset: 1.00px; } 21.864% { stroke-dashoffset: 1.00px; } 26.958% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k24 { 0% { stroke-dashoffset: 1.00px; } 22.543% { stroke-dashoffset: 1.00px; } 27.637% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k25 { 0% { stroke-dashoffset: 1.00px; } 23.222% { stroke-dashoffset: 1.00px; } 28.317% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k26 { 0% { stroke-dashoffset: 1.00px; } 23.902% { stroke-dashoffset: 1.00px; } 28.996% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k27 { 0% { stroke-dashoffset: 1.00px; } 38.053% { stroke-dashoffset: 1.00px; } 43.147% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k28 { 0% { stroke-dashoffset: 1.00px; } 38.732% { stroke-dashoffset: 1.00px; } 43.827% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k29 { 0% { stroke-dashoffset: 1.00px; } 39.411% { stroke-dashoffset: 1.00px; } 44.506% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k30 { 0% { stroke-dashoffset: 1.00px; } 40.091% { stroke-dashoffset: 1.00px; } 45.185% { stroke-dashoffset: 0.00px; } 98.019% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-one-directory-per-algori-k31 { 0% { stroke-dashoffset: 0.00px; } 26.958% { stroke-dashoffset: 0.00px; } 27.417% { stroke-dashoffset: -0.04px; } 27.876% { stroke-dashoffset: -0.15px; } 28.335% { stroke-dashoffset: -0.31px; } 28.794% { stroke-dashoffset: -0.50px; } 29.253% { stroke-dashoffset: -0.69px; } 29.712% { stroke-dashoffset: -0.85px; } 30.171% { stroke-dashoffset: -0.96px; } 30.63% { stroke-dashoffset: -1.00px; } 98.019% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-one-directory-per-algori-k32 { 0% { stroke-dashoffset: 0.07px; } 26.958% { stroke-dashoffset: 0.07px; } 27.417% { stroke-dashoffset: 0.03px; } 27.876% { stroke-dashoffset: -0.08px; } 28.335% { stroke-dashoffset: -0.24px; } 28.794% { stroke-dashoffset: -0.43px; } 29.253% { stroke-dashoffset: -0.62px; } 29.712% { stroke-dashoffset: -0.78px; } 30.171% { stroke-dashoffset: -0.89px; } 30.63% { stroke-dashoffset: -0.93px; } 98.019% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-one-directory-per-algori-k33 { 0% { opacity: 0.000; } 26.392% { opacity: 0.000; } 26.958% { opacity: 1.000; } 30.064% { opacity: 1.000; } 30.63% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k34 { 0% { stroke-dashoffset: 0.00px; } 30.949% { stroke-dashoffset: 0.00px; } 31.408% { stroke-dashoffset: -0.04px; } 31.867% { stroke-dashoffset: -0.15px; } 32.326% { stroke-dashoffset: -0.31px; } 32.785% { stroke-dashoffset: -0.50px; } 33.243% { stroke-dashoffset: -0.69px; } 33.702% { stroke-dashoffset: -0.85px; } 34.161% { stroke-dashoffset: -0.96px; } 34.62% { stroke-dashoffset: -1.00px; } 98.019% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-one-directory-per-algori-k35 { 0% { stroke-dashoffset: 0.07px; } 30.949% { stroke-dashoffset: 0.07px; } 31.408% { stroke-dashoffset: 0.03px; } 31.867% { stroke-dashoffset: -0.08px; } 32.326% { stroke-dashoffset: -0.24px; } 32.785% { stroke-dashoffset: -0.43px; } 33.243% { stroke-dashoffset: -0.62px; } 33.702% { stroke-dashoffset: -0.78px; } 34.161% { stroke-dashoffset: -0.89px; } 34.62% { stroke-dashoffset: -0.93px; } 98.019% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-one-directory-per-algori-k36 { 0% { opacity: 0.000; } 30.383% { opacity: 0.000; } 30.949% { opacity: 1.000; } 34.054% { opacity: 1.000; } 34.62% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k37 { 0% { stroke-dashoffset: 0.00px; } 43.147% { stroke-dashoffset: 0.00px; } 44.059% { stroke-dashoffset: -0.04px; } 44.97% { stroke-dashoffset: -0.15px; } 45.881% { stroke-dashoffset: -0.31px; } 46.793% { stroke-dashoffset: -0.50px; } 47.704% { stroke-dashoffset: -0.69px; } 48.615% { stroke-dashoffset: -0.85px; } 49.527% { stroke-dashoffset: -0.96px; } 50.438% { stroke-dashoffset: -1.00px; } 98.019% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-one-directory-per-algori-k38 { 0% { stroke-dashoffset: 0.07px; } 43.147% { stroke-dashoffset: 0.07px; } 44.059% { stroke-dashoffset: 0.03px; } 44.97% { stroke-dashoffset: -0.08px; } 45.881% { stroke-dashoffset: -0.24px; } 46.793% { stroke-dashoffset: -0.43px; } 47.704% { stroke-dashoffset: -0.62px; } 48.615% { stroke-dashoffset: -0.78px; } 49.527% { stroke-dashoffset: -0.89px; } 50.438% { stroke-dashoffset: -0.93px; } 98.019% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-one-directory-per-algori-k39 { 0% { opacity: 0.000; } 42.581% { opacity: 0.000; } 43.147% { opacity: 1.000; } 49.872% { opacity: 1.000; } 50.438% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k40 { 0% { stroke-dashoffset: 0.00px; } 51.072% { stroke-dashoffset: 0.00px; } 51.983% { stroke-dashoffset: -0.04px; } 52.895% { stroke-dashoffset: -0.15px; } 53.806% { stroke-dashoffset: -0.31px; } 54.717% { stroke-dashoffset: -0.50px; } 55.629% { stroke-dashoffset: -0.69px; } 56.54% { stroke-dashoffset: -0.85px; } 57.451% { stroke-dashoffset: -0.96px; } 58.363% { stroke-dashoffset: -1.00px; } 98.019% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-one-directory-per-algori-k41 { 0% { stroke-dashoffset: 0.07px; } 51.072% { stroke-dashoffset: 0.07px; } 51.983% { stroke-dashoffset: 0.03px; } 52.895% { stroke-dashoffset: -0.08px; } 53.806% { stroke-dashoffset: -0.24px; } 54.717% { stroke-dashoffset: -0.43px; } 55.629% { stroke-dashoffset: -0.62px; } 56.54% { stroke-dashoffset: -0.78px; } 57.451% { stroke-dashoffset: -0.89px; } 58.363% { stroke-dashoffset: -0.93px; } 98.019% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-one-directory-per-algori-k42 { 0% { opacity: 0.000; } 50.506% { opacity: 0.000; } 51.072% { opacity: 1.000; } 57.797% { opacity: 1.000; } 58.363% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-one-directory-per-algori-k43 { 0% { stroke-dashoffset: 0.00px; } 68.832% { stroke-dashoffset: 0.00px; } 69.743% { stroke-dashoffset: -0.04px; } 70.654% { stroke-dashoffset: -0.15px; } 71.566% { stroke-dashoffset: -0.31px; } 72.477% { stroke-dashoffset: -0.50px; } 73.389% { stroke-dashoffset: -0.69px; } 74.3% { stroke-dashoffset: -0.85px; } 75.211% { stroke-dashoffset: -0.96px; } 76.123% { stroke-dashoffset: -1.00px; } 98.019% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-one-directory-per-algori-k44 { 0% { stroke-dashoffset: 0.07px; } 68.832% { stroke-dashoffset: 0.07px; } 69.743% { stroke-dashoffset: 0.03px; } 70.654% { stroke-dashoffset: -0.08px; } 71.566% { stroke-dashoffset: -0.24px; } 72.477% { stroke-dashoffset: -0.43px; } 73.389% { stroke-dashoffset: -0.62px; } 74.3% { stroke-dashoffset: -0.78px; } 75.211% { stroke-dashoffset: -0.89px; } 76.123% { stroke-dashoffset: -0.93px; } 98.019% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-one-directory-per-algori-k45 { 0% { opacity: 0.000; } 68.266% { opacity: 0.000; } 68.832% { opacity: 1.000; } 75.556% { opacity: 1.000; } 76.123% { opacity: 0.000; } 100% { opacity: 0.000; }}
+#a-one-directory-per-algori-cap-0 { opacity: 0.000; animation: a-one-directory-per-algori-k0 17.666s linear infinite both; }
+#a-one-directory-per-algori-cap-1 { opacity: 0.000; animation: a-one-directory-per-algori-k1 17.666s linear infinite both; }
+#a-one-directory-per-algori-cap-2 { opacity: 0.000; animation: a-one-directory-per-algori-k2 17.666s linear infinite both; }
+#a-one-directory-per-algori-cap-3 { opacity: 0.000; animation: a-one-directory-per-algori-k3 17.666s linear infinite both; }
+#a-one-directory-per-algori-cap-rest { animation: a-one-directory-per-algori-k4 17.666s linear infinite both; }
+#a-one-directory-per-algori-fill-0 { animation: a-one-directory-per-algori-k5 17.666s linear infinite both; }
+#a-one-directory-per-algori-fill-1 { animation: a-one-directory-per-algori-k6 17.666s linear infinite both; }
+#a-one-directory-per-algori-fill-2 { animation: a-one-directory-per-algori-k7 17.666s linear infinite both; }
+#a-one-directory-per-algori-fill-3 { animation: a-one-directory-per-algori-k8 17.666s linear infinite both; }
+#a-one-directory-per-algori-strip { opacity: 0.000; animation: a-one-directory-per-algori-k9 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-folder { animation: a-one-directory-per-algori-k10 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-g-fd { animation: a-one-directory-per-algori-k11 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-define { animation: a-one-directory-per-algori-k12 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-g-dr { animation: a-one-directory-per-algori-k13 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-registry { animation: a-one-directory-per-algori-k14 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-g-rc { animation: a-one-directory-per-algori-k15 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-g-rr { animation: a-one-directory-per-algori-k16 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-card { animation: a-one-directory-per-algori-k17 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-route { animation: a-one-directory-per-algori-k18 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-instruments { animation: a-one-directory-per-algori-k19 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-g-iv { animation: a-one-directory-per-algori-k20 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-viz-u { transform-box: fill-box; transform-origin: center; animation: a-one-directory-per-algori-k21 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w1 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w2 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w3 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w4 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w5 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w6 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w7 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w8 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w9 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w10 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w11 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w12 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w13 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w14 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w15 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w16 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w17 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w18 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w19 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w20 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w21 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w22 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w23 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w24 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w25 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w26 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w27 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w28 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w29 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w30 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w31 { animation: a-one-directory-per-algori-k22 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-fd { animation: a-one-directory-per-algori-k23 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w33 { animation: a-one-directory-per-algori-k23 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w34 { animation: a-one-directory-per-algori-k23 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w35 { animation: a-one-directory-per-algori-k24 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w36 { animation: a-one-directory-per-algori-k24 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w37 { animation: a-one-directory-per-algori-k24 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w38 { animation: a-one-directory-per-algori-k24 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w39 { animation: a-one-directory-per-algori-k24 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-dr { animation: a-one-directory-per-algori-k25 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w41 { animation: a-one-directory-per-algori-k25 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w42 { animation: a-one-directory-per-algori-k25 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w43 { animation: a-one-directory-per-algori-k26 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w44 { animation: a-one-directory-per-algori-k26 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w45 { animation: a-one-directory-per-algori-k26 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w46 { animation: a-one-directory-per-algori-k26 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w47 { animation: a-one-directory-per-algori-k26 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-rc { animation: a-one-directory-per-algori-k27 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w49 { animation: a-one-directory-per-algori-k27 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w50 { animation: a-one-directory-per-algori-k27 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w51 { animation: a-one-directory-per-algori-k28 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w52 { animation: a-one-directory-per-algori-k28 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w53 { animation: a-one-directory-per-algori-k28 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w54 { animation: a-one-directory-per-algori-k28 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w55 { animation: a-one-directory-per-algori-k28 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-rr { animation: a-one-directory-per-algori-k29 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w57 { animation: a-one-directory-per-algori-k29 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w58 { animation: a-one-directory-per-algori-k29 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w59 { animation: a-one-directory-per-algori-k30 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w60 { animation: a-one-directory-per-algori-k30 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w61 { animation: a-one-directory-per-algori-k30 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w62 { animation: a-one-directory-per-algori-k30 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-w63 { animation: a-one-directory-per-algori-k30 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk1-h { animation: a-one-directory-per-algori-k31 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk1-t { stroke-dashoffset: 0.07px; animation: a-one-directory-per-algori-k32 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk1-d { animation: a-one-directory-per-algori-k31 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk1 { opacity: 0.000; animation: a-one-directory-per-algori-k33 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk2-h { animation: a-one-directory-per-algori-k34 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk2-t { stroke-dashoffset: 0.07px; animation: a-one-directory-per-algori-k35 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk2-d { animation: a-one-directory-per-algori-k34 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk2 { opacity: 0.000; animation: a-one-directory-per-algori-k36 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk3-h { animation: a-one-directory-per-algori-k37 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk3-t { stroke-dashoffset: 0.07px; animation: a-one-directory-per-algori-k38 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk3-d { animation: a-one-directory-per-algori-k37 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk3 { opacity: 0.000; animation: a-one-directory-per-algori-k39 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk4-h { animation: a-one-directory-per-algori-k40 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk4-t { stroke-dashoffset: 0.07px; animation: a-one-directory-per-algori-k41 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk4-d { animation: a-one-directory-per-algori-k40 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk4 { opacity: 0.000; animation: a-one-directory-per-algori-k42 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk5-h { animation: a-one-directory-per-algori-k43 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk5-t { stroke-dashoffset: 0.07px; animation: a-one-directory-per-algori-k44 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk5-d { animation: a-one-directory-per-algori-k43 17.666s linear infinite both; }
+#a-one-directory-per-algori-d-pk5 { opacity: 0.000; animation: a-one-directory-per-algori-k45 17.666s linear infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .chr-a-a-one-directory-per-algori, .chr-a-a-one-directory-per-algori * { animation: none !important; }
+}
+</style><svg viewBox="0 0 1000 380" class="dg-svg" x="33.6" y="45.0" width="1212.8" height="460.9"><g id="a-one-directory-per-algori-d-folder"><path d="M12 36 L12 20 L94 20 L106 36" fill="none" stroke="#1f1e1a" stroke-width="1.5" stroke-linecap="round" id="a-one-directory-per-algori-d-w1" pathLength="1" stroke-dasharray="1 1" /><rect x="10" y="34" width="230" height="330" rx="8" fill="#fdf0d3" id="a-one-directory-per-algori-d-w2" pathLength="1" stroke-dasharray="1 1" /><path d="M4.54 34C8.7 33.96,21.29 33.63,29.49 33.75C37.69 33.88,45.66 34.68,53.74 34.77C61.83 34.87,69.85 34.41,78 34.33C86.15 34.25,94.62 34.32,102.63 34.29C110.65 34.26,117.96 34.25,126.1 34.13C134.23 34.02,143.26 33.48,151.43 33.58C159.6 33.68,166.97 34.72,175.11 34.73C183.25 34.74,192.15 33.7,200.27 33.61C208.38 33.52,215.84 34.12,223.82 34.18C231.81 34.25,244.12 34.03,248.18 34" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w3" pathLength="1" stroke-dasharray="1 1" /><path d="M240 20.26C239.99 24.25,240.04 36.4,239.94 44.17C239.85 51.94,239.57 59.17,239.44 66.88C239.31 74.59,239.12 82.79,239.17 90.43C239.22 98.06,239.46 105.08,239.73 112.7C240.01 120.32,240.88 128.25,240.81 136.13C240.74 144.02,239.54 152.15,239.33 160.01C239.11 167.87,239.36 175.75,239.51 183.29C239.66 190.82,240.02 197.45,240.23 205.24C240.45 213.03,240.86 222.27,240.79 230.01C240.72 237.75,240.05 244.18,239.82 251.68C239.6 259.17,239.52 267.08,239.46 274.98C239.4 282.89,239.23 291.2,239.46 299.09C239.68 306.99,240.67 314.78,240.81 322.36C240.96 329.93,240.49 336.82,240.35 344.53C240.22 352.25,240.06 364.64,240 368.66" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w4" pathLength="1" stroke-dasharray="1 1" /><path d="M240.07 364C236.18 363.94,224.59 363.59,216.71 363.63C208.83 363.67,200.66 364.04,192.79 364.21C184.93 364.39,177.37 364.66,169.52 364.69C161.68 364.72,153.59 364.48,145.72 364.39C137.85 364.29,129.96 364.28,122.33 364.12C114.69 363.96,107.51 363.3,99.9 363.43C92.28 363.56,84.71 364.66,76.65 364.88C68.59 365.1,59.37 364.97,51.52 364.73C43.67 364.49,37.22 363.59,29.53 363.46C21.84 363.34,9.39 363.91,5.36 364" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w5" pathLength="1" stroke-dasharray="1 1" /><path d="M10 378.94C9.93 374.86,9.64 362.36,9.6 354.45C9.56 346.55,9.57 339.25,9.77 331.51C9.97 323.78,10.76 316.11,10.81 308.03C10.86 299.95,10.25 291.23,10.08 283.03C9.91 274.84,9.72 266.6,9.81 258.86C9.9 251.13,10.7 244.4,10.61 236.63C10.53 228.85,9.41 220.4,9.31 212.21C9.21 204.03,9.84 195.4,10.04 187.52C10.24 179.63,10.43 172.75,10.52 164.92C10.61 157.1,10.56 148.71,10.6 140.55C10.64 132.38,10.92 123.74,10.78 115.93C10.65 108.12,10.06 101.55,9.79 93.68C9.51 85.82,9.14 76.8,9.15 68.74C9.15 60.69,9.66 53.25,9.8 45.35C9.94 37.45,9.97 25.34,10 21.34" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w6" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(30 70) scale(1.2)" x="0" y="0" text-anchor="start" font-weight="600">dijkstra/</text><rect x="30" y="88" width="190" height="38" rx="19" fill="#fffdf9" id="a-one-directory-per-algori-d-w7" pathLength="1" stroke-dasharray="1 1" /><path d="M27.33 88C30.87 87.98,41.4 87.93,48.52 87.86C55.64 87.8,62.78 87.67,70.06 87.62C77.33 87.58,84.96 87.57,92.18 87.6C99.41 87.62,106.3 87.8,113.42 87.77C120.53 87.74,127.58 87.45,134.85 87.41C142.13 87.38,149.79 87.43,157.06 87.56C164.33 87.7,171.23 88.19,178.46 88.2C185.68 88.22,193.19 87.7,200.41 87.67C207.62 87.63,218.18 87.94,221.74 88" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w8" pathLength="1" stroke-dasharray="1 1" /><path d="M220 84.03C219.92 87.78,219.54 99.2,219.54 106.52C219.54 113.85,219.92 124.41,220 127.99" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w9" pathLength="1" stroke-dasharray="1 1" /><path d="M220.43 126C216.87 126.01,206.18 126.03,199.09 126.05C192 126.07,184.85 126.04,177.87 126.12C170.9 126.21,164.28 126.58,157.26 126.58C150.23 126.58,142.94 126.24,135.71 126.15C128.48 126.06,121.02 126.11,113.87 126.03C106.72 125.96,99.89 125.65,92.81 125.7C85.72 125.74,78.4 126.26,71.38 126.29C64.36 126.31,57.66 125.9,50.68 125.85C43.7 125.8,33.02 125.98,29.49 126" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w10" pathLength="1" stroke-dasharray="1 1" /><path d="M30 129.98C30.07 126.45,30.43 115.89,30.43 108.79C30.43 101.69,30.07 90.94,30 87.37" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w11" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(125 111.75) scale(0.95)" x="0" y="0" text-anchor="middle">model</text><rect x="30" y="140" width="190" height="38" rx="19" fill="#fffdf9" id="a-one-directory-per-algori-d-w12" pathLength="1" stroke-dasharray="1 1" /><path d="M26.81 140C30.37 140.07,41.08 140.41,48.18 140.45C55.28 140.49,62.17 140.22,69.42 140.23C76.68 140.24,84.42 140.46,91.69 140.52C98.96 140.57,105.96 140.6,113.05 140.54C120.15 140.49,127.04 140.19,134.26 140.19C141.48 140.18,149.18 140.47,156.39 140.51C163.6 140.56,170.43 140.52,177.52 140.47C184.6 140.42,191.76 140.29,198.9 140.21C206.03 140.13,216.75 140.03,220.32 140" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w13" pathLength="1" stroke-dasharray="1 1" /><path d="M220 135.86C219.96 139.77,219.75 151.67,219.75 159.3C219.75 166.93,219.96 177.93,220 181.66" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w14" pathLength="1" stroke-dasharray="1 1" /><path d="M220.51 178C216.94 178.01,206.2 178.16,199.11 178.07C192.01 177.97,184.93 177.47,177.93 177.43C170.93 177.39,164.3 177.79,157.11 177.81C149.91 177.83,141.97 177.49,134.76 177.56C127.55 177.62,120.88 178.07,113.84 178.18C106.79 178.28,99.61 178.26,92.49 178.19C85.37 178.13,78.15 177.82,71.14 177.8C64.12 177.78,57.44 178.04,50.39 178.07C43.33 178.11,32.38 178.01,28.78 178" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w15" pathLength="1" stroke-dasharray="1 1" /><path d="M30 180.89C30.01 177.2,30.07 166.06,30.07 158.75C30.07 151.43,30.01 140.63,30 137.01" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w16" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(125 163.75) scale(0.95)" x="0" y="0" text-anchor="middle">sources</text><rect x="30" y="192" width="190" height="38" rx="19" fill="#fffdf9" id="a-one-directory-per-algori-d-w17" pathLength="1" stroke-dasharray="1 1" /><path d="M26.19 192C29.77 191.9,40.36 191.49,47.7 191.41C55.04 191.33,62.99 191.4,70.22 191.54C77.45 191.69,83.83 192.22,91.07 192.27C98.31 192.33,106.3 192,113.65 191.9C121.01 191.8,128.1 191.72,135.19 191.69C142.28 191.65,148.98 191.73,156.19 191.69C163.4 191.66,171.01 191.51,178.44 191.49C185.87 191.47,193.49 191.51,200.75 191.59C208.02 191.68,218.49 191.93,222.03 192" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w18" pathLength="1" stroke-dasharray="1 1" /><path d="M220 190.32C220.05 193.93,220.31 204.89,220.31 211.99C220.31 219.1,220.05 229.46,220 232.96" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w19" pathLength="1" stroke-dasharray="1 1" /><path d="M220.45 230C216.79 230.03,205.71 230.12,198.52 230.17C191.32 230.21,184.35 230.24,177.28 230.27C170.21 230.3,163.31 230.47,156.1 230.34C148.88 230.2,141.1 229.52,134 229.48C126.89 229.44,120.54 230.02,113.47 230.1C106.41 230.17,98.86 230,91.6 229.95C84.34 229.89,77.01 229.81,69.88 229.78C62.76 229.74,56.04 229.69,48.86 229.73C41.68 229.77,30.49 229.96,26.82 230" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w20" pathLength="1" stroke-dasharray="1 1" /><path d="M30 233.82C30.08 230.05,30.49 218.71,30.49 211.22C30.49 203.74,30.08 192.63,30 188.91" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w21" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(125 215.75) scale(0.95)" x="0" y="0" text-anchor="middle">trace</text><g id="a-one-directory-per-algori-d-viz-d"><g id="a-one-directory-per-algori-d-viz-u"><g id="a-one-directory-per-algori-d-viz"><rect x="30" y="244" width="190" height="38" rx="19" fill="#fffdf9" id="a-one-directory-per-algori-d-w22" pathLength="1" stroke-dasharray="1 1" /><path d="M29.74 244C33.31 243.91,44.12 243.41,51.18 243.47C58.24 243.52,65.05 244.23,72.11 244.31C79.17 244.39,86.36 244.05,93.54 243.93C100.72 243.81,108.03 243.69,115.18 243.61C122.33 243.54,129.33 243.39,136.42 243.48C143.52 243.57,150.76 243.99,157.75 244.16C164.75 244.33,171.36 244.49,178.39 244.49C185.43 244.49,192.79 244.25,199.97 244.16C207.16 244.08,217.91 244.03,221.5 244" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w23" pathLength="1" stroke-dasharray="1 1" /><path d="M220 242.32C220.07 245.83,220.42 256.36,220.42 263.41C220.42 270.47,220.07 281.11,220 284.65" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w24" pathLength="1" stroke-dasharray="1 1" /><path d="M223.88 282C220.29 282.04,209.65 282.13,202.38 282.23C195.1 282.33,187.44 282.71,180.24 282.59C173.03 282.47,166.35 281.69,159.16 281.51C151.97 281.33,144.45 281.35,137.1 281.53C129.75 281.71,122.34 282.5,115.05 282.59C107.76 282.67,100.53 282.12,93.35 282.04C86.18 281.97,79.11 282.22,72.01 282.15C64.91 282.08,58.02 281.65,50.76 281.62C43.51 281.6,32.19 281.94,28.48 282" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w25" pathLength="1" stroke-dasharray="1 1" /><path d="M30 283.58C29.97 280.13,29.8 269.74,29.8 262.9C29.8 256.05,29.97 245.91,30 242.51" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w26" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(125 267.75) scale(0.95)" x="0" y="0" text-anchor="middle">visualizer</text></g></g></g><rect x="30" y="296" width="190" height="38" rx="19" fill="#fffdf9" id="a-one-directory-per-algori-d-w27" pathLength="1" stroke-dasharray="1 1" /><path d="M28.36 296C31.92 295.9,42.39 295.5,49.7 295.41C57 295.33,64.88 295.41,72.19 295.5C79.5 295.58,86.39 295.95,93.54 295.93C100.68 295.92,107.86 295.36,115.07 295.41C122.29 295.46,129.68 296.2,136.84 296.25C143.99 296.3,150.9 295.73,158.01 295.7C165.11 295.67,172.13 295.97,179.46 296.07C186.79 296.17,194.69 296.31,201.98 296.3C209.26 296.28,219.63 296.05,223.15 296" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w28" pathLength="1" stroke-dasharray="1 1" /><path d="M220 295.33C219.98 298.77,219.85 309.1,219.85 315.95C219.85 322.8,219.98 333.02,220 336.44" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w29" pathLength="1" stroke-dasharray="1 1" /><path d="M224.21 334C220.64 334.05,210.02 334.33,202.82 334.29C195.61 334.24,188.44 333.79,180.99 333.72C173.55 333.65,165.65 333.82,158.16 333.87C150.67 333.92,143.25 334.05,136.05 334.01C128.84 333.98,122.14 333.73,114.92 333.65C107.7 333.57,100.05 333.51,92.74 333.54C85.44 333.56,78.32 333.65,71.07 333.8C63.82 333.95,56.57 334.41,49.24 334.44C41.91 334.48,30.78 334.07,27.08 334" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w30" pathLength="1" stroke-dasharray="1 1" /><path d="M30 335.8C30.03 332.24,30.18 321.4,30.18 314.46C30.18 307.53,30.03 297.57,30 294.19" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w31" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(125 319.75) scale(0.95)" x="0" y="0" text-anchor="middle">tests</text></g><g id="a-one-directory-per-algori-d-g-fd"><path id="a-one-directory-per-algori-d-fd" d="M242 190C245.53 189.99,256.24 189.94,263.2 189.96C270.17 189.98,276.98 190.12,283.78 190.13C290.58 190.13,300.63 190.02,304 190" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-one-directory-per-algori-d-pk1" class="m-packet"><path class="m-halo" id="a-one-directory-per-algori-d-pk1-h" d="M242 190C245.53 189.99,256.24 189.94,263.2 189.96C270.17 189.98,276.98 190.12,283.78 190.13C290.58 190.13,300.63 190.02,304 190" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-one-directory-per-algori-d-pk1-t" d="M242 190C245.53 189.99,256.24 189.94,263.2 189.96C270.17 189.98,276.98 190.12,283.78 190.13C290.58 190.13,300.63 190.02,304 190" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-one-directory-per-algori-d-pk1-d" d="M242 190C245.53 189.99,256.24 189.94,263.2 189.96C270.17 189.98,276.98 190.12,283.78 190.13C290.58 190.13,300.63 190.02,304 190" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M304 190C303.28 190.42,301.21 191.83,299.69 192.51C298.17 193.19,295.67 193.82,294.87 194.08" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w33" pathLength="1" stroke-dasharray="1 1" /><path d="M304 190C303.23 189.7,300.87 188.89,299.35 188.21C297.83 187.53,295.62 186.3,294.87 185.92" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w34" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-one-directory-per-algori-d-define"><rect x="306" y="166" width="250" height="48" rx="24" fill="#e4edfd" id="a-one-directory-per-algori-d-w35" pathLength="1" stroke-dasharray="1 1" /><path d="M303.26 166C307.19 166.06,319.13 166.34,326.89 166.35C334.64 166.36,342.17 166.04,349.78 166.07C357.39 166.1,365.04 166.54,372.55 166.53C380.07 166.52,387.17 166.03,394.87 166C402.57 165.96,411 166.31,418.75 166.31C426.5 166.31,433.74 166.13,441.37 165.99C449.01 165.85,456.96 165.51,464.56 165.46C472.15 165.41,479.37 165.55,486.94 165.69C494.52 165.83,502.3 166.27,510.01 166.28C517.71 166.29,525.39 165.79,533.17 165.74C540.94 165.7,552.73 165.96,556.64 166" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w36" pathLength="1" stroke-dasharray="1 1" /><path d="M556 161.62C555.96 166.24,555.79 180.07,555.79 189.35C555.79 198.63,555.96 212.64,556 217.29" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w37" pathLength="1" stroke-dasharray="1 1" /><path d="M556.4 214C552.61 214.04,541.32 214.18,533.65 214.25C525.98 214.33,518.07 214.38,510.4 214.44C502.72 214.49,495.2 214.58,487.59 214.59C479.99 214.6,472.46 214.6,464.77 214.5C457.08 214.4,449.14 213.98,441.43 213.98C433.72 213.99,426.11 214.52,418.52 214.53C410.92 214.55,403.48 214.16,395.87 214.08C388.26 214,380.6 214.07,372.86 214.05C365.13 214.02,357.11 213.86,349.46 213.94C341.82 214.03,334.63 214.55,327.01 214.56C319.39 214.57,307.62 214.09,303.74 214" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w38" pathLength="1" stroke-dasharray="1 1" /><path d="M306 218.65C305.95 213.98,305.7 200.06,305.7 190.64C305.7 181.23,305.95 166.91,306 162.17" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" id="a-one-directory-per-algori-d-w39" pathLength="1" stroke-dasharray="1 1" /><text x="431" y="195" text-anchor="middle" font-weight="600">defineVisualization()</text></g><g id="a-one-directory-per-algori-d-g-dr"><path id="a-one-directory-per-algori-d-dr" d="M558 190C561.24 190.07,571.06 190.39,577.45 190.43C583.84 190.48,589.91 190.35,596.34 190.28C602.76 190.21,612.72 190.05,616 190" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-one-directory-per-algori-d-pk2" class="m-packet"><path class="m-halo" id="a-one-directory-per-algori-d-pk2-h" d="M558 190C561.24 190.07,571.06 190.39,577.45 190.43C583.84 190.48,589.91 190.35,596.34 190.28C602.76 190.21,612.72 190.05,616 190" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-one-directory-per-algori-d-pk2-t" d="M558 190C561.24 190.07,571.06 190.39,577.45 190.43C583.84 190.48,589.91 190.35,596.34 190.28C602.76 190.21,612.72 190.05,616 190" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-one-directory-per-algori-d-pk2-d" d="M558 190C561.24 190.07,571.06 190.39,577.45 190.43C583.84 190.48,589.91 190.35,596.34 190.28C602.76 190.21,612.72 190.05,616 190" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M616 190C615.23 190.26,612.9 190.89,611.38 191.57C609.86 192.25,607.62 193.66,606.87 194.08" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w41" pathLength="1" stroke-dasharray="1 1" /><path d="M616 190C615.17 189.67,612.52 188.69,611 188.01C609.48 187.33,607.56 186.27,606.87 185.92" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w42" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-one-directory-per-algori-d-registry"><rect x="618" y="150" width="150" height="80" rx="10" fill="#fffdf9" id="a-one-directory-per-algori-d-w43" pathLength="1" stroke-dasharray="1 1" /><path d="M612.35 150C616.22 150.13,628.21 150.67,635.54 150.8C642.87 150.94,649.13 150.93,656.34 150.8C663.54 150.67,671.09 150.07,678.77 150C686.45 149.92,695.01 150.2,702.41 150.33C709.82 150.47,715.76 150.9,723.19 150.83C730.63 150.76,739.4 150.05,747 149.91C754.59 149.77,765.13 149.99,768.75 150" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w44" pathLength="1" stroke-dasharray="1 1" /><path d="M768 145.1C768.11 148.73,768.77 159.59,768.69 166.89C768.61 174.19,767.69 181.76,767.52 188.91C767.36 196.05,767.61 202.58,767.69 209.76C767.77 216.94,767.95 228.29,768 232" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w45" pathLength="1" stroke-dasharray="1 1" /><path d="M771.45 230C767.55 230.05,755.55 230.39,748.06 230.29C740.56 230.2,733.84 229.35,726.47 229.41C719.11 229.48,711.55 230.6,703.84 230.68C696.14 230.75,687.77 230.04,680.26 229.85C672.76 229.67,666.18 229.53,658.81 229.55C651.43 229.58,643.68 229.95,636.01 230.03C628.35 230.1,616.67 230,612.8 230" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w46" pathLength="1" stroke-dasharray="1 1" /><path d="M618 235.52C617.98 231.93,617.92 221.39,617.87 213.95C617.82 206.51,617.56 198.3,617.68 190.86C617.79 183.42,618.5 176.57,618.56 169.3C618.61 162.02,618.09 150.91,618 147.23" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w47" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(693 195.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Registry</text></g><g id="a-one-directory-per-algori-d-g-rc"><path id="a-one-directory-per-algori-d-rc" d="M770 172C772.57 167.75,780.48 155.22,785.44 146.51C790.4 137.81,792.69 127.52,799.78 119.76C806.87 112.01,823.3 103.29,828 100" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-one-directory-per-algori-d-pk3" class="m-packet"><path class="m-halo" id="a-one-directory-per-algori-d-pk3-h" d="M770 172C772.57 167.75,780.48 155.22,785.44 146.51C790.4 137.81,792.69 127.52,799.78 119.76C806.87 112.01,823.3 103.29,828 100" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-one-directory-per-algori-d-pk3-t" d="M770 172C772.57 167.75,780.48 155.22,785.44 146.51C790.4 137.81,792.69 127.52,799.78 119.76C806.87 112.01,823.3 103.29,828 100" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-one-directory-per-algori-d-pk3-d" d="M770 172C772.57 167.75,780.48 155.22,785.44 146.51C790.4 137.81,792.69 127.52,799.78 119.76C806.87 112.01,823.3 103.29,828 100" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M828 100C827.55 100.71,826.15 102.82,825.3 104.26C824.46 105.69,823.33 107.9,822.94 108.63" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w49" pathLength="1" stroke-dasharray="1 1" /><path d="M828 100C827.13 100.19,824.39 100.81,822.75 101.14C821.12 101.48,818.96 101.85,818.2 101.99" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w50" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-one-directory-per-algori-d-g-rr"><path id="a-one-directory-per-algori-d-rr" d="M770 208C772.55 212.56,780.36 226.32,785.28 235.37C790.21 244.43,792.42 254.57,799.54 262.34C806.66 270.11,823.26 278.72,828 282" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-one-directory-per-algori-d-pk4" class="m-packet"><path class="m-halo" id="a-one-directory-per-algori-d-pk4-h" d="M770 208C772.55 212.56,780.36 226.32,785.28 235.37C790.21 244.43,792.42 254.57,799.54 262.34C806.66 270.11,823.26 278.72,828 282" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-one-directory-per-algori-d-pk4-t" d="M770 208C772.55 212.56,780.36 226.32,785.28 235.37C790.21 244.43,792.42 254.57,799.54 262.34C806.66 270.11,823.26 278.72,828 282" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-one-directory-per-algori-d-pk4-d" d="M770 208C772.55 212.56,780.36 226.32,785.28 235.37C790.21 244.43,792.42 254.57,799.54 262.34C806.66 270.11,823.26 278.72,828 282" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M828 282C827.22 281.85,824.92 281.46,823.29 281.13C821.66 280.8,819.05 280.2,818.2 280.01" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w57" pathLength="1" stroke-dasharray="1 1" /><path d="M828 282C827.6 281.21,826.41 278.67,825.57 277.24C824.73 275.8,823.38 274.02,822.94 273.37" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w58" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-one-directory-per-algori-d-card"><rect x="830" y="56" width="160" height="90" rx="10" fill="#e1f2e6" id="a-one-directory-per-algori-d-w51" pathLength="1" stroke-dasharray="1 1" /><path d="M824.34 56C828.35 56.02,840.43 56.28,848.39 56.13C856.35 55.98,864.14 55.05,872.1 55.11C880.05 55.16,888.2 56.33,896.13 56.45C904.06 56.58,911.69 56,919.68 55.84C927.67 55.68,936.1 55.46,944.08 55.49C952.07 55.53,959.66 55.95,967.58 56.04C975.49 56.12,987.56 56.01,991.56 56" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w52" pathLength="1" stroke-dasharray="1 1" /><path d="M990 55.29C990.02 59.17,990.04 70.88,990.11 78.56C990.19 86.24,990.44 93.67,990.46 101.38C990.48 109.08,990.29 117.12,990.22 124.79C990.14 132.46,990.04 143.62,990 147.38" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w53" pathLength="1" stroke-dasharray="1 1" /><path d="M993.1 146C989.28 146.09,978.03 146.58,970.19 146.57C962.34 146.55,953.99 146.07,946.04 145.91C938.09 145.74,930.64 145.66,922.5 145.57C914.36 145.47,905.27 145.32,897.2 145.33C889.12 145.34,881.92 145.42,874.05 145.63C866.17 145.84,857.82 146.52,849.94 146.59C842.07 146.65,830.68 146.1,826.82 146" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w54" pathLength="1" stroke-dasharray="1 1" /><path d="M830 146.49C830.08 142.45,830.51 130.03,830.5 122.29C830.49 114.54,830.14 107.71,829.95 100.02C829.76 92.34,829.33 84.16,829.34 76.16C829.35 68.16,829.89 56.03,830 52" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w55" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(910 95.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Catalog card</text><text transform="translate(910 125.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">one per algorithm</text></g><g id="a-one-directory-per-algori-d-route"><rect x="830" y="238" width="160" height="90" rx="10" fill="#efe3fd" id="a-one-directory-per-algori-d-w59" pathLength="1" stroke-dasharray="1 1" /><path d="M825.49 238C829.6 238.08,842.12 238.43,850.14 238.48C858.17 238.52,865.64 238.45,873.64 238.28C881.65 238.11,889.79 237.63,898.19 237.47C906.58 237.3,915.78 237.2,923.99 237.28C932.21 237.36,939.55 237.8,947.46 237.93C955.37 238.06,963.25 238.06,971.46 238.07C979.67 238.08,992.52 238.01,996.73 238" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w60" pathLength="1" stroke-dasharray="1 1" /><path d="M990 233.75C989.89 237.91,989.44 250.38,989.33 258.7C989.22 267.02,989.35 275.42,989.36 283.65C989.38 291.89,989.29 300.07,989.4 308.13C989.51 316.18,989.9 328.01,990 331.99" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w61" pathLength="1" stroke-dasharray="1 1" /><path d="M990.76 328C986.98 328.08,975.81 328.33,968.08 328.45C960.35 328.57,952.31 328.9,944.39 328.7C936.46 328.5,928.51 327.39,920.53 327.27C912.55 327.16,904.2 328,896.52 328.01C888.83 328.01,882.2 327.38,874.42 327.32C866.63 327.26,857.72 327.51,849.82 327.62C841.92 327.74,830.82 327.94,827.01 328" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w62" pathLength="1" stroke-dasharray="1 1" /><path d="M830 329.09C830.01 325.19,829.95 313.39,830.06 305.69C830.18 297.99,830.67 290.65,830.69 282.88C830.7 275.11,830.27 266.81,830.15 259.09C830.04 251.37,830.03 240.3,830 236.55" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-one-directory-per-algori-d-w63" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(910 277.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Hash route</text><text transform="translate(910 307.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">#/dijkstra</text></g><g id="a-one-directory-per-algori-d-instruments"><text transform="translate(306 288) scale(0.88)" x="0" y="0" text-anchor="start" class="f-muted">shared instruments</text><rect x="306" y="302" width="132" height="40" rx="20" fill="#fffdf9" /><path d="M304.55 302C308.26 302.07,319.42 302.38,326.82 302.42C334.22 302.45,341.44 302.31,348.95 302.21C356.46 302.12,364.38 301.8,371.89 301.85C379.39 301.9,386.67 302.43,393.99 302.51C401.32 302.59,408.36 302.41,415.82 302.33C423.28 302.24,434.95 302.05,438.78 302" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M438 300.11C437.98 303.83,437.88 315.14,437.88 322.39C437.88 329.64,437.98 340.07,438 343.61" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M439.43 342C435.74 341.94,424.74 341.59,417.25 341.63C409.75 341.67,401.84 342.12,394.48 342.25C387.12 342.38,380.48 342.54,373.08 342.43C365.68 342.32,357.62 341.66,350.09 341.58C342.56 341.5,335.3 341.89,327.88 341.96C320.46 342.03,309.3 341.99,305.58 342" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M306 344.15C306.07 340.56,306.42 329.99,306.42 322.61C306.42 315.23,306.07 303.67,306 299.88" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><text transform="translate(372 326.6) scale(0.92)" x="0" y="0" text-anchor="middle">Trace player</text><rect x="448" y="302" width="116" height="40" rx="20" fill="#fffdf9" /><path d="M444.85 302C449 302.04,461.53 302.16,469.77 302.25C478.02 302.34,486.2 302.51,494.31 302.54C502.41 302.56,510.21 302.56,518.41 302.39C526.6 302.22,535.31 301.57,543.48 301.51C551.64 301.45,563.43 301.92,567.42 302" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M564 301.41C564.02 305.04,564.1 316.11,564.1 323.18C564.1 330.25,564.02 340.38,564 343.83" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M565.11 342C561.16 342.05,549.44 342.38,541.41 342.33C533.37 342.28,525.08 341.67,516.89 341.7C508.69 341.74,500.46 342.41,492.23 342.52C483.99 342.64,475.59 342.46,467.49 342.38C459.38 342.29,447.59 342.06,443.61 342" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M448 342.32C447.97 338.58,447.84 327.33,447.84 319.89C447.84 312.45,447.97 301.36,448 297.66" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><text transform="translate(506 326.6) scale(0.92)" x="0" y="0" text-anchor="middle">Drill-down</text><rect x="574" y="302" width="194" height="40" rx="20" fill="#fffdf9" /><path d="M573.75 302C577.4 301.95,588.36 301.73,595.66 301.68C602.96 301.62,610.21 301.66,617.57 301.68C624.92 301.69,632.44 301.78,639.79 301.75C647.15 301.73,654.44 301.49,661.71 301.53C668.98 301.56,676.16 301.96,683.42 301.96C690.69 301.97,698.06 301.6,705.31 301.55C712.56 301.5,719.61 301.7,726.93 301.67C734.25 301.65,741.94 301.37,749.21 301.42C756.47 301.47,766.97 301.9,770.52 302" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M768 301.76C768.02 305.11,768.12 315.09,768.12 321.85C768.12 328.61,768.02 338.92,768 342.34" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M771.66 342C768.01 342.01,757.3 341.99,749.76 342.08C742.22 342.18,733.95 342.64,726.44 342.56C718.93 342.48,712.05 341.74,704.7 341.62C697.36 341.5,689.97 341.82,682.39 341.84C674.81 341.87,666.75 341.63,659.21 341.75C651.66 341.87,644.55 342.58,637.14 342.58C629.74 342.57,622.29 341.84,614.79 341.72C607.29 341.59,599.57 341.79,592.13 341.84C584.69 341.89,573.81 341.97,570.15 342" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><path d="M574 345.15C574.06 341.4,574.37 330.06,574.37 322.69C574.37 315.33,574.06 304.58,574 300.95" fill="none" stroke="#1f1e1a" stroke-width="1.3" stroke-linecap="round" /><text transform="translate(671 326.6) scale(0.92)" x="0" y="0" text-anchor="middle">Plot · graph · matrix</text></g><g id="a-one-directory-per-algori-d-g-iv"><path id="a-one-directory-per-algori-d-iv" d="M304 322C300.44 320.1,289.72 314.36,282.65 310.61C275.57 306.87,268.23 304.41,261.53 299.54C254.83 294.67,248.7 287.49,242.44 281.4C236.19 275.31,227.07 266.07,224 263" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 5" /><g id="a-one-directory-per-algori-d-pk5" class="m-packet"><path class="m-halo" id="a-one-directory-per-algori-d-pk5-h" d="M304 322C300.44 320.1,289.72 314.36,282.65 310.61C275.57 306.87,268.23 304.41,261.53 299.54C254.83 294.67,248.7 287.49,242.44 281.4C236.19 275.31,227.07 266.07,224 263" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-one-directory-per-algori-d-pk5-t" d="M304 322C300.44 320.1,289.72 314.36,282.65 310.61C275.57 306.87,268.23 304.41,261.53 299.54C254.83 294.67,248.7 287.49,242.44 281.4C236.19 275.31,227.07 266.07,224 263" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-one-directory-per-algori-d-pk5-d" d="M304 322C300.44 320.1,289.72 314.36,282.65 310.61C275.57 306.87,268.23 304.41,261.53 299.54C254.83 294.67,248.7 287.49,242.44 281.4C236.19 275.31,227.07 266.07,224 263" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M224 263C224.77 263.31,227.04 264.31,228.6 264.88C230.16 265.46,232.59 266.19,233.39 266.45" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M224 263C224.28 263.74,225.06 265.87,225.67 267.42C226.29 268.97,227.36 271.48,227.7 272.29" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g></svg><g id="a-one-directory-per-algori-cap-0"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">01</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">Each algorithm is one self-contained directory.</tspan></text></g><g id="a-one-directory-per-algori-cap-1"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">02</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">One defineVisualization call registers it.</tspan></text></g><g id="a-one-directory-per-algori-cap-2"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">03</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">The registry adds a catalog card and a hash route.</tspan></text></g><g id="a-one-directory-per-algori-cap-3"><text x="33.6" y="543.3" class="a-num" font-size="12.6"><tspan x="33.6" dy="0">04</tspan></text><text x="76.5" y="543.3" class="a-cap" font-size="19.6"><tspan x="76.5" dy="0">Shared instruments do the playback and drawing.</tspan></text></g><g id="a-one-directory-per-algori-cap-rest"><text x="33.6" y="542.4" class="a-cap" font-size="17.6"><tspan x="33.6" dy="0">One defineVisualization call registers an algorithm directory, adding a catalog card and a hash route.</tspan></text></g><g id="a-one-directory-per-algori-strip"><line class="a-track" stroke-width="2.8" x1="33.6" y1="592.0" x2="332.6" y2="592.0"></line><line id="a-one-directory-per-algori-fill-0" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="33.6" y1="592.0" x2="332.6" y2="592.0"></line><line class="a-track" stroke-width="2.8" x1="338.2" y1="592.0" x2="637.2" y2="592.0"></line><line id="a-one-directory-per-algori-fill-1" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="338.2" y1="592.0" x2="637.2" y2="592.0"></line><line class="a-track" stroke-width="2.8" x1="642.8" y1="592.0" x2="941.8" y2="592.0"></line><line id="a-one-directory-per-algori-fill-2" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="642.8" y1="592.0" x2="941.8" y2="592.0"></line><line class="a-track" stroke-width="2.8" x1="947.4" y1="592.0" x2="1246.4" y2="592.0"></line><line id="a-one-directory-per-algori-fill-3" class="a-fill" stroke-width="2.8" stroke-dasharray="299.0 300.0" x1="947.4" y1="592.0" x2="1246.4" y2="592.0"></line></g></svg>

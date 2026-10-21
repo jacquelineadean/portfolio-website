@@ -4,13 +4,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ScrollReveal } from '../../../../shared/components/scroll-reveal/scroll-reveal';
 import { PROJECTS } from '../../data/projects.data';
-import { ProjectArt } from '../../../../shared/components/project-art/project-art';
-import { TileTint, tintFor } from '../../../../shared/art/tints';
+import { ChronicleFigure } from '../../../../shared/components/chronicle-figure/chronicle-figure';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, ProjectArt],
+  imports: [RouterLink, ScrollReveal, ChronicleFigure],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.scss',
 })
@@ -31,14 +30,10 @@ export class ProjectDetail {
     PROJECTS.find((p) => p.slug === this.params()?.get('slug')),
   );
 
-  /**
-   * Taken from the project's position in the list rather than stored on the
-   * project, because it is the same rule the card grid and the carousel use —
-   * the colour belongs to the slot, not to the work.
-   */
-  protected readonly tint = computed<TileTint>(() =>
-    tintFor(PROJECTS.findIndex((p) => p.slug === this.project()?.slug)),
-  );
+  /** A figure's file pair under public/projects/, without the layout suffix. */
+  protected figure(slug: string, name: string): string {
+    return `projects/${slug}/${name}`;
+  }
 
   constructor() {
     // Setting the title is a side effect, so it belongs in an effect rather than

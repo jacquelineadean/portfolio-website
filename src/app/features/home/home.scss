@@ -50,17 +50,14 @@
   right: calc(var(--container-padding) + clamp(4.5rem, 9vw, 8rem));
 }
 
-/* Featured + writing sections */
+/* Featured + writing sections: a label and a link, then the content. */
 .featured-head {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
   flex-wrap: wrap;
-
-  .featured-all {
-    margin-bottom: var(--space-xl);
-  }
+  margin-bottom: var(--space-lg);
 }
 
 .featured-grid {

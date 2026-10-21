@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ScrollReveal } from '../../shared/components/scroll-reveal/scroll-reveal';
 import { Button } from '../../shared/components/button/button';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { BlogService } from '../../core/services/blog.service';
 import { PROJECTS } from '../work/data/projects.data';
 import { ProjectArt } from '../../shared/components/project-art/project-art';
@@ -13,7 +12,7 @@ import { TileTint, tintFor } from '../../shared/art/tints';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, Button, SectionHeader, ProjectArt, Pathfinder, RequestFlow],
+  imports: [RouterLink, ScrollReveal, Button, ProjectArt, Pathfinder, RequestFlow],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

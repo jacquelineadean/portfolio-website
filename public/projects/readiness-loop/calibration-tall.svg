@@ -1,0 +1,329 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1729" width="1080" height="1729" class="chr-a chr-a-a-a-forecast-that-means-wh" role="img" aria-labelledby="a-a-forecast-that-means-wh-title a-a-forecast-that-means-wh-desc" data-theme="light"><title id="a-a-forecast-that-means-wh-title">A forecast that means what it says</title><desc id="a-a-forecast-that-means-wh-desc">A schematic reliability diagram: calibrated forecasts land inside the contract&#x27;s five-point band. Steps: 1. A 10% forecast should come true about one time in ten. 2. Overconfident forecasts fall off the diagonal. 3. Each contract fixes 3 pass thresholds in advance. 4. A model passes only when it clears all of them. Sources: The Readiness Loop README.</desc><style>/* Theme: tokens derived by chronicle from the palette and fonts. */
+.chr-a-a-a-forecast-that-means-wh {
+  --paper: #FFFDF9;
+  --print: #FFFEFB;
+  --surface: #F6F4F0;
+  --surface-2: #FFFEFD;
+  --ink: #1F1E1A;
+  --ink-2: #575652;
+  --muted: #75736F;
+  --rule: #DDDCD8;
+  --rule-2: #EDEBE7;
+  --grid: #E9E7E3;
+  --accent: #4285F4;
+  --accent-text: #3B70C8;
+  --accent-wash: rgba(66, 133, 244, 0.10);
+  --legacy: #EA4335;
+  --legacy-text: #D13E32;
+  --good: #2F7D4F;
+  --warn: #9C6210;
+  --bad: #B23A2B;
+  --good-wash: rgba(47, 125, 79, 0.12);
+  --bad-wash: rgba(178, 58, 43, 0.12);
+  --tip-bg: #1F1E1A;
+  --tip-ink: #FFFDF9;
+  --on-accent: #FFFFFF;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #47463F;
+  --s6: #5F8A2E;
+  --seq-0: #F0F3F9;
+  --seq-1: #D5E3F8;
+  --seq-2: #B0CBF7;
+  --seq-3: #82AEF6;
+  --seq-4: #4285F4;
+  --seq-5: #345C9D;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-ui: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  .chr-a-a-a-forecast-that-means-wh:not([data-theme="light"]) {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark; }
+}
+.chr-a-a-a-forecast-that-means-wh[data-theme="dark"] {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+.chr-a-a-a-forecast-that-means-wh .f-accent { fill: var(--accent); } .chr-a-a-a-forecast-that-means-wh .s-accent { stroke: var(--accent); } .chr-a-a-a-forecast-that-means-wh .t-accent { color: var(--accent); }
+.chr-a-a-a-forecast-that-means-wh .f-legacy { fill: var(--legacy); } .chr-a-a-a-forecast-that-means-wh .s-legacy { stroke: var(--legacy); } .chr-a-a-a-forecast-that-means-wh .t-legacy { color: var(--legacy); }
+.chr-a-a-a-forecast-that-means-wh .f-ink { fill: var(--ink); } .chr-a-a-a-forecast-that-means-wh .s-ink { stroke: var(--ink); } .chr-a-a-a-forecast-that-means-wh .t-ink { color: var(--ink); }
+.chr-a-a-a-forecast-that-means-wh .f-muted { fill: var(--muted); } .chr-a-a-a-forecast-that-means-wh .s-muted { stroke: var(--muted); } .chr-a-a-a-forecast-that-means-wh .t-muted { color: var(--muted); }
+.chr-a-a-a-forecast-that-means-wh .f-paper { fill: var(--paper); } .chr-a-a-a-forecast-that-means-wh .s-paper { stroke: var(--paper); } .chr-a-a-a-forecast-that-means-wh .t-paper { color: var(--paper); }
+.chr-a-a-a-forecast-that-means-wh .f-surface { fill: var(--surface); } .chr-a-a-a-forecast-that-means-wh .s-surface { stroke: var(--surface); } .chr-a-a-a-forecast-that-means-wh .t-surface { color: var(--surface); }
+.chr-a-a-a-forecast-that-means-wh .f-good { fill: var(--good); } .chr-a-a-a-forecast-that-means-wh .s-good { stroke: var(--good); } .chr-a-a-a-forecast-that-means-wh .t-good { color: var(--good); }
+.chr-a-a-a-forecast-that-means-wh .f-bad { fill: var(--bad); } .chr-a-a-a-forecast-that-means-wh .s-bad { stroke: var(--bad); } .chr-a-a-a-forecast-that-means-wh .t-bad { color: var(--bad); }
+.chr-a-a-a-forecast-that-means-wh .f-s1 { fill: var(--s1); } .chr-a-a-a-forecast-that-means-wh .s-s1 { stroke: var(--s1); } .chr-a-a-a-forecast-that-means-wh .t-s1 { color: var(--s1); }
+.chr-a-a-a-forecast-that-means-wh .f-s2 { fill: var(--s2); } .chr-a-a-a-forecast-that-means-wh .s-s2 { stroke: var(--s2); } .chr-a-a-a-forecast-that-means-wh .t-s2 { color: var(--s2); }
+.chr-a-a-a-forecast-that-means-wh .f-s3 { fill: var(--s3); } .chr-a-a-a-forecast-that-means-wh .s-s3 { stroke: var(--s3); } .chr-a-a-a-forecast-that-means-wh .t-s3 { color: var(--s3); }
+.chr-a-a-a-forecast-that-means-wh .f-s4 { fill: var(--s4); } .chr-a-a-a-forecast-that-means-wh .s-s4 { stroke: var(--s4); } .chr-a-a-a-forecast-that-means-wh .t-s4 { color: var(--s4); }
+.chr-a-a-a-forecast-that-means-wh .f-s5 { fill: var(--s5); } .chr-a-a-a-forecast-that-means-wh .s-s5 { stroke: var(--s5); } .chr-a-a-a-forecast-that-means-wh .t-s5 { color: var(--s5); }
+.chr-a-a-a-forecast-that-means-wh .f-s6 { fill: var(--s6); } .chr-a-a-a-forecast-that-means-wh .s-s6 { stroke: var(--s6); } .chr-a-a-a-forecast-that-means-wh .t-s6 { color: var(--s6); }
+.chr-a-a-a-forecast-that-means-wh .f-green { fill: var(--c-green); } .chr-a-a-a-forecast-that-means-wh .s-green { stroke: var(--c-green); } .chr-a-a-a-forecast-that-means-wh .t-green { color: var(--c-green); }
+.chr-a-a-a-forecast-that-means-wh .f-yellow { fill: var(--c-yellow); } .chr-a-a-a-forecast-that-means-wh .s-yellow { stroke: var(--c-yellow); } .chr-a-a-a-forecast-that-means-wh .t-yellow { color: var(--c-yellow); }
+.chr-a-a-a-forecast-that-means-wh .f-purple { fill: var(--c-purple); } .chr-a-a-a-forecast-that-means-wh .s-purple { stroke: var(--c-purple); } .chr-a-a-a-forecast-that-means-wh .t-purple { color: var(--c-purple); }
+/* The frame of a standalone animation: background, title, captions and the step strip.
+   Every rule sits under .chr-a so an animation pasted into another page styles only
+   itself; its colors and fonts come from tokens set on .chr-a-&lt;slug>. */
+.chr-a { font-family: var(--f-body); }
+.chr-a .a-bg { fill: var(--paper); }
+.chr-a .a-bg.surface { fill: var(--surface); }
+.chr-a .a-kicker { font-family: var(--f-ui); font-weight: 700; letter-spacing: .12em; fill: var(--accent-text); }
+.chr-a .a-title { font-family: var(--f-display); fill: var(--ink); }
+.chr-a .a-credit { font-family: var(--f-ui); fill: var(--muted); }
+.chr-a .a-num { font-family: var(--f-mono); font-weight: 500; fill: var(--accent-text); }
+.chr-a .a-cap { font-family: var(--f-body); fill: var(--ink); }
+.chr-a .a-track { stroke: var(--rule); }
+.chr-a .a-fill { stroke: var(--accent); }
+
+/* Technical architecture diagrams: zones, components, lines, packets and state marks. */
+.chr-a .m-gfill { fill: none; }
+.chr-a .m-gfill.m-zone { fill: var(--surface); }
+.chr-a .m-gfill.m-cluster { fill: color-mix(in srgb, var(--tone) 7%, transparent); }
+.chr-a .m-gline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-gline.m-boundary { stroke: var(--muted); stroke-dasharray: 7 5; }
+.chr-a .m-gline.m-external { stroke: var(--muted); stroke-dasharray: .5 5; stroke-linecap: round; stroke-width: 1.6; }
+.chr-a .m-tinted .m-gline { stroke: color-mix(in srgb, var(--tone) 50%, transparent); }
+.chr-a .m-glabel { font-family: var(--f-ui); font-weight: 650; font-size: 11px; letter-spacing: .08em; fill: var(--muted); }
+.chr-a .m-tinted .m-glabel { fill: var(--tone); }
+.chr-a .m-gflash { fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0; }
+
+.chr-a .m-line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linejoin: round; }
+.chr-a .m-async .m-line { stroke-dasharray: 6 5; }
+.chr-a .m-head { fill: var(--ink-2); }
+.chr-a .m-async .m-head { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-hot { fill: none; stroke: var(--tone, var(--accent)); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.chr-a .m-mask { fill: none; stroke: #fff; stroke-width: 22; }
+.chr-a .m-elabel, .chr-a .m-legend { font-family: var(--f-ui); font-size: 12px; fill: var(--ink-2); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.chr-a .m-legend { fill: var(--muted); }
+.chr-a .m-line.m-new, .chr-a .m-line.m-legacy, .chr-a .m-line.m-bad { stroke-width: 2.2; }
+.chr-a .m-new.m-line { stroke: var(--accent); }
+.chr-a .m-new.m-head { fill: var(--accent); stroke: var(--accent); }
+.chr-a .m-legacy.m-line { stroke: var(--legacy); }
+.chr-a .m-legacy.m-head { fill: var(--legacy); stroke: var(--legacy); }
+.chr-a .m-bad.m-line, .chr-a .m-down.m-line { stroke: var(--bad); }
+.chr-a .m-bad.m-head, .chr-a .m-down.m-head { fill: var(--bad); stroke: var(--bad); }
+.chr-a .m-down.m-line { stroke-dasharray: 2 5; stroke-linecap: round; opacity: .7; }
+.chr-a .m-planned.m-line { stroke: var(--muted); stroke-dasharray: 4 5; opacity: .8; }
+.chr-a .m-planned.m-head { fill: var(--muted); stroke: var(--muted); opacity: .8; }
+
+.chr-a .m-halo, .chr-a .m-trail, .chr-a .m-dot { fill: none; stroke-linecap: round; }
+.chr-a .m-halo { stroke: var(--paper); stroke-width: 14; }
+.chr-a .m-trail { stroke: var(--tone); stroke-width: 4; opacity: .4; }
+.chr-a .m-dot { stroke: var(--tone); stroke-width: 9; }
+
+.chr-a .m-shadow { fill: var(--rule-2); }
+.chr-a .m-box, .chr-a .m-rep { fill: var(--surface-2); }
+.chr-a .m-rep { stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-outline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-tile { fill: color-mix(in srgb, var(--tone) 14%, transparent); }
+.chr-a .m-glyph { fill: none; stroke: var(--tone); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-nlabel { font-family: var(--f-ui); font-weight: 600; font-size: 14px; fill: var(--ink); }
+.chr-a .m-tech { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chr-a .m-ping { fill: none; stroke: var(--tone); stroke-width: 2; opacity: 0; }
+.chr-a .m-ring { fill: none; stroke-width: 2.2; }
+.chr-a .m-ring.m-new { stroke: var(--accent); }
+.chr-a .m-ring.m-legacy { stroke: var(--legacy); }
+.chr-a .m-ring.m-good { stroke: var(--good); }
+.chr-a .m-ring.m-warn { stroke: var(--warn); }
+.chr-a .m-ring.m-bad, .chr-a .m-ring.m-down { stroke: var(--bad); }
+.chr-a .m-ring.m-planned { stroke: var(--muted); stroke-dasharray: 5 4; }
+.chr-a .m-pill rect { fill: var(--paper); stroke: var(--rule); }
+.chr-a .m-pill text { font-family: var(--f-ui); font-weight: 700; font-size: 9.5px; letter-spacing: .06em; fill: var(--muted); }
+.chr-a .m-flag.m-new rect { fill: var(--accent); stroke: none; }
+.chr-a .m-flag.m-new text { fill: var(--on-accent); }
+.chr-a .m-flag.m-legacy rect { fill: var(--legacy-text); stroke: none; }
+.chr-a .m-flag.m-down rect { fill: var(--bad); stroke: none; }
+.chr-a .m-flag.m-legacy text, .chr-a .m-flag.m-down text { fill: var(--paper); }
+.chr-a .m-flag.m-planned rect { stroke: var(--muted); stroke-dasharray: 3 2; }
+.chr-a .m-badge.m-good { fill: var(--good); }
+.chr-a .m-badge.m-warn { fill: var(--warn); }
+.chr-a .m-badge.m-bad { fill: var(--bad); }
+.chr-a .m-sign { fill: none; stroke: var(--paper); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Drawn diagrams: packets that run along Claude's paths take the accent unless a part
+   sets its own --tone. */
+.chr-a .dg-svg .m-packet { --tone: var(--accent); }
+.chr-a .dg-svg { overflow: visible; }
+
+/* Painted scenes: the paper under the painting, the focus shade and the spots. Paintings
+   sit on paper in both themes, so callouts keep paper colors. */
+.chr-a .m-print { fill: var(--print); }
+.chr-a .m-shade { fill: #101218; }
+.chr-a .m-spot-dot { fill: var(--accent); stroke: #FCFBF7; stroke-width: 3; }
+.chr-a .m-spot-num { font-family: var(--f-ui); font-weight: 700; fill: #FFFFFF; }
+.chr-a .m-spot-pill { fill: rgba(252, 251, 247, .94); stroke: rgba(30, 32, 38, .25); }
+.chr-a .m-spot-label { font-family: var(--f-ui); font-weight: 600; fill: #1E2026; }
+/* ------------------------------------------------- drawn figure classes */
+/* Shared by story pages and standalone animations: the classes Claude writes in
+   diagrams, and the styles of live labels on paintings. */
+.dg-svg text { fill: var(--ink); font-size: 15px; }
+.dg-svg .label { fill: var(--ink-2); font-size: 13px; }
+.dg-svg .small { font-size: 12px; fill: var(--muted); }
+.dg-svg .hand { font-family: var(--f-hand); font-size: 20px; fill: var(--accent-text); }
+.dg-svg .title { font-weight: 700; }
+.dg-svg .box { fill: var(--surface-2); stroke: var(--ink); stroke-width: 1.5; }
+.dg-svg .box.soft { fill: var(--surface); stroke: var(--rule); }
+.dg-svg .box.accent { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; }
+.dg-svg .box.legacy { fill: color-mix(in srgb, var(--legacy) 12%, transparent); stroke: var(--legacy); stroke-width: 2; }
+.dg-svg .line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; }
+.dg-svg .line.accent { stroke: var(--accent); stroke-width: 2.2; }
+.dg-svg .line.legacy { stroke: var(--legacy); stroke-width: 2.2; }
+.dg-svg .line.dashed { stroke-dasharray: 5 4; }
+.dg-svg .head { fill: var(--ink-2); }
+.overlay .lbl { pointer-events: none; }
+.overlay .lbl-hand { font-family: var(--f-hand); font-weight: 600; }
+.overlay .lbl-label { font-family: var(--f-ui); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.overlay .lbl-caption { font-family: var(--f-body); font-style: italic; }
+.overlay .lbl-display { font-family: var(--f-display); }
+.overlay .lbl-mono, .overlay .lbl-number { font-family: var(--f-mono); font-weight: 500; }
+.overlay .lbl-number { font-variant-numeric: tabular-nums; }
+@keyframes a-a-forecast-that-means-wh-k0 { 0% { opacity: 0.000; } 2.995% { opacity: 0.000; } 4.743% { opacity: 1.000; } 26.49% { opacity: 1.000; } 28.237% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k1 { 0% { opacity: 0.000; } 27.363% { opacity: 0.000; } 29.111% { opacity: 1.000; } 42.278% { opacity: 1.000; } 44.025% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k2 { 0% { opacity: 0.000; } 43.151% { opacity: 0.000; } 44.899% { opacity: 1.000; } 61.498% { opacity: 1.000; } 63.245% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k3 { 0% { opacity: 0.000; } 62.371% { opacity: 0.000; } 64.119% { opacity: 1.000; } 98.253% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k4 { 0% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k5 { 0% { stroke-dashoffset: 237.97px; } 2.995% { stroke-dashoffset: 237.97px; } 27.363% { stroke-dashoffset: 0.00px; } 98.253% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 237.97px; }}
+@keyframes a-a-forecast-that-means-wh-k6 { 0% { stroke-dashoffset: 237.97px; } 27.363% { stroke-dashoffset: 237.97px; } 43.151% { stroke-dashoffset: 0.00px; } 98.253% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 237.97px; }}
+@keyframes a-a-forecast-that-means-wh-k7 { 0% { stroke-dashoffset: 237.97px; } 43.151% { stroke-dashoffset: 237.97px; } 62.371% { stroke-dashoffset: 0.00px; } 98.253% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 237.97px; }}
+@keyframes a-a-forecast-that-means-wh-k8 { 0% { stroke-dashoffset: 237.97px; } 62.371% { stroke-dashoffset: 237.97px; } 85.023% { stroke-dashoffset: 0.00px; } 98.253% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 237.97px; }}
+@keyframes a-a-forecast-that-means-wh-k9 { 0% { opacity: 1.000; } 100% { opacity: 1.000; }}
+@keyframes a-a-forecast-that-means-wh-k10 { 0% { opacity: 0.000; } 43.651% { opacity: 0.000; } 45.398% { opacity: 1.000; } 98.253% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k11 { 0% { opacity: 0.000; } 4.094% { opacity: 0.000; } 5.841% { opacity: 1.000; } 98.253% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k12 { 0% { opacity: 0.000; } 3.495% { opacity: 0.000; } 5.242% { opacity: 1.000; } 62.371% { opacity: 1.000; } 64.119% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k13 { 0% { opacity: 0.000; } 27.863% { opacity: 0.000; } 29.61% { opacity: 1.000; } 62.371% { opacity: 1.000; } 64.119% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k14 { 0% { opacity: 0.000; } 62.871% { opacity: 0.000; } 64.618% { opacity: 1.000; } 98.253% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k15 { 0% { opacity: 0.000; } 44.25% { opacity: 0.000; } 45.997% { opacity: 1.000; } 98.253% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k16 { 0% { opacity: 0.000; } 63.47% { opacity: 0.000; } 65.217% { opacity: 1.000; } 98.253% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-a-forecast-that-means-wh-k17 { 0% { scale: 1.000; } 47.145% { scale: 1.000; } 48.643% { scale: 1.060; } 50.14% { scale: 1.000; } 51.638% { scale: 1.060; } 53.136% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-a-forecast-that-means-wh-k18 { 0% { stroke-dashoffset: 1.00px; } 3.495% { stroke-dashoffset: 1.00px; } 7.988% { stroke-dashoffset: 0.00px; } 98.253% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-a-forecast-that-means-wh-k19 { 0% { stroke-dashoffset: 1.00px; } 43.651% { stroke-dashoffset: 1.00px; } 48.144% { stroke-dashoffset: 0.00px; } 98.253% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+#a-a-forecast-that-means-wh-cap-0 { opacity: 0.000; animation: a-a-forecast-that-means-wh-k0 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-cap-1 { opacity: 0.000; animation: a-a-forecast-that-means-wh-k1 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-cap-2 { opacity: 0.000; animation: a-a-forecast-that-means-wh-k2 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-cap-3 { opacity: 0.000; animation: a-a-forecast-that-means-wh-k3 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-cap-rest { animation: a-a-forecast-that-means-wh-k4 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-fill-0 { animation: a-a-forecast-that-means-wh-k5 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-fill-1 { animation: a-a-forecast-that-means-wh-k6 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-fill-2 { animation: a-a-forecast-that-means-wh-k7 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-fill-3 { animation: a-a-forecast-that-means-wh-k8 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-strip { opacity: 0.000; animation: a-a-forecast-that-means-wh-k9 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-band { animation: a-a-forecast-that-means-wh-k10 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-axes { animation: a-a-forecast-that-means-wh-k11 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-m10 { opacity: 0.000; animation: a-a-forecast-that-means-wh-k12 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-over { opacity: 0.000; animation: a-a-forecast-that-means-wh-k13 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-good { animation: a-a-forecast-that-means-wh-k14 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-panel { animation: a-a-forecast-that-means-wh-k15 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-ticks { animation: a-a-forecast-that-means-wh-k16 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-r1-u { transform-box: fill-box; transform-origin: center; animation: a-a-forecast-that-means-wh-k17 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w1 { animation: a-a-forecast-that-means-wh-k18 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w2 { animation: a-a-forecast-that-means-wh-k18 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w3 { animation: a-a-forecast-that-means-wh-k18 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w4 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w5 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w6 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w7 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w8 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w9 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w10 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w11 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w12 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w13 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w14 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w15 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w16 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w17 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w18 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w19 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w20 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w21 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w22 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+#a-a-forecast-that-means-wh-d-w23 { animation: a-a-forecast-that-means-wh-k19 20.031s linear infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .chr-a-a-a-forecast-that-means-wh, .chr-a-a-a-forecast-that-means-wh * { animation: none !important; }
+}
+</style><svg viewBox="0 0 430 650" class="dg-svg" x="51.2" y="67.6" width="977.5" height="1477.6"><polygon id="a-a-forecast-that-means-wh-d-band" points="84,321 369,36 384,36 384,51 99,336 84,336" fill="#e4edfd" /><g id="a-a-forecast-that-means-wh-d-axes"><path d="M84 336C87.53 336.1,97.94 336.52,105.15 336.63C112.37 336.74,120.07 336.72,127.31 336.66C134.54 336.6,141.55 336.33,148.57 336.29C155.58 336.24,162.37 336.32,169.4 336.39C176.42 336.46,183.59 336.65,190.72 336.69C197.85 336.74,204.88 336.87,212.15 336.66C219.43 336.44,227.21 335.58,234.36 335.39C241.51 335.2,247.99 335.37,255.06 335.51C262.13 335.64,269.55 336.13,276.78 336.19C284.01 336.25,291.36 335.79,298.45 335.88C305.54 335.96,312.17 336.78,319.34 336.69C326.52 336.6,334.18 335.38,341.49 335.35C348.8 335.33,356.11 336.42,363.19 336.53C370.28 336.64,380.53 336.09,384 336" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w1" pathLength="1" stroke-dasharray="1 1" /><path d="M84 336C83.94 332.4,83.66 321.53,83.62 314.38C83.58 307.23,83.64 300.17,83.76 293.11C83.89 286.04,84.23 279.08,84.39 271.97C84.54 264.86,84.74 257.72,84.68 250.45C84.62 243.17,84.06 235.4,84 228.33C83.94 221.26,84.28 214.97,84.33 208.03C84.38 201.09,84.3 194.03,84.3 186.68C84.31 179.34,84.31 171.29,84.36 163.95C84.41 156.61,84.72 149.72,84.6 142.65C84.48 135.57,83.67 128.57,83.65 121.5C83.63 114.43,84.4 107.41,84.48 100.22C84.57 93.04,84.32 85.58,84.16 78.39C83.99 71.21,83.51 64.17,83.49 57.1C83.46 50.04,83.91 39.52,84 36" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w2" pathLength="1" stroke-dasharray="1 1" /><path d="M84 336C86.6 333.33,94.38 325.24,99.63 319.98C104.88 314.73,110.13 309.62,115.5 304.47C120.86 299.32,126.43 294.42,131.82 289.06C137.2 283.71,142.7 277.68,147.81 272.33C152.92 266.98,157.2 262.04,162.46 256.95C167.73 251.87,173.98 247.18,179.4 241.83C184.82 236.47,189.73 230.21,194.99 224.84C200.25 219.47,205.88 214.81,210.96 209.6C216.04 204.38,220.25 198.78,225.47 193.53C230.68 188.28,236.93 183.4,242.26 178.11C247.59 172.82,252.31 166.97,257.44 161.8C262.56 156.64,267.82 152.37,273.02 147.11C278.22 141.84,283.28 135.58,288.65 130.21C294.03 124.83,299.85 119.94,305.29 114.84C310.72 109.74,315.97 104.97,321.26 99.61C326.55 94.25,331.9 88.03,337.05 82.69C342.19 77.35,347 72.71,352.12 67.6C357.23 62.49,362.4 57.3,367.72 52.04C373.03 46.77,381.29 38.67,384 36" fill="none" stroke="#6e6b61" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w3" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(234 376) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">forecast probability</text><text transform="translate(50 186) rotate(-90) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">how often it happened</text><text transform="translate(84 356) scale(0.8)" x="0" y="0" text-anchor="middle" class="f-muted">0</text><text transform="translate(384 356) scale(0.8)" x="0" y="0" text-anchor="middle" class="f-muted">100%</text><text transform="translate(74 41) scale(0.8)" x="0" y="0" text-anchor="end" class="f-muted">100%</text><text transform="translate(92 24) scale(0.78)" x="0" y="0" text-anchor="start" class="f-muted">schematic</text></g><g id="a-a-forecast-that-means-wh-d-m10"><circle cx="114" cy="306" r="7" fill="#4285f4" stroke="#1f1e1a" stroke-width="1.5" /><path d="M124 298C126.45 295.77,133.68 288.96,138.68 284.63C143.68 280.29,151.45 274.1,154 272" fill="none" stroke="#47463f" stroke-width="1.2" stroke-linecap="round" /><text transform="translate(158 268) scale(0.9)" x="0" y="0" text-anchor="start" font-weight="600">says 10%, happens 1 in 10</text></g><g id="a-a-forecast-that-means-wh-d-over"><circle cx="114" cy="267" r="7" fill="#ea4335" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="174" cy="219" r="7" fill="#ea4335" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="234" cy="186" r="7" fill="#ea4335" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="294" cy="159" r="7" fill="#ea4335" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="354" cy="120" r="7" fill="#ea4335" stroke="#1f1e1a" stroke-width="1.2" /></g><g id="a-a-forecast-that-means-wh-d-good"><circle cx="114" cy="303" r="7" fill="#4285f4" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="174" cy="252" r="7" fill="#4285f4" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="234" cy="180" r="7" fill="#4285f4" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="294" cy="132" r="7" fill="#4285f4" stroke="#1f1e1a" stroke-width="1.2" /><circle cx="354" cy="72" r="7" fill="#4285f4" stroke="#1f1e1a" stroke-width="1.2" /></g><g id="a-a-forecast-that-means-wh-d-panel"><rect x="10" y="428" width="410" height="212" rx="10" fill="#fffdf9" id="a-a-forecast-that-means-wh-d-w4" pathLength="1" stroke-dasharray="1 1" /><path d="M-2.95 428C0.88 428.12,12.29 428.78,20 428.73C27.71 428.69,35.71 427.84,43.33 427.71C50.95 427.58,58.26 427.96,65.72 427.96C73.17 427.95,80.34 427.69,88.04 427.68C95.73 427.66,104.33 427.73,111.88 427.85C119.42 427.98,125.7 428.44,133.31 428.43C140.93 428.43,149.91 427.84,157.56 427.83C165.21 427.82,171.57 428.46,179.2 428.38C186.83 428.3,195.75 427.32,203.33 427.34C210.92 427.35,217.2 428.47,224.69 428.47C232.18 428.47,240.69 427.37,248.27 427.33C255.86 427.3,262.54 428.12,270.19 428.24C277.84 428.36,286.53 428.17,294.18 428.08C301.83 427.98,308.55 427.61,316.09 427.68C323.62 427.76,331.63 428.42,339.37 428.52C347.11 428.62,354.98 428.45,362.53 428.3C370.09 428.14,377.06 427.66,384.68 427.57C392.3 427.48,400.57 427.66,408.27 427.73C415.97 427.81,427.11 427.96,430.87 428" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w5" pathLength="1" stroke-dasharray="1 1" /><path d="M420 426.12C420.05 429.82,420.41 440.76,420.3 448.32C420.2 455.88,419.5 464.14,419.35 471.48C419.21 478.82,419.38 485.16,419.43 492.36C419.48 499.55,419.71 507.11,419.66 514.65C419.61 522.19,419.2 530.02,419.13 537.58C419.06 545.14,418.99 552.65,419.21 560.03C419.43 567.4,420.38 574.51,420.45 581.84C420.52 589.18,419.57 596.45,419.63 604.02C419.68 611.59,420.74 619.82,420.8 627.27C420.86 634.72,420.13 645.15,420 648.72" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w6" pathLength="1" stroke-dasharray="1 1" /><path d="M431.1 640C427.27 639.93,415.77 639.54,408.15 639.58C400.53 639.61,392.7 640.15,385.36 640.21C378.01 640.27,371.45 640.04,364.09 639.95C356.73 639.86,348.77 639.72,341.19 639.65C333.61 639.57,326.07 639.33,318.59 639.5C311.1 639.67,303.82 640.48,296.28 640.68C288.74 640.88,280.88 640.77,273.33 640.7C265.77 640.63,258.59 640.22,250.94 640.25C243.3 640.28,234.95 641.06,227.44 640.87C219.93 640.68,213.4 639.34,205.89 639.12C198.39 638.9,190.11 639.4,182.4 639.55C174.7 639.7,167.09 639.79,159.67 640.01C152.26 640.23,145.27 640.95,137.91 640.86C130.56 640.77,123.29 639.7,115.56 639.45C107.84 639.21,99.37 639.44,91.56 639.4C83.76 639.35,76.12 639.12,68.72 639.17C61.32 639.23,54.48 639.42,47.17 639.71C39.87 639.99,32.44 640.82,24.88 640.87C17.32 640.92,5.64 640.15,1.8 640" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w7" pathLength="1" stroke-dasharray="1 1" /><path d="M10 644.74C9.99 641.22,10.1 630.91,9.96 623.65C9.81 616.38,9.02 608.38,9.11 601.13C9.2 593.88,10.34 587.4,10.48 580.15C10.61 572.89,9.99 565.01,9.92 557.62C9.86 550.24,9.96 543.06,10.09 535.82C10.23 528.58,10.79 521.31,10.71 514.16C10.63 507.01,9.66 500.19,9.61 492.91C9.56 485.63,10.25 477.66,10.41 470.47C10.57 463.28,10.64 456.88,10.57 449.79C10.51 442.69,10.1 431.56,10 427.92" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w8" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(34 466) scale(1.15)" x="0" y="0" text-anchor="start" font-weight="600">Pass thresholds</text><g id="a-a-forecast-that-means-wh-d-r0"><rect x="34" y="497" width="22" height="22" rx="3" fill="#fffdf9" id="a-a-forecast-that-means-wh-d-w9" pathLength="1" stroke-dasharray="1 1" /><path d="M32.95 497C35.1 496.97,41.49 496.8,45.85 496.8C50.21 496.8,56.89 496.97,59.1 497" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w10" pathLength="1" stroke-dasharray="1 1" /><path d="M56 496.21C55.96 498.22,55.74 504.21,55.74 508.27C55.74 512.32,55.96 518.49,56 520.53" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w11" pathLength="1" stroke-dasharray="1 1" /><path d="M57.6 519C55.55 519.03,49.31 519.2,45.3 519.2C41.29 519.2,35.5 519.03,33.55 519" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w12" pathLength="1" stroke-dasharray="1 1" /><path d="M34 521.41C34.03 519.13,34.2 512.2,34.2 507.73C34.2 503.25,34.03 496.75,34 494.56" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w13" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(70 514) scale(0.9)" x="0" y="0" text-anchor="start">Reliability within five points per bin</text></g><g id="a-a-forecast-that-means-wh-d-r1-d"><g id="a-a-forecast-that-means-wh-d-r1-u"><g id="a-a-forecast-that-means-wh-d-r1"><rect x="34" y="547" width="22" height="22" rx="3" fill="#fffdf9" id="a-a-forecast-that-means-wh-d-w14" pathLength="1" stroke-dasharray="1 1" /><path d="M31.3 547C33.44 547.04,39.79 547.23,44.14 547.23C48.5 547.23,55.21 547.04,57.43 547" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w15" pathLength="1" stroke-dasharray="1 1" /><path d="M56 545.5C55.97 547.71,55.82 554.45,55.82 558.75C55.82 563.05,55.97 569.21,56 571.3" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w16" pathLength="1" stroke-dasharray="1 1" /><path d="M57.06 569C54.95 568.98,48.67 568.91,44.44 568.91C40.22 568.91,33.83 568.98,31.71 569" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w17" pathLength="1" stroke-dasharray="1 1" /><path d="M34 571.92C33.95 569.69,33.71 563.01,33.71 558.5C33.71 554,33.95 547.15,34 544.88" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w18" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(70 564) scale(0.9)" x="0" y="0" text-anchor="start">Skill above climatology</text></g></g></g><g id="a-a-forecast-that-means-wh-d-r2"><rect x="34" y="597" width="22" height="22" rx="3" fill="#fffdf9" id="a-a-forecast-that-means-wh-d-w19" pathLength="1" stroke-dasharray="1 1" /><path d="M33.44 597C35.36 597.06,41.16 597.34,44.94 597.34C48.71 597.34,54.24 597.06,56.1 597" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w20" pathLength="1" stroke-dasharray="1 1" /><path d="M56 596.19C55.96 598.2,55.76 604.29,55.76 608.25C55.76 612.22,55.96 618.01,56 619.96" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w21" pathLength="1" stroke-dasharray="1 1" /><path d="M57.37 619C55.35 618.94,49.16 618.65,45.23 618.65C41.31 618.65,35.72 618.94,33.82 619" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w22" pathLength="1" stroke-dasharray="1 1" /><path d="M34 622.03C34.01 619.79,34.06 613.06,34.06 608.58C34.06 604.11,34.01 597.42,34 595.19" fill="none" stroke="#1f1e1a" stroke-width="1.4" stroke-linecap="round" id="a-a-forecast-that-means-wh-d-w23" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(70 614) scale(0.9)" x="0" y="0" text-anchor="start">Discrimination above a floor</text></g></g><g id="a-a-forecast-that-means-wh-d-ticks"><path d="M39.4 507C39.85 507.48,41.27 508.99,42.1 509.91C42.92 510.82,43.97 512.07,44.35 512.5" fill="none" stroke="#34a853" stroke-width="2.6" stroke-linecap="round" /><path d="M44.35 512.5C45.09 511.48,47.24 508.4,48.8 506.38C50.36 504.36,52.88 501.4,53.7 500.4" fill="none" stroke="#34a853" stroke-width="2.6" stroke-linecap="round" /><path d="M39.4 557C39.85 557.41,41.26 558.54,42.09 559.45C42.91 560.37,43.97 561.99,44.35 562.5" fill="none" stroke="#34a853" stroke-width="2.6" stroke-linecap="round" /><path d="M44.35 562.5C45.1 561.5,47.26 558.54,48.82 556.52C50.38 554.5,52.89 551.42,53.7 550.4" fill="none" stroke="#34a853" stroke-width="2.6" stroke-linecap="round" /><path d="M39.4 607C39.86 607.48,41.36 608.98,42.18 609.9C43.01 610.81,43.99 612.07,44.35 612.5" fill="none" stroke="#34a853" stroke-width="2.6" stroke-linecap="round" /><path d="M44.35 612.5C45.12 611.51,47.39 608.57,48.95 606.55C50.51 604.53,52.91 601.42,53.7 600.4" fill="none" stroke="#34a853" stroke-width="2.6" stroke-linecap="round" /></g></svg><g id="a-a-forecast-that-means-wh-cap-0"><text x="51.2" y="1601.4" class="a-num" font-size="19.2"><tspan x="51.2" dy="0">01</tspan></text><text x="116.7" y="1601.4" class="a-cap" font-size="29.9"><tspan x="116.7" dy="0">A 10% forecast should come true about one time in ten.</tspan></text></g><g id="a-a-forecast-that-means-wh-cap-1"><text x="51.2" y="1601.4" class="a-num" font-size="19.2"><tspan x="51.2" dy="0">02</tspan></text><text x="116.7" y="1601.4" class="a-cap" font-size="29.9"><tspan x="116.7" dy="0">Overconfident forecasts fall off the diagonal.</tspan></text></g><g id="a-a-forecast-that-means-wh-cap-2"><text x="51.2" y="1601.4" class="a-num" font-size="19.2"><tspan x="51.2" dy="0">03</tspan></text><text x="116.7" y="1601.4" class="a-cap" font-size="29.9"><tspan x="116.7" dy="0">Each contract fixes 3 pass thresholds in advance.</tspan></text></g><g id="a-a-forecast-that-means-wh-cap-3"><text x="51.2" y="1601.4" class="a-num" font-size="19.2"><tspan x="51.2" dy="0">04</tspan></text><text x="116.7" y="1601.4" class="a-cap" font-size="29.9"><tspan x="116.7" dy="0">A model passes only when it clears all of them.</tspan></text></g><g id="a-a-forecast-that-means-wh-cap-rest"><text x="51.2" y="1599.9" class="a-cap" font-size="26.9"><tspan x="51.2" dy="0">A schematic reliability diagram: calibrated forecasts land inside the</tspan><tspan x="51.2" dy="35.0">contract&#x27;s five-point band.</tspan></text></g><g id="a-a-forecast-that-means-wh-strip"><line class="a-track" stroke-width="4.3" x1="51.2" y1="1675.6" x2="289.2" y2="1675.6"></line><line id="a-a-forecast-that-means-wh-fill-0" class="a-fill" stroke-width="4.3" stroke-dasharray="238.0 239.0" x1="51.2" y1="1675.6" x2="289.2" y2="1675.6"></line><line class="a-track" stroke-width="4.3" x1="297.8" y1="1675.6" x2="535.7" y2="1675.6"></line><line id="a-a-forecast-that-means-wh-fill-1" class="a-fill" stroke-width="4.3" stroke-dasharray="238.0 239.0" x1="297.8" y1="1675.6" x2="535.7" y2="1675.6"></line><line class="a-track" stroke-width="4.3" x1="544.3" y1="1675.6" x2="782.2" y2="1675.6"></line><line id="a-a-forecast-that-means-wh-fill-2" class="a-fill" stroke-width="4.3" stroke-dasharray="238.0 239.0" x1="544.3" y1="1675.6" x2="782.2" y2="1675.6"></line><line class="a-track" stroke-width="4.3" x1="790.8" y1="1675.6" x2="1028.8" y2="1675.6"></line><line id="a-a-forecast-that-means-wh-fill-3" class="a-fill" stroke-width="4.3" stroke-dasharray="238.0 239.0" x1="790.8" y1="1675.6" x2="1028.8" y2="1675.6"></line></g></svg>

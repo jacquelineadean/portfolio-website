@@ -16,7 +16,7 @@
       <app-pathfinder>
         <div class="hero-links">
           <app-button label="Explore my work" routerPath="/work" variant="primary" />
-          <app-button label="More about me" routerPath="/about" variant="secondary" />
+          <app-button label="About" routerPath="/about" variant="secondary" />
         </div>
       </app-pathfinder>
     </app-scroll-reveal>
@@ -25,11 +25,10 @@
 
 <section class="section featured container">
   <div class="featured-head">
-    <app-section-header
-      eyebrow="Projects"
-      sparkleColor="blue"
-      title="Things I build on my <em>own time</em>."
-    />
+    <h2 class="eyebrow">
+      <span class="sparkle sparkle--blue" aria-hidden="true"></span>
+      Projects
+    </h2>
     <a routerLink="/work" class="text-link featured-all">All projects</a>
   </div>
 
@@ -75,7 +74,10 @@
 
 <section class="section writing-preview container">
   <div class="featured-head">
-    <app-section-header eyebrow="Notes" sparkleColor="green" title="Latest <em>writing</em>." />
+    <h2 class="eyebrow">
+      <span class="sparkle sparkle--green" aria-hidden="true"></span>
+      Notes
+    </h2>
     <a routerLink="/notes" class="text-link featured-all">All notes</a>
   </div>
 

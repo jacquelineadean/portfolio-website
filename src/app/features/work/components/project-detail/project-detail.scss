@@ -24,24 +24,13 @@
   margin-top: var(--space-lg);
 }
 
-/* Banner height is set here rather than by the drawing's aspect ratio: the SVG
-   is cropped to fill, so the band can be the proportion the page wants and the
-   drawing carries on past its edges. */
-.study-art {
-  position: relative;
-  height: clamp(9rem, 22vw, 15rem);
+/* The project's lead figure, where the generated banner used to be. */
+.study-hero {
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
 }
 
-.study-sections {
-  display: flex;
-  flex-direction: column;
-  max-width: 900px;
-}
-
+/* A label column and a one-line caption, with the visual under both at the
+   page's full width: the figures carry the section, so they get the room. */
 .study-section {
   display: grid;
   grid-template-columns: 1fr;
@@ -71,32 +60,137 @@
   }
 }
 
-.study-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+.study-caption {
+  max-width: 60ch;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-soft);
+}
 
-  p {
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-    color: var(--color-ink-soft);
+.study-visual {
+  grid-column: 1 / -1;
+  margin-top: var(--space-xs);
+}
+
+.study-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+
+  @media (min-width: 768px) {
+    grid-column: 2;
+  }
+}
+
+/* The roadmap: one station per phase on a line. A proven phase is a filled
+   green stop; a built one is an open dashed ring, so the difference between
+   "exists" and "has met its exit criteria" is the first thing that reads. */
+.phases {
+  --dot: 1.75rem;
+  display: grid;
+  gap: var(--space-md);
+  position: relative;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-sm);
+  }
+}
+
+.phase {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--dot) 1fr;
+  column-gap: var(--space-sm);
+  align-content: start;
+
+  /* The line to the next station. */
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--dot) / 2);
+    top: var(--dot);
+    bottom: calc(-1 * var(--space-md));
+    border-left: 2px var(--line-style, dashed) var(--line-color, var(--color-border-hover));
   }
 
-  &.multi p {
-    position: relative;
-    padding-left: 1.4rem;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr;
+    row-gap: 0.2rem;
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.5em;
-      width: 0.6em;
-      height: 0.6em;
-      background: var(--color-green);
-      clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+    &:not(:last-child)::after {
+      left: var(--dot);
+      right: calc(-1 * var(--space-sm));
+      top: calc(var(--dot) / 2);
+      bottom: auto;
+      border-left: none;
+      border-top: 2px var(--line-style, dashed) var(--line-color, var(--color-border-hover));
     }
   }
+
+  > :not(.phase-dot) {
+    grid-column: 2;
+
+    @media (min-width: 768px) {
+      grid-column: 1;
+    }
+  }
+}
+
+.phase-dot {
+  grid-row: span 4;
+  display: grid;
+  place-items: center;
+  width: var(--dot);
+  height: var(--dot);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-card);
+  background: var(--color-card);
+  border: 2px dashed var(--color-ink-muted);
+  border-radius: 50%;
+
+  @media (min-width: 768px) {
+    grid-row: auto;
+    margin-bottom: var(--space-xs);
+  }
+
+  .is-proven & {
+    background: var(--color-green);
+    border: 2px solid var(--color-green);
+  }
+}
+
+.is-proven {
+  --line-style: solid;
+  --line-color: var(--color-green);
+}
+
+.phase-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.phase-name {
+  font-weight: 500;
+  line-height: var(--leading-snug);
+}
+
+.phase-state {
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+
+  .is-proven & {
+    color: #1e7e3a;
+  }
+}
+
+.phase-detail {
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
 }
 
 .not-found {

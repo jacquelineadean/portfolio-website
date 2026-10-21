@@ -92,10 +92,7 @@ interface Layout {
           </div>
           <button type="button" class="lab-btn" (click)="newMap()">New map</button>
         </div>
-        <p class="lab-hint pf-hint">
-          Tap the grid or use the arrow keys to move the goal. Yellow ground costs {{ slowCost }}
-          to cross.
-        </p>
+        <p class="lab-hint pf-hint">Tap the grid to move the goal. Yellow ground is slow.</p>
       </div>
 
       <div class="lab-stats pf-stats">
@@ -123,28 +120,15 @@ interface Layout {
         @if (summary(); as s) {
           <p class="lab-readout">
             @if (!s.reachable) {
-              The goal is walled in. {{ s.name }} expanded all <b>{{ s.expanded }}</b> reachable
-              cells before reporting that no path exists.
+              The goal is walled in, so no path exists.
             } @else if (s.id === 'dijkstra') {
-              Dijkstra expanded <b>{{ s.expanded }}</b> cells in order of their cost from the start.
-              Its path costs <b>{{ s.cost }}</b
-              >, the minimum.
+              Dijkstra expands in cost order, so its path is the cheapest.
             } @else if (s.id === 'astar') {
-              A* expanded <b>{{ s.expanded }}</b> cells, <b>{{ s.shareOfDijkstra }}%</b> of
-              Dijkstra's {{ s.dijkstraExpanded }}, and found a path of the same cost,
-              <b>{{ s.cost }}</b
-              >. Its distance estimate never overshoots, so the first path to reach the goal is a
-              cheapest one.
+              A* expanded <b>{{ s.shareOfDijkstra }}%</b> of Dijkstra's cells for the same cost.
             } @else if (s.over > 0) {
-              Greedy expanded <b>{{ s.expanded }}</b> cells and found a path costing
-              <b>{{ s.cost }}</b
-              >, <b>{{ s.over }}%</b> above the minimum of {{ s.optimal }}. It ranks cells by
-              distance to the goal alone and ignores the cost already paid.
+              Greedy ignores the cost paid and lands <b>{{ s.over }}%</b> over the cheapest path.
             } @else {
-              Greedy expanded <b>{{ s.expanded }}</b> cells and this time found a cheapest path,
-              cost <b>{{ s.cost }}</b
-              >. It ranks cells by distance to the goal alone, so nothing guarantees that. Move the
-              goal behind a wall or past slow ground to see it miss.
+              Greedy found a cheapest path this time, by luck.
             }
           </p>
         }
@@ -216,7 +200,6 @@ export class Pathfinder {
   private readonly plateRef = viewChild.required<ElementRef<HTMLElement>>('plate');
 
   protected readonly algorithms = ALGORITHMS;
-  protected readonly slowCost = SLOW_COST;
   protected readonly algo = signal<Algorithm>('dijkstra');
   protected readonly info = computed(() => ALGORITHMS.find((a) => a.id === this.algo())!);
 

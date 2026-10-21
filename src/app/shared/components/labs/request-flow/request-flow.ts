@@ -229,22 +229,14 @@ interface PacketView {
         </div>
 
         <p class="lab-readout" aria-live="polite">
-          @if (cacheUp()) {
-            Of every 100 requests, {{ reads }} are reads. The cache answers {{ hitReads }} of them,
-            so the store sees <b>{{ storeOps() }}</b> operations.
-          } @else {
-            With the cache down, all {{ reads }} reads reach the store:
-            <b>{{ storeOps() }}</b> operations per 100 requests, <b>{{ loadFactor }}×</b> the load
-            with the cache up.
-          }
           @if (!workerUp()) {
-            The worker is down. Requests that create jobs still return, because the service only
-            writes to the queue; the jobs wait there.
+            Worker down: jobs wait in the queue, and requests still return.
+          } @else if (!cacheUp()) {
+            Cache down: the store takes <b>{{ loadFactor }}×</b> the load.
           } @else if (depth() > 0) {
-            The worker clears jobs <b>{{ drainFactor }}×</b> as fast as they arrive, so the backlog
-            shrinks.
+            The worker drains the backlog <b>{{ drainFactor }}×</b> as fast as it grows.
           } @else {
-            The worker keeps up, so no jobs wait.
+            The cache answers {{ hitReads }} of {{ reads }} reads.
           }
         </p>
       </div>
