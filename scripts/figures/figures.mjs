@@ -20,29 +20,48 @@ const RL_SOURCES = [
     label: 'The Readiness Loop README',
     url: 'https://github.com/jacquelineadean/disaster-risk-forecasting-readiness-loop',
   },
+  {
+    label: 'tornado-ok ledger, card exp-0002',
+    url: 'https://github.com/jacquelineadean/disaster-risk-forecasting-readiness-loop/blob/main/experiments/tornado-ok/ledger.jsonl',
+  },
 ];
 
 const AV_FACTS = {
   av: {
     visualizations: {
-      value: 28,
+      value: 31,
       unit: 'visualizations',
-      source: 'readme',
-      note: 'catalog entries',
+      source: 'src/catalog/index.js',
+      note: "entries with status 'live'",
     },
-    domains: { value: 8, unit: 'domains', source: 'readme', note: 'catalog sections' },
+    domains: { value: 8, unit: 'domains', source: 'src/catalog/index.js', note: 'DOMAINS' },
   },
 };
 
+const LEDGER = 'experiments/tornado-ok/ledger.jsonl, exp-0002';
 const RL_FACTS = {
   rl: {
-    thresholds: { value: 3, unit: 'pass thresholds', source: 'readme', note: 'per contract' },
-    example: {
-      value: 10,
-      unit: '%',
-      source: 'readme',
-      note: 'an illustrative forecast, not a result',
+    tolerance: {
+      value: 5,
+      unit: 'points',
+      source: 'contracts/tornado-ok.json',
+      note: 'reliability_tolerance_pp',
     },
+    miss: { value: 7.7, unit: 'points', source: LEDGER, note: 'worst populated bin, [0.2, 0.3)' },
+    bin_forecast: {
+      value: 24.5,
+      unit: '%',
+      source: LEDGER,
+      note: 'mean forecast in bin [0.2, 0.3)',
+    },
+    bin_observed: {
+      value: 32.2,
+      unit: '%',
+      source: LEDGER,
+      note: 'observed frequency in bin [0.2, 0.3)',
+    },
+    bss: { value: 0.12, unit: '', source: LEDGER, note: 'Brier skill score, +0.1201' },
+    auc: { value: 0.82, unit: '', source: LEDGER, note: 'AUC 0.8175, floor 0.70' },
   },
 };
 
@@ -169,7 +188,7 @@ function glyph(d, kind, cx, cy, k = 1) {
 const catalog = {
   project: 'algorithm-visualizer',
   name: 'catalog',
-  title: 'Twenty-eight algorithms, eight domains',
+  title: 'Thirty-one algorithms, eight domains',
   description:
     'Eight domain tiles draw on in turn, from cryptography to Fourier methods, and each gets a citation mark.',
   sources: AV_SOURCES,
@@ -241,7 +260,7 @@ const gate = {
     },
     { caption: 'Each trace step must name a source.', draw: ['steps'], flow: ['t1', 't2', 't3'] },
     {
-      caption: 'Each source must resolve in the sources file.',
+      caption: 'Each cited key must resolve in sources.js.',
       draw: ['sources', 'g-s1', 'g-s2'],
       flow: ['s1', 's2'],
       show: ['ok'],
@@ -256,13 +275,10 @@ const gate = {
   draw(variant) {
     const wide = variant === 'wide';
     const d = new Drawing('evidence-gate', wide ? 1000 : 430, wide ? 360 : 560);
-    const entries = [
-      ['Paper', C.blue],
-      ['Standard', C.purple],
-      ['Theorem', C.green],
-      ['Simplification', C.yellow],
-    ];
-    const names = ['rsa/', 'dijkstra/', 'raft/', '…'];
+    // pathfinding/sources.js: Dijkstra's paper, Hart, Nilsson and Raphael's A*
+    // paper and CLRS, keyed as the traces cite them.
+    const entries = [['DIJKSTRA59'], ['HNR68'], ['CLRS22'], ['…']];
+    const names = ['rsa/', 'pathfinding/', 'raft/', '…'];
     let b = '';
     if (wide) {
       b += group(
@@ -304,7 +320,7 @@ const gate = {
       b += group(
         'sources',
         d.rect(790, 40, 200, 280) +
-          d.text(890, 78, 'Sources file', { s: 1.15, w: 600 }) +
+          d.text(890, 78, 'sources.js', { s: 1.15, w: 600 }) +
           entries
             .map(([s, dot], i) => d.pill(806, 100 + i * 52, 168, 38, s, { dot, s: 0.9 }))
             .join(''),
@@ -394,7 +410,7 @@ const gate = {
       b += group(
         'sources',
         d.rect(10, 432, 410, 120) +
-          d.text(400, 462, 'Sources file', { s: 1.15, w: 600, a: 'end' }) +
+          d.text(400, 462, 'sources.js', { s: 1.15, w: 600, a: 'end' }) +
           entries
             .map(([s, dot], i) =>
               d.pill(30 + (i % 2) * 195, 476 + Math.floor(i / 2) * 38, 175, 30, s, {
@@ -425,8 +441,7 @@ const architecture = {
   project: 'algorithm-visualizer',
   name: 'architecture',
   title: 'One directory per algorithm',
-  description:
-    'One defineVisualization call registers an algorithm directory, adding a catalog card and a hash route.',
+  description: 'An algorithm directory, one defineVisualization call and a catalog card.',
   sources: AV_SOURCES,
   facts: AV_FACTS,
   steps: [
@@ -437,7 +452,7 @@ const architecture = {
       flow: ['fd', 'dr'],
     },
     {
-      caption: 'The registry adds a catalog card and a hash route.',
+      caption: 'A catalog card and a hash route put it on the site.',
       draw: ['g-rc', 'card', 'g-rr', 'route'],
       flow: ['rc', 'rr'],
     },
@@ -451,7 +466,10 @@ const architecture = {
   draw(variant) {
     const wide = variant === 'wide';
     const d = new Drawing('architecture', wide ? 1000 : 440, wide ? 380 : 700);
-    const files = ['model', 'sources', 'trace', 'visualizer', 'tests'];
+    // The pathfinding directory's own files; its Visualizer is what the shared
+    // instruments drive, so it sits fourth in both layouts where their arrow lands.
+    const files = ['index.js', 'model.js', 'sources.js', 'PathfindingVisualizer.jsx', 'trace.js'];
+    const isViz = (s) => s.endsWith('Visualizer.jsx');
     let b = '';
     const folder = (x, y, w, h) =>
       d.strokes(
@@ -460,10 +478,10 @@ const architecture = {
       ) + d.rect(x, y, w, h, { tint: C.tint.yellow, rx: 8 });
     if (wide) {
       let f =
-        folder(10, 34, 230, 330) + d.text(30, 70, 'dijkstra/', { s: 1.2, w: 600, a: 'start' });
+        folder(10, 34, 230, 330) + d.text(30, 70, 'pathfinding/', { s: 1.2, w: 600, a: 'start' });
       files.forEach((s, i) => {
-        const pill = d.pill(30, 88 + i * 52, 190, 38, s, { s: 0.95 });
-        f += s === 'visualizer' ? group('viz', pill) : pill;
+        const pill = d.pill(30, 88 + i * 52, 190, 38, s, { s: isViz(s) ? 0.78 : 0.95 });
+        f += isViz(s) ? group('viz', pill) : pill;
       });
       b += group('folder', f);
       b += d.arrow('fd', [
@@ -495,7 +513,9 @@ const architecture = {
       );
       b += group(
         'route',
-        d.box(830, 238, 160, 90, 'Hash route', ['#/dijkstra'], { tint: C.tint.purple }),
+        d.box(830, 238, 160, 90, 'Hash route', ['#/visualizer/', 'pathfinding'], {
+          tint: C.tint.purple,
+        }),
       );
       b += group(
         'instruments',
@@ -515,7 +535,7 @@ const architecture = {
       );
     } else {
       let f =
-        folder(10, 26, 410, 196) + d.text(30, 60, 'dijkstra/', { s: 1.2, w: 600, a: 'start' });
+        folder(10, 26, 410, 196) + d.text(30, 60, 'pathfinding/', { s: 1.2, w: 600, a: 'start' });
       const spots = [
         [30, 76],
         [225, 76],
@@ -524,8 +544,8 @@ const architecture = {
         [30, 164],
       ];
       files.forEach((s, i) => {
-        const pill = d.pill(spots[i][0], spots[i][1], 175, 34, s, { s: 0.92 });
-        f += s === 'visualizer' ? group('viz', pill) : pill;
+        const pill = d.pill(spots[i][0], spots[i][1], 175, 34, s, { s: isViz(s) ? 0.74 : 0.92 });
+        f += isViz(s) ? group('viz', pill) : pill;
       });
       b += group('folder', f);
       b += d.arrow('fd', [
@@ -557,7 +577,9 @@ const architecture = {
       );
       b += group(
         'route',
-        d.box(230, 454, 190, 86, 'Hash route', ['#/dijkstra'], { tint: C.tint.purple }),
+        d.box(230, 454, 190, 86, 'Hash route', ['#/visualizer/', 'pathfinding'], {
+          tint: C.tint.purple,
+        }),
       );
       b += group(
         'instruments',
@@ -741,63 +763,64 @@ const loop = {
 
 // ---------------------------------------------------------------- calibration
 
-/** Schematic reliability points: forecast percent, observed percent. */
-const OVERCONFIDENT = [
-  [10, 23],
-  [30, 39],
-  [50, 50],
-  [70, 59],
-  [90, 72],
-];
-const CALIBRATED = [
-  [10, 11],
-  [30, 28],
-  [50, 52],
-  [70, 68],
-  [90, 88],
+/**
+ * The seasonal model's populated reliability bins on the Oklahoma tornado
+ * contract (tornado-ok exp-0002, validation years), from the committed ledger:
+ * mean forecast percent, observed percent, units in the bin. The fourth bin
+ * holds 15 units, under the contract's 30-unit floor, so it is not scored.
+ */
+const TORNADO_BINS = [
+  [2.41, 4.02, 1245],
+  [15.15, 21.05, 190],
+  [24.53, 32.22, 90],
 ];
 
 const calibration = {
   project: 'readiness-loop',
   name: 'calibration',
   title: 'A forecast that means what it says',
-  description:
-    "A schematic reliability diagram: calibrated forecasts land inside the contract's five-point band.",
+  description: 'Real bins from the Oklahoma tornado ledger: the worst misses the band.',
   sources: RL_SOURCES,
   facts: RL_FACTS,
   steps: [
     {
-      caption: 'A {{rl.example}} forecast should come true about one time in ten.',
+      caption: 'On the diagonal, a forecast comes true as often as it says.',
       draw: ['axes'],
-      show: ['m10'],
     },
-    { caption: 'Overconfident forecasts fall off the diagonal.', show: ['over'] },
     {
-      caption: 'Each contract fixes {{rl.thresholds}} in advance.',
-      draw: ['panel'],
+      caption: 'The seasonal tornado model, scored on Oklahoma counties.',
+      show: ['pts'],
+    },
+    {
+      caption: 'The contract allows {{rl.tolerance}} either side of the line.',
       show: ['band'],
-      pulse: ['r1'],
     },
     {
-      caption: 'A model passes only when it clears all of them.',
-      hide: ['over', 'm10'],
-      show: ['good', 'ticks'],
+      caption: 'Its worst bin misses by {{rl.miss}}.',
+      show: ['miss'],
+      pulse: ['p2'],
+    },
+    {
+      caption: 'Skill and discrimination pass, and calibration fails the card.',
+      draw: ['panel'],
+      show: ['marks'],
     },
   ],
   draw(variant) {
     const wide = variant === 'wide';
-    const d = new Drawing('calibration', wide ? 1000 : 430, wide ? 380 : 650);
+    const d = new Drawing('calibration', wide ? 1000 : 430, wide ? 380 : 680);
     const size = wide ? 290 : 300;
     const x0 = wide ? 92 : 84;
     const y0 = wide ? 330 : 336;
-    const at = (f, o) => ({ x: x0 + (f / 100) * size, y: y0 - (o / 100) * size });
+    const top = 40;
+    const at = (f, o) => ({ x: x0 + (f / top) * size, y: y0 - (o / top) * size });
     let b = '';
     const band = 5;
     b += `<polygon id="band" points="${[
       at(0, band),
-      at(100 - band, 100),
-      at(100, 100),
-      at(100, 100 - band),
+      at(top - band, top),
+      at(top, top),
+      at(top, top - band),
       at(band, 0),
       at(0, 0),
     ]
@@ -805,65 +828,66 @@ const calibration = {
       .join(' ')}" fill="${C.tint.blue}"/>`;
     b += group(
       'axes',
-      d.line(at(0, 0), at(100, 0), { width: 1.6 }) +
-        d.line(at(0, 0), at(0, 100), { width: 1.6 }) +
-        d.line(at(0, 0), at(100, 100), { width: 1.4, color: C.muted }) +
+      d.line(at(0, 0), at(top, 0), { width: 1.6 }) +
+        d.line(at(0, 0), at(0, top), { width: 1.6 }) +
+        d.line(at(0, 0), at(top, top), { width: 1.4, color: C.muted }) +
         d.text(x0 + size / 2, y0 + 40, 'forecast probability', { s: 0.92, cls: 'f-muted' }) +
         `<text transform="translate(${x0 - 34} ${y0 - size / 2}) rotate(-90) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">how often it happened</text>` +
         d.text(x0, y0 + 20, '0', { s: 0.8, cls: 'f-muted' }) +
-        d.text(x0 + size, y0 + 20, '100%', { s: 0.8, cls: 'f-muted' }) +
-        d.text(x0 - 10, y0 - size + 5, '100%', { s: 0.8, cls: 'f-muted', a: 'end' }) +
-        d.text(x0 + 8, y0 - size - 12, 'schematic', { s: 0.78, cls: 'f-muted', a: 'start' }),
-    );
-    const m = at(10, 10);
-    b += group(
-      'm10',
-      d.circle(m.x, m.y, 7, { fill: C.blue, color: C.ink }) +
-        d.line(
-          { x: m.x + 10, y: m.y - 8 },
-          { x: m.x + 40, y: m.y - 34 },
-          { width: 1.2, color: C.soft },
-        ) +
-        d.text(m.x + 44, m.y - 38, 'says 10%, happens 1 in 10', { s: 0.9, w: 600, a: 'start' }),
+        d.text(x0 + size, y0 + 20, '40%', { s: 0.8, cls: 'f-muted' }) +
+        d.text(x0 - 10, y0 - size + 5, '40%', { s: 0.8, cls: 'f-muted', a: 'end' }),
     );
     b += group(
-      'over',
-      OVERCONFIDENT.map(([f, o]) => {
+      'pts',
+      TORNADO_BINS.map(([f, o, n], i) => {
         const p = at(f, o);
-        return d.circle(p.x, p.y, 7, { fill: C.red, color: C.ink, width: 1.2 });
+        const r = 5 + Math.sqrt(n) / 4;
+        return group(`p${i}`, d.circle(p.x, p.y, r, { fill: C.blue, color: C.ink, width: 1.2 }));
       }).join(''),
     );
+    const bad = at(TORNADO_BINS[2][0], TORNADO_BINS[2][1]);
+    const lx = bad.x - 18;
     b += group(
-      'good',
-      CALIBRATED.map(([f, o]) => {
-        const p = at(f, o);
-        return d.circle(p.x, p.y, 7, { fill: C.blue, color: C.ink, width: 1.2 });
-      }).join(''),
+      'miss',
+      d.line(bad, at(TORNADO_BINS[2][0], TORNADO_BINS[2][0]), {
+        width: 2,
+        color: C.red,
+        dash: '4 4',
+      }) +
+        d.text(lx, bad.y - 6, 'forecast {{rl.bin_forecast}}', { s: 0.86, a: 'end' }) +
+        d.text(lx, bad.y + 14, 'happened {{rl.bin_observed}}', {
+          s: 0.86,
+          w: 600,
+          cls: 'f-legacy',
+          a: 'end',
+        }),
     );
     const rows = [
-      'Reliability within five points per bin',
-      'Skill above climatology',
-      'Discrimination above a floor',
+      ['Skill above climatology', 'BSS {{rl.bss}}', true],
+      ['Discrimination', 'AUC {{rl.auc}}', true],
+      ['Reliability within {{rl.tolerance}}', 'worst bin off by {{rl.miss}}', false],
     ];
     const px = wide ? 480 : 10;
     const py = wide ? 60 : 428;
     const pw = wide ? 510 : 410;
-    const ph = wide ? 250 : 212;
-    const rowGap = wide ? 58 : 50;
+    const ph = wide ? 250 : 244;
+    const rowGap = wide ? 58 : 54;
     let panel =
       d.rect(px, py, pw, ph) +
-      d.text(px + 24, py + 38, 'Pass thresholds', { s: 1.15, w: 600, a: 'start' });
-    let ticks = '';
-    rows.forEach((r, i) => {
-      const ry = py + (wide ? 96 : 84) + i * rowGap;
-      const row =
+      d.text(px + 24, py + 38, 'Oklahoma tornado contract', { s: 1.1, w: 600, a: 'start' });
+    let marks = '';
+    rows.forEach(([label, value, ok], i) => {
+      const ry = py + (wide ? 96 : 80) + i * rowGap;
+      panel +=
         d.rect(px + 24, ry - 15, 22, 22, { rx: 3, amount: 0.4, width: 1.4 }) +
-        d.text(px + 60, ry + 2, r, { s: wide ? 1 : 0.9, a: 'start' });
-      panel += group(`r${i}`, row);
-      ticks += d.tick(px + 36, ry - 5, 11);
+        d.text(px + 60, ry + 2, label, { s: wide ? 1 : 0.9, a: 'start' }) +
+        (wide
+          ? d.text(px + pw - 24, ry + 2, value, { s: 0.92, cls: 'f-muted', a: 'end' })
+          : d.text(px + 60, ry + 22, value, { s: 0.84, cls: 'f-muted', a: 'start' }));
+      marks += ok ? d.tick(px + 36, ry - 5, 11) : d.cross(px + 35, ry - 4, 8);
     });
     b += group('panel', panel);
-    b += group('ticks', ticks);
+    b += group('marks', marks);
     return d.svg(b);
   },
 };

@@ -75,12 +75,6 @@
 }
 
 /* The diagram band: a warm panel across the page, set apart from the cards. */
-.statement {
-  background: var(--color-paper-warm);
-  border-block: 1px solid var(--color-border);
-  padding-block: clamp(4rem, 9vw, 7rem);
-}
-
 .post-list {
   display: flex;
   flex-direction: column;

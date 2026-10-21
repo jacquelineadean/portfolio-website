@@ -67,3 +67,7 @@ node scripts/figures/build.mjs
 ```
 
 The output goes to `public/projects/<project>/<figure>-wide.svg` and `-tall.svg`, which are committed, so the site build does not need the plugin.
+
+Every label and number in a figure comes from the project's own repository: file names, the catalog count in `src/catalog/index.js`, and the reliability bins on the `tornado-ok` ledger card. Check a figure against its repository before changing it.
+
+The About page shows two recordings in `public/recordings/` (a folder named `about` would collide with the `/about` route on GitHub Pages). `algorithm-visualizer-pathfinding` (WebM and MP4) is a capture of a local build of the Algorithm Visualizer's pathfinding page. `readiness-loop-run` is the Readiness Loop's `docs/media/loop.gif`, re-encoded.
