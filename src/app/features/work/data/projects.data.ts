@@ -68,7 +68,8 @@ export const PROJECTS: Project[] = [
     sections: [
       {
         title: 'Calibration',
-        caption: 'When the forecast says 10%, it should happen about one time in ten.',
+        caption:
+          'From the committed ledger: the seasonal tornado model passes on skill and fails on calibration.',
         visual: { kind: 'figure', name: 'calibration' },
       },
       {

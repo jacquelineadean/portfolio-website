@@ -5,14 +5,13 @@ import { Button } from '../../shared/components/button/button';
 import { BlogService } from '../../core/services/blog.service';
 import { PROJECTS } from '../work/data/projects.data';
 import { ProjectArt } from '../../shared/components/project-art/project-art';
-import { RequestFlow } from '../../shared/components/labs/request-flow/request-flow';
 import { Pathfinder } from '../../shared/components/labs/pathfinder/pathfinder';
 import { TileTint, tintFor } from '../../shared/art/tints';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, Button, ProjectArt, Pathfinder, RequestFlow],
+  imports: [RouterLink, ScrollReveal, Button, ProjectArt, Pathfinder],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

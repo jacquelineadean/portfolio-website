@@ -1,11 +1,42 @@
 <section class="page container">
   <h1 class="sr-only">About</h1>
 
-  <app-scroll-reveal>
-    <app-strangler class="about-lab" />
-  </app-scroll-reveal>
+  <ul class="work-grid" role="list">
+    @for (item of items; track item.link.join('/'); let i = $index) {
+      <li class="work-item" [class.is-wide]="item.media.kind === 'video'">
+        <app-scroll-reveal class="work-body" [delay]="(i % 2) * 0.08">
+          @switch (item.media.kind) {
+            @case ('video') {
+              <app-loop-video
+                [src]="item.media.src"
+                [poster]="item.media.poster"
+                [ratio]="item.media.ratio"
+                [label]="item.media.label"
+                [dark]="item.media.dark ?? false"
+              />
+            }
+            @case ('image') {
+              <a [routerLink]="item.link" class="work-image" tabindex="-1" aria-hidden="true">
+                <img
+                  [src]="item.media.src"
+                  [alt]="item.media.alt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            }
+          }
 
-  <app-scroll-reveal>
-    <app-merkle-diff class="about-lab" />
-  </app-scroll-reveal>
+          <div class="work-text">
+            <p class="eyebrow work-eyebrow">{{ item.eyebrow }}</p>
+            <h2 class="work-title">
+              <a [routerLink]="item.link">{{ item.title }}</a>
+            </h2>
+            <p class="work-caption">{{ item.caption }}</p>
+            <p class="work-credit">{{ item.credit }}</p>
+          </div>
+        </app-scroll-reveal>
+      </li>
+    }
+  </ul>
 </section>
