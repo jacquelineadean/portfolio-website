@@ -34,13 +34,6 @@
   margin-bottom: 0.5rem;
 }
 
-.lab-desc {
-  max-width: 60ch;
-  font-size: var(--text-sm);
-  color: var(--color-ink-soft);
-  line-height: var(--leading-normal);
-}
-
 /* The drawing's frame: a card the figure sits on, the way a plate sits on a
    page. Figures draw on the card colour so their tints read as tints. */
 .lab-plate {

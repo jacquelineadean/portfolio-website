@@ -1,0 +1,422 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350" class="chr-a chr-a-a-harness-before-model" role="img" aria-labelledby="a-harness-before-model-title a-harness-before-model-desc" data-theme="light"><title id="a-harness-before-model-title">Harness before model</title><desc id="a-harness-before-model-desc">A hashed contract governs every card, a model that reads its outcomes is rejected, and the test set opens once. Steps: 1. Every experiment runs under a pre-registered contract. 2. The contract hash is stamped on every card. 3. A model that reads its own outcomes is rejected. 4. The held-out test set opens once per contract. Sources: The Readiness Loop README.</desc><style>/* Theme: tokens derived by chronicle from the palette and fonts. */
+.chr-a-a-harness-before-model {
+  --paper: #FFFDF9;
+  --print: #FFFEFB;
+  --surface: #F6F4F0;
+  --surface-2: #FFFEFD;
+  --ink: #1F1E1A;
+  --ink-2: #575652;
+  --muted: #75736F;
+  --rule: #DDDCD8;
+  --rule-2: #EDEBE7;
+  --grid: #E9E7E3;
+  --accent: #4285F4;
+  --accent-text: #3B70C8;
+  --accent-wash: rgba(66, 133, 244, 0.10);
+  --legacy: #EA4335;
+  --legacy-text: #D13E32;
+  --good: #2F7D4F;
+  --warn: #9C6210;
+  --bad: #B23A2B;
+  --good-wash: rgba(47, 125, 79, 0.12);
+  --bad-wash: rgba(178, 58, 43, 0.12);
+  --tip-bg: #1F1E1A;
+  --tip-ink: #FFFDF9;
+  --on-accent: #FFFFFF;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #47463F;
+  --s6: #5F8A2E;
+  --seq-0: #F0F3F9;
+  --seq-1: #D5E3F8;
+  --seq-2: #B0CBF7;
+  --seq-3: #82AEF6;
+  --seq-4: #4285F4;
+  --seq-5: #345C9D;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-ui: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  .chr-a-a-harness-before-model:not([data-theme="light"]) {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark; }
+}
+.chr-a-a-harness-before-model[data-theme="dark"] {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+.chr-a-a-harness-before-model .f-accent { fill: var(--accent); } .chr-a-a-harness-before-model .s-accent { stroke: var(--accent); } .chr-a-a-harness-before-model .t-accent { color: var(--accent); }
+.chr-a-a-harness-before-model .f-legacy { fill: var(--legacy); } .chr-a-a-harness-before-model .s-legacy { stroke: var(--legacy); } .chr-a-a-harness-before-model .t-legacy { color: var(--legacy); }
+.chr-a-a-harness-before-model .f-ink { fill: var(--ink); } .chr-a-a-harness-before-model .s-ink { stroke: var(--ink); } .chr-a-a-harness-before-model .t-ink { color: var(--ink); }
+.chr-a-a-harness-before-model .f-muted { fill: var(--muted); } .chr-a-a-harness-before-model .s-muted { stroke: var(--muted); } .chr-a-a-harness-before-model .t-muted { color: var(--muted); }
+.chr-a-a-harness-before-model .f-paper { fill: var(--paper); } .chr-a-a-harness-before-model .s-paper { stroke: var(--paper); } .chr-a-a-harness-before-model .t-paper { color: var(--paper); }
+.chr-a-a-harness-before-model .f-surface { fill: var(--surface); } .chr-a-a-harness-before-model .s-surface { stroke: var(--surface); } .chr-a-a-harness-before-model .t-surface { color: var(--surface); }
+.chr-a-a-harness-before-model .f-good { fill: var(--good); } .chr-a-a-harness-before-model .s-good { stroke: var(--good); } .chr-a-a-harness-before-model .t-good { color: var(--good); }
+.chr-a-a-harness-before-model .f-bad { fill: var(--bad); } .chr-a-a-harness-before-model .s-bad { stroke: var(--bad); } .chr-a-a-harness-before-model .t-bad { color: var(--bad); }
+.chr-a-a-harness-before-model .f-s1 { fill: var(--s1); } .chr-a-a-harness-before-model .s-s1 { stroke: var(--s1); } .chr-a-a-harness-before-model .t-s1 { color: var(--s1); }
+.chr-a-a-harness-before-model .f-s2 { fill: var(--s2); } .chr-a-a-harness-before-model .s-s2 { stroke: var(--s2); } .chr-a-a-harness-before-model .t-s2 { color: var(--s2); }
+.chr-a-a-harness-before-model .f-s3 { fill: var(--s3); } .chr-a-a-harness-before-model .s-s3 { stroke: var(--s3); } .chr-a-a-harness-before-model .t-s3 { color: var(--s3); }
+.chr-a-a-harness-before-model .f-s4 { fill: var(--s4); } .chr-a-a-harness-before-model .s-s4 { stroke: var(--s4); } .chr-a-a-harness-before-model .t-s4 { color: var(--s4); }
+.chr-a-a-harness-before-model .f-s5 { fill: var(--s5); } .chr-a-a-harness-before-model .s-s5 { stroke: var(--s5); } .chr-a-a-harness-before-model .t-s5 { color: var(--s5); }
+.chr-a-a-harness-before-model .f-s6 { fill: var(--s6); } .chr-a-a-harness-before-model .s-s6 { stroke: var(--s6); } .chr-a-a-harness-before-model .t-s6 { color: var(--s6); }
+.chr-a-a-harness-before-model .f-green { fill: var(--c-green); } .chr-a-a-harness-before-model .s-green { stroke: var(--c-green); } .chr-a-a-harness-before-model .t-green { color: var(--c-green); }
+.chr-a-a-harness-before-model .f-yellow { fill: var(--c-yellow); } .chr-a-a-harness-before-model .s-yellow { stroke: var(--c-yellow); } .chr-a-a-harness-before-model .t-yellow { color: var(--c-yellow); }
+.chr-a-a-harness-before-model .f-purple { fill: var(--c-purple); } .chr-a-a-harness-before-model .s-purple { stroke: var(--c-purple); } .chr-a-a-harness-before-model .t-purple { color: var(--c-purple); }
+/* The frame of a standalone animation: background, title, captions and the step strip.
+   Every rule sits under .chr-a so an animation pasted into another page styles only
+   itself; its colors and fonts come from tokens set on .chr-a-&lt;slug>. */
+.chr-a { font-family: var(--f-body); }
+.chr-a .a-bg { fill: var(--paper); }
+.chr-a .a-bg.surface { fill: var(--surface); }
+.chr-a .a-kicker { font-family: var(--f-ui); font-weight: 700; letter-spacing: .12em; fill: var(--accent-text); }
+.chr-a .a-title { font-family: var(--f-display); fill: var(--ink); }
+.chr-a .a-credit { font-family: var(--f-ui); fill: var(--muted); }
+.chr-a .a-num { font-family: var(--f-mono); font-weight: 500; fill: var(--accent-text); }
+.chr-a .a-cap { font-family: var(--f-body); fill: var(--ink); }
+.chr-a .a-track { stroke: var(--rule); }
+.chr-a .a-fill { stroke: var(--accent); }
+
+/* Technical architecture diagrams: zones, components, lines, packets and state marks. */
+.chr-a .m-gfill { fill: none; }
+.chr-a .m-gfill.m-zone { fill: var(--surface); }
+.chr-a .m-gfill.m-cluster { fill: color-mix(in srgb, var(--tone) 7%, transparent); }
+.chr-a .m-gline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-gline.m-boundary { stroke: var(--muted); stroke-dasharray: 7 5; }
+.chr-a .m-gline.m-external { stroke: var(--muted); stroke-dasharray: .5 5; stroke-linecap: round; stroke-width: 1.6; }
+.chr-a .m-tinted .m-gline { stroke: color-mix(in srgb, var(--tone) 50%, transparent); }
+.chr-a .m-glabel { font-family: var(--f-ui); font-weight: 650; font-size: 11px; letter-spacing: .08em; fill: var(--muted); }
+.chr-a .m-tinted .m-glabel { fill: var(--tone); }
+.chr-a .m-gflash { fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0; }
+
+.chr-a .m-line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linejoin: round; }
+.chr-a .m-async .m-line { stroke-dasharray: 6 5; }
+.chr-a .m-head { fill: var(--ink-2); }
+.chr-a .m-async .m-head { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-hot { fill: none; stroke: var(--tone, var(--accent)); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.chr-a .m-mask { fill: none; stroke: #fff; stroke-width: 22; }
+.chr-a .m-elabel, .chr-a .m-legend { font-family: var(--f-ui); font-size: 12px; fill: var(--ink-2); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.chr-a .m-legend { fill: var(--muted); }
+.chr-a .m-line.m-new, .chr-a .m-line.m-legacy, .chr-a .m-line.m-bad { stroke-width: 2.2; }
+.chr-a .m-new.m-line { stroke: var(--accent); }
+.chr-a .m-new.m-head { fill: var(--accent); stroke: var(--accent); }
+.chr-a .m-legacy.m-line { stroke: var(--legacy); }
+.chr-a .m-legacy.m-head { fill: var(--legacy); stroke: var(--legacy); }
+.chr-a .m-bad.m-line, .chr-a .m-down.m-line { stroke: var(--bad); }
+.chr-a .m-bad.m-head, .chr-a .m-down.m-head { fill: var(--bad); stroke: var(--bad); }
+.chr-a .m-down.m-line { stroke-dasharray: 2 5; stroke-linecap: round; opacity: .7; }
+.chr-a .m-planned.m-line { stroke: var(--muted); stroke-dasharray: 4 5; opacity: .8; }
+.chr-a .m-planned.m-head { fill: var(--muted); stroke: var(--muted); opacity: .8; }
+
+.chr-a .m-halo, .chr-a .m-trail, .chr-a .m-dot { fill: none; stroke-linecap: round; }
+.chr-a .m-halo { stroke: var(--paper); stroke-width: 14; }
+.chr-a .m-trail { stroke: var(--tone); stroke-width: 4; opacity: .4; }
+.chr-a .m-dot { stroke: var(--tone); stroke-width: 9; }
+
+.chr-a .m-shadow { fill: var(--rule-2); }
+.chr-a .m-box, .chr-a .m-rep { fill: var(--surface-2); }
+.chr-a .m-rep { stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-outline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-tile { fill: color-mix(in srgb, var(--tone) 14%, transparent); }
+.chr-a .m-glyph { fill: none; stroke: var(--tone); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-nlabel { font-family: var(--f-ui); font-weight: 600; font-size: 14px; fill: var(--ink); }
+.chr-a .m-tech { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chr-a .m-ping { fill: none; stroke: var(--tone); stroke-width: 2; opacity: 0; }
+.chr-a .m-ring { fill: none; stroke-width: 2.2; }
+.chr-a .m-ring.m-new { stroke: var(--accent); }
+.chr-a .m-ring.m-legacy { stroke: var(--legacy); }
+.chr-a .m-ring.m-good { stroke: var(--good); }
+.chr-a .m-ring.m-warn { stroke: var(--warn); }
+.chr-a .m-ring.m-bad, .chr-a .m-ring.m-down { stroke: var(--bad); }
+.chr-a .m-ring.m-planned { stroke: var(--muted); stroke-dasharray: 5 4; }
+.chr-a .m-pill rect { fill: var(--paper); stroke: var(--rule); }
+.chr-a .m-pill text { font-family: var(--f-ui); font-weight: 700; font-size: 9.5px; letter-spacing: .06em; fill: var(--muted); }
+.chr-a .m-flag.m-new rect { fill: var(--accent); stroke: none; }
+.chr-a .m-flag.m-new text { fill: var(--on-accent); }
+.chr-a .m-flag.m-legacy rect { fill: var(--legacy-text); stroke: none; }
+.chr-a .m-flag.m-down rect { fill: var(--bad); stroke: none; }
+.chr-a .m-flag.m-legacy text, .chr-a .m-flag.m-down text { fill: var(--paper); }
+.chr-a .m-flag.m-planned rect { stroke: var(--muted); stroke-dasharray: 3 2; }
+.chr-a .m-badge.m-good { fill: var(--good); }
+.chr-a .m-badge.m-warn { fill: var(--warn); }
+.chr-a .m-badge.m-bad { fill: var(--bad); }
+.chr-a .m-sign { fill: none; stroke: var(--paper); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Drawn diagrams: packets that run along Claude's paths take the accent unless a part
+   sets its own --tone. */
+.chr-a .dg-svg .m-packet { --tone: var(--accent); }
+.chr-a .dg-svg { overflow: visible; }
+
+/* Painted scenes: the paper under the painting, the focus shade and the spots. Paintings
+   sit on paper in both themes, so callouts keep paper colors. */
+.chr-a .m-print { fill: var(--print); }
+.chr-a .m-shade { fill: #101218; }
+.chr-a .m-spot-dot { fill: var(--accent); stroke: #FCFBF7; stroke-width: 3; }
+.chr-a .m-spot-num { font-family: var(--f-ui); font-weight: 700; fill: #FFFFFF; }
+.chr-a .m-spot-pill { fill: rgba(252, 251, 247, .94); stroke: rgba(30, 32, 38, .25); }
+.chr-a .m-spot-label { font-family: var(--f-ui); font-weight: 600; fill: #1E2026; }
+/* ------------------------------------------------- drawn figure classes */
+/* Shared by story pages and standalone animations: the classes Claude writes in
+   diagrams, and the styles of live labels on paintings. */
+.dg-svg text { fill: var(--ink); font-size: 15px; }
+.dg-svg .label { fill: var(--ink-2); font-size: 13px; }
+.dg-svg .small { font-size: 12px; fill: var(--muted); }
+.dg-svg .hand { font-family: var(--f-hand); font-size: 20px; fill: var(--accent-text); }
+.dg-svg .title { font-weight: 700; }
+.dg-svg .box { fill: var(--surface-2); stroke: var(--ink); stroke-width: 1.5; }
+.dg-svg .box.soft { fill: var(--surface); stroke: var(--rule); }
+.dg-svg .box.accent { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; }
+.dg-svg .box.legacy { fill: color-mix(in srgb, var(--legacy) 12%, transparent); stroke: var(--legacy); stroke-width: 2; }
+.dg-svg .line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; }
+.dg-svg .line.accent { stroke: var(--accent); stroke-width: 2.2; }
+.dg-svg .line.legacy { stroke: var(--legacy); stroke-width: 2.2; }
+.dg-svg .line.dashed { stroke-dasharray: 5 4; }
+.dg-svg .head { fill: var(--ink-2); }
+.overlay .lbl { pointer-events: none; }
+.overlay .lbl-hand { font-family: var(--f-hand); font-weight: 600; }
+.overlay .lbl-label { font-family: var(--f-ui); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.overlay .lbl-caption { font-family: var(--f-body); font-style: italic; }
+.overlay .lbl-display { font-family: var(--f-display); }
+.overlay .lbl-mono, .overlay .lbl-number { font-family: var(--f-mono); font-weight: 500; }
+.overlay .lbl-number { font-variant-numeric: tabular-nums; }
+@keyframes a-harness-before-model-k0 { 0% { opacity: 0.000; } 3.035% { opacity: 0.000; } 4.805% { opacity: 1.000; } 19.885% { opacity: 1.000; } 21.655% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k1 { 0% { opacity: 0.000; } 20.77% { opacity: 0.000; } 22.54% { opacity: 1.000; } 43.254% { opacity: 1.000; } 45.024% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k2 { 0% { opacity: 0.000; } 44.139% { opacity: 0.000; } 45.909% { opacity: 1.000; } 64.466% { opacity: 1.000; } 66.237% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k3 { 0% { opacity: 0.000; } 65.352% { opacity: 0.000; } 67.122% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k4 { 0% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k5 { 0% { stroke-dashoffset: 241.70px; } 3.035% { stroke-dashoffset: 241.70px; } 20.77% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 241.70px; }}
+@keyframes a-harness-before-model-k6 { 0% { stroke-dashoffset: 241.70px; } 20.77% { stroke-dashoffset: 241.70px; } 44.139% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 241.70px; }}
+@keyframes a-harness-before-model-k7 { 0% { stroke-dashoffset: 241.70px; } 44.139% { stroke-dashoffset: 241.70px; } 65.352% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 241.70px; }}
+@keyframes a-harness-before-model-k8 { 0% { stroke-dashoffset: 241.70px; } 65.352% { stroke-dashoffset: 241.70px; } 84.825% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 241.70px; }}
+@keyframes a-harness-before-model-k9 { 0% { opacity: 1.000; } 100% { opacity: 1.000; }}
+@keyframes a-harness-before-model-k10 { 0% { opacity: 0.000; } 3.541% { opacity: 0.000; } 5.311% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k11 { 0% { opacity: 0.000; } 45.252% { opacity: 0.000; } 47.022% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k12 { 0% { opacity: 0.000; } 23.097% { opacity: 0.000; } 24.867% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k13 { 0% { opacity: 0.000; } 23.704% { opacity: 0.000; } 25.474% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k14 { 0% { opacity: 0.000; } 45.859% { opacity: 0.000; } 47.629% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k15 { 0% { opacity: 0.000; } 44.645% { opacity: 0.000; } 46.415% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k16 { 0% { opacity: 0.000; } 24.311% { opacity: 0.000; } 26.081% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k17 { 0% { opacity: 0.000; } 21.276% { opacity: 0.000; } 23.046% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k18 { 0% { opacity: 0.000; } 21.883% { opacity: 0.000; } 23.653% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k19 { 0% { opacity: 0.000; } 22.49% { opacity: 0.000; } 24.26% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k20 { 0% { opacity: 0.000; } 65.857% { opacity: 0.000; } 67.628% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k21 { 0% { opacity: 0.000; } 66.464% { opacity: 0.000; } 68.235% { opacity: 1.000; } 98.23% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k22 { 0% { scale: 1.000; } 69.398% { scale: 1.000; } 70.916% { scale: 1.060; } 72.433% { scale: 1.000; } 73.95% { scale: 1.060; } 75.468% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-harness-before-model-k23 { 0% { scale: 1.000; } 48.185% { scale: 1.000; } 49.703% { scale: 1.060; } 51.22% { scale: 1.000; } 52.738% { scale: 1.060; } 54.255% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-harness-before-model-k24 { 0% { stroke-dashoffset: 1.00px; } 3.541% { stroke-dashoffset: 1.00px; } 8.093% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k25 { 0% { stroke-dashoffset: 1.00px; } 21.276% { stroke-dashoffset: 1.00px; } 25.828% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k26 { 0% { stroke-dashoffset: 1.00px; } 21.883% { stroke-dashoffset: 1.00px; } 26.435% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k27 { 0% { stroke-dashoffset: 1.00px; } 22.49% { stroke-dashoffset: 1.00px; } 27.042% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k28 { 0% { stroke-dashoffset: 1.00px; } 44.645% { stroke-dashoffset: 1.00px; } 49.197% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k29 { 0% { stroke-dashoffset: 1.00px; } 45.252% { stroke-dashoffset: 1.00px; } 49.804% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k30 { 0% { stroke-dashoffset: 1.00px; } 65.857% { stroke-dashoffset: 1.00px; } 70.41% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k31 { 0% { stroke-dashoffset: 1.00px; } 66.464% { stroke-dashoffset: 1.00px; } 71.017% { stroke-dashoffset: 0.00px; } 98.23% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-harness-before-model-k32 { 0% { stroke-dashoffset: 0.00px; } 25.828% { stroke-dashoffset: 0.00px; } 26.289% { stroke-dashoffset: -0.04px; } 26.75% { stroke-dashoffset: -0.15px; } 27.211% { stroke-dashoffset: -0.31px; } 27.672% { stroke-dashoffset: -0.50px; } 28.133% { stroke-dashoffset: -0.69px; } 28.594% { stroke-dashoffset: -0.85px; } 29.055% { stroke-dashoffset: -0.96px; } 29.516% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k33 { 0% { stroke-dashoffset: 0.07px; } 25.828% { stroke-dashoffset: 0.07px; } 26.289% { stroke-dashoffset: 0.03px; } 26.75% { stroke-dashoffset: -0.08px; } 27.211% { stroke-dashoffset: -0.24px; } 27.672% { stroke-dashoffset: -0.43px; } 28.133% { stroke-dashoffset: -0.62px; } 28.594% { stroke-dashoffset: -0.78px; } 29.055% { stroke-dashoffset: -0.89px; } 29.516% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k34 { 0% { opacity: 0.000; } 25.322% { opacity: 0.000; } 25.828% { opacity: 1.000; } 29.01% { opacity: 1.000; } 29.516% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k35 { 0% { stroke-dashoffset: 0.00px; } 29.837% { stroke-dashoffset: 0.00px; } 30.298% { stroke-dashoffset: -0.04px; } 30.759% { stroke-dashoffset: -0.15px; } 31.22% { stroke-dashoffset: -0.31px; } 31.681% { stroke-dashoffset: -0.50px; } 32.142% { stroke-dashoffset: -0.69px; } 32.603% { stroke-dashoffset: -0.85px; } 33.064% { stroke-dashoffset: -0.96px; } 33.525% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k36 { 0% { stroke-dashoffset: 0.07px; } 29.837% { stroke-dashoffset: 0.07px; } 30.298% { stroke-dashoffset: 0.03px; } 30.759% { stroke-dashoffset: -0.08px; } 31.22% { stroke-dashoffset: -0.24px; } 31.681% { stroke-dashoffset: -0.43px; } 32.142% { stroke-dashoffset: -0.62px; } 32.603% { stroke-dashoffset: -0.78px; } 33.064% { stroke-dashoffset: -0.89px; } 33.525% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k37 { 0% { opacity: 0.000; } 29.331% { opacity: 0.000; } 29.837% { opacity: 1.000; } 33.019% { opacity: 1.000; } 33.525% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k38 { 0% { stroke-dashoffset: 0.00px; } 33.845% { stroke-dashoffset: 0.00px; } 34.306% { stroke-dashoffset: -0.04px; } 34.767% { stroke-dashoffset: -0.15px; } 35.228% { stroke-dashoffset: -0.31px; } 35.689% { stroke-dashoffset: -0.50px; } 36.15% { stroke-dashoffset: -0.69px; } 36.611% { stroke-dashoffset: -0.85px; } 37.072% { stroke-dashoffset: -0.96px; } 37.533% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k39 { 0% { stroke-dashoffset: 0.07px; } 33.845% { stroke-dashoffset: 0.07px; } 34.306% { stroke-dashoffset: 0.03px; } 34.767% { stroke-dashoffset: -0.08px; } 35.228% { stroke-dashoffset: -0.24px; } 35.689% { stroke-dashoffset: -0.43px; } 36.15% { stroke-dashoffset: -0.62px; } 36.611% { stroke-dashoffset: -0.78px; } 37.072% { stroke-dashoffset: -0.89px; } 37.533% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k40 { 0% { opacity: 0.000; } 33.34% { opacity: 0.000; } 33.845% { opacity: 1.000; } 37.028% { opacity: 1.000; } 37.533% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k41 { 0% { stroke-dashoffset: 0.00px; } 37.854% { stroke-dashoffset: 0.00px; } 38.315% { stroke-dashoffset: -0.04px; } 38.776% { stroke-dashoffset: -0.15px; } 39.237% { stroke-dashoffset: -0.31px; } 39.698% { stroke-dashoffset: -0.50px; } 40.159% { stroke-dashoffset: -0.69px; } 40.62% { stroke-dashoffset: -0.85px; } 41.081% { stroke-dashoffset: -0.96px; } 41.542% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k42 { 0% { stroke-dashoffset: 0.07px; } 37.854% { stroke-dashoffset: 0.07px; } 38.315% { stroke-dashoffset: 0.03px; } 38.776% { stroke-dashoffset: -0.08px; } 39.237% { stroke-dashoffset: -0.24px; } 39.698% { stroke-dashoffset: -0.43px; } 40.159% { stroke-dashoffset: -0.62px; } 40.62% { stroke-dashoffset: -0.78px; } 41.081% { stroke-dashoffset: -0.89px; } 41.542% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k43 { 0% { opacity: 0.000; } 37.348% { opacity: 0.000; } 37.854% { opacity: 1.000; } 41.036% { opacity: 1.000; } 41.542% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-harness-before-model-k44 { 0% { stroke-dashoffset: 0.00px; } 49.197% { stroke-dashoffset: 0.00px; } 50.011% { stroke-dashoffset: -0.04px; } 50.826% { stroke-dashoffset: -0.15px; } 51.64% { stroke-dashoffset: -0.31px; } 52.454% { stroke-dashoffset: -0.50px; } 53.269% { stroke-dashoffset: -0.69px; } 54.083% { stroke-dashoffset: -0.85px; } 54.898% { stroke-dashoffset: -0.96px; } 55.712% { stroke-dashoffset: -1.00px; } 98.23% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-harness-before-model-k45 { 0% { stroke-dashoffset: 0.07px; } 49.197% { stroke-dashoffset: 0.07px; } 50.011% { stroke-dashoffset: 0.03px; } 50.826% { stroke-dashoffset: -0.08px; } 51.64% { stroke-dashoffset: -0.24px; } 52.454% { stroke-dashoffset: -0.43px; } 53.269% { stroke-dashoffset: -0.62px; } 54.083% { stroke-dashoffset: -0.78px; } 54.898% { stroke-dashoffset: -0.89px; } 55.712% { stroke-dashoffset: -0.93px; } 98.23% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-harness-before-model-k46 { 0% { opacity: 0.000; } 48.691% { opacity: 0.000; } 49.197% { opacity: 1.000; } 55.206% { opacity: 1.000; } 55.712% { opacity: 0.000; } 100% { opacity: 0.000; }}
+#a-harness-before-model-cap-0 { opacity: 0.000; animation: a-harness-before-model-k0 19.770s linear infinite both; }
+#a-harness-before-model-cap-1 { opacity: 0.000; animation: a-harness-before-model-k1 19.770s linear infinite both; }
+#a-harness-before-model-cap-2 { opacity: 0.000; animation: a-harness-before-model-k2 19.770s linear infinite both; }
+#a-harness-before-model-cap-3 { opacity: 0.000; animation: a-harness-before-model-k3 19.770s linear infinite both; }
+#a-harness-before-model-cap-rest { animation: a-harness-before-model-k4 19.770s linear infinite both; }
+#a-harness-before-model-fill-0 { animation: a-harness-before-model-k5 19.770s linear infinite both; }
+#a-harness-before-model-fill-1 { animation: a-harness-before-model-k6 19.770s linear infinite both; }
+#a-harness-before-model-fill-2 { animation: a-harness-before-model-k7 19.770s linear infinite both; }
+#a-harness-before-model-fill-3 { animation: a-harness-before-model-k8 19.770s linear infinite both; }
+#a-harness-before-model-strip { opacity: 0.000; animation: a-harness-before-model-k9 19.770s linear infinite both; }
+#a-harness-before-model-d-contract { animation: a-harness-before-model-k10 19.770s linear infinite both; }
+#a-harness-before-model-d-oracle { animation: a-harness-before-model-k11 19.770s linear infinite both; }
+#a-harness-before-model-d-harness { animation: a-harness-before-model-k12 19.770s linear infinite both; }
+#a-harness-before-model-d-g-ch { animation: a-harness-before-model-k13 19.770s linear infinite both; }
+#a-harness-before-model-d-g-oh { animation: a-harness-before-model-k14 19.770s linear infinite both; }
+#a-harness-before-model-d-rej { animation: a-harness-before-model-k15 19.770s linear infinite both; }
+#a-harness-before-model-d-cards { animation: a-harness-before-model-k16 19.770s linear infinite both; }
+#a-harness-before-model-d-g-hc1 { animation: a-harness-before-model-k17 19.770s linear infinite both; }
+#a-harness-before-model-d-g-hc2 { animation: a-harness-before-model-k18 19.770s linear infinite both; }
+#a-harness-before-model-d-g-hc3 { animation: a-harness-before-model-k19 19.770s linear infinite both; }
+#a-harness-before-model-d-test { animation: a-harness-before-model-k20 19.770s linear infinite both; }
+#a-harness-before-model-d-g-ht { animation: a-harness-before-model-k21 19.770s linear infinite both; }
+#a-harness-before-model-d-test-u { transform-box: fill-box; transform-origin: center; animation: a-harness-before-model-k22 19.770s linear infinite both; }
+#a-harness-before-model-d-rej-u { transform-box: fill-box; transform-origin: center; animation: a-harness-before-model-k23 19.770s linear infinite both; }
+#a-harness-before-model-d-w1 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w2 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w3 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w4 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w5 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w6 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w7 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w8 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w9 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w10 { animation: a-harness-before-model-k24 19.770s linear infinite both; }
+#a-harness-before-model-d-w11 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w12 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w13 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w14 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-w15 { animation: a-harness-before-model-k25 19.770s linear infinite both; }
+#a-harness-before-model-d-ch { animation: a-harness-before-model-k26 19.770s linear infinite both; }
+#a-harness-before-model-d-w17 { animation: a-harness-before-model-k26 19.770s linear infinite both; }
+#a-harness-before-model-d-w18 { animation: a-harness-before-model-k26 19.770s linear infinite both; }
+#a-harness-before-model-d-w19 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w20 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w21 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w22 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w23 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w24 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w25 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w26 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w27 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w28 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w29 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w30 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w31 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w32 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w33 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w34 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w35 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w36 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w37 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w38 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w39 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w40 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w41 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w42 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w43 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w44 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w45 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w46 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w47 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w48 { animation: a-harness-before-model-k27 19.770s linear infinite both; }
+#a-harness-before-model-d-w49 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w50 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w51 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w52 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-w53 { animation: a-harness-before-model-k28 19.770s linear infinite both; }
+#a-harness-before-model-d-oh { animation: a-harness-before-model-k29 19.770s linear infinite both; }
+#a-harness-before-model-d-w55 { animation: a-harness-before-model-k29 19.770s linear infinite both; }
+#a-harness-before-model-d-w56 { animation: a-harness-before-model-k29 19.770s linear infinite both; }
+#a-harness-before-model-d-w57 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w58 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w59 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w60 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w61 { animation: a-harness-before-model-k30 19.770s linear infinite both; }
+#a-harness-before-model-d-w62 { animation: a-harness-before-model-k31 19.770s linear infinite both; }
+#a-harness-before-model-d-w63 { animation: a-harness-before-model-k31 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1-h { animation: a-harness-before-model-k32 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k33 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1-d { animation: a-harness-before-model-k32 19.770s linear infinite both; }
+#a-harness-before-model-d-pk1 { opacity: 0.000; animation: a-harness-before-model-k34 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2-h { animation: a-harness-before-model-k35 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k36 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2-d { animation: a-harness-before-model-k35 19.770s linear infinite both; }
+#a-harness-before-model-d-pk2 { opacity: 0.000; animation: a-harness-before-model-k37 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3-h { animation: a-harness-before-model-k38 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k39 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3-d { animation: a-harness-before-model-k38 19.770s linear infinite both; }
+#a-harness-before-model-d-pk3 { opacity: 0.000; animation: a-harness-before-model-k40 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4-h { animation: a-harness-before-model-k41 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k42 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4-d { animation: a-harness-before-model-k41 19.770s linear infinite both; }
+#a-harness-before-model-d-pk4 { opacity: 0.000; animation: a-harness-before-model-k43 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5-h { animation: a-harness-before-model-k44 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5-t { stroke-dashoffset: 0.07px; animation: a-harness-before-model-k45 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5-d { animation: a-harness-before-model-k44 19.770s linear infinite both; }
+#a-harness-before-model-d-pk5 { opacity: 0.000; animation: a-harness-before-model-k46 19.770s linear infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .chr-a-a-harness-before-model, .chr-a-a-harness-before-model * { animation: none !important; }
+}
+</style><svg viewBox="0 0 430 560" class="dg-svg" x="107.3" y="60.2" width="865.4" height="1127.0"><g id="a-harness-before-model-d-contract"><rect x="10" y="10" width="410" height="250" rx="10" fill="#fdf0d3" id="a-harness-before-model-d-w1" pathLength="1" stroke-dasharray="1 1" /><path d="M-6.86 10C-3.02 9.98,8.55 10.01,16.17 9.89C23.8 9.76,31.29 9.26,38.89 9.25C46.48 9.25,54.08 9.77,61.75 9.86C69.41 9.94,77.24 9.62,84.89 9.75C92.53 9.88,100.01 10.46,107.61 10.64C115.21 10.81,122.87 10.98,130.51 10.82C138.15 10.65,145.63 9.78,153.46 9.65C161.29 9.52,169.78 9.81,177.47 10.01C185.16 10.22,191.83 10.94,199.61 10.87C207.39 10.8,216.42 9.61,224.14 9.59C231.86 9.56,238.39 10.62,245.92 10.7C253.46 10.78,261.69 10.11,269.37 10.06C277.06 10.01,284.26 10.39,292.02 10.41C299.77 10.43,308.12 10.31,315.91 10.19C323.69 10.07,331.26 9.67,338.72 9.68C346.18 9.69,353.14 10.05,360.65 10.23C368.17 10.42,376.12 10.89,383.82 10.81C391.52 10.73,399.06 9.89,406.86 9.75C414.66 9.62,426.65 9.96,430.61 10" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w2" pathLength="1" stroke-dasharray="1 1" /><path d="M420 4.23C420.09 8.03,420.55 19.21,420.54 27.02C420.53 34.83,420.13 43.09,419.95 51.1C419.76 59.11,419.35 67.2,419.42 75.1C419.49 83.01,420.17 90.63,420.37 98.51C420.58 106.39,420.68 114.58,420.65 122.38C420.62 130.18,420.34 137.67,420.19 145.34C420.03 153.01,419.77 160.63,419.74 168.42C419.72 176.2,420.05 184.07,420.04 192.04C420.03 200.01,419.8 208.33,419.68 216.23C419.56 224.14,419.26 231.66,419.31 239.46C419.36 247.27,419.88 259.14,420 263.07" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w3" pathLength="1" stroke-dasharray="1 1" /><path d="M434.09 260C430.17 260,418.02 259.92,410.54 259.97C403.05 260.02,396.76 260.29,389.21 260.28C381.66 260.26,372.89 259.85,365.23 259.88C357.58 259.92,350.63 260.6,343.28 260.48C335.93 260.35,328.89 259.26,321.11 259.12C313.33 258.97,304.26 259.54,296.6 259.6C288.95 259.65,282.66 259.29,275.18 259.44C267.7 259.58,259.26 260.29,251.74 260.45C244.21 260.61,237.57 260.44,230.02 260.41C222.47 260.37,214.06 260.37,206.46 260.24C198.86 260.11,192.15 259.63,184.42 259.64C176.68 259.65,167.74 260.2,160.05 260.29C152.36 260.39,145.82 260.16,138.27 260.2C130.73 260.24,122.33 260.41,114.79 260.52C107.25 260.62,100.39 261.04,93.03 260.82C85.67 260.61,78.23 259.3,70.62 259.23C63.02 259.15,55.05 260.26,47.4 260.39C39.75 260.51,32.35 260.03,24.71 259.96C17.06 259.9,5.38 259.99,1.52 260" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w4" pathLength="1" stroke-dasharray="1 1" /><path d="M10 273.38C10.12 269.29,10.8 256.97,10.74 248.83C10.69 240.69,9.85 232.68,9.65 224.56C9.46 216.45,9.56 208.11,9.56 200.14C9.57 192.16,9.64 184.81,9.67 176.7C9.7 168.6,9.76 159.58,9.76 151.5C9.76 143.41,9.71 136.09,9.69 128.2C9.67 120.31,9.71 112.34,9.62 104.15C9.54 95.95,9.14 87.32,9.2 79.03C9.26 70.74,9.98 62.54,10 54.4C10.01 46.25,9.28 38.11,9.28 30.18C9.28 22.25,9.88 10.69,10 6.79" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w5" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(30 44) scale(1.2)" x="0" y="0" text-anchor="start" font-weight="600">Contract</text><text transform="translate(30 76) scale(0.88)" x="0" y="0" text-anchor="start">Hazard</text><text transform="translate(30 101) scale(0.88)" x="0" y="0" text-anchor="start">Geography</text><text transform="translate(30 126) scale(0.88)" x="0" y="0" text-anchor="start">Forecast period</text><text transform="translate(30 151) scale(0.88)" x="0" y="0" text-anchor="start">Damaging event</text><text transform="translate(30 176) scale(0.88)" x="0" y="0" text-anchor="start">Train · validate · test years</text><text transform="translate(30 201) scale(0.88)" x="0" y="0" text-anchor="start">Pass thresholds</text><rect x="30" y="214" width="230" height="32" rx="16" fill="#efe3fd" id="a-harness-before-model-d-w6" pathLength="1" stroke-dasharray="1 1" /><path d="M29.3 214C33.18 213.9,44.85 213.32,52.58 213.41C60.3 213.51,67.9 214.44,75.67 214.59C83.44 214.74,91.44 214.42,99.19 214.3C106.95 214.17,114.38 213.85,122.19 213.84C130 213.83,138.19 214.15,146.04 214.23C153.89 214.32,161.48 214.43,169.28 214.37C177.09 214.3,185.09 213.91,192.86 213.85C200.63 213.79,208.17 213.94,215.9 214.01C223.64 214.08,231.46 214.27,239.26 214.27C247.05 214.26,258.76 214.04,262.66 214" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w7" pathLength="1" stroke-dasharray="1 1" /><path d="M260 213.25C260.01 216.16,260.03 224.8,260.03 230.72C260.03 236.65,260.01 245.78,260 248.79" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w8" pathLength="1" stroke-dasharray="1 1" /><path d="M262.74 246C258.82 246.07,247.08 246.39,239.22 246.41C231.37 246.43,223.5 246.13,215.61 246.12C207.72 246.1,199.61 246.4,191.89 246.32C184.18 246.24,177.1 245.7,169.33 245.64C161.56 245.58,153.08 245.87,145.27 245.97C137.45 246.08,130.24 246.22,122.42 246.27C114.6 246.32,106.32 246.25,98.35 246.26C90.37 246.27,82.29 246.4,74.55 246.35C66.82 246.3,59.64 246.02,51.92 245.96C44.19 245.91,32.15 245.99,28.19 246" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w9" pathLength="1" stroke-dasharray="1 1" /><path d="M30 249.53C29.97 246.33,29.83 236.63,29.83 230.34C29.83 224.04,29.97 214.86,30 211.76" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w10" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(145 234.4) scale(0.88)" x="0" y="0" text-anchor="middle" font-weight="600"># contract hash</text></g><g id="a-harness-before-model-d-oracle"><rect x="10" y="306" width="170" height="80" rx="10" fill="#fce5e1" id="a-harness-before-model-d-w49" pathLength="1" stroke-dasharray="1 1" /><path d="M5.99 306C9.61 305.86,20.38 305.06,27.7 305.19C35.01 305.32,42.53 306.59,49.9 306.78C57.26 306.96,64.66 306.31,71.9 306.28C79.14 306.25,86.27 306.75,93.33 306.59C100.39 306.42,107.2 305.48,114.28 305.31C121.36 305.14,128.33 305.53,135.82 305.57C143.31 305.61,151.84 305.46,159.22 305.53C166.6 305.6,176.6 305.92,180.08 306" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w50" pathLength="1" stroke-dasharray="1 1" /><path d="M180 302.19C179.94 305.71,179.63 316.1,179.67 323.3C179.7 330.5,180.18 338,180.22 345.41C180.26 352.82,179.96 360.46,179.92 367.77C179.89 375.08,179.99 385.7,180 389.29" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w51" pathLength="1" stroke-dasharray="1 1" /><path d="M181.69 386C178.1 385.99,167.65 386.05,160.16 385.92C152.67 385.8,144.29 385.13,136.77 385.25C129.25 385.37,122.36 386.4,115.05 386.66C107.73 386.91,100.27 386.76,92.89 386.78C85.51 386.8,78.26 386.97,70.76 386.78C63.27 386.59,55.2 385.86,47.91 385.66C40.62 385.46,34.3 385.51,27.01 385.56C19.72 385.62,7.98 385.93,4.17 386" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w52" pathLength="1" stroke-dasharray="1 1" /><path d="M10 389.15C9.94 385.52,9.64 374.56,9.67 367.4C9.69 360.24,10.08 353,10.15 346.17C10.21 339.34,10.11 333.37,10.08 326.43C10.06 319.48,10.01 308.14,10 304.48" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w53" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(95 341.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Leaky model</text><text transform="translate(95 369.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">reads its outcomes</text></g><g id="a-harness-before-model-d-harness"><rect x="250" y="306" width="170" height="80" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w11" pathLength="1" stroke-dasharray="1 1" /><path d="M246.07 306C249.82 306,261.07 306.01,268.56 306.02C276.05 306.04,283.5 306.09,290.99 306.08C298.48 306.08,305.97 306.14,313.51 306C321.05 305.85,328.8 305.24,336.22 305.2C343.64 305.16,350.84 305.65,358 305.75C365.17 305.85,371.67 305.73,379.21 305.8C386.76 305.88,395.69 306.16,403.28 306.19C410.86 306.23,421.15 306.03,424.73 306" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w12" pathLength="1" stroke-dasharray="1 1" /><path d="M420 300.78C419.89 304.55,419.44 316.14,419.34 323.42C419.23 330.71,419.18 337.27,419.36 344.5C419.54 351.72,420.33 359.25,420.44 366.77C420.54 374.3,420.07 385.84,420 389.65" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w13" pathLength="1" stroke-dasharray="1 1" /><path d="M424.54 386C420.96 385.89,410.28 385.24,403.03 385.34C395.78 385.44,388.35 386.4,381.03 386.57C373.71 386.75,366.48 386.35,359.12 386.4C351.76 386.45,344.03 386.79,336.87 386.86C329.71 386.92,323.27 386.91,316.17 386.8C309.08 386.68,301.61 386.21,294.29 386.17C286.97 386.12,279.66 386.55,272.27 386.52C264.88 386.49,253.67 386.09,249.95 386" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w14" pathLength="1" stroke-dasharray="1 1" /><path d="M250 391.36C250.09 387.74,250.41 377.07,250.51 369.65C250.61 362.22,250.68 354.47,250.63 346.81C250.57 339.14,250.3 331.22,250.19 323.66C250.09 316.1,250.03 305.14,250 301.44" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w15" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(335 341.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Harness</text><text transform="translate(335 369.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">fixed scorer</text></g><g id="a-harness-before-model-d-g-ch"><path id="a-harness-before-model-d-ch" d="M262 230C266.92 231.76,281.86 237.28,291.55 240.59C301.23 243.9,314.09 243.88,320.13 249.85C326.17 255.83,325.28 267.75,327.76 276.44C330.24 285.13,333.79 297.74,335 302" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-harness-before-model-d-pk1" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk1-h" d="M262 230C266.92 231.76,281.86 237.28,291.55 240.59C301.23 243.9,314.09 243.88,320.13 249.85C326.17 255.83,325.28 267.75,327.76 276.44C330.24 285.13,333.79 297.74,335 302" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk1-t" d="M262 230C266.92 231.76,281.86 237.28,291.55 240.59C301.23 243.9,314.09 243.88,320.13 249.85C326.17 255.83,325.28 267.75,327.76 276.44C330.24 285.13,333.79 297.74,335 302" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk1-d" d="M262 230C266.92 231.76,281.86 237.28,291.55 240.59C301.23 243.9,314.09 243.88,320.13 249.85C326.17 255.83,325.28 267.75,327.76 276.44C330.24 285.13,333.79 297.74,335 302" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M335 302C334.5 301.43,333.08 299.84,332.01 298.57C330.93 297.29,329.13 295.06,328.55 294.36" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w17" pathLength="1" stroke-dasharray="1 1" /><path d="M335 302C335.12 301.12,335.5 298.39,335.73 296.74C335.96 295.09,336.28 292.87,336.39 292.1" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w18" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-harness-before-model-d-g-oh"><path id="a-harness-before-model-d-oh" d="M182 346C185.48 346.07,195.78 346.42,202.87 346.41C209.96 346.4,217.35 346.01,224.54 345.94C231.73 345.87,242.42 345.99,246 346" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-harness-before-model-d-pk5" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk5-h" d="M182 346C185.48 346.07,195.78 346.42,202.87 346.41C209.96 346.4,217.35 346.01,224.54 345.94C231.73 345.87,242.42 345.99,246 346" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk5-t" d="M182 346C185.48 346.07,195.78 346.42,202.87 346.41C209.96 346.4,217.35 346.01,224.54 345.94C231.73 345.87,242.42 345.99,246 346" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk5-d" d="M182 346C185.48 346.07,195.78 346.42,202.87 346.41C209.96 346.4,217.35 346.01,224.54 345.94C231.73 345.87,242.42 345.99,246 346" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M246 346C245.19 346.32,242.64 347.22,241.12 347.9C239.6 348.58,237.58 349.71,236.87 350.08" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w55" pathLength="1" stroke-dasharray="1 1" /><path d="M246 346C245.17 345.6,242.55 344.25,241.03 343.57C239.5 342.89,237.56 342.2,236.87 341.92" fill="none" stroke="#ea4335" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w56" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-harness-before-model-d-rej-d"><g id="a-harness-before-model-d-rej-u"><g id="a-harness-before-model-d-rej"><path d="M206 338C207.38 339.38,211.63 343.63,214.29 346.3C216.96 348.97,220.72 352.72,222 354" fill="none" stroke="#ea4335" stroke-width="2.8" stroke-linecap="round" /><path d="M222 338C220.67 339.24,216.68 342.77,214.01 345.44C211.35 348.11,207.34 352.57,206 354" fill="none" stroke="#ea4335" stroke-width="2.8" stroke-linecap="round" /><text transform="translate(214 322) scale(0.86)" x="0" y="0" text-anchor="middle" font-weight="600" class="f-legacy">rejected</text></g></g></g><g id="a-harness-before-model-d-cards"><rect x="250" y="450" width="170" height="76" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w19" pathLength="1" stroke-dasharray="1 1" /><path d="M246.54 450C250.35 450.14,262.03 450.86,269.4 450.87C276.77 450.88,283.41 450.23,290.77 450.05C298.13 449.88,305.9 449.69,313.56 449.81C321.21 449.92,329.16 450.84,336.7 450.73C344.24 450.63,351.49 449.27,358.81 449.17C366.13 449.07,373.4 450.11,380.63 450.14C387.86 450.17,394.74 449.38,402.17 449.36C409.59 449.34,421.35 449.89,425.18 450" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w20" pathLength="1" stroke-dasharray="1 1" /><path d="M420 449.4C420.01 453.82,419.93 467.3,420.05 475.92C420.18 484.55,420.78 492.48,420.77 501.15C420.76 509.82,420.13 523.49,420 527.96" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w21" pathLength="1" stroke-dasharray="1 1" /><path d="M422.16 526C418.5 525.96,407.74 525.65,400.24 525.76C392.74 525.86,384.61 526.47,377.16 526.63C369.71 526.79,362.96 526.84,355.54 526.72C348.11 526.6,340.03 526.06,332.62 525.92C325.21 525.78,318.31 525.97,311.06 525.9C303.81 525.84,296.44 525.58,289.13 525.53C281.81 525.47,274.64 525.49,267.2 525.57C259.76 525.65,248.26 525.93,244.48 526" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w22" pathLength="1" stroke-dasharray="1 1" /><path d="M250 530C249.92 525.44,249.52 511.88,249.55 502.65C249.58 493.41,250.11 483.82,250.18 474.59C250.26 465.37,250.03 451.84,250 447.29" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w23" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(268 478) scale(0.92)" x="0" y="0" text-anchor="start">experiment card</text><rect x="268" y="490" width="134" height="26" rx="13" fill="#efe3fd" id="a-harness-before-model-d-w24" pathLength="1" stroke-dasharray="1 1" /><path d="M265.48 490C269.41 489.97,281.26 489.84,289.02 489.83C296.77 489.82,304.33 489.87,312.02 489.93C319.72 489.98,327.45 490.24,335.22 490.19C342.98 490.13,350.8 489.64,358.6 489.59C366.41 489.55,374.27 489.83,382.04 489.9C389.81 489.97,401.35 489.98,405.21 490" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w25" pathLength="1" stroke-dasharray="1 1" /><path d="M402 488.43C402.06 490.84,402.37 498.23,402.37 502.87C402.37 507.51,402.06 514.02,402 516.25" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w26" pathLength="1" stroke-dasharray="1 1" /><path d="M402.45 516C398.56 516,386.69 516.05,379.09 515.97C371.49 515.89,364.37 515.41,356.86 515.51C349.35 515.6,341.63 516.52,334.03 516.56C326.44 516.6,319 515.91,311.3 515.75C303.61 515.59,295.58 515.58,287.85 515.62C280.12 515.66,268.73 515.94,264.9 516" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w27" pathLength="1" stroke-dasharray="1 1" /><path d="M268 518.29C268.04 515.8,268.25 508.38,268.25 503.34C268.25 498.29,268.04 490.57,268 488.02" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w28" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(335 507) scale(0.8)" x="0" y="0" text-anchor="middle"># contract hash</text><rect x="242" y="442" width="170" height="76" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w29" pathLength="1" stroke-dasharray="1 1" /><path d="M237.05 442C240.7 441.95,251.34 441.81,258.99 441.7C266.63 441.58,275.12 441.33,282.9 441.32C290.68 441.3,298.25 441.37,305.67 441.61C313.09 441.85,320.09 442.74,327.45 442.75C334.81 442.76,342.34 441.78,349.84 441.65C357.35 441.52,364.93 441.76,372.49 441.96C380.04 442.15,387.54 442.8,395.18 442.81C402.81 442.81,414.43 442.13,418.28 442" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w30" pathLength="1" stroke-dasharray="1 1" /><path d="M412 439.66C411.98 444.12,411.82 457.67,411.89 466.42C411.97 475.17,412.41 483.43,412.42 492.15C412.44 500.87,412.07 514.31,412 518.74" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w31" pathLength="1" stroke-dasharray="1 1" /><path d="M415.69 518C412.07 517.93,401.38 517.57,393.95 517.59C386.52 517.61,378.54 517.93,371.1 518.12C363.67 518.31,356.34 518.73,349.34 518.74C342.33 518.76,336.38 518.35,329.08 518.21C321.77 518.06,312.99 518.03,305.5 517.89C298.01 517.75,291.35 517.32,284.13 517.37C276.9 517.42,269.38 518.08,262.14 518.18C254.9 518.29,244.27 518.03,240.69 518" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w32" pathLength="1" stroke-dasharray="1 1" /><path d="M242 521.69C242.15 517.12,243.03 503.13,242.89 494.26C242.75 485.39,241.31 477.39,241.16 468.45C241.01 459.52,241.86 445.3,242 440.67" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w33" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(260 470) scale(0.92)" x="0" y="0" text-anchor="start">experiment card</text><rect x="260" y="482" width="134" height="26" rx="13" fill="#efe3fd" id="a-harness-before-model-d-w34" pathLength="1" stroke-dasharray="1 1" /><path d="M257.05 482C260.87 481.95,272.31 481.65,279.96 481.69C287.61 481.72,295.09 482.16,302.93 482.21C310.78 482.25,319.27 481.93,327.04 481.97C334.81 482.01,341.93 482.39,349.56 482.46C357.19 482.53,365.07 482.48,372.83 482.4C380.58 482.32,392.21 482.07,396.08 482" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w35" pathLength="1" stroke-dasharray="1 1" /><path d="M394 480.19C394.03 482.53,394.18 489.52,394.18 494.22C394.18 498.92,394.03 506.04,394 508.4" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w36" pathLength="1" stroke-dasharray="1 1" /><path d="M394.05 508C390.37 507.97,379.44 507.77,371.93 507.84C364.43 507.92,356.55 508.48,349.03 508.44C341.51 508.39,334.21 507.56,326.81 507.57C319.4 507.58,311.95 508.38,304.58 508.48C297.21 508.58,290.07 508.25,282.59 508.17C275.1 508.09,263.47 508.03,259.65 508" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w37" pathLength="1" stroke-dasharray="1 1" /><path d="M260 508.01C259.93 505.63,259.56 498.35,259.56 493.73C259.56 489.1,259.93 482.51,260 480.27" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w38" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(327 499) scale(0.8)" x="0" y="0" text-anchor="middle"># contract hash</text><rect x="234" y="434" width="170" height="76" rx="10" fill="#fffdf9" id="a-harness-before-model-d-w39" pathLength="1" stroke-dasharray="1 1" /><path d="M233.29 434C236.79 433.96,247.18 433.87,254.31 433.76C261.43 433.65,268.61 433.41,276.04 433.34C283.48 433.27,291.48 433.17,298.92 433.37C306.36 433.56,313.63 434.54,320.66 434.5C327.7 434.47,334.08 433.34,341.13 433.17C348.18 432.99,355.57 433.19,362.95 433.45C370.33 433.71,378.12 434.64,385.42 434.73C392.71 434.82,403.16 434.12,406.71 434" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w40" pathLength="1" stroke-dasharray="1 1" /><path d="M404 429.42C404.02 434.23,404.25 448.64,404.13 458.28C404.02 467.91,403.33 477.81,403.31 487.24C403.29 496.67,403.89 510.26,404 514.86" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w41" pathLength="1" stroke-dasharray="1 1" /><path d="M405.05 510C401.36 510,390.1 509.96,382.92 509.98C375.73 510.01,369.07 510.07,361.96 510.15C354.85 510.23,347.64 510.37,340.25 510.49C332.86 510.61,324.85 510.86,317.63 510.87C310.41 510.88,304.24 510.6,296.91 510.53C289.58 510.45,281.14 510.38,273.64 510.43C266.14 510.48,259.03 510.9,251.91 510.83C244.78 510.76,234.39 510.14,230.89 510" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w42" pathLength="1" stroke-dasharray="1 1" /><path d="M234 515.41C234.14 510.48,234.83 495.55,234.81 485.85C234.8 476.15,234.07 466.87,233.93 457.19C233.8 447.51,233.99 432.66,234 427.76" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w43" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(252 462) scale(0.92)" x="0" y="0" text-anchor="start">experiment card</text><rect x="252" y="474" width="134" height="26" rx="13" fill="#efe3fd" id="a-harness-before-model-d-w44" pathLength="1" stroke-dasharray="1 1" /><path d="M251.56 474C255.24 474.03,266.17 474.17,273.66 474.18C281.16 474.18,288.96 474.15,296.51 474.03C304.07 473.91,311.39 473.39,318.98 473.43C326.58 473.47,334.52 474.24,342.1 474.29C349.67 474.34,356.91 473.78,364.43 473.73C371.95 473.68,383.41 473.95,387.2 474" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w45" pathLength="1" stroke-dasharray="1 1" /><path d="M386 473.19C385.99 475.47,385.95 482.34,385.95 486.88C385.95 491.41,385.99 498.17,386 500.43" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w46" pathLength="1" stroke-dasharray="1 1" /><path d="M387.82 500C383.98 499.95,372.29 499.66,364.78 499.72C357.26 499.78,350.29 500.3,342.75 500.36C335.21 500.43,327.24 500.14,319.54 500.11C311.84 500.07,304.27 500.23,296.56 500.15C288.84 500.08,280.86 499.69,273.26 499.67C265.66 499.64,254.67 499.94,250.95 500" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w47" pathLength="1" stroke-dasharray="1 1" /><path d="M252 502.48C252.06 499.84,252.35 491.75,252.35 486.62C252.35 481.49,252.06 474.19,252 471.7" fill="none" stroke="#a142f4" stroke-width="1.3" stroke-linecap="round" id="a-harness-before-model-d-w48" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(319 491) scale(0.8)" x="0" y="0" text-anchor="middle"># contract hash</text></g><g id="a-harness-before-model-d-g-hc1"><path id="a-harness-before-model-d-hc1" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><g id="a-harness-before-model-d-pk2" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk2-h" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk2-t" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk2-d" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M320 430C320.04 429.12,320.15 426.41,320.23 424.74C320.3 423.08,320.4 420.8,320.44 420.01" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M320 430C320.65 429.41,322.63 427.49,323.92 426.44C325.2 425.38,327.09 424.12,327.73 423.66" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g><g id="a-harness-before-model-d-g-hc2"><path id="a-harness-before-model-d-hc2" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><g id="a-harness-before-model-d-pk3" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk3-h" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk3-t" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk3-d" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M320 430C320.1 429.23,320.51 427.07,320.58 425.41C320.66 423.74,320.46 420.91,320.44 420.01" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M320 430C320.7 429.49,322.9 428.02,324.18 426.96C325.47 425.9,327.14 424.21,327.73 423.66" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g><g id="a-harness-before-model-d-g-hc3"><path id="a-harness-before-model-d-hc3" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><g id="a-harness-before-model-d-pk4" class="m-packet"><path class="m-halo" id="a-harness-before-model-d-pk4-h" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-harness-before-model-d-pk4-t" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-harness-before-model-d-pk4-d" d="M335 388C334.17 391.67,332.5 403,330 410C327.5 417,321.67 426.67,320 430" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M320 430C320.1 429.24,320.53 427.11,320.6 425.44C320.67 423.78,320.46 420.92,320.44 420.01" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /><path d="M320 430C320.59 429.4,322.23 427.43,323.52 426.37C324.81 425.32,327.03 424.11,327.73 423.66" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" /></g><g id="a-harness-before-model-d-test-d"><g id="a-harness-before-model-d-test-u"><g id="a-harness-before-model-d-test"><rect x="10" y="434" width="190" height="84" rx="10" fill="#e1f2e6" id="a-harness-before-model-d-w57" pathLength="1" stroke-dasharray="1 1" /><path d="M6.72 434C10.31 433.93,20.85 433.6,28.27 433.59C35.68 433.58,43.65 433.73,51.22 433.95C58.79 434.16,66.2 434.91,73.67 434.89C81.14 434.87,88.63 434.1,96.02 433.83C103.41 433.56,110.71 433.27,118.01 433.27C125.3 433.28,132.42 433.79,139.81 433.85C147.19 433.91,154.76 433.63,162.32 433.62C169.88 433.62,177.74 433.77,185.15 433.83C192.55 433.9,203.14 433.97,206.74 434" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w58" pathLength="1" stroke-dasharray="1 1" /><path d="M200 433.8C200.08 437.48,200.49 448.75,200.5 455.88C200.51 463.01,200.04 469.47,200.04 476.59C200.04 483.72,200.49 491.47,200.48 498.62C200.48 505.76,200.08 515.98,200 519.45" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w59" pathLength="1" stroke-dasharray="1 1" /><path d="M206.95 518C203.17 517.99,191.84 517.92,184.3 517.95C176.77 517.98,169.16 518.1,161.75 518.21C154.34 518.31,147.4 518.78,139.84 518.59C132.27 518.41,124.02 517.17,116.38 517.1C108.74 517.04,101.57 518.03,94 518.21C86.44 518.39,78.42 518.24,71 518.18C63.58 518.11,56.85 517.96,49.5 517.83C42.15 517.7,34.5 517.36,26.9 517.39C19.29 517.42,7.71 517.9,3.87 518" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w60" pathLength="1" stroke-dasharray="1 1" /><path d="M10 520.94C9.89 517.15,9.37 505.6,9.32 498.23C9.27 490.85,9.53 483.86,9.7 476.69C9.88 469.53,10.32 462.62,10.37 455.26C10.42 447.91,10.06 436.37,10 432.59" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w61" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(105 471.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Test set</text><text transform="translate(105 499.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">one touch per contract</text></g></g></g><g id="a-harness-before-model-d-g-ht"><path id="a-harness-before-model-d-ht" d="M260 388C254.92 391.69,238.5 405.31,229.55 410.16C220.59 415.01,214.03 415,206.27 417.1C198.51 419.2,190.69 420.62,182.98 422.77C175.27 424.92,163.83 428.79,160 430" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 5" /><path d="M160 430C160.62 429.47,162.47 427.9,163.74 426.83C165.02 425.75,167.01 424.11,167.66 423.57" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w62" pathLength="1" stroke-dasharray="1 1" /><path d="M160 430C160.84 430.1,163.39 430.35,165.04 430.58C166.69 430.82,169.09 431.27,169.9 431.41" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-harness-before-model-d-w63" pathLength="1" stroke-dasharray="1 1" /></g></svg><g id="a-harness-before-model-cap-0"><text x="45.3" y="1237.2" class="a-num" font-size="17.0"><tspan x="45.3" dy="0">01</tspan></text><text x="103.1" y="1237.2" class="a-cap" font-size="26.4"><tspan x="103.1" dy="0">Every experiment runs under a pre-registered contract.</tspan></text></g><g id="a-harness-before-model-cap-1"><text x="45.3" y="1237.2" class="a-num" font-size="17.0"><tspan x="45.3" dy="0">02</tspan></text><text x="103.1" y="1237.2" class="a-cap" font-size="26.4"><tspan x="103.1" dy="0">The contract hash is stamped on every card.</tspan></text></g><g id="a-harness-before-model-cap-2"><text x="45.3" y="1237.2" class="a-num" font-size="17.0"><tspan x="45.3" dy="0">03</tspan></text><text x="103.1" y="1237.2" class="a-cap" font-size="26.4"><tspan x="103.1" dy="0">A model that reads its own outcomes is rejected.</tspan></text></g><g id="a-harness-before-model-cap-3"><text x="45.3" y="1237.2" class="a-num" font-size="17.0"><tspan x="45.3" dy="0">04</tspan></text><text x="103.1" y="1237.2" class="a-cap" font-size="26.4"><tspan x="103.1" dy="0">The held-out test set opens once per contract.</tspan></text></g><g id="a-harness-before-model-cap-rest"><text x="45.3" y="1235.9" class="a-cap" font-size="23.8"><tspan x="45.3" dy="0">A hashed contract governs every card, a model that reads its outcomes is rejected,</tspan><tspan x="45.3" dy="30.9">and the test set opens once.</tspan></text></g><g id="a-harness-before-model-strip"><line class="a-track" stroke-width="3.8" x1="45.3" y1="1302.8" x2="287.0" y2="1302.8"></line><line id="a-harness-before-model-fill-0" class="a-fill" stroke-width="3.8" stroke-dasharray="241.7 242.7" x1="45.3" y1="1302.8" x2="287.0" y2="1302.8"></line><line class="a-track" stroke-width="3.8" x1="294.5" y1="1302.8" x2="536.2" y2="1302.8"></line><line id="a-harness-before-model-fill-1" class="a-fill" stroke-width="3.8" stroke-dasharray="241.7 242.7" x1="294.5" y1="1302.8" x2="536.2" y2="1302.8"></line><line class="a-track" stroke-width="3.8" x1="543.8" y1="1302.8" x2="785.5" y2="1302.8"></line><line id="a-harness-before-model-fill-2" class="a-fill" stroke-width="3.8" stroke-dasharray="241.7 242.7" x1="543.8" y1="1302.8" x2="785.5" y2="1302.8"></line><line class="a-track" stroke-width="3.8" x1="793.0" y1="1302.8" x2="1034.7" y2="1302.8"></line><line id="a-harness-before-model-fill-3" class="a-fill" stroke-width="3.8" stroke-dasharray="241.7 242.7" x1="793.0" y1="1302.8" x2="1034.7" y2="1302.8"></line></g></svg>

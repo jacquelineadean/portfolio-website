@@ -86,11 +86,7 @@ interface Dot {
           Strangler fig
         </p>
         <h2 class="lab-title">Moving a monolith one route at a time</h2>
-        <p class="lab-desc">
-          A router in front of the monolith decides, route by route, which code answers. Each route
-          runs in shadow first, then cuts over, and its legacy code is deleted last. Tap a route to
-          move it forward.
-        </p>
+        <p class="lab-hint">Tap a route to move it forward.</p>
       </div>
 
       <div class="lab-plate lab-row-fig">
@@ -230,32 +226,25 @@ interface Dot {
         <p class="lab-readout" aria-live="polite">
           @switch (last().kind) {
             @case ('start') {
-              Five routes at four stages: <b>/search</b> is retired, <b>/orders</b> is cut over,
-              <b>/invoices</b> runs in shadow, and two routes still run only on the monolith.
+              <b>/search</b> retired, <b>/orders</b> cut over, <b>/invoices</b> in shadow.
             }
             @case ('reset') {
-              All five routes run on the monolith. The router in front of it changes nothing yet;
-              every later step is a change to its rules.
+              Every route runs on the monolith.
             }
             @case ('shadow') {
-              <b>{{ last().path }}</b> is in shadow. The router copies each request to
-              {{ last().service }} and compares the two responses; clients still get the monolith's.
+              <b>{{ last().path }}</b> in shadow: {{ last().service }} gets a copy of each request.
             }
             @case ('cutover') {
-              <b>{{ last().path }}</b> is cut over: clients now get {{ last().service }}'s
-              responses. The monolith's code is still deployed, so rolling back is one routing rule.
+              <b>{{ last().path }}</b> cut over: rolling back is one routing rule.
             }
             @case ('rollback') {
-              <b>{{ last().path }}</b> is back in shadow, by one routing rule. The monolith never
-              stopped running it.
+              <b>{{ last().path }}</b> back in shadow, by one routing rule.
             }
             @case ('retired') {
-              <b>{{ last().path }}</b> is retired and {{ last().module }} is deleted. Rolling back
-              now means restoring and redeploying code, which is why this step comes last.
+              <b>{{ last().path }}</b> retired: rolling back now means a redeploy.
             }
             @case ('done') {
-              Every route runs on new services and the monolith has no modules left. It can be
-              switched off.
+              Every route runs on new services. The monolith can be switched off.
             }
           }
         </p>

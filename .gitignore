@@ -46,3 +46,6 @@ Thumbs.db
 # JetBrains IDEs
 /.idea*
 /.vscode/
+
+# Working folders from scripts/figures/build.mjs; the built SVGs are in public/projects/
+chronicle-runs/

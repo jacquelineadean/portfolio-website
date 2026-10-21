@@ -76,11 +76,6 @@ type Phase = 'descend' | 'scan' | 'found';
           Merkle tree
         </p>
         <h2 class="lab-title">Checking a backfill without reading every row</h2>
-        <p class="lab-desc">
-          Hash both copies of a table in ranges and compare the roots. Where two hashes differ,
-          compare their children; where they match, skip the whole range. Cassandra's repair and
-          Amazon's Dynamo compare replicas the same way.
-        </p>
       </div>
 
       <div class="lab-plate lab-row-fig">
@@ -164,7 +159,7 @@ type Phase = 'descend' | 'scan' | 'found';
           </button>
           <button type="button" class="lab-btn" (click)="reset()">Clean copy</button>
         </div>
-        <p class="lab-hint">Tap the row strip under the tree to corrupt a specific row.</p>
+        <p class="lab-hint">Tap the row strip to corrupt a row.</p>
 
         <div class="lab-stats">
           <div class="lab-stat" style="--stat-color: var(--color-green)">
@@ -206,13 +201,11 @@ type Phase = 'descend' | 'scan' | 'found';
 
         <p class="lab-readout">
           @if (!result().rows.length) {
-            The two roots match, so <b>one comparison</b> shows all {{ rows }} rows are equal.
-            Corrupt a row to watch the check find it.
+            The roots match: <b>one comparison</b> covers all {{ rows }} rows.
           } @else {
-            {{ result().rows.length }} bad {{ result().rows.length === 1 ? 'row' : 'rows' }} in
-            {{ rows }}. The check made <b>{{ result().steps.length }}</b> hash comparisons and read
-            <b>{{ result().leaves.length * perLeaf }}</b> rows one by one,
-            <b>{{ scanShare() }}%</b> of a full scan.
+            <b>{{ result().steps.length }}</b> comparisons and <b>{{ scanShare() }}%</b> of a full
+            scan found {{ result().rows.length }} bad
+            {{ result().rows.length === 1 ? 'row' : 'rows' }}.
           }
         </p>
       </div>

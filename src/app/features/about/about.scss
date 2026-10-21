@@ -1,10 +1,12 @@
-.page-hero-title {
-  max-width: 20ch;
-}
-
 .about-lab {
   display: block;
   padding-top: var(--space-lg);
   margin-bottom: clamp(4rem, 8vw, 7rem);
   border-top: 1px solid var(--color-border);
+}
+
+/* With no headline above it, the first lab opens the page. */
+app-scroll-reveal:first-of-type .about-lab {
+  padding-top: 0;
+  border-top: none;
 }

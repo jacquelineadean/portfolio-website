@@ -30,33 +30,57 @@
     </header>
 
     <app-scroll-reveal>
-      <!-- The same drawing as the project's card, at banner width. It is the
-           card's tile enlarged rather than a second illustration, so arriving
-           here from the carousel lands on something already recognised. -->
-      <div class="study-art" [class]="'study-art tile--' + tint()">
-        <app-project-art
-          class="tile-art"
-          [variant]="project.art"
-          [seed]="project.slug"
-          [width]="1200"
-          [height]="300"
-        />
-      </div>
+      <app-chronicle-figure class="study-hero" [src]="figure(project.slug, project.hero)" />
     </app-scroll-reveal>
 
     <div class="study-sections">
       @for (section of project.sections; track section.title; let i = $index) {
-        <app-scroll-reveal [delay]="i * 0.05">
+        <app-scroll-reveal [delay]="0.05">
           <section class="study-section">
             <div class="study-label">
               <span class="study-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
               <h2>{{ section.title }}</h2>
             </div>
-            <div class="study-content" [class.multi]="section.content.length > 1">
-              @for (item of section.content; track item) {
-                <p>{{ item }}</p>
+            <p class="study-caption">{{ section.caption }}</p>
+
+            @if (section.visual; as visual) {
+              @switch (visual.kind) {
+                @case ('figure') {
+                  <app-chronicle-figure
+                    class="study-visual"
+                    [src]="figure(project.slug, visual.name)"
+                  />
+                }
+                @case ('chips') {
+                  <ul class="study-stack" role="list">
+                    @for (item of visual.items; track item) {
+                      <li class="chip">{{ item }}</li>
+                    }
+                  </ul>
+                }
+                @case ('phases') {
+                  <ol class="phases study-visual" role="list">
+                    @for (phase of visual.phases; track phase.label) {
+                      <li class="phase" [class.is-proven]="phase.state === 'proven'">
+                        <span class="phase-dot" aria-hidden="true">
+                          @if (phase.state === 'proven') {
+                            ✓
+                          }
+                        </span>
+                        <span class="phase-label">{{ phase.label }}</span>
+                        <span class="phase-name">{{ phase.name }}</span>
+                        <span class="phase-state">{{
+                          phase.state === 'proven' ? 'Proven' : 'Built, not yet proven'
+                        }}</span>
+                        @if (phase.detail) {
+                          <span class="phase-detail">{{ phase.detail }}</span>
+                        }
+                      </li>
+                    }
+                  </ol>
+                }
               }
-            </div>
+            }
           </section>
         </app-scroll-reveal>
       }

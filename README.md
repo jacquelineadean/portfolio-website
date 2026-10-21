@@ -57,3 +57,13 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Project figures
+
+The animations on the project pages are built with the chronicle plugin for Claude Code. Each figure is defined in `scripts/figures/figures.mjs` and drawn twice, a wide layout for desktop and a tall one for phones. To rebuild them after a change, with the plugin installed, run:
+
+```bash
+node scripts/figures/build.mjs
+```
+
+The output goes to `public/projects/<project>/<figure>-wide.svg` and `-tall.svg`, which are committed, so the site build does not need the plugin.

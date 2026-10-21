@@ -1,0 +1,458 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1790" width="1080" height="1790" class="chr-a chr-a-a-the-readiness-loop" role="img" aria-labelledby="a-the-readiness-loop-title a-the-readiness-loop-desc" data-theme="light"><title id="a-the-readiness-loop-title">The readiness loop</title><desc id="a-the-readiness-loop-desc">An agent proposes, a fixed harness scores, a ledger records; only a passing model reaches a county brief. Steps: 1. Public data comes in pinned by its hash. 2. An agent proposes a model and the harness scores it. 3. Every score becomes a card in a hash-chained ledger. 4. The loop repeats until the probabilities hold. 5. Only then does a planner get a county brief. Sources: The Readiness Loop README.</desc><style>/* Theme: tokens derived by chronicle from the palette and fonts. */
+.chr-a-a-the-readiness-loop {
+  --paper: #FFFDF9;
+  --print: #FFFEFB;
+  --surface: #F6F4F0;
+  --surface-2: #FFFEFD;
+  --ink: #1F1E1A;
+  --ink-2: #575652;
+  --muted: #75736F;
+  --rule: #DDDCD8;
+  --rule-2: #EDEBE7;
+  --grid: #E9E7E3;
+  --accent: #4285F4;
+  --accent-text: #3B70C8;
+  --accent-wash: rgba(66, 133, 244, 0.10);
+  --legacy: #EA4335;
+  --legacy-text: #D13E32;
+  --good: #2F7D4F;
+  --warn: #9C6210;
+  --bad: #B23A2B;
+  --good-wash: rgba(47, 125, 79, 0.12);
+  --bad-wash: rgba(178, 58, 43, 0.12);
+  --tip-bg: #1F1E1A;
+  --tip-ink: #FFFDF9;
+  --on-accent: #FFFFFF;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #47463F;
+  --s6: #5F8A2E;
+  --seq-0: #F0F3F9;
+  --seq-1: #D5E3F8;
+  --seq-2: #B0CBF7;
+  --seq-3: #82AEF6;
+  --seq-4: #4285F4;
+  --seq-5: #345C9D;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-ui: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  .chr-a-a-the-readiness-loop:not([data-theme="light"]) {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark; }
+}
+.chr-a-a-the-readiness-loop[data-theme="dark"] {
+  --paper: #1E2025;
+  --print: #FFFEFB;
+  --surface: #292A2F;
+  --surface-2: #2F3135;
+  --ink: #F2EFE9;
+  --ink-2: #C8C6C2;
+  --muted: #999897;
+  --rule: #404144;
+  --rule-2: #2F3135;
+  --grid: #35373B;
+  --accent: #4788F4;
+  --accent-text: #6CA0F6;
+  --accent-wash: rgba(71, 136, 244, 0.16);
+  --legacy: #EC5649;
+  --legacy-text: #F07C72;
+  --good: #599772;
+  --warn: #B08140;
+  --bad: #C77065;
+  --good-wash: rgba(89, 151, 114, 0.16);
+  --bad-wash: rgba(199, 112, 101, 0.16);
+  --tip-bg: #F2EFE9;
+  --tip-ink: #1E2025;
+  --on-accent: #1E2025;
+  --s1: #4285F4;
+  --s2: #EA4335;
+  --s3: #34A853;
+  --s4: #A142F4;
+  --s5: #70706A;
+  --s6: #5F8A2E;
+  --seq-0: #222A3A;
+  --seq-1: #283957;
+  --seq-2: #2F4C7C;
+  --seq-3: #3863A9;
+  --seq-4: #4788F4;
+  --seq-5: #9ABEF9;
+  --c-green: #34A853;
+  --c-yellow: #F9AB00;
+  --c-purple: #A142F4;
+  --frame-pad: 12px; --frame-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+.chr-a-a-the-readiness-loop .f-accent { fill: var(--accent); } .chr-a-a-the-readiness-loop .s-accent { stroke: var(--accent); } .chr-a-a-the-readiness-loop .t-accent { color: var(--accent); }
+.chr-a-a-the-readiness-loop .f-legacy { fill: var(--legacy); } .chr-a-a-the-readiness-loop .s-legacy { stroke: var(--legacy); } .chr-a-a-the-readiness-loop .t-legacy { color: var(--legacy); }
+.chr-a-a-the-readiness-loop .f-ink { fill: var(--ink); } .chr-a-a-the-readiness-loop .s-ink { stroke: var(--ink); } .chr-a-a-the-readiness-loop .t-ink { color: var(--ink); }
+.chr-a-a-the-readiness-loop .f-muted { fill: var(--muted); } .chr-a-a-the-readiness-loop .s-muted { stroke: var(--muted); } .chr-a-a-the-readiness-loop .t-muted { color: var(--muted); }
+.chr-a-a-the-readiness-loop .f-paper { fill: var(--paper); } .chr-a-a-the-readiness-loop .s-paper { stroke: var(--paper); } .chr-a-a-the-readiness-loop .t-paper { color: var(--paper); }
+.chr-a-a-the-readiness-loop .f-surface { fill: var(--surface); } .chr-a-a-the-readiness-loop .s-surface { stroke: var(--surface); } .chr-a-a-the-readiness-loop .t-surface { color: var(--surface); }
+.chr-a-a-the-readiness-loop .f-good { fill: var(--good); } .chr-a-a-the-readiness-loop .s-good { stroke: var(--good); } .chr-a-a-the-readiness-loop .t-good { color: var(--good); }
+.chr-a-a-the-readiness-loop .f-bad { fill: var(--bad); } .chr-a-a-the-readiness-loop .s-bad { stroke: var(--bad); } .chr-a-a-the-readiness-loop .t-bad { color: var(--bad); }
+.chr-a-a-the-readiness-loop .f-s1 { fill: var(--s1); } .chr-a-a-the-readiness-loop .s-s1 { stroke: var(--s1); } .chr-a-a-the-readiness-loop .t-s1 { color: var(--s1); }
+.chr-a-a-the-readiness-loop .f-s2 { fill: var(--s2); } .chr-a-a-the-readiness-loop .s-s2 { stroke: var(--s2); } .chr-a-a-the-readiness-loop .t-s2 { color: var(--s2); }
+.chr-a-a-the-readiness-loop .f-s3 { fill: var(--s3); } .chr-a-a-the-readiness-loop .s-s3 { stroke: var(--s3); } .chr-a-a-the-readiness-loop .t-s3 { color: var(--s3); }
+.chr-a-a-the-readiness-loop .f-s4 { fill: var(--s4); } .chr-a-a-the-readiness-loop .s-s4 { stroke: var(--s4); } .chr-a-a-the-readiness-loop .t-s4 { color: var(--s4); }
+.chr-a-a-the-readiness-loop .f-s5 { fill: var(--s5); } .chr-a-a-the-readiness-loop .s-s5 { stroke: var(--s5); } .chr-a-a-the-readiness-loop .t-s5 { color: var(--s5); }
+.chr-a-a-the-readiness-loop .f-s6 { fill: var(--s6); } .chr-a-a-the-readiness-loop .s-s6 { stroke: var(--s6); } .chr-a-a-the-readiness-loop .t-s6 { color: var(--s6); }
+.chr-a-a-the-readiness-loop .f-green { fill: var(--c-green); } .chr-a-a-the-readiness-loop .s-green { stroke: var(--c-green); } .chr-a-a-the-readiness-loop .t-green { color: var(--c-green); }
+.chr-a-a-the-readiness-loop .f-yellow { fill: var(--c-yellow); } .chr-a-a-the-readiness-loop .s-yellow { stroke: var(--c-yellow); } .chr-a-a-the-readiness-loop .t-yellow { color: var(--c-yellow); }
+.chr-a-a-the-readiness-loop .f-purple { fill: var(--c-purple); } .chr-a-a-the-readiness-loop .s-purple { stroke: var(--c-purple); } .chr-a-a-the-readiness-loop .t-purple { color: var(--c-purple); }
+/* The frame of a standalone animation: background, title, captions and the step strip.
+   Every rule sits under .chr-a so an animation pasted into another page styles only
+   itself; its colors and fonts come from tokens set on .chr-a-&lt;slug>. */
+.chr-a { font-family: var(--f-body); }
+.chr-a .a-bg { fill: var(--paper); }
+.chr-a .a-bg.surface { fill: var(--surface); }
+.chr-a .a-kicker { font-family: var(--f-ui); font-weight: 700; letter-spacing: .12em; fill: var(--accent-text); }
+.chr-a .a-title { font-family: var(--f-display); fill: var(--ink); }
+.chr-a .a-credit { font-family: var(--f-ui); fill: var(--muted); }
+.chr-a .a-num { font-family: var(--f-mono); font-weight: 500; fill: var(--accent-text); }
+.chr-a .a-cap { font-family: var(--f-body); fill: var(--ink); }
+.chr-a .a-track { stroke: var(--rule); }
+.chr-a .a-fill { stroke: var(--accent); }
+
+/* Technical architecture diagrams: zones, components, lines, packets and state marks. */
+.chr-a .m-gfill { fill: none; }
+.chr-a .m-gfill.m-zone { fill: var(--surface); }
+.chr-a .m-gfill.m-cluster { fill: color-mix(in srgb, var(--tone) 7%, transparent); }
+.chr-a .m-gline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-gline.m-boundary { stroke: var(--muted); stroke-dasharray: 7 5; }
+.chr-a .m-gline.m-external { stroke: var(--muted); stroke-dasharray: .5 5; stroke-linecap: round; stroke-width: 1.6; }
+.chr-a .m-tinted .m-gline { stroke: color-mix(in srgb, var(--tone) 50%, transparent); }
+.chr-a .m-glabel { font-family: var(--f-ui); font-weight: 650; font-size: 11px; letter-spacing: .08em; fill: var(--muted); }
+.chr-a .m-tinted .m-glabel { fill: var(--tone); }
+.chr-a .m-gflash { fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0; }
+
+.chr-a .m-line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linejoin: round; }
+.chr-a .m-async .m-line { stroke-dasharray: 6 5; }
+.chr-a .m-head { fill: var(--ink-2); }
+.chr-a .m-async .m-head { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-hot { fill: none; stroke: var(--tone, var(--accent)); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.chr-a .m-mask { fill: none; stroke: #fff; stroke-width: 22; }
+.chr-a .m-elabel, .chr-a .m-legend { font-family: var(--f-ui); font-size: 12px; fill: var(--ink-2); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.chr-a .m-legend { fill: var(--muted); }
+.chr-a .m-line.m-new, .chr-a .m-line.m-legacy, .chr-a .m-line.m-bad { stroke-width: 2.2; }
+.chr-a .m-new.m-line { stroke: var(--accent); }
+.chr-a .m-new.m-head { fill: var(--accent); stroke: var(--accent); }
+.chr-a .m-legacy.m-line { stroke: var(--legacy); }
+.chr-a .m-legacy.m-head { fill: var(--legacy); stroke: var(--legacy); }
+.chr-a .m-bad.m-line, .chr-a .m-down.m-line { stroke: var(--bad); }
+.chr-a .m-bad.m-head, .chr-a .m-down.m-head { fill: var(--bad); stroke: var(--bad); }
+.chr-a .m-down.m-line { stroke-dasharray: 2 5; stroke-linecap: round; opacity: .7; }
+.chr-a .m-planned.m-line { stroke: var(--muted); stroke-dasharray: 4 5; opacity: .8; }
+.chr-a .m-planned.m-head { fill: var(--muted); stroke: var(--muted); opacity: .8; }
+
+.chr-a .m-halo, .chr-a .m-trail, .chr-a .m-dot { fill: none; stroke-linecap: round; }
+.chr-a .m-halo { stroke: var(--paper); stroke-width: 14; }
+.chr-a .m-trail { stroke: var(--tone); stroke-width: 4; opacity: .4; }
+.chr-a .m-dot { stroke: var(--tone); stroke-width: 9; }
+
+.chr-a .m-shadow { fill: var(--rule-2); }
+.chr-a .m-box, .chr-a .m-rep { fill: var(--surface-2); }
+.chr-a .m-rep { stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-outline { fill: none; stroke: var(--rule); stroke-width: 1.2; }
+.chr-a .m-tile { fill: color-mix(in srgb, var(--tone) 14%, transparent); }
+.chr-a .m-glyph { fill: none; stroke: var(--tone); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chr-a .m-nlabel { font-family: var(--f-ui); font-weight: 600; font-size: 14px; fill: var(--ink); }
+.chr-a .m-tech { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chr-a .m-ping { fill: none; stroke: var(--tone); stroke-width: 2; opacity: 0; }
+.chr-a .m-ring { fill: none; stroke-width: 2.2; }
+.chr-a .m-ring.m-new { stroke: var(--accent); }
+.chr-a .m-ring.m-legacy { stroke: var(--legacy); }
+.chr-a .m-ring.m-good { stroke: var(--good); }
+.chr-a .m-ring.m-warn { stroke: var(--warn); }
+.chr-a .m-ring.m-bad, .chr-a .m-ring.m-down { stroke: var(--bad); }
+.chr-a .m-ring.m-planned { stroke: var(--muted); stroke-dasharray: 5 4; }
+.chr-a .m-pill rect { fill: var(--paper); stroke: var(--rule); }
+.chr-a .m-pill text { font-family: var(--f-ui); font-weight: 700; font-size: 9.5px; letter-spacing: .06em; fill: var(--muted); }
+.chr-a .m-flag.m-new rect { fill: var(--accent); stroke: none; }
+.chr-a .m-flag.m-new text { fill: var(--on-accent); }
+.chr-a .m-flag.m-legacy rect { fill: var(--legacy-text); stroke: none; }
+.chr-a .m-flag.m-down rect { fill: var(--bad); stroke: none; }
+.chr-a .m-flag.m-legacy text, .chr-a .m-flag.m-down text { fill: var(--paper); }
+.chr-a .m-flag.m-planned rect { stroke: var(--muted); stroke-dasharray: 3 2; }
+.chr-a .m-badge.m-good { fill: var(--good); }
+.chr-a .m-badge.m-warn { fill: var(--warn); }
+.chr-a .m-badge.m-bad { fill: var(--bad); }
+.chr-a .m-sign { fill: none; stroke: var(--paper); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Drawn diagrams: packets that run along Claude's paths take the accent unless a part
+   sets its own --tone. */
+.chr-a .dg-svg .m-packet { --tone: var(--accent); }
+.chr-a .dg-svg { overflow: visible; }
+
+/* Painted scenes: the paper under the painting, the focus shade and the spots. Paintings
+   sit on paper in both themes, so callouts keep paper colors. */
+.chr-a .m-print { fill: var(--print); }
+.chr-a .m-shade { fill: #101218; }
+.chr-a .m-spot-dot { fill: var(--accent); stroke: #FCFBF7; stroke-width: 3; }
+.chr-a .m-spot-num { font-family: var(--f-ui); font-weight: 700; fill: #FFFFFF; }
+.chr-a .m-spot-pill { fill: rgba(252, 251, 247, .94); stroke: rgba(30, 32, 38, .25); }
+.chr-a .m-spot-label { font-family: var(--f-ui); font-weight: 600; fill: #1E2026; }
+/* ------------------------------------------------- drawn figure classes */
+/* Shared by story pages and standalone animations: the classes Claude writes in
+   diagrams, and the styles of live labels on paintings. */
+.dg-svg text { fill: var(--ink); font-size: 15px; }
+.dg-svg .label { fill: var(--ink-2); font-size: 13px; }
+.dg-svg .small { font-size: 12px; fill: var(--muted); }
+.dg-svg .hand { font-family: var(--f-hand); font-size: 20px; fill: var(--accent-text); }
+.dg-svg .title { font-weight: 700; }
+.dg-svg .box { fill: var(--surface-2); stroke: var(--ink); stroke-width: 1.5; }
+.dg-svg .box.soft { fill: var(--surface); stroke: var(--rule); }
+.dg-svg .box.accent { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; }
+.dg-svg .box.legacy { fill: color-mix(in srgb, var(--legacy) 12%, transparent); stroke: var(--legacy); stroke-width: 2; }
+.dg-svg .line { fill: none; stroke: var(--ink-2); stroke-width: 1.6; }
+.dg-svg .line.accent { stroke: var(--accent); stroke-width: 2.2; }
+.dg-svg .line.legacy { stroke: var(--legacy); stroke-width: 2.2; }
+.dg-svg .line.dashed { stroke-dasharray: 5 4; }
+.dg-svg .head { fill: var(--ink-2); }
+.overlay .lbl { pointer-events: none; }
+.overlay .lbl-hand { font-family: var(--f-hand); font-weight: 600; }
+.overlay .lbl-label { font-family: var(--f-ui); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.overlay .lbl-caption { font-family: var(--f-body); font-style: italic; }
+.overlay .lbl-display { font-family: var(--f-display); }
+.overlay .lbl-mono, .overlay .lbl-number { font-family: var(--f-mono); font-weight: 500; }
+.overlay .lbl-number { font-variant-numeric: tabular-nums; }
+@keyframes a-the-readiness-loop-k0 { 0% { opacity: 0.000; } 2.4% { opacity: 0.000; } 3.801% { opacity: 1.000; } 17.103% { opacity: 1.000; } 18.504% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k1 { 0% { opacity: 0.000; } 17.804% { opacity: 0.000; } 19.204% { opacity: 1.000; } 35.257% { opacity: 1.000; } 36.657% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k2 { 0% { opacity: 0.000; } 35.957% { opacity: 0.000; } 37.357% { opacity: 1.000; } 52.035% { opacity: 1.000; } 53.436% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k3 { 0% { opacity: 0.000; } 52.736% { opacity: 0.000; } 54.136% { opacity: 1.000; } 70.519% { opacity: 1.000; } 71.919% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k4 { 0% { opacity: 0.000; } 71.219% { opacity: 0.000; } 72.62% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k5 { 0% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k6 { 0% { stroke-dashoffset: 188.19px; } 2.4% { stroke-dashoffset: 188.19px; } 17.804% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 188.19px; }}
+@keyframes a-the-readiness-loop-k7 { 0% { stroke-dashoffset: 188.19px; } 17.804% { stroke-dashoffset: 188.19px; } 35.957% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 188.19px; }}
+@keyframes a-the-readiness-loop-k8 { 0% { stroke-dashoffset: 188.19px; } 35.957% { stroke-dashoffset: 188.19px; } 52.736% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 188.19px; }}
+@keyframes a-the-readiness-loop-k9 { 0% { stroke-dashoffset: 188.19px; } 52.736% { stroke-dashoffset: 188.19px; } 71.219% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 188.19px; }}
+@keyframes a-the-readiness-loop-k10 { 0% { stroke-dashoffset: 188.19px; } 71.219% { stroke-dashoffset: 188.19px; } 87.998% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 188.19px; }}
+@keyframes a-the-readiness-loop-k11 { 0% { opacity: 1.000; } 100% { opacity: 1.000; }}
+@keyframes a-the-readiness-loop-k12 { 0% { opacity: 0.000; } 2.801% { opacity: 0.000; } 4.201% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k13 { 0% { opacity: 0.000; } 3.281% { opacity: 0.000; } 4.681% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k14 { 0% { opacity: 0.000; } 3.761% { opacity: 0.000; } 5.161% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k15 { 0% { opacity: 0.000; } 18.684% { opacity: 0.000; } 20.084% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k16 { 0% { opacity: 0.000; } 19.644% { opacity: 0.000; } 21.044% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k17 { 0% { opacity: 0.000; } 36.837% { opacity: 0.000; } 38.238% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k18 { 0% { opacity: 0.000; } 18.204% { opacity: 0.000; } 19.604% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k19 { 0% { opacity: 0.000; } 19.164% { opacity: 0.000; } 20.564% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k20 { 0% { opacity: 0.000; } 36.357% { opacity: 0.000; } 37.758% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k21 { 0% { opacity: 0.000; } 37.317% { opacity: 0.000; } 38.718% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k22 { 0% { opacity: 0.000; } 71.619% { opacity: 0.000; } 73.02% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k23 { 0% { opacity: 0.000; } 72.099% { opacity: 0.000; } 73.5% { opacity: 1.000; } 98.6% { opacity: 1.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k24 { 0% { opacity: 1.000; } 71.219% { opacity: 1.000; } 72.62% { opacity: 0.200; } 98.6% { opacity: 0.200; } 100% { opacity: 1.000; }}
+@keyframes a-the-readiness-loop-k25 { 0% { scale: 1.000; } 53.936% { scale: 1.000; } 55.136% { scale: 1.060; } 56.336% { scale: 1.000; } 57.537% { scale: 1.060; } 58.737% { scale: 1.000; } 100% { scale: 1.000; }}
+@keyframes a-the-readiness-loop-k26 { 0% { stroke-dashoffset: 1.00px; } 2.801% { stroke-dashoffset: 1.00px; } 6.401% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k27 { 0% { stroke-dashoffset: 1.00px; } 3.281% { stroke-dashoffset: 1.00px; } 6.881% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k28 { 0% { stroke-dashoffset: 1.00px; } 3.761% { stroke-dashoffset: 1.00px; } 7.361% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k29 { 0% { stroke-dashoffset: 1.00px; } 18.204% { stroke-dashoffset: 1.00px; } 21.804% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k30 { 0% { stroke-dashoffset: 1.00px; } 18.684% { stroke-dashoffset: 1.00px; } 22.284% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k31 { 0% { stroke-dashoffset: 1.00px; } 19.164% { stroke-dashoffset: 1.00px; } 22.765% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k32 { 0% { stroke-dashoffset: 1.00px; } 19.644% { stroke-dashoffset: 1.00px; } 23.245% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k33 { 0% { stroke-dashoffset: 1.00px; } 36.357% { stroke-dashoffset: 1.00px; } 39.958% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k34 { 0% { stroke-dashoffset: 1.00px; } 36.837% { stroke-dashoffset: 1.00px; } 40.438% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k35 { 0% { stroke-dashoffset: 1.00px; } 37.317% { stroke-dashoffset: 1.00px; } 40.918% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k36 { 0% { stroke-dashoffset: 1.00px; } 71.619% { stroke-dashoffset: 1.00px; } 75.22% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k37 { 0% { stroke-dashoffset: 1.00px; } 72.099% { stroke-dashoffset: 1.00px; } 75.7% { stroke-dashoffset: 0.00px; } 98.6% { stroke-dashoffset: 0.00px; } 100% { stroke-dashoffset: 1.00px; }}
+@keyframes a-the-readiness-loop-k38 { 0% { stroke-dashoffset: 0.00px; } 6.401% { stroke-dashoffset: 0.00px; } 7.045% { stroke-dashoffset: -0.04px; } 7.69% { stroke-dashoffset: -0.15px; } 8.334% { stroke-dashoffset: -0.31px; } 8.978% { stroke-dashoffset: -0.50px; } 9.622% { stroke-dashoffset: -0.69px; } 10.266% { stroke-dashoffset: -0.85px; } 10.91% { stroke-dashoffset: -0.96px; } 11.554% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k39 { 0% { stroke-dashoffset: 0.07px; } 6.401% { stroke-dashoffset: 0.07px; } 7.045% { stroke-dashoffset: 0.03px; } 7.69% { stroke-dashoffset: -0.08px; } 8.334% { stroke-dashoffset: -0.24px; } 8.978% { stroke-dashoffset: -0.43px; } 9.622% { stroke-dashoffset: -0.62px; } 10.266% { stroke-dashoffset: -0.78px; } 10.91% { stroke-dashoffset: -0.89px; } 11.554% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k40 { 0% { opacity: 0.000; } 6.001% { opacity: 0.000; } 6.401% { opacity: 1.000; } 11.154% { opacity: 1.000; } 11.554% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k41 { 0% { stroke-dashoffset: 0.00px; } 21.804% { stroke-dashoffset: 0.00px; } 22.448% { stroke-dashoffset: -0.04px; } 23.093% { stroke-dashoffset: -0.15px; } 23.737% { stroke-dashoffset: -0.31px; } 24.381% { stroke-dashoffset: -0.50px; } 25.025% { stroke-dashoffset: -0.69px; } 25.669% { stroke-dashoffset: -0.85px; } 26.313% { stroke-dashoffset: -0.96px; } 26.957% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k42 { 0% { stroke-dashoffset: 0.07px; } 21.804% { stroke-dashoffset: 0.07px; } 22.448% { stroke-dashoffset: 0.03px; } 23.093% { stroke-dashoffset: -0.08px; } 23.737% { stroke-dashoffset: -0.24px; } 24.381% { stroke-dashoffset: -0.43px; } 25.025% { stroke-dashoffset: -0.62px; } 25.669% { stroke-dashoffset: -0.78px; } 26.313% { stroke-dashoffset: -0.89px; } 26.957% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k43 { 0% { opacity: 0.000; } 21.404% { opacity: 0.000; } 21.804% { opacity: 1.000; } 26.557% { opacity: 1.000; } 26.957% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k44 { 0% { stroke-dashoffset: 0.00px; } 27.405% { stroke-dashoffset: 0.00px; } 28.05% { stroke-dashoffset: -0.04px; } 28.694% { stroke-dashoffset: -0.15px; } 29.338% { stroke-dashoffset: -0.31px; } 29.982% { stroke-dashoffset: -0.50px; } 30.626% { stroke-dashoffset: -0.69px; } 31.27% { stroke-dashoffset: -0.85px; } 31.914% { stroke-dashoffset: -0.96px; } 32.559% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k45 { 0% { stroke-dashoffset: 0.07px; } 27.405% { stroke-dashoffset: 0.07px; } 28.05% { stroke-dashoffset: 0.03px; } 28.694% { stroke-dashoffset: -0.08px; } 29.338% { stroke-dashoffset: -0.24px; } 29.982% { stroke-dashoffset: -0.43px; } 30.626% { stroke-dashoffset: -0.62px; } 31.27% { stroke-dashoffset: -0.78px; } 31.914% { stroke-dashoffset: -0.89px; } 32.559% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k46 { 0% { opacity: 0.000; } 27.005% { opacity: 0.000; } 27.405% { opacity: 1.000; } 32.158% { opacity: 1.000; } 32.559% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k47 { 0% { stroke-dashoffset: 0.00px; } 39.958% { stroke-dashoffset: 0.00px; } 40.589% { stroke-dashoffset: -0.04px; } 41.22% { stroke-dashoffset: -0.15px; } 41.852% { stroke-dashoffset: -0.31px; } 42.483% { stroke-dashoffset: -0.50px; } 43.114% { stroke-dashoffset: -0.69px; } 43.745% { stroke-dashoffset: -0.85px; } 44.376% { stroke-dashoffset: -0.96px; } 45.008% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k48 { 0% { stroke-dashoffset: 0.07px; } 39.958% { stroke-dashoffset: 0.07px; } 40.589% { stroke-dashoffset: 0.03px; } 41.22% { stroke-dashoffset: -0.08px; } 41.852% { stroke-dashoffset: -0.24px; } 42.483% { stroke-dashoffset: -0.43px; } 43.114% { stroke-dashoffset: -0.62px; } 43.745% { stroke-dashoffset: -0.78px; } 44.376% { stroke-dashoffset: -0.89px; } 45.008% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k49 { 0% { opacity: 0.000; } 39.558% { opacity: 0.000; } 39.958% { opacity: 1.000; } 44.607% { opacity: 1.000; } 45.008% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k50 { 0% { stroke-dashoffset: 0.00px; } 45.447% { stroke-dashoffset: 0.00px; } 46.078% { stroke-dashoffset: -0.04px; } 46.709% { stroke-dashoffset: -0.15px; } 47.34% { stroke-dashoffset: -0.31px; } 47.971% { stroke-dashoffset: -0.50px; } 48.603% { stroke-dashoffset: -0.69px; } 49.234% { stroke-dashoffset: -0.85px; } 49.865% { stroke-dashoffset: -0.96px; } 50.496% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k51 { 0% { stroke-dashoffset: 0.07px; } 45.447% { stroke-dashoffset: 0.07px; } 46.078% { stroke-dashoffset: 0.03px; } 46.709% { stroke-dashoffset: -0.08px; } 47.34% { stroke-dashoffset: -0.24px; } 47.971% { stroke-dashoffset: -0.43px; } 48.603% { stroke-dashoffset: -0.62px; } 49.234% { stroke-dashoffset: -0.78px; } 49.865% { stroke-dashoffset: -0.89px; } 50.496% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k52 { 0% { opacity: 0.000; } 45.047% { opacity: 0.000; } 45.447% { opacity: 1.000; } 50.096% { opacity: 1.000; } 50.496% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k53 { 0% { stroke-dashoffset: 0.00px; } 54.336% { stroke-dashoffset: 0.00px; } 54.77% { stroke-dashoffset: -0.04px; } 55.203% { stroke-dashoffset: -0.15px; } 55.637% { stroke-dashoffset: -0.31px; } 56.07% { stroke-dashoffset: -0.50px; } 56.504% { stroke-dashoffset: -0.69px; } 56.938% { stroke-dashoffset: -0.85px; } 57.371% { stroke-dashoffset: -0.96px; } 57.805% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k54 { 0% { stroke-dashoffset: 0.07px; } 54.336% { stroke-dashoffset: 0.07px; } 54.77% { stroke-dashoffset: 0.03px; } 55.203% { stroke-dashoffset: -0.08px; } 55.637% { stroke-dashoffset: -0.24px; } 56.07% { stroke-dashoffset: -0.43px; } 56.504% { stroke-dashoffset: -0.62px; } 56.938% { stroke-dashoffset: -0.78px; } 57.371% { stroke-dashoffset: -0.89px; } 57.805% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k55 { 0% { opacity: 0.000; } 53.936% { opacity: 0.000; } 54.336% { opacity: 1.000; } 57.405% { opacity: 1.000; } 57.805% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k56 { 0% { stroke-dashoffset: 0.00px; } 58.107% { stroke-dashoffset: 0.00px; } 58.54% { stroke-dashoffset: -0.04px; } 58.974% { stroke-dashoffset: -0.15px; } 59.408% { stroke-dashoffset: -0.31px; } 59.841% { stroke-dashoffset: -0.50px; } 60.275% { stroke-dashoffset: -0.69px; } 60.708% { stroke-dashoffset: -0.85px; } 61.142% { stroke-dashoffset: -0.96px; } 61.576% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k57 { 0% { stroke-dashoffset: 0.07px; } 58.107% { stroke-dashoffset: 0.07px; } 58.54% { stroke-dashoffset: 0.03px; } 58.974% { stroke-dashoffset: -0.08px; } 59.408% { stroke-dashoffset: -0.24px; } 59.841% { stroke-dashoffset: -0.43px; } 60.275% { stroke-dashoffset: -0.62px; } 60.708% { stroke-dashoffset: -0.78px; } 61.142% { stroke-dashoffset: -0.89px; } 61.576% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k58 { 0% { opacity: 0.000; } 57.707% { opacity: 0.000; } 58.107% { opacity: 1.000; } 61.176% { opacity: 1.000; } 61.576% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k59 { 0% { stroke-dashoffset: 0.00px; } 61.877% { stroke-dashoffset: 0.00px; } 62.311% { stroke-dashoffset: -0.04px; } 62.745% { stroke-dashoffset: -0.15px; } 63.178% { stroke-dashoffset: -0.31px; } 63.612% { stroke-dashoffset: -0.50px; } 64.046% { stroke-dashoffset: -0.69px; } 64.479% { stroke-dashoffset: -0.85px; } 64.913% { stroke-dashoffset: -0.96px; } 65.346% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k60 { 0% { stroke-dashoffset: 0.07px; } 61.877% { stroke-dashoffset: 0.07px; } 62.311% { stroke-dashoffset: 0.03px; } 62.745% { stroke-dashoffset: -0.08px; } 63.178% { stroke-dashoffset: -0.24px; } 63.612% { stroke-dashoffset: -0.43px; } 64.046% { stroke-dashoffset: -0.62px; } 64.479% { stroke-dashoffset: -0.78px; } 64.913% { stroke-dashoffset: -0.89px; } 65.346% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k61 { 0% { opacity: 0.000; } 61.477% { opacity: 0.000; } 61.877% { opacity: 1.000; } 64.946% { opacity: 1.000; } 65.346% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k62 { 0% { stroke-dashoffset: 0.00px; } 65.648% { stroke-dashoffset: 0.00px; } 66.082% { stroke-dashoffset: -0.04px; } 66.515% { stroke-dashoffset: -0.15px; } 66.949% { stroke-dashoffset: -0.31px; } 67.383% { stroke-dashoffset: -0.50px; } 67.816% { stroke-dashoffset: -0.69px; } 68.25% { stroke-dashoffset: -0.85px; } 68.684% { stroke-dashoffset: -0.96px; } 69.117% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k63 { 0% { stroke-dashoffset: 0.07px; } 65.648% { stroke-dashoffset: 0.07px; } 66.082% { stroke-dashoffset: 0.03px; } 66.515% { stroke-dashoffset: -0.08px; } 66.949% { stroke-dashoffset: -0.24px; } 67.383% { stroke-dashoffset: -0.43px; } 67.816% { stroke-dashoffset: -0.62px; } 68.25% { stroke-dashoffset: -0.78px; } 68.684% { stroke-dashoffset: -0.89px; } 69.117% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k64 { 0% { opacity: 0.000; } 65.248% { opacity: 0.000; } 65.648% { opacity: 1.000; } 68.717% { opacity: 1.000; } 69.117% { opacity: 0.000; } 100% { opacity: 0.000; }}
+@keyframes a-the-readiness-loop-k65 { 0% { stroke-dashoffset: 0.00px; } 75.22% { stroke-dashoffset: 0.00px; } 75.864% { stroke-dashoffset: -0.04px; } 76.508% { stroke-dashoffset: -0.15px; } 77.152% { stroke-dashoffset: -0.31px; } 77.797% { stroke-dashoffset: -0.50px; } 78.441% { stroke-dashoffset: -0.69px; } 79.085% { stroke-dashoffset: -0.85px; } 79.729% { stroke-dashoffset: -0.96px; } 80.373% { stroke-dashoffset: -1.00px; } 98.6% { stroke-dashoffset: -1.00px; } 100% { stroke-dashoffset: 0.00px; }}
+@keyframes a-the-readiness-loop-k66 { 0% { stroke-dashoffset: 0.07px; } 75.22% { stroke-dashoffset: 0.07px; } 75.864% { stroke-dashoffset: 0.03px; } 76.508% { stroke-dashoffset: -0.08px; } 77.152% { stroke-dashoffset: -0.24px; } 77.797% { stroke-dashoffset: -0.43px; } 78.441% { stroke-dashoffset: -0.62px; } 79.085% { stroke-dashoffset: -0.78px; } 79.729% { stroke-dashoffset: -0.89px; } 80.373% { stroke-dashoffset: -0.93px; } 98.6% { stroke-dashoffset: -0.93px; } 100% { stroke-dashoffset: 0.07px; }}
+@keyframes a-the-readiness-loop-k67 { 0% { opacity: 0.000; } 74.82% { opacity: 0.000; } 75.22% { opacity: 1.000; } 79.973% { opacity: 1.000; } 80.373% { opacity: 0.000; } 100% { opacity: 0.000; }}
+#a-the-readiness-loop-cap-0 { opacity: 0.000; animation: a-the-readiness-loop-k0 24.995s linear infinite both; }
+#a-the-readiness-loop-cap-1 { opacity: 0.000; animation: a-the-readiness-loop-k1 24.995s linear infinite both; }
+#a-the-readiness-loop-cap-2 { opacity: 0.000; animation: a-the-readiness-loop-k2 24.995s linear infinite both; }
+#a-the-readiness-loop-cap-3 { opacity: 0.000; animation: a-the-readiness-loop-k3 24.995s linear infinite both; }
+#a-the-readiness-loop-cap-4 { opacity: 0.000; animation: a-the-readiness-loop-k4 24.995s linear infinite both; }
+#a-the-readiness-loop-cap-rest { animation: a-the-readiness-loop-k5 24.995s linear infinite both; }
+#a-the-readiness-loop-fill-0 { animation: a-the-readiness-loop-k6 24.995s linear infinite both; }
+#a-the-readiness-loop-fill-1 { animation: a-the-readiness-loop-k7 24.995s linear infinite both; }
+#a-the-readiness-loop-fill-2 { animation: a-the-readiness-loop-k8 24.995s linear infinite both; }
+#a-the-readiness-loop-fill-3 { animation: a-the-readiness-loop-k9 24.995s linear infinite both; }
+#a-the-readiness-loop-fill-4 { animation: a-the-readiness-loop-k10 24.995s linear infinite both; }
+#a-the-readiness-loop-strip { opacity: 0.000; animation: a-the-readiness-loop-k11 24.995s linear infinite both; }
+#a-the-readiness-loop-d-data { animation: a-the-readiness-loop-k12 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-df { animation: a-the-readiness-loop-k13 24.995s linear infinite both; }
+#a-the-readiness-loop-d-features { animation: a-the-readiness-loop-k14 24.995s linear infinite both; }
+#a-the-readiness-loop-d-agent { animation: a-the-readiness-loop-k15 24.995s linear infinite both; }
+#a-the-readiness-loop-d-harness { animation: a-the-readiness-loop-k16 24.995s linear infinite both; }
+#a-the-readiness-loop-d-ledger { animation: a-the-readiness-loop-k17 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-fa { animation: a-the-readiness-loop-k18 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-ah { animation: a-the-readiness-loop-k19 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-hl { animation: a-the-readiness-loop-k20 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-lf { animation: a-the-readiness-loop-k21 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-hb { animation: a-the-readiness-loop-k22 24.995s linear infinite both; }
+#a-the-readiness-loop-d-brief { animation: a-the-readiness-loop-k23 24.995s linear infinite both; }
+#a-the-readiness-loop-d-data-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-df-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-features-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-agent-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-ledger-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-fa-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-ah-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-hl-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-g-lf-d { animation: a-the-readiness-loop-k24 24.995s linear infinite both; }
+#a-the-readiness-loop-d-harness-u { transform-box: fill-box; transform-origin: center; animation: a-the-readiness-loop-k25 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w1 { animation: a-the-readiness-loop-k26 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w2 { animation: a-the-readiness-loop-k26 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w3 { animation: a-the-readiness-loop-k26 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w4 { animation: a-the-readiness-loop-k26 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w5 { animation: a-the-readiness-loop-k26 24.995s linear infinite both; }
+#a-the-readiness-loop-d-df { animation: a-the-readiness-loop-k27 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w7 { animation: a-the-readiness-loop-k27 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w8 { animation: a-the-readiness-loop-k27 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w9 { animation: a-the-readiness-loop-k28 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w10 { animation: a-the-readiness-loop-k28 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w11 { animation: a-the-readiness-loop-k28 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w12 { animation: a-the-readiness-loop-k28 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w13 { animation: a-the-readiness-loop-k28 24.995s linear infinite both; }
+#a-the-readiness-loop-d-fa { animation: a-the-readiness-loop-k29 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w15 { animation: a-the-readiness-loop-k29 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w16 { animation: a-the-readiness-loop-k29 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w17 { animation: a-the-readiness-loop-k30 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w18 { animation: a-the-readiness-loop-k30 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w19 { animation: a-the-readiness-loop-k30 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w20 { animation: a-the-readiness-loop-k30 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w21 { animation: a-the-readiness-loop-k30 24.995s linear infinite both; }
+#a-the-readiness-loop-d-ah { animation: a-the-readiness-loop-k31 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w23 { animation: a-the-readiness-loop-k31 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w24 { animation: a-the-readiness-loop-k31 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w25 { animation: a-the-readiness-loop-k32 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w26 { animation: a-the-readiness-loop-k32 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w27 { animation: a-the-readiness-loop-k32 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w28 { animation: a-the-readiness-loop-k32 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w29 { animation: a-the-readiness-loop-k32 24.995s linear infinite both; }
+#a-the-readiness-loop-d-hl { animation: a-the-readiness-loop-k33 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w31 { animation: a-the-readiness-loop-k33 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w32 { animation: a-the-readiness-loop-k33 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w33 { animation: a-the-readiness-loop-k34 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w34 { animation: a-the-readiness-loop-k34 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w35 { animation: a-the-readiness-loop-k34 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w36 { animation: a-the-readiness-loop-k34 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w37 { animation: a-the-readiness-loop-k34 24.995s linear infinite both; }
+#a-the-readiness-loop-d-lf { animation: a-the-readiness-loop-k35 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w39 { animation: a-the-readiness-loop-k35 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w40 { animation: a-the-readiness-loop-k35 24.995s linear infinite both; }
+#a-the-readiness-loop-d-hb { animation: a-the-readiness-loop-k36 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w42 { animation: a-the-readiness-loop-k36 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w43 { animation: a-the-readiness-loop-k36 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w44 { animation: a-the-readiness-loop-k37 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w45 { animation: a-the-readiness-loop-k37 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w46 { animation: a-the-readiness-loop-k37 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w47 { animation: a-the-readiness-loop-k37 24.995s linear infinite both; }
+#a-the-readiness-loop-d-w48 { animation: a-the-readiness-loop-k37 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk1-h { animation: a-the-readiness-loop-k38 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk1-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k39 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk1-d { animation: a-the-readiness-loop-k38 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk1 { opacity: 0.000; animation: a-the-readiness-loop-k40 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk2-h { animation: a-the-readiness-loop-k41 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk2-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k42 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk2-d { animation: a-the-readiness-loop-k41 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk2 { opacity: 0.000; animation: a-the-readiness-loop-k43 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk3-h { animation: a-the-readiness-loop-k44 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk3-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k45 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk3-d { animation: a-the-readiness-loop-k44 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk3 { opacity: 0.000; animation: a-the-readiness-loop-k46 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk4-h { animation: a-the-readiness-loop-k47 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk4-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k48 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk4-d { animation: a-the-readiness-loop-k47 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk4 { opacity: 0.000; animation: a-the-readiness-loop-k49 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk5-h { animation: a-the-readiness-loop-k50 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk5-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k51 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk5-d { animation: a-the-readiness-loop-k50 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk5 { opacity: 0.000; animation: a-the-readiness-loop-k52 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk6-h { animation: a-the-readiness-loop-k53 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk6-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k54 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk6-d { animation: a-the-readiness-loop-k53 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk6 { opacity: 0.000; animation: a-the-readiness-loop-k55 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk7-h { animation: a-the-readiness-loop-k56 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk7-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k57 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk7-d { animation: a-the-readiness-loop-k56 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk7 { opacity: 0.000; animation: a-the-readiness-loop-k58 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk8-h { animation: a-the-readiness-loop-k59 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk8-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k60 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk8-d { animation: a-the-readiness-loop-k59 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk8 { opacity: 0.000; animation: a-the-readiness-loop-k61 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk9-h { animation: a-the-readiness-loop-k62 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk9-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k63 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk9-d { animation: a-the-readiness-loop-k62 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk9 { opacity: 0.000; animation: a-the-readiness-loop-k64 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk10-h { animation: a-the-readiness-loop-k65 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk10-t { stroke-dashoffset: 0.07px; animation: a-the-readiness-loop-k66 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk10-d { animation: a-the-readiness-loop-k65 24.995s linear infinite both; }
+#a-the-readiness-loop-d-pk10 { opacity: 0.000; animation: a-the-readiness-loop-k67 24.995s linear infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .chr-a-a-the-readiness-loop, .chr-a-a-the-readiness-loop * { animation: none !important; }
+}
+</style><svg viewBox="0 0 430 676" class="dg-svg" x="52.1" y="68.9" width="975.7" height="1533.9"><g id="a-the-readiness-loop-d-data-d"><g id="a-the-readiness-loop-d-data-u"><g id="a-the-readiness-loop-d-data"><rect x="105" y="10" width="220" height="112" rx="10" fill="#e4edfd" id="a-the-readiness-loop-d-w1" pathLength="1" stroke-dasharray="1 1" /><path d="M101.63 10C105.32 9.96,116.16 9.62,123.79 9.74C131.42 9.86,139.86 10.75,147.41 10.72C154.96 10.7,161.67 9.73,169.11 9.6C176.54 9.46,184.5 9.87,192.04 9.89C199.58 9.92,206.71 9.73,214.35 9.77C222 9.8,230.15 10.08,237.91 10.1C245.67 10.13,253.45 10.03,260.92 9.9C268.39 9.77,275.18 9.41,282.73 9.33C290.29 9.24,298.6 9.3,306.24 9.41C313.88 9.53,324.86 9.9,328.59 10" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w2" pathLength="1" stroke-dasharray="1 1" /><path d="M325 6.79C325.1 11.07,325.75 24.13,325.61 32.47C325.46 40.81,324.34 48.59,324.12 56.81C323.91 65.03,324.17 73.55,324.31 81.79C324.46 90.03,324.88 98.12,324.99 106.27C325.11 114.42,325 126.64,325 130.71" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w3" pathLength="1" stroke-dasharray="1 1" /><path d="M330.32 122C326.48 122.07,315.11 122.31,307.29 122.43C299.48 122.55,291.22 122.69,283.44 122.74C275.65 122.79,268.34 122.94,260.6 122.74C252.86 122.54,244.9 121.75,237 121.55C229.1 121.35,220.9 121.41,213.21 121.55C205.52 121.68,198.51 122.17,190.87 122.37C183.23 122.56,175.3 122.64,167.37 122.72C159.44 122.79,151.06 122.92,143.27 122.83C135.49 122.74,128.41 122.33,120.67 122.19C112.93 122.05,100.81 122.03,96.84 122" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w4" pathLength="1" stroke-dasharray="1 1" /><path d="M105 123.59C104.94 119.62,104.63 107.85,104.67 99.81C104.71 91.77,105.32 83.41,105.25 75.36C105.18 67.31,104.35 59.54,104.25 51.52C104.15 43.51,104.51 35.2,104.64 27.28C104.76 19.35,104.94 7.88,105 4" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w5" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(215 49.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Public data</text><text transform="translate(215 79.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">NOAA · ERA5 · FEMA</text><text transform="translate(215 101.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">pinned by hash</text></g></g></g><g id="a-the-readiness-loop-d-g-df-d"><g id="a-the-readiness-loop-d-g-df-u"><g id="a-the-readiness-loop-d-g-df"><path id="a-the-readiness-loop-d-df" d="M215 124C214.98 127.07,214.86 136.44,214.86 142.44C214.86 148.44,214.98 157.07,215 160" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-the-readiness-loop-d-pk1" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk1-h" d="M215 124C214.98 127.07,214.86 136.44,214.86 142.44C214.86 148.44,214.98 157.07,215 160" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk1-t" d="M215 124C214.98 127.07,214.86 136.44,214.86 142.44C214.86 148.44,214.98 157.07,215 160" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk1-d" d="M215 124C214.98 127.07,214.86 136.44,214.86 142.44C214.86 148.44,214.98 157.07,215 160" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M215 160C214.74 159.21,214.13 156.81,213.45 155.29C212.77 153.76,211.34 151.61,210.92 150.87" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w7" pathLength="1" stroke-dasharray="1 1" /><path d="M215 160C215.39 159.19,216.65 156.68,217.33 155.15C218.01 153.63,218.79 151.58,219.08 150.87" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w8" pathLength="1" stroke-dasharray="1 1" /></g></g></g><g id="a-the-readiness-loop-d-features-d"><g id="a-the-readiness-loop-d-features-u"><g id="a-the-readiness-loop-d-features"><rect x="135" y="162" width="160" height="76" rx="10" fill="#fffdf9" id="a-the-readiness-loop-d-w9" pathLength="1" stroke-dasharray="1 1" /><path d="M130.64 162C134.5 162.02,145.87 162.13,153.78 162.12C161.69 162.12,170.24 161.91,178.1 161.96C185.96 162.02,193.13 162.45,200.92 162.44C208.72 162.43,216.91 162.06,224.85 161.9C232.8 161.73,240.76 161.58,248.58 161.46C256.4 161.34,263.89 161.09,271.79 161.18C279.69 161.27,291.95 161.86,295.98 162" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w10" pathLength="1" stroke-dasharray="1 1" /><path d="M295 160.56C295.03 164.99,295.3 177.96,295.21 187.14C295.12 196.32,294.49 206.49,294.46 215.62C294.42 224.75,294.91 237.56,295 241.94" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w11" pathLength="1" stroke-dasharray="1 1" /><path d="M296.29 238C292.34 238.07,280.41 238.5,272.61 238.42C264.81 238.34,257.29 237.57,249.48 237.52C241.68 237.47,233.66 238.04,225.75 238.11C217.85 238.17,210.16 237.92,202.07 237.91C193.98 237.91,185.17 237.94,177.22 238.09C169.28 238.24,162.13 238.83,154.4 238.81C146.67 238.8,134.77 238.14,130.84 238" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w12" pathLength="1" stroke-dasharray="1 1" /><path d="M135 241.57C134.91 236.96,134.4 223.07,134.47 213.93C134.54 204.79,135.33 195.91,135.42 186.73C135.51 177.54,135.07 163.48,135 158.83" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w13" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(215 194.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Features</text><text transform="translate(215 224.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">temporal firewall</text></g></g></g><g id="a-the-readiness-loop-d-agent-d"><g id="a-the-readiness-loop-d-agent-u"><g id="a-the-readiness-loop-d-agent"><rect x="262" y="292" width="158" height="80" rx="10" fill="#efe3fd" id="a-the-readiness-loop-d-w17" pathLength="1" stroke-dasharray="1 1" /><path d="M258.64 292C262.48 292.02,274.04 292.02,281.66 292.12C289.27 292.21,296.54 292.59,304.34 292.57C312.14 292.55,320.43 291.96,328.46 291.98C336.48 291.99,344.59 292.77,352.48 292.65C360.36 292.53,368.21 291.25,375.76 291.25C383.31 291.26,390.13 292.54,397.76 292.66C405.4 292.79,417.6 292.11,421.57 292" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w18" pathLength="1" stroke-dasharray="1 1" /><path d="M420 288.84C419.92 292.41,419.38 303.04,419.52 310.28C419.65 317.51,420.75 324.74,420.8 332.24C420.84 339.73,419.94 347.73,419.81 355.25C419.68 362.77,419.97 373.66,420 377.34" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w19" pathLength="1" stroke-dasharray="1 1" /><path d="M421.16 372C417.38 372.05,406.26 372.2,398.49 372.28C390.72 372.36,382.38 372.4,374.52 372.49C366.66 372.58,358.78 373.07,351.35 372.84C343.91 372.62,337.57 371.17,329.92 371.15C322.26 371.14,313.18 372.68,305.42 372.74C297.67 372.81,290.96 371.66,283.39 371.53C275.81 371.41,263.9 371.92,260 372" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w20" pathLength="1" stroke-dasharray="1 1" /><path d="M262 377.92C261.98 374.27,262 363.5,261.89 356C261.78 348.49,261.16 340.2,261.32 332.88C261.48 325.56,262.75 319.35,262.86 312.07C262.97 304.8,262.14 293.05,262 289.24" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w21" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(341 326.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Agent</text><text transform="translate(341 356.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">proposes a model</text></g></g></g><g id="a-the-readiness-loop-d-harness-d"><g id="a-the-readiness-loop-d-harness-u"><g id="a-the-readiness-loop-d-harness"><rect x="135" y="426" width="160" height="76" rx="10" fill="#fdf0d3" id="a-the-readiness-loop-d-w25" pathLength="1" stroke-dasharray="1 1" /><path d="M134.1 426C138.16 425.91,150.45 425.45,158.49 425.48C166.53 425.52,174.34 426.04,182.32 426.22C190.3 426.41,198.54 426.58,206.37 426.59C214.19 426.6,221.4 426.39,229.26 426.28C237.12 426.18,245.51 425.85,253.51 425.94C261.5 426.03,269.31 426.79,277.21 426.8C285.11 426.81,296.96 426.13,300.91 426" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w26" pathLength="1" stroke-dasharray="1 1" /><path d="M295 423.16C295.09 427.82,295.59 441.76,295.55 451.11C295.51 460.47,294.84 469.96,294.75 479.3C294.65 488.65,294.96 502.55,295 507.2" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w27" pathLength="1" stroke-dasharray="1 1" /><path d="M297.55 502C293.73 501.95,282.41 501.79,274.64 501.72C266.87 501.66,258.9 501.52,250.96 501.62C243.01 501.71,235.09 502.15,226.96 502.3C218.84 502.44,210.2 502.68,202.2 502.49C194.2 502.3,186.61 501.22,178.97 501.13C171.32 501.05,164.2 501.84,156.34 501.98C148.47 502.13,135.88 502,131.79 502" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w28" pathLength="1" stroke-dasharray="1 1" /><path d="M135 506.03C135.09 501.38,135.6 487.33,135.54 478.14C135.49 468.94,134.75 460.02,134.66 450.86C134.57 441.7,134.94 427.8,135 423.19" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w29" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(215 458.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Harness</text><text transform="translate(215 488.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">fixed scorer</text></g></g></g><g id="a-the-readiness-loop-d-ledger-d"><g id="a-the-readiness-loop-d-ledger-u"><g id="a-the-readiness-loop-d-ledger"><rect x="10" y="292" width="158" height="80" rx="10" fill="#fffdf9" id="a-the-readiness-loop-d-w33" pathLength="1" stroke-dasharray="1 1" /><path d="M4.81 292C8.72 292.03,20.27 292.06,28.25 292.18C36.22 292.3,44.57 292.73,52.68 292.71C60.8 292.69,68.91 292.25,76.93 292.05C84.95 291.84,92.84 291.39,100.8 291.49C108.75 291.59,116.67 292.59,124.64 292.65C132.62 292.71,140.59 291.96,148.62 291.85C156.65 291.74,168.79 291.97,172.82 292" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w34" pathLength="1" stroke-dasharray="1 1" /><path d="M168 288.03C167.94 291.56,167.71 301.99,167.67 309.23C167.62 316.47,167.61 324.15,167.73 331.47C167.85 338.78,168.35 345.8,168.4 353.11C168.44 360.43,168.07 371.66,168 375.37" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w35" pathLength="1" stroke-dasharray="1 1" /><path d="M173.07 372C169.09 371.93,157.26 371.47,149.21 371.59C141.17 371.72,132.71 372.76,124.8 372.75C116.88 372.75,109.7 371.7,101.71 371.57C93.73 371.43,84.99 371.81,76.89 371.95C68.8 372.09,61.15 372.43,53.16 372.41C45.17 372.38,36.93 371.87,28.95 371.8C20.98 371.73,9.26 371.97,5.32 372" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w36" pathLength="1" stroke-dasharray="1 1" /><path d="M10 377.19C10.03 373.49,10.11 362.13,10.16 354.97C10.2 347.81,10.34 341.37,10.28 334.24C10.22 327.12,9.83 319.38,9.78 312.21C9.73 305.04,9.96 294.72,10 291.22" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w37" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(89 326.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">Ledger</text><text transform="translate(89 356.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">hash-chained</text></g></g></g><g id="a-the-readiness-loop-d-g-fa-d"><g id="a-the-readiness-loop-d-g-fa-u"><g id="a-the-readiness-loop-d-g-fa"><path id="a-the-readiness-loop-d-fa" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-the-readiness-loop-d-pk6" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk6-h" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk6-t" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk6-d" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><g id="a-the-readiness-loop-d-pk2" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk2-h" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk2-t" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk2-d" d="M297 200C300.32 201.85,310.33 207.42,316.91 211.12C323.49 214.83,332.93 216.73,336.48 222.24C340.02 227.74,337.76 236.86,338.17 244.18C338.59 251.49,338.5 258.83,338.97 266.13C339.44 273.43,340.66 284.36,341 288" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M341 288C340.66 287.3,339.78 285.28,338.99 283.82C338.19 282.35,336.7 279.97,336.24 279.2" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w15" pathLength="1" stroke-dasharray="1 1" /><path d="M341 288C341.36 287.18,342.58 284.66,343.14 283.09C343.71 281.52,344.17 279.34,344.38 278.59" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w16" pathLength="1" stroke-dasharray="1 1" /></g></g></g><g id="a-the-readiness-loop-d-g-ah-d"><g id="a-the-readiness-loop-d-g-ah-u"><g id="a-the-readiness-loop-d-g-ah"><path id="a-the-readiness-loop-d-ah" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-the-readiness-loop-d-pk7" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk7-h" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk7-t" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk7-d" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><g id="a-the-readiness-loop-d-pk3" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk3-h" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk3-t" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk3-d" d="M341 376C340.82 379.86,340.39 391.65,339.92 399.14C339.44 406.63,338.91 413.44,338.16 420.95C337.41 428.45,338.77 438.74,335.4 444.17C332.03 449.59,323.99 450.21,317.93 453.52C311.86 456.83,302.15 462.25,299 464" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M299 464C299.48 463.38,300.86 461.59,301.88 460.27C302.89 458.95,304.56 456.77,305.09 456.07" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w23" pathLength="1" stroke-dasharray="1 1" /><path d="M299 464C299.75 463.92,301.85 463.65,303.51 463.53C305.17 463.4,308.06 463.29,308.97 463.25" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w24" pathLength="1" stroke-dasharray="1 1" /></g></g></g><g id="a-the-readiness-loop-d-g-hl-d"><g id="a-the-readiness-loop-d-g-hl-u"><g id="a-the-readiness-loop-d-g-hl"><path id="a-the-readiness-loop-d-hl" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-the-readiness-loop-d-pk8" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk8-h" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk8-t" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk8-d" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><g id="a-the-readiness-loop-d-pk4" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk4-h" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk4-t" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk4-d" d="M133 464C129.73 462.35,119.84 457.41,113.37 454.07C106.9 450.73,97.68 449.37,94.17 443.97C90.66 438.57,92.98 429.15,92.31 421.66C91.64 414.18,90.69 406.69,90.14 399.08C89.59 391.47,89.19 379.85,89 376" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M89 376C89.47 376.68,91.05 378.59,91.84 380.06C92.63 381.53,93.42 384.02,93.74 384.81" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w31" pathLength="1" stroke-dasharray="1 1" /><path d="M89 376C88.75 376.74,88.06 378.89,87.49 380.46C86.93 382.03,85.92 384.58,85.6 385.41" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w32" pathLength="1" stroke-dasharray="1 1" /></g></g></g><g id="a-the-readiness-loop-d-g-lf-d"><g id="a-the-readiness-loop-d-g-lf-u"><g id="a-the-readiness-loop-d-g-lf"><path id="a-the-readiness-loop-d-lf" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-the-readiness-loop-d-pk9" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk9-h" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk9-t" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk9-d" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><g id="a-the-readiness-loop-d-pk5" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk5-h" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk5-t" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk5-d" d="M89 288C89.25 284.39,89.96 273.65,90.47 266.35C90.98 259.05,91.54 251.67,92.06 244.21C92.58 236.76,90.01 227.18,93.58 221.62C97.15 216.05,106.92 214.42,113.49 210.82C120.06 207.21,129.75 201.8,133 200" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M133 200C132.48 200.62,130.9 202.35,129.91 203.69C128.92 205.03,127.53 207.31,127.05 208.04" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w39" pathLength="1" stroke-dasharray="1 1" /><path d="M133 200C132.2 200.15,129.83 200.74,128.17 200.9C126.52 201.05,123.9 200.93,123.04 200.93" fill="none" stroke="#47463f" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w40" pathLength="1" stroke-dasharray="1 1" /></g></g></g><g id="a-the-readiness-loop-d-g-hb"><path id="a-the-readiness-loop-d-hb" d="M215 504C215.03 507.64,215.15 518.51,215.15 525.84C215.15 533.17,215.03 544.31,215 548" fill="none" stroke="#34a853" stroke-width="2.2" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" /><g id="a-the-readiness-loop-d-pk10" class="m-packet"><path class="m-halo" id="a-the-readiness-loop-d-pk10-h" d="M215 504C215.03 507.64,215.15 518.51,215.15 525.84C215.15 533.17,215.03 544.31,215 548" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /><path class="m-trail" id="a-the-readiness-loop-d-pk10-t" d="M215 504C215.03 507.64,215.15 518.51,215.15 525.84C215.15 533.17,215.03 544.31,215 548" pathLength="1" stroke-dasharray="0.07 62" stroke-dashoffset="0.07" /><path class="m-dot" id="a-the-readiness-loop-d-pk10-d" d="M215 504C215.03 507.64,215.15 518.51,215.15 525.84C215.15 533.17,215.03 544.31,215 548" pathLength="1" stroke-dasharray="0.0001 62" stroke-dashoffset="0" /></g><path d="M215 548C214.7 547.2,213.88 544.73,213.2 543.21C212.53 541.69,211.3 539.59,210.92 538.87" fill="none" stroke="#34a853" stroke-width="2.2" stroke-linecap="round" id="a-the-readiness-loop-d-w42" pathLength="1" stroke-dasharray="1 1" /><path d="M215 548C215.29 547.32,216.09 545.42,216.77 543.9C217.45 542.38,218.69 539.71,219.08 538.87" fill="none" stroke="#34a853" stroke-width="2.2" stroke-linecap="round" id="a-the-readiness-loop-d-w43" pathLength="1" stroke-dasharray="1 1" /></g><g id="a-the-readiness-loop-d-brief"><rect x="95" y="550" width="240" height="112" rx="10" fill="#e1f2e6" id="a-the-readiness-loop-d-w44" pathLength="1" stroke-dasharray="1 1" /><path d="M92.37 550C96.27 550.15,108.2 550.95,115.76 550.88C123.33 550.82,130.26 549.74,137.74 549.64C145.23 549.54,153.38 550.21,160.68 550.28C167.99 550.35,174.07 550.18,181.57 550.03C189.06 549.88,198.06 549.37,205.67 549.37C213.28 549.37,219.93 550.01,227.24 550.01C234.55 550.02,241.94 549.34,249.53 549.39C257.13 549.44,265.27 550.07,272.79 550.31C280.32 550.56,287.38 551.04,294.7 550.87C302.03 550.7,309.21 549.44,316.75 549.3C324.28 549.15,336.06 549.88,339.92 550" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w45" pathLength="1" stroke-dasharray="1 1" /><path d="M335 541.39C335.06 545.62,335.35 558.55,335.38 566.81C335.41 575.07,335.32 582.93,335.18 590.95C335.03 598.97,334.65 606.9,334.51 614.93C334.37 622.96,334.28 630.86,334.36 639.14C334.44 647.43,334.89 660.39,335 664.65" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w46" pathLength="1" stroke-dasharray="1 1" /><path d="M338.4 662C334.5 662.04,322.64 662.27,314.98 662.26C307.31 662.26,299.75 662.06,292.42 661.97C285.08 661.87,278.59 661.72,270.97 661.69C263.35 661.67,254.39 661.82,246.7 661.83C239.01 661.84,232.22 661.85,224.83 661.76C217.45 661.67,209.91 661.18,202.38 661.31C194.85 661.44,187.39 662.34,179.67 662.54C171.96 662.74,163.62 662.63,156.09 662.53C148.55 662.42,142.05 661.92,134.46 661.89C126.87 661.85,118.23 662.32,110.55 662.34C102.87 662.36,92.07 662.06,88.37 662" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w47" pathLength="1" stroke-dasharray="1 1" /><path d="M95 664.53C95.06 660.79,95.33 650,95.34 642.09C95.35 634.19,95.22 625.07,95.05 617.1C94.88 609.13,94.49 601.96,94.34 594.27C94.19 586.58,94.03 578.67,94.14 570.95C94.25 563.23,94.86 551.78,95 547.95" fill="none" stroke="#1f1e1a" stroke-width="1.6" stroke-linecap="round" id="a-the-readiness-loop-d-w48" pathLength="1" stroke-dasharray="1 1" /><text transform="translate(215 589.75) scale(1.15)" x="0" y="0" text-anchor="middle" font-weight="600">County brief</text><text transform="translate(215 619.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">every sentence</text><text transform="translate(215 641.75) scale(0.92)" x="0" y="0" text-anchor="middle" class="f-muted">cites a card</text></g></svg><g id="a-the-readiness-loop-cap-0"><text x="52.1" y="1660.2" class="a-num" font-size="19.6"><tspan x="52.1" dy="0">01</tspan></text><text x="118.8" y="1660.2" class="a-cap" font-size="30.4"><tspan x="118.8" dy="0">Public data comes in pinned by its hash.</tspan></text></g><g id="a-the-readiness-loop-cap-1"><text x="52.1" y="1660.2" class="a-num" font-size="19.6"><tspan x="52.1" dy="0">02</tspan></text><text x="118.8" y="1660.2" class="a-cap" font-size="30.4"><tspan x="118.8" dy="0">An agent proposes a model and the harness scores it.</tspan></text></g><g id="a-the-readiness-loop-cap-2"><text x="52.1" y="1660.2" class="a-num" font-size="19.6"><tspan x="52.1" dy="0">03</tspan></text><text x="118.8" y="1660.2" class="a-cap" font-size="30.4"><tspan x="118.8" dy="0">Every score becomes a card in a hash-chained ledger.</tspan></text></g><g id="a-the-readiness-loop-cap-3"><text x="52.1" y="1660.2" class="a-num" font-size="19.6"><tspan x="52.1" dy="0">04</tspan></text><text x="118.8" y="1660.2" class="a-cap" font-size="30.4"><tspan x="118.8" dy="0">The loop repeats until the probabilities hold.</tspan></text></g><g id="a-the-readiness-loop-cap-4"><text x="52.1" y="1660.2" class="a-num" font-size="19.6"><tspan x="52.1" dy="0">05</tspan></text><text x="118.8" y="1660.2" class="a-cap" font-size="30.4"><tspan x="118.8" dy="0">Only then does a planner get a county brief.</tspan></text></g><g id="a-the-readiness-loop-cap-rest"><text x="52.1" y="1658.6" class="a-cap" font-size="27.4"><tspan x="52.1" dy="0">An agent proposes, a fixed harness scores, a ledger records; only a</tspan><tspan x="52.1" dy="35.6">passing model reaches a county brief.</tspan></text></g><g id="a-the-readiness-loop-strip"><line class="a-track" stroke-width="4.3" x1="52.1" y1="1735.7" x2="240.3" y2="1735.7"></line><line id="a-the-readiness-loop-fill-0" class="a-fill" stroke-width="4.3" stroke-dasharray="188.2 189.2" x1="52.1" y1="1735.7" x2="240.3" y2="1735.7"></line><line class="a-track" stroke-width="4.3" x1="249.0" y1="1735.7" x2="437.2" y2="1735.7"></line><line id="a-the-readiness-loop-fill-1" class="a-fill" stroke-width="4.3" stroke-dasharray="188.2 189.2" x1="249.0" y1="1735.7" x2="437.2" y2="1735.7"></line><line class="a-track" stroke-width="4.3" x1="445.9" y1="1735.7" x2="634.1" y2="1735.7"></line><line id="a-the-readiness-loop-fill-2" class="a-fill" stroke-width="4.3" stroke-dasharray="188.2 189.2" x1="445.9" y1="1735.7" x2="634.1" y2="1735.7"></line><line class="a-track" stroke-width="4.3" x1="642.8" y1="1735.7" x2="831.0" y2="1735.7"></line><line id="a-the-readiness-loop-fill-3" class="a-fill" stroke-width="4.3" stroke-dasharray="188.2 189.2" x1="642.8" y1="1735.7" x2="831.0" y2="1735.7"></line><line class="a-track" stroke-width="4.3" x1="839.7" y1="1735.7" x2="1027.9" y2="1735.7"></line><line id="a-the-readiness-loop-fill-4" class="a-fill" stroke-width="4.3" stroke-dasharray="188.2 189.2" x1="839.7" y1="1735.7" x2="1027.9" y2="1735.7"></line></g></svg>
