@@ -5,33 +5,37 @@
    These styles live in the post's shadow root. `all: initial` stops the site's
    inherited type settings (letter-spacing, line-height) from reaching in; custom
    properties still inherit, which is how --color-paper and --clock-top arrive.
-   The artifact's dark palette is gone because the site has only a light theme. */
+   The palette is dark to match the site's moss page (#19201a): cream ink, and
+   markers lightened so each reads at 4.5:1 or better on the page and on cards.
+   The watercolor plates stay light. They sit on the paintings' own paper
+   (--print) and re-declare the light palette (see "paintings"), so the marker
+   labels drawn on them keep their original dark inks. */
 [hidden] { display: none !important; }
 img { max-width: 100%; }
 :host {
   all: initial;
   display: block;
-  --paper: var(--color-paper, #F4F3EE); /* page: the site's own paper, so the post has no edge */
+  color-scheme: dark;        /* native controls (select, range) render dark */
+  --paper: var(--color-paper, #19201a); /* page: the site's own moss, so the post has no edge */
   --print: #F7F6F1;          /* the paintings' own paper, used for plates */
-  --surface: #FBFAF7;        /* cards, index cards */
-  --ink: #1D2024;            /* charcoal */
-  --ink-2: #474C54;
-  --muted: #6E737B;
-  --pencil: #8C9097;         /* pencil notes */
-  --rule: #D8D7D0;
-  --rule-2: #E7E6E0;
-  --blue: #2449A0;           /* marker blue: judgment, the accent */
-  --blue-wash: rgba(36, 73, 160, .10);
-  --green: #2B7650;          /* depth */
-  --green-wash: rgba(43, 118, 80, .12);
-  --red: #C23A2C;            /* corrections, the interviewer's pen */
-  --red-text: #A83125;
-  --red-wash: rgba(194, 58, 44, .10);
-  --amber: #B97A0C;          /* interviewer signals */
-  --grey-sq: #C9C8C1;        /* the unlabeled 38 points */
+  --surface: #212a21;        /* cards, index cards: the site's raised surface */
+  --ink: #ebe5cc;            /* cream, 13.2:1 on the page */
+  --ink-2: #c5c3a8;          /* 9.3:1 */
+  --muted: #9a9d86;          /* 6.0:1 */
+  --rule: #363c33;           /* ink at 14% over the page, solid so canvas and fills can use it */
+  --rule-2: #2a3028;         /* ink at 8%: tracks, empty cells */
+  --blue: #8fb0e8;           /* marker blue: judgment, the accent. 7.6:1 */
+  --blue-wash: rgba(143, 176, 232, .14);
+  --green: #8cc7a0;          /* depth. 8.6:1 */
+  --green-wash: rgba(140, 199, 160, .14);
+  --red: #e88a7c;            /* corrections, the interviewer's pen. 6.6:1 */
+  --red-text: #ec9a8d;       /* 7.6:1 */
+  --red-wash: rgba(232, 138, 124, .14);
+  --amber: #e2c47a;          /* interviewer signals. 9.8:1 */
+  --grey-sq: #4d5346;        /* the unlabeled 38 points */
   --frame-pad: 0px;
   --frame-shadow: none;
-  --blend: multiply;
+  --blend: normal;           /* multiply onto a dark page would blacken the ink blots */
   --f-display: "Gloock", "Bodoni 72", Didot, Georgia, serif;
   --f-body: "Literata", Georgia, "Times New Roman", serif;
   --f-ui: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
@@ -108,6 +112,25 @@ h1 em { font-style: normal; color: var(--blue); }
 .byline b { color: var(--ink-2); font-weight: 600; }
 
 /* ---------------- paintings ---------------- */
+/* Plates are light paper cards on the dark page. Inside them the light palette
+   returns, and images multiply onto --print so the painting's paper matches the frame. */
+.plate .frame, .venn, .strata .stage {
+  color-scheme: light;
+  --surface: #FBFAF7;
+  --ink: #1D2024;
+  --ink-2: #474C54;
+  --muted: #6E737B;
+  --rule: #D8D7D0;
+  --rule-2: #E7E6E0;
+  --blue: #2449A0;
+  --blue-wash: rgba(36, 73, 160, .10);
+  --green: #2B7650;
+  --red: #C23A2C;
+  --red-text: #A83125;
+  --amber: #B97A0C;
+  --blend: multiply;
+  color: var(--ink);
+}
 figure { margin: 0; }
 .plate { margin-block: 2.2rem 2.6rem; }
 .plate .frame { background: var(--print); padding: var(--frame-pad); box-shadow: var(--frame-shadow); border-radius: 2px; }
@@ -152,8 +175,9 @@ figure { margin: 0; }
 .chapter { padding-top: 4rem; }
 .ch-head { display: grid; grid-template-columns: 5.6rem minmax(0, 1fr); gap: 1.1rem; align-items: center; margin-bottom: 1.6rem; }
 .ch-num { position: relative; width: 5.6rem; height: 5.6rem; display: grid; place-items: center; }
-.ch-num img { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: var(--blend); opacity: .95; }
-.ch-num b { position: relative; font: 400 3.3rem/1 var(--f-display); color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .25); }
+/* the blots carry faint grey speckle to their square edges, invisible under multiply on paper; the mask trims it on the dark page */
+.ch-num img { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: var(--blend); opacity: .95; -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
+.ch-num b { position: relative; font: 400 3.3rem/1 var(--f-display); color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, .55); }
 .ch-meta { font: 600 .78rem var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 .35rem; }
 h2 { font: 400 clamp(2.1rem, 5vw, 3.3rem)/1.02 var(--f-display); margin: 0; text-wrap: balance; letter-spacing: -.005em; }
 h3.sub { font: 400 1.75rem/1.12 var(--f-display); margin: 2.6rem 0 .8rem; text-wrap: balance; }
@@ -180,7 +204,7 @@ h3.sub { font: 400 1.75rem/1.12 var(--f-display); margin: 2.6rem 0 .8rem; text-w
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .btn { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .42rem 1rem; font: 600 .86rem var(--f-ui); cursor: pointer; }
 .btn:hover { border-color: var(--muted); }
-.btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--paper); }
 .btn:disabled { opacity: .45; cursor: default; }
 .ctl-row { display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; margin-bottom: 1rem; font: 500 .9rem var(--f-ui); color: var(--ink-2); }
 
@@ -230,7 +254,7 @@ h3.sub { font: 400 1.75rem/1.12 var(--f-display); margin: 2.6rem 0 .8rem; text-w
 .check-item button { width: 100%; display: grid; grid-template-columns: 1.7rem minmax(0, 1fr) auto; gap: .8rem; align-items: center; padding: .75rem .9rem; border: 0; background: transparent; text-align: left; cursor: pointer; font: 500 1rem/1.35 var(--f-ui); }
 .box { width: 1.5rem; height: 1.5rem; border: 2px solid var(--ink-2); border-radius: 4px; display: grid; place-items: center; }
 .check-item.done .box { border-color: var(--blue); background: var(--blue); }
-.check-item.done .box::after { content: ""; width: .45rem; height: .8rem; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
+.check-item.done .box::after { content: ""; width: .45rem; height: .8rem; border: solid var(--paper); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
 .check-item .n { font: 600 .74rem var(--f-ui); color: var(--muted); letter-spacing: .08em; }
 .check-item .ans { display: none; padding: 0 .9rem .85rem 3.4rem; font: 400 .95rem/1.45 var(--f-ui); color: var(--ink-2); }
 .check-item.done .ans { display: block; }
@@ -256,15 +280,15 @@ h3.sub { font: 400 1.75rem/1.12 var(--f-display); margin: 2.6rem 0 .8rem; text-w
 }
 
 /* ---------------- poke test / boards ---------------- */
-.board { border: 10px solid #B9BCC0; border-radius: 4px; background: #FDFDFB; position: relative; box-shadow: inset 0 0 40px rgba(120, 130, 150, .12); }
+.board { border: 10px solid color-mix(in srgb, var(--ink) 18%, var(--paper)); border-radius: 4px; background: var(--surface); position: relative; box-shadow: inset 0 0 40px rgba(0, 0, 0, .28); }
 .board svg { display: block; width: 100%; height: auto; }
-.board .bx { fill: none; stroke: #2449A0; stroke-width: 3; stroke-linejoin: round; }
-.board .bt { font: 500 22px var(--f-hand); fill: #2449A0; }
-.board .ar { stroke: #2449A0; stroke-width: 3; fill: none; }
+.board .bx { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linejoin: round; }
+.board .bt { font: 500 22px var(--f-hand); fill: var(--blue); }
+.board .ar { stroke: var(--blue); stroke-width: 3; fill: none; }
 .poke { cursor: pointer; }
-.poke ellipse { fill: rgba(194, 58, 44, .08); stroke: #C23A2C; stroke-width: 2.5; stroke-dasharray: 4 3; transition: fill .2s; }
-.poke text { font: 600 20px var(--f-hand); fill: #C23A2C; }
-.poke:hover ellipse, .poke.on ellipse { fill: rgba(194, 58, 44, .22); stroke-dasharray: none; }
+.poke ellipse { fill: var(--red-wash); stroke: var(--red); stroke-width: 2.5; stroke-dasharray: 4 3; transition: fill .2s; }
+.poke text { font: 600 20px var(--f-hand); fill: var(--red-text); }
+.poke:hover ellipse, .poke.on ellipse { fill: color-mix(in srgb, var(--red) 26%, transparent); stroke-dasharray: none; }
 .poke:focus-visible { outline: none; }
 .poke:focus-visible ellipse { stroke-width: 4; }
 .readout { margin-top: .9rem; border-left: 3px solid var(--red); padding: .2rem 0 .2rem 1rem; font: 400 1rem/1.5 var(--f-ui); color: var(--ink-2); min-height: 3.2rem; }
@@ -276,19 +300,23 @@ h3.sub { font: 400 1.75rem/1.12 var(--f-display); margin: 2.6rem 0 .8rem; text-w
 /* ---------------- primitives ---------------- */
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
 .chip { border: 1px solid var(--rule); background: var(--surface); border-radius: 999px; padding: .32rem .8rem; font: 500 .84rem var(--f-ui); color: var(--ink-2); cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.chip[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: var(--paper); }
 .switch { display: inline-flex; align-items: center; gap: .55rem; font: 600 .86rem var(--f-ui); cursor: pointer; color: var(--ink-2); }
 .switch input { width: 2.4rem; height: 1.35rem; appearance: none; -webkit-appearance: none; background: var(--rule); border-radius: 99px; position: relative; cursor: pointer; transition: background .2s; margin: 0; }
-.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: calc(1.35rem - 6px); height: calc(1.35rem - 6px); border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: calc(1.35rem - 6px); height: calc(1.35rem - 6px); border-radius: 50%; background: var(--ink); transition: transform .2s, background .2s; box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
 .switch input:checked { background: var(--blue); }
-.switch input:checked::after { transform: translateX(1.05rem); }
+.switch input:checked::after { transform: translateX(1.05rem); background: var(--paper); }
 .prims { display: grid; grid-template-columns: 8.2rem repeat(5, minmax(0, 1fr)); gap: 5px; align-items: stretch; }
 .fam { font: 600 .72rem/1.2 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; }
 .tile { border: 1px solid var(--rule); background: var(--surface); border-radius: 4px; padding: .5rem .55rem; text-align: left; cursor: pointer; min-height: 3.6rem; display: grid; align-content: start; gap: .15rem; transition: opacity .3s, border-color .3s, background .3s, transform .2s; }
 .tile .nm { font: 600 .84rem/1.2 var(--f-ui); color: var(--ink); }
 .tile .vd { font: 500 .76rem/1.25 var(--f-hand); color: var(--blue); display: none; }
 .prims.vendors .tile .vd { display: block; }
-.prims.filtering .tile { opacity: .28; }
+/* non-matching tiles fade by colour, not opacity, so their names keep 4.5:1 */
+.prims.filtering .tile { background: transparent; border-color: var(--rule-2); }
+.prims.filtering .tile .nm, .prims.filtering .tile .vd { color: var(--muted); }
+.prims.filtering .tile.hit .nm { color: var(--ink); }
+.prims.filtering .tile.hit .vd { color: var(--blue); }
 .prims.filtering .tile.hit { opacity: 1; border-color: var(--blue); background: var(--blue-wash); }
 .tile.sel { outline: 2px solid var(--ink); outline-offset: 1px; }
 .prim-detail { margin-top: 1rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); padding: .9rem 1.1rem; font: 400 .96rem/1.5 var(--f-ui); color: var(--ink-2); min-height: 5.4rem; }
@@ -312,7 +340,7 @@ h3.sub { font: 400 1.75rem/1.12 var(--f-display); margin: 2.6rem 0 .8rem; text-w
 .strata .probe { position: absolute; left: 30%; width: 2.6%; transform: translateX(-50%); top: 15%; height: 0; background: rgba(36, 73, 160, .55); border-radius: 0 0 4px 4px; transition: height .6s cubic-bezier(.4, 0, .3, 1); box-shadow: 0 0 0 2px rgba(255, 255, 255, .7); }
 .layers { display: grid; gap: .35rem; margin-top: .9rem; }
 .layers button { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: .6rem; align-items: center; border: 1px solid var(--rule); border-radius: 4px; padding: .45rem .7rem; background: var(--surface); text-align: left; cursor: pointer; font: 500 .92rem var(--f-ui); }
-.layers button i { width: 1.4rem; height: 1.4rem; border-radius: 3px; display: grid; place-items: center; font: 700 .78rem var(--f-ui); font-style: normal; color: #fff; }
+.layers button i { width: 1.4rem; height: 1.4rem; border-radius: 3px; display: grid; place-items: center; font: 700 .78rem var(--f-ui); font-style: normal; color: var(--paper); }
 .layers button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--ink); }
 .layer-card { border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); padding: 1rem 1.15rem 1.1rem; }
 .layer-card .lk { font: 600 .74rem var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
@@ -393,11 +421,13 @@ input[type="range"] { accent-color: var(--blue); }
 
 /* closing builder */
 .close-steps { counter-reset: s; display: grid; gap: .8rem; }
-.cstep { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: .9rem; align-items: start; opacity: .38; transition: opacity .4s; }
-.cstep.on { opacity: 1; }
-.cstep .num { width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 2px solid var(--ink); display: grid; place-items: center; font: 700 .95rem var(--f-ui); }
+/* steps not yet reached are muted (6:1) instead of faded by opacity */
+.cstep { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: .9rem; align-items: start; color: var(--muted); transition: color .4s; }
+.cstep.on { color: var(--ink); }
+.cstep .num { width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 2px solid currentColor; display: grid; place-items: center; font: 700 .95rem var(--f-ui); }
 .cstep h4 { margin: .1rem 0 .3rem; font: 600 1.02rem var(--f-ui); }
-.cstep p { margin: 0; font: 500 1.05rem/1.5 var(--f-hand); color: var(--blue); }
+.cstep p { margin: 0; font: 500 1.05rem/1.5 var(--f-hand); }
+.cstep.on p { color: var(--blue); }
 
 /* summary */
 .summary { display: grid; gap: 0; border-top: 1px solid var(--rule); }
@@ -462,7 +492,7 @@ input[type="range"] { accent-color: var(--blue); }
 .ladder .use { font: 500 13px var(--f-hand); fill: var(--blue); }
 .ladder .tick text { font: 500 11px var(--f-ui); fill: var(--muted); }
 .ladder .tick line { stroke: var(--rule); }
-.ladder .bar { fill: var(--blue); opacity: .78; }
+.ladder .bar { fill: var(--blue); opacity: .86; }
 .ladder .bar.net { fill: var(--red); }
 .ladder .bar.mem { fill: var(--green); }
 
@@ -483,7 +513,7 @@ input[type="range"] { accent-color: var(--blue); }
 
 /* quorum */
 .quorum { width: 100%; height: auto; display: block; }
-.quorum .qn { fill: var(--surface); stroke: var(--rule); stroke-width: 2; }
+.quorum .qn { fill: var(--surface); stroke: color-mix(in srgb, var(--ink) 30%, var(--paper)); stroke-width: 2; }
 .quorum .qn.w { fill: color-mix(in srgb, var(--blue) 30%, var(--surface)); stroke: var(--blue); }
 .quorum .rring { fill: none; stroke: var(--green); stroke-width: 4; stroke-dasharray: 6 4; }
 .quorum .both { fill: none; stroke: var(--ink); stroke-width: 2; }
@@ -529,7 +559,7 @@ input[type="range"] { accent-color: var(--blue); }
 #kv-canvas { width: 100%; height: auto; display: block; border-radius: 3px; background: var(--rule-2); }
 .kv-key { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin: .7rem 0 0; font: 500 .84rem var(--f-ui); color: var(--ink-2); }
 .kv-key i { display: inline-block; width: .9rem; height: .9rem; border-radius: 2px; vertical-align: -.12rem; margin-right: .4rem; }
-.kv-key .k-used { background: var(--blue); }
+.kv-key .k-used { background: color-mix(in srgb, var(--blue) 75%, var(--paper)); } /* the canvas's mid-tone blue */
 .kv-key .k-waste { background: repeating-linear-gradient(45deg, var(--muted) 0 2px, transparent 2px 4px); border: 1px solid var(--muted); }
 .kv-key .k-shared { background: var(--ink); }
 .kv-key .k-free { background: var(--rule-2); border: 1px solid var(--rule); }
@@ -537,16 +567,16 @@ input[type="range"] { accent-color: var(--blue); }
 /* failure drill */
 .drill { display: grid; gap: 1rem; }
 #drill { display: block; width: 100%; height: auto; }
-#drill .nd rect, #drill .nd path { fill: #FDFDFB; stroke: #2449A0; stroke-width: 3; transition: stroke .3s, fill .3s, opacity .3s; }
-#drill .nd text { font: 500 16px var(--f-hand); fill: #2449A0; text-anchor: middle; pointer-events: none; }
+#drill .nd rect, #drill .nd path { fill: var(--surface); stroke: var(--blue); stroke-width: 3; transition: stroke .3s, fill .3s, opacity .3s; }
+#drill .nd text { font: 500 16px var(--f-hand); fill: var(--blue); text-anchor: middle; pointer-events: none; }
 #drill .nd { cursor: pointer; transition: opacity .3s; }
 #drill .nd:focus-visible { outline: none; }
 #drill .nd:focus-visible rect, #drill .nd:focus-visible path { stroke-width: 5; }
-#drill .ar { stroke: #2449A0; stroke-width: 2.5; fill: none; transition: opacity .3s; }
-#drill .nd.fail rect, #drill .nd.fail path { stroke: #C23A2C; fill: #FBE9E6; }
-#drill .nd.fail text { fill: #A83125; }
+#drill .ar { stroke: var(--blue); stroke-width: 2.5; fill: none; transition: opacity .3s; }
+#drill .nd.fail rect, #drill .nd.fail path { stroke: var(--red); fill: color-mix(in srgb, var(--red) 16%, var(--surface)); }
+#drill .nd.fail text { fill: var(--red-text); }
 #drill .dim { opacity: .25; }
-#drill .x { stroke: #C23A2C; stroke-width: 5; stroke-linecap: round; }
+#drill .x { stroke: var(--red); stroke-width: 5; stroke-linecap: round; }
 .drill-card { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .9rem 1.2rem; border-top: 2px solid var(--red); padding-top: .8rem; min-height: 7rem; }
 .drill-card h4 { grid-column: 1 / -1; margin: 0; font: 400 1.5rem/1.15 var(--f-display); }
 .drill-card div { min-width: 0; }

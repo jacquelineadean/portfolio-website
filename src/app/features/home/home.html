@@ -1,10 +1,4 @@
 <section class="hero">
-  <span class="ticks hero-ticks hero-ticks--top" aria-hidden="true">{{ ticks }}</span>
-  <span class="hero-corner hero-corner--tl" aria-hidden="true">H</span>
-  <span class="hero-corner hero-corner--tr" aria-hidden="true">O</span>
-  <span class="hero-corner hero-corner--bl" aria-hidden="true">M</span>
-  <span class="hero-corner hero-corner--br" aria-hidden="true">E</span>
-
   <div class="hero-grid container">
     <app-glyphs
       class="hero-fern"
@@ -14,7 +8,10 @@
     />
 
     <div class="hero-text">
-      <h1 class="hero-name">Jacqueline <em>Dean</em></h1>
+      <div class="hero-title">
+        <h1 #heroName class="hero-name">Jacqueline <em>Dean</em></h1>
+        <p class="hero-role">Full Stack Software Engineer</p>
+      </div>
 
       <nav class="index" aria-label="Work">
         <ol role="list">
@@ -32,8 +29,6 @@
       </nav>
     </div>
   </div>
-
-  <span class="ticks hero-ticks hero-ticks--bottom" aria-hidden="true">{{ ticks }}</span>
 </section>
 
 @for (w of works; track w.slug; let i = $index) {

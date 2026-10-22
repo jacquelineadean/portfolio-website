@@ -8,57 +8,10 @@
   padding-top: clamp(5.5rem, 8vw, 7rem);
   padding-bottom: clamp(3rem, 6vw, 4.5rem);
 
-  /* Taller than the screen on a phone: start below the corner letters. */
   @media (max-width: 899px) {
-    padding-top: 10rem;
-    padding-bottom: 5.5rem;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
   }
-}
-
-/* Measuring ticks and a letter in each corner, as on a specimen print. */
-.hero-ticks {
-  position: absolute;
-  width: min(42%, 30rem);
-}
-
-.hero-ticks--top {
-  top: 5.4rem;
-  left: var(--container-padding);
-}
-
-.hero-ticks--bottom {
-  right: var(--container-padding);
-  bottom: 1.4rem;
-  direction: rtl;
-}
-
-.hero-corner {
-  position: absolute;
-  font-family: var(--font-serif);
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
-  line-height: 1;
-  color: var(--color-ink-soft);
-  opacity: 0.8;
-}
-
-.hero-corner--tl {
-  top: 7rem;
-  left: var(--container-padding);
-}
-
-.hero-corner--tr {
-  top: 7rem;
-  right: var(--container-padding);
-}
-
-.hero-corner--bl {
-  bottom: 3.2rem;
-  left: var(--container-padding);
-}
-
-.hero-corner--br {
-  bottom: 3.2rem;
-  right: var(--container-padding);
 }
 
 .hero-grid {
@@ -85,7 +38,7 @@
   }
 }
 
-/* On a narrow screen the name comes first, then the fern, then the index. */
+/* On a narrow screen the name and role come first, then the fern, then the index. */
 .hero-text {
   @media (max-width: 899px) {
     display: contents;
@@ -101,15 +54,24 @@
 .hero-name {
   font-size: clamp(3.4rem, 1.6rem + 6.4vw, 7rem);
   line-height: 0.9;
-  margin-bottom: clamp(2rem, 4vw, 3.25rem);
-
-  @media (max-width: 899px) {
-    margin-bottom: 0;
-  }
 
   em {
     display: block;
     color: var(--color-green);
+  }
+}
+
+.hero-role {
+  margin-top: clamp(1rem, 2vw, 1.4rem);
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  @media (max-width: 899px) {
+    margin-bottom: 0;
   }
 }
 

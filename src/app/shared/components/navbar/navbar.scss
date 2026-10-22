@@ -33,6 +33,16 @@ nav {
   align-items: center;
   gap: 0.6rem;
   z-index: 10;
+  transition:
+    opacity var(--duration-normal) ease,
+    translate var(--duration-normal) var(--ease-out-expo);
+
+  /* Home's large name is on screen: the bar's own name steps aside. */
+  &.is-hidden {
+    opacity: 0;
+    translate: 0 -0.4rem;
+    pointer-events: none;
+  }
 
   .sparkle {
     font-size: 1rem;
@@ -65,9 +75,11 @@ nav {
 }
 
 .logo-text {
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.005em;
   color: var(--color-ink);
 }
 
@@ -83,8 +95,10 @@ nav {
   align-items: center;
 
   li a {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--color-ink-soft);
     transition: color var(--duration-fast) ease;
     position: relative;
@@ -98,7 +112,7 @@ nav {
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: var(--color-ink);
+      background: var(--color-green);
       opacity: 0;
       scale: 0;
       transition:
@@ -121,19 +135,23 @@ nav {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  padding: 0.55rem 1.35rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-paper);
-  background: var(--color-ink);
+  padding: 0.55rem 1.15rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  border: 1px solid var(--color-border-hover);
   border-radius: var(--radius-pill);
   transition:
-    transform var(--duration-fast) ease,
-    background-color var(--duration-fast) ease;
+    color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
 
   &:hover {
-    background: #fff8dc;
-    transform: scale(1.04);
+    color: var(--color-paper);
+    background: var(--color-green);
+    border-color: var(--color-green);
   }
 }
 
@@ -186,9 +204,10 @@ nav {
     text-align: center;
 
     li a {
-      font-size: var(--text-2xl);
-      font-weight: 500;
-      letter-spacing: var(--tracking-tight);
+      font-family: var(--font-serif);
+      font-size: var(--text-3xl);
+      letter-spacing: -0.01em;
+      text-transform: none;
 
       &::after {
         bottom: -2px;
@@ -199,8 +218,8 @@ nav {
   }
 
   .nav-cta {
-    font-size: var(--text-base);
-    padding: 0.8rem 2.2rem;
+    font-size: var(--text-sm);
+    padding: 0.8rem 2rem;
   }
 
   nav.menu-open {

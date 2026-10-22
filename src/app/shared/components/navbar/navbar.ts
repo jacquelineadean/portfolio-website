@@ -2,6 +2,7 @@ import { Component, signal, HostListener, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
+import { HeroName } from '../../../core/hero-name';
 import { SITE_LINKS } from '../../../core/site';
 
 @Component({
@@ -24,8 +25,11 @@ export class Navbar {
   /** The site's only contact channel — there is deliberately no email on the page. */
   protected readonly linkedInUrl = SITE_LINKS.linkedin;
 
-  /** The logo's star flashes on every arrival, like the elevator's floor lamp on Home. */
+  /** The logo's star flashes on every arrival at a page. */
   protected readonly ding = signal(false);
+
+  /** Home's large name is on screen, so the bar leaves its own out. */
+  protected readonly nameShown = inject(HeroName).visible;
 
   constructor() {
     inject(Router)

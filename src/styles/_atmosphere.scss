@@ -71,20 +71,6 @@ body::after {
   color: var(--color-ink);
 }
 
-/* A measuring rule of ticks, as at the edges of a specimen photograph. */
-.ticks {
-  display: block;
-  overflow: hidden;
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.3em;
-  line-height: 1;
-  white-space: nowrap;
-  color: var(--color-ink-soft);
-  opacity: 0.7;
-  user-select: none;
-}
-
 /* Glyph specimens (src/app/shared/glyphs). */
 app-glyphs {
   display: block;

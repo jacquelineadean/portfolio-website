@@ -3,28 +3,7 @@
 }
 
 .post-header {
-  margin-top: var(--space-lg);
   margin-bottom: var(--space-2xl);
-  max-width: 800px;
-}
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-  margin-bottom: var(--space-md);
-}
-
-.post-title {
-  font-size: var(--text-3xl);
-  font-weight: 500;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
 }
 
 :host ::ng-deep .prose {

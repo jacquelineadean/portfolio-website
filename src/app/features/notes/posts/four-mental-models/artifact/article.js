@@ -8,7 +8,8 @@
  * - Same-page links ("#m1") scroll inside the shadow root. Left alone, they
  *   resolve against <base href> and navigate to the site root.
  * - CSS variables are read from the shadow host, where article.css defines them.
- * - The dark-theme redraw listeners are gone, with the dark palette they served.
+ * - The dark-theme redraw listeners are gone: the site has one theme, and the
+ *   palette in article.css is dark. Hex colours below are lightened to match.
  */
 export function mountArticle(root) {
   const lifetime = new AbortController();
@@ -296,7 +297,8 @@ export function mountArticle(root) {
 
   /* ---------------- strata explorer ---------------- */
   const LAYERS = ['Role', 'Interface and data model', 'Mechanism', 'Limits and failure', 'Operations'];
-  const LCOL = ['#7E9A62', '#C3943E', '#A25A35', '#6E5446', '#45506A'];
+  // Topsoil to bedrock, in the painting's hues, lightened to read on the dark page.
+  const LCOL = ['#9cb67c', '#d4a65a', '#c9805c', '#a8897a', '#8d9abb'];
   const ST = {
     kafka: ['Kafka log', [
       'A durable, ordered event log between the ingest service and everything that consumes its events.',
@@ -703,13 +705,13 @@ export function mountArticle(root) {
         s += `<text class="lab" x="0" y="${y + 12}">${l}</text>`;
         s += `<rect class="bar ${k}" x="0" y="${y + 19}" width="${Math.max(2, xe)}" height="13" rx="2"/>`;
         const right = xe + 70 > W;
-        s += `<text class="val" x="${right ? xe - 6 : xe + 6}" y="${y + 30}" text-anchor="${right ? 'end' : 'start'}"${right ? ' style="fill:#fff"' : ''}>${val}</text>`;
+        s += `<text class="val" x="${right ? xe - 6 : xe + 6}" y="${y + 30}" text-anchor="${right ? 'end' : 'start'}"${right ? ' style="fill:var(--paper)"' : ''}>${val}</text>`;
         s += `<text class="use" x="0" y="${y + 50}">${use}</text>`;
       } else {
         s += `<text class="lab" x="${x0 - 12}" y="${y + 12}" text-anchor="end">${l}</text>`;
         s += `<rect class="bar ${k}" x="${x0}" y="${y}" width="${Math.max(2, xe - x0)}" height="15" rx="2"/>`;
         const right = xe + 8 + 70 > W;
-        s += `<text class="val" x="${right ? xe - 6 : xe + 8}" y="${y + 12}" text-anchor="${right ? 'end' : 'start'}"${right ? ' style="fill:#fff"' : ''}>${val}</text>`;
+        s += `<text class="val" x="${right ? xe - 6 : xe + 8}" y="${y + 12}" text-anchor="${right ? 'end' : 'start'}"${right ? ' style="fill:var(--paper)"' : ''}>${val}</text>`;
         s += `<text class="use" x="${x0}" y="${y + 31}">${use}</text>`;
       }
     });
@@ -853,7 +855,9 @@ export function mountArticle(root) {
   const kvRand = mulberry32(7);
   const KV_REQ = Array.from({ length: 4000 }, () => 48 + Math.floor(kvRand() * 1001));
   const kvShuf = (() => { const r = mulberry32(11), a = Array.from({ length: KV_BLK }, (_, i) => i); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; })();
-  const PAL = ['#3B6FB6', '#2E9C66', '#C8553D', '#8E6BB0', '#D39A2C', '#3A9AA6'];
+  // One colour per request: the post's markers plus lilac and teal, in mid tones so the
+  // cream shared-prompt blocks (--ink) stand out from them and the dark free blocks recede.
+  const PAL = ['#6a8ac4', '#5f9c78', '#c06e5f', '#9384bb', '#a88d4c', '#5c9aa2'];
   function kvLayout(mode) {
     const cell = new Int32Array(KV_BLK).fill(-1); // -1 free, -2 waste, -3 shared, >=0 request id
     let n = 0, stored = 0, blocks = 0, waste = 0;

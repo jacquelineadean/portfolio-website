@@ -6,9 +6,14 @@
 
     @if (post; as post) {
       <app-scroll-reveal [delay]="0.1">
-        <p class="post-meta">
-          <time>{{ post.date }}</time>
-        </p>
+        <header class="post-header">
+          <h1 class="post-title">{{ post.title }}</h1>
+          <p class="post-byline">
+            <span>By Jacqueline Dean</span>
+            <span aria-hidden="true">·</span>
+            <time [attr.datetime]="post.date">{{ post.date }}</time>
+          </p>
+        </header>
       </app-scroll-reveal>
     }
   </div>
@@ -16,7 +21,7 @@
   <!-- Full width: the article sets its own reading column and wider figures.
        Not inside app-scroll-reveal, whose transform would break the sticky
        interview clock. -->
-  <div #article class="article paper"></div>
+  <div #article class="article"></div>
 
   <div class="container">
     <div class="post-footer">

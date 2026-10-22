@@ -519,3 +519,30 @@ a.book-card:hover .book-external {
     transform: none;
   }
 }
+
+/* A post's title block: the title in the serif, then who wrote it and when. */
+.post-header {
+  max-width: 52rem;
+  margin-top: var(--space-md);
+}
+
+.post-title {
+  font-size: clamp(2.6rem, 1.5rem + 4.6vw, 5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+.post-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  margin-top: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}

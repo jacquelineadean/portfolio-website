@@ -6,10 +6,12 @@
 
     <app-scroll-reveal [delay]="0.1">
       <header class="post-header">
-        <p class="post-meta">
-          <time>{{ post.date }}</time>
-        </p>
         <h1 class="post-title">{{ post.title }}</h1>
+        <p class="post-byline">
+          <span>By Jacqueline Dean</span>
+          <span aria-hidden="true">·</span>
+          <time [attr.datetime]="post.date">{{ post.date }}</time>
+        </p>
       </header>
     </app-scroll-reveal>
 

@@ -2,22 +2,11 @@
   margin-bottom: var(--space-md);
 }
 
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-}
-
 .article {
   /* The article's interview clock sticks below the site navbar, whose bar is
      4.75rem tall (navbar.scss). The shadow root reads this through inheritance. */
   --clock-top: 4.75rem;
-  margin-top: var(--space-lg);
+  margin-top: var(--space-xl);
 }
 
 .post-footer {
