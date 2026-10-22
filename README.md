@@ -64,7 +64,7 @@ The site draws each piece of work as a natural form made of characters, on a can
 
 Every character a specimen shows comes from the work itself:
 
-- The fern on the home page unfurls, and its stem dissolves into binary.
+- The fern on the home page unrolls from a coil, drawn as line art, and its base dissolves into binary.
 - The moss runs the site's own search code (`src/app/shared/labs/pathfinding.ts`) and spells each path with its source.
 - The butterfly's wings are written in the `tornado-ok` ledger card (exp-0002) from the Readiness Loop.
 - The flower's four petals are sized by the minutes each model owns in Four Mental Models, and written in the post's words.

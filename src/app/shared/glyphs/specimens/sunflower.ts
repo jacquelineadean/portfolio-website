@@ -1,4 +1,4 @@
-import { GlyphGrid, Pointer, Specimen, Tone, clear, lace } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, clear, slant } from '../grid';
 import { Mask } from '../mask';
 
 /** The post's best case for one user on one H100: an 8B model at batch one. */
@@ -41,8 +41,8 @@ export class Sunflower implements Specimen {
     const { x: ox, y: oy, w, h } = this.mask.box(1);
     const head = { x: ox + w * 0.5, y: oy + h * 0.4 };
     const radius = Math.min(w, h) * 0.24;
-    // One seed per cell's area, roughly, so seeds do not pile on one cell.
-    const spacing = Math.max(this.font.cellWidth, this.font.lineHeight) * 0.62;
+    // One seed per cell's area, so the head fills solid with tokens.
+    const spacing = Math.sqrt((this.font.cellWidth * this.font.lineHeight) / Math.PI);
     this.capacity = Math.floor((radius / spacing) ** 2);
 
     const elapsed = t === Infinity ? Infinity : t - this.cycleStart;
@@ -53,17 +53,33 @@ export class Sunflower implements Specimen {
       Math.floor(((t === Infinity ? fill : t - this.cycleStart) / 1000) * TOKENS_PER_S),
     );
 
-    this.paint(head, radius, t);
+    const stem = this.paint(head, radius, t);
     clear(grid);
-    // Petals, stem and leaf from the mask, as lace.
+    const { cellWidth, lineHeight } = this.font;
+    // The stem, as a line two characters wide.
+    for (let i = 1; i < stem.length; i++) {
+      const ch = slant(stem[i].x - stem[i - 1].x, stem[i].y - stem[i - 1].y);
+      for (const dx of [0, cellWidth * 0.9]) {
+        const col = Math.floor((stem[i].x + dx) / cellWidth);
+        const row = Math.floor(stem[i].y / lineHeight);
+        if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) continue;
+        grid.char[row * this.cols + col] = ch;
+        grid.alpha[row * this.cols + col] = dx ? 0.45 : 0.8;
+        grid.tone[row * this.cols + col] = Tone.Mint;
+      }
+    }
+    // Petals and the leaf from the mask, each cell in the stroke that
+    // follows its petal outward from the head (or along the leaf).
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
         const c = this.mask.at(col, row);
-        if (c < 0.15) continue;
+        if (c < 0.3) continue;
         const i = row * this.cols + col;
         const petal = this.mask.region(col, row) < 100;
-        grid.char[i] = lace(c, col, row);
-        grid.alpha[i] = Math.min(1, 0.2 + c * 0.5);
+        const x = (col + 0.5) * cellWidth;
+        const y = (row + 0.5) * lineHeight;
+        grid.char[i] = petal ? slant(x - head.x, y - head.y) : slant(-1, -0.45);
+        grid.alpha[i] = petal ? 0.35 + c * 0.55 : 0.3 + c * 0.4;
         grid.tone[i] = petal ? Tone.Gold : Tone.Mint;
       }
     }
@@ -93,19 +109,27 @@ export class Sunflower implements Specimen {
     return true;
   }
 
-  /** Petals around the head, a stem and a leaf. */
-  private paint(head: { x: number; y: number }, radius: number, t: number): void {
+  /** Petals around the head and a leaf into the mask; returns the stem's line. */
+  private paint(
+    head: { x: number; y: number },
+    radius: number,
+    t: number,
+  ): { x: number; y: number }[] {
     const ctx = this.mask.begin();
     const { x: ox, y: oy, w, h } = this.mask.box(1);
     const sway = t === Infinity ? 0 : Math.sin(t / 2900) * 0.04;
 
-    ctx.strokeStyle = Mask.fill(200);
-    ctx.lineCap = 'round';
-    ctx.lineWidth = w * 0.03;
-    ctx.beginPath();
-    ctx.moveTo(head.x, head.y + radius);
-    ctx.quadraticCurveTo(ox + w * 0.46, oy + h * 0.8, ox + w * 0.5, oy + h * 1.02);
-    ctx.stroke();
+    const stem: { x: number; y: number }[] = [];
+    const from = { x: head.x, y: head.y + radius * 1.6 };
+    const ctrl = { x: ox + w * 0.46, y: oy + h * 0.8 };
+    const to = { x: ox + w * 0.5, y: oy + h * 1.02 };
+    for (let i = 0; i <= 50; i++) {
+      const s = i / 50;
+      stem.push({
+        x: (1 - s) ** 2 * from.x + 2 * (1 - s) * s * ctrl.x + s * s * to.x,
+        y: (1 - s) ** 2 * from.y + 2 * (1 - s) * s * ctrl.y + s * s * to.y,
+      });
+    }
     ctx.fillStyle = Mask.fill(200);
     ctx.beginPath();
     ctx.moveTo(ox + w * 0.48, oy + h * 0.82);
@@ -121,7 +145,7 @@ export class Sunflower implements Specimen {
       ctx.translate(head.x + Math.cos(a) * radius * 0.92, head.y + Math.sin(a) * radius * 0.92);
       ctx.rotate(a);
       ctx.beginPath();
-      ctx.ellipse(len * 0.5, 0, len * 0.5, radius * 0.07, 0, 0, Math.PI * 2);
+      ctx.ellipse(len * 0.5, 0, len * 0.5, radius * 0.085, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
@@ -133,5 +157,6 @@ export class Sunflower implements Specimen {
     ctx.fill();
     ctx.restore();
     this.mask.end();
+    return stem;
   }
 }
