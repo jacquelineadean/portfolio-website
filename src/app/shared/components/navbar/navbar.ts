@@ -1,5 +1,7 @@
-import { Component, signal, HostListener } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, signal, HostListener, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { filter } from 'rxjs';
 import { SITE_LINKS } from '../../../core/site';
 
 @Component({
@@ -21,6 +23,21 @@ export class Navbar {
 
   /** The site's only contact channel — there is deliberately no email on the page. */
   protected readonly linkedInUrl = SITE_LINKS.linkedin;
+
+  /** The logo's star flashes on every arrival, like the elevator's floor lamp on Home. */
+  protected readonly ding = signal(false);
+
+  constructor() {
+    inject(Router)
+      .events.pipe(
+        filter((e) => e instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        this.ding.set(false);
+        requestAnimationFrame(() => this.ding.set(true));
+      });
+  }
 
   @HostListener('window:scroll')
   onScroll(): void {

@@ -1,87 +1,56 @@
-/* Recordings span the page; the posts' illustrations sit two to a row. */
-.work-grid {
+.reels {
   display: grid;
-  gap: clamp(3rem, 7vw, 5rem) var(--space-xl);
+  gap: clamp(3rem, 7vw, 5.5rem) var(--space-xl);
 
   @media (min-width: 900px) {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-/* A recording sits beside its text on a wide screen, so a tall terminal
-   capture does not take the whole page. */
-.work-item.is-wide {
+/* A recording spans the page and sits beside its text. */
+.reel.is-wide {
   @media (min-width: 900px) {
     grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: center;
+  }
+}
 
-    .work-body {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: var(--space-xl);
-      align-items: center;
-    }
+.reel-art {
+  display: block;
+}
 
-    .work-text {
+.reel-text {
+  display: grid;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+
+  .is-wide & {
+    @media (min-width: 900px) {
       margin-top: 0;
     }
   }
 }
 
-.work-image {
-  display: block;
-  overflow: hidden;
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    transition: transform var(--duration-slow) ease;
-  }
-
-  &:hover img {
-    transform: scale(1.02);
-  }
-}
-
-.work-text {
-  display: grid;
-  gap: var(--space-xs);
-  margin-top: var(--space-md);
-}
-
-.work-eyebrow {
+.reel-kind {
   margin: 0;
 }
 
-.work-title {
-  font-size: var(--text-xl);
-  font-weight: 500;
-  line-height: var(--leading-snug);
+.reel-title {
+  font-size: var(--text-2xl);
 
   a {
     color: inherit;
-    text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
-      text-underline-offset: 0.2em;
+      color: var(--color-green);
     }
   }
 }
 
-.work-caption {
-  max-width: 60ch;
+.reel-caption {
+  max-width: 52ch;
   color: var(--color-ink-soft);
-}
-
-.work-credit {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-wide);
-  color: var(--color-ink-muted);
 }

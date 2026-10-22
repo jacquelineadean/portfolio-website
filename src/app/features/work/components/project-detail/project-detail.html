@@ -29,6 +29,21 @@
       </app-scroll-reveal>
     </header>
 
+    <!-- The project's specimen from the home page, drawn from its own data. -->
+    @if (work(); as w) {
+      <div class="study-specimen">
+        <app-glyphs
+          [specimen]="specimen()!"
+          [ratio]="(narrow && w.narrowRatio) || w.ratio"
+          [label]="w.label"
+          [interactive]="w.interactive"
+        />
+        @if (w.hint) {
+          <p class="study-hint">{{ w.hint }}</p>
+        }
+      </div>
+    }
+
     <app-scroll-reveal>
       <app-chronicle-figure class="study-hero" [src]="figure(project.slug, project.hero)" />
     </app-scroll-reveal>
@@ -50,6 +65,9 @@
                     class="study-visual"
                     [src]="figure(project.slug, visual.name)"
                   />
+                }
+                @case ('lab') {
+                  <app-pathfinder class="study-visual paper study-paper" />
                 }
                 @case ('chips') {
                   <ul class="study-stack" role="list">

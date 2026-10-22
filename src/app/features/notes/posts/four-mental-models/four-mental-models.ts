@@ -9,7 +9,6 @@ import {
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { ScrollReveal } from '../../../../shared/components/scroll-reveal/scroll-reveal';
-import { Tag } from '../../../../shared/components/tag/tag';
 import { ShareButtons } from '../../../../shared/components/share-buttons/share-buttons';
 import { BlogService } from '../../../../core/services/blog.service';
 import markup from './artifact/article.html' with { loader: 'text' };
@@ -36,7 +35,7 @@ const FONTS_HREF =
 @Component({
   selector: 'app-four-mental-models',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, Tag, ShareButtons],
+  imports: [RouterLink, ScrollReveal, ShareButtons],
   templateUrl: './four-mental-models.html',
   styleUrl: './four-mental-models.scss',
 })

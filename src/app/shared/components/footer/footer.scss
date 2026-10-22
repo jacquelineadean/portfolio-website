@@ -1,7 +1,9 @@
+/* Beige paper under the moss page, the way a printed label sits under a
+   specimen. */
 footer {
   margin-top: auto;
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--paper-bg);
+  color: var(--paper-ink);
   border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
 }
 
@@ -20,7 +22,7 @@ footer {
 }
 
 .footer-eyebrow {
-  color: rgba(247, 245, 240, 0.65);
+  color: rgba(39, 38, 31, 0.65);
   margin-bottom: var(--space-lg);
 }
 
@@ -60,7 +62,7 @@ footer {
   font-size: var(--text-2xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: rgba(247, 245, 240, 0.5);
+  color: rgba(39, 38, 31, 0.5);
   margin-bottom: var(--space-sm);
 }
 
@@ -71,7 +73,7 @@ footer {
 
   a {
     font-size: var(--text-sm);
-    color: rgba(247, 245, 240, 0.8);
+    color: rgba(39, 38, 31, 0.8);
     transition: color var(--duration-fast) ease;
     width: fit-content;
 
@@ -88,11 +90,11 @@ footer {
   gap: var(--space-sm);
   flex-wrap: wrap;
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(247, 245, 240, 0.15);
+  border-top: 1px solid rgba(39, 38, 31, 0.15);
 
   p {
     font-size: var(--text-xs);
-    color: rgba(247, 245, 240, 0.55);
+    color: rgba(39, 38, 31, 0.55);
   }
 }
 
@@ -106,8 +108,8 @@ footer {
   }
 
   a {
-    color: rgba(247, 245, 240, 0.8);
-    border-bottom: 1px solid rgba(247, 245, 240, 0.3);
+    color: rgba(39, 38, 31, 0.8);
+    border-bottom: 1px solid rgba(39, 38, 31, 0.3);
 
     &:hover {
       color: var(--color-paper);

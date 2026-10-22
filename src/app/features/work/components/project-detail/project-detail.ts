@@ -5,11 +5,14 @@ import { Title } from '@angular/platform-browser';
 import { ScrollReveal } from '../../../../shared/components/scroll-reveal/scroll-reveal';
 import { PROJECTS } from '../../data/projects.data';
 import { ChronicleFigure } from '../../../../shared/components/chronicle-figure/chronicle-figure';
+import { Pathfinder } from '../../../../shared/components/labs/pathfinder/pathfinder';
+import { Glyphs } from '../../../../shared/glyphs/glyphs';
+import { workFor } from '../../../../core/works';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, ChronicleFigure],
+  imports: [RouterLink, ScrollReveal, ChronicleFigure, Pathfinder, Glyphs],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.scss',
 })
@@ -29,6 +32,16 @@ export class ProjectDetail {
   protected readonly project = computed(() =>
     PROJECTS.find((p) => p.slug === this.params()?.get('slug')),
   );
+
+  protected readonly work = computed(() => {
+    const slug = this.project()?.slug;
+    return slug ? workFor(slug) : undefined;
+  });
+  /** A specimen of its own for this page, rebuilt when the project changes. */
+  protected readonly specimen = computed(() => this.work()?.specimen());
+  /** A phone's width, read once: the canvas keeps the shape it starts with. */
+  protected readonly narrow =
+    typeof matchMedia === 'function' && matchMedia('(max-width: 640px)').matches;
 
   /** A figure's file pair under public/projects/, without the layout suffix. */
   protected figure(slug: string, name: string): string {

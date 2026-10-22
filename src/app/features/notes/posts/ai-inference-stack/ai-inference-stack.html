@@ -6,18 +6,9 @@
 
     @if (post; as post) {
       <app-scroll-reveal [delay]="0.1">
-        <div class="post-meta">
+        <p class="post-meta">
           <time>{{ post.date }}</time>
-          <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
-          <span>{{ post.readingTime }} min read</span>
-          <span class="sparkle sparkle--yellow" aria-hidden="true"></span>
-          <span>Interactive</span>
-        </div>
-        <div class="post-tags">
-          @for (tag of post.tags; track tag) {
-            <app-tag [label]="tag" />
-          }
-        </div>
+        </p>
       </app-scroll-reveal>
     }
   </div>
@@ -25,7 +16,7 @@
   <!-- Full width: the field guide lays out its own rack and panels. Not inside
        app-scroll-reveal, whose transform would position the article's fixed
        tooltip against it. -->
-  <div #article class="article"></div>
+  <div #article class="article paper"></div>
 
   <div class="container">
     <div class="post-footer">

@@ -31,11 +31,18 @@
           <article class="work-card project-card">
             <div
               class="work-card-tile"
-              [class]="'work-card-tile tile--' + tint(i)"
+              [class]="'work-card-tile tile--' + tint(project)"
               aria-hidden="true"
             >
-              <app-project-art class="tile-art" [variant]="project.art" [seed]="project.slug" />
-              <span class="tile-index">{{ pad(i + 1) }}</span>
+              @if (specimens.get(project.slug); as s) {
+                <app-glyphs
+                  class="tile-glyphs"
+                  [specimen]="s.instance"
+                  [ratio]="1.9"
+                  [label]="s.label"
+                  [showReadout]="false"
+                />
+              }
             </div>
 
             <div class="work-card-body">

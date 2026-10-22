@@ -18,10 +18,6 @@
   text-transform: uppercase;
   color: var(--color-ink-muted);
   margin-bottom: var(--space-md);
-
-  .sparkle {
-    font-size: 0.55rem;
-  }
 }
 
 .post-title {
@@ -29,13 +25,6 @@
   font-weight: 500;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
-  margin-bottom: var(--space-md);
-}
-
-.post-tags {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
 }
 
 :host ::ng-deep .prose {

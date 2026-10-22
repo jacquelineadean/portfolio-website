@@ -15,7 +15,7 @@ nav {
   border-bottom: 1px solid transparent;
 
   &.scrolled {
-    background-color: rgba(247, 245, 240, 0.82);
+    background-color: rgba(25, 32, 26, 0.78);
     backdrop-filter: blur(14px);
     border-bottom-color: var(--color-border);
   }
@@ -41,6 +41,26 @@ nav {
 
   &:hover .sparkle {
     transform: rotate(180deg);
+  }
+
+  .sparkle.is-ding {
+    animation: logo-ding 900ms var(--ease-out-expo);
+  }
+}
+
+@keyframes logo-ding {
+  35% {
+    scale: 1.8;
+    rotate: 90deg;
+  }
+  100% {
+    rotate: 90deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo .sparkle.is-ding {
+    animation: none;
   }
 }
 
@@ -112,7 +132,7 @@ nav {
     background-color var(--duration-fast) ease;
 
   &:hover {
-    background: #000;
+    background: #fff8dc;
     transform: scale(1.04);
   }
 }

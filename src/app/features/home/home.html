@@ -1,92 +1,70 @@
 <section class="hero">
-  <div class="hero-inner container">
-    <div class="hero-decoration" aria-hidden="true">
-      <span class="sparkle sparkle--yellow deco deco-1 spin-slow"></span>
-      <span class="sparkle sparkle--red deco deco-2"></span>
+  <span class="ticks hero-ticks hero-ticks--top" aria-hidden="true">{{ ticks }}</span>
+  <span class="hero-corner hero-corner--tl" aria-hidden="true">H</span>
+  <span class="hero-corner hero-corner--tr" aria-hidden="true">O</span>
+  <span class="hero-corner hero-corner--bl" aria-hidden="true">M</span>
+  <span class="hero-corner hero-corner--br" aria-hidden="true">E</span>
+
+  <div class="hero-grid container">
+    <app-glyphs
+      class="hero-fern"
+      [specimen]="fern"
+      [ratio]="0.74"
+      label="A fern drawn in characters, unfurling, its stem turning into binary"
+    />
+
+    <div class="hero-text">
+      <h1 class="hero-name">Jacqueline <em>Dean</em></h1>
+
+      <nav class="index" aria-label="Work">
+        <ol role="list">
+          @for (w of works; track w.slug; let i = $index) {
+            <li>
+              <a class="index-row" [href]="'#' + w.slug" (click)="scrollTo($event, w.slug)">
+                <span class="index-num">{{ pad(i + 1) }}</span>
+                <span class="index-title">{{ w.title }}</span>
+                <span class="index-dots" aria-hidden="true"></span>
+                <span class="index-kind">{{ w.kind }}</span>
+              </a>
+            </li>
+          }
+        </ol>
+      </nav>
     </div>
-
-    <app-scroll-reveal>
-      <h1 class="chip hero-chip">
-        <span class="sparkle sparkle--blue" aria-hidden="true"></span>
-        Jacqueline Dean
-      </h1>
-    </app-scroll-reveal>
-
-    <app-scroll-reveal [delay]="0.1">
-      <app-pathfinder>
-        <div class="hero-links">
-          <app-button label="Explore my work" routerPath="/work" variant="primary" />
-          <app-button label="About" routerPath="/about" variant="secondary" />
-        </div>
-      </app-pathfinder>
-    </app-scroll-reveal>
   </div>
+
+  <span class="ticks hero-ticks hero-ticks--bottom" aria-hidden="true">{{ ticks }}</span>
 </section>
 
-<section class="section featured container">
-  <div class="featured-head">
-    <h2 class="eyebrow">
-      <span class="sparkle sparkle--blue" aria-hidden="true"></span>
-      Projects
-    </h2>
-    <a routerLink="/work" class="text-link featured-all">All projects</a>
-  </div>
-
-  <div class="featured-grid">
-    @for (project of projects; track project.slug; let i = $index) {
-      <app-scroll-reveal [delay]="i * 0.12">
-        <a [routerLink]="['/work', project.slug]" class="work-card">
-          <div class="work-card-tile" [class]="'work-card-tile tile--' + tint(i)">
-            <app-project-art class="tile-art" [variant]="project.art" [seed]="project.slug" />
-            <span class="tile-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          </div>
-          <div class="work-card-body">
-            <div class="work-card-chips">
-              <!-- A status chip earns its place only when it says something the
-                   rest of the card does not — i.e. the project isn't built yet. -->
-              @if (project.status !== 'shipped') {
-                <span class="chip chip--status">{{ project.statusLabel }}</span>
-              }
-              @for (tag of project.tags.slice(0, 3); track tag) {
-                <span class="chip">{{ tag }}</span>
-              }
-            </div>
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.subtitle }}</p>
-            <span class="work-card-cta">
-              Read the write-up
-              <span class="arrow-circle" aria-hidden="true">→</span>
-            </span>
-          </div>
-        </a>
-      </app-scroll-reveal>
-    }
-  </div>
-</section>
-
-<section class="section writing-preview container">
-  <div class="featured-head">
-    <h2 class="eyebrow">
-      <span class="sparkle sparkle--green" aria-hidden="true"></span>
-      Notes
-    </h2>
-    <a routerLink="/notes" class="text-link featured-all">All notes</a>
-  </div>
-
-  <ul class="post-list" role="list">
-    @for (post of recentPosts; track post.slug; let i = $index) {
-      <li>
-        <app-scroll-reveal [delay]="i * 0.08">
-          <a [routerLink]="['/notes', post.slug]" class="post-row">
-            <time>{{ post.date }}</time>
-            <span class="post-row-main">
-              <span class="post-row-title">{{ post.title }}</span>
-              <span class="post-row-excerpt">{{ post.excerpt }}</span>
-            </span>
-            <span class="arrow-circle" aria-hidden="true">→</span>
+@for (w of works; track w.slug; let i = $index) {
+  <section
+    class="specimen container"
+    [id]="w.slug"
+    [class.is-flipped]="i % 2 === 1"
+    [attr.aria-labelledby]="w.slug + '-title'"
+  >
+    <app-glyphs
+      class="specimen-art"
+      [specimen]="w.instance"
+      [ratio]="(narrow && w.narrowRatio) || w.ratio"
+      [label]="w.label"
+      [interactive]="w.interactive"
+    />
+    <div class="specimen-text">
+      <span class="specimen-num" aria-hidden="true">{{ pad(i + 1) }}</span>
+      <h2 class="specimen-title" [id]="w.slug + '-title'">{{ w.title }}</h2>
+      <p class="specimen-caption">{{ w.caption }}</p>
+      @if (w.hint) {
+        <p class="specimen-hint">{{ w.hint }}</p>
+      }
+      <div class="specimen-links">
+        <a class="text-link" [routerLink]="w.link">{{ w.linkLabel }}</a>
+        @for (link of w.external; track link.href) {
+          <a class="specimen-ext" [href]="link.href" target="_blank" rel="noopener noreferrer">
+            {{ link.label }} <span aria-hidden="true">↗</span>
           </a>
-        </app-scroll-reveal>
-      </li>
-    }
-  </ul>
-</section>
+        }
+      </div>
+    </div>
+  </section>
+}
