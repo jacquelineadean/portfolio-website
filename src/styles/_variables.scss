@@ -1,58 +1,59 @@
 :root {
-  /* Paper & ink — warm, light, lab-notebook neutrals */
-  --color-paper: #f7f5f0;
-  --color-paper-warm: #f1eee6;
-  --color-card: #fffdf9;
-  --color-ink: #1f1e1a;
-  --color-ink-soft: #47463f;
-  /* Darkened from #767469, which renders at 4.31:1 on paper and 4.05:1 on the
-     warm panels — under the 4.5:1 floor for body-size text. This clears it on
-     all three surfaces (4.89 / 5.25 / 4.60). */
-  --color-ink-muted: #6e6b61;
-  --color-ink-faint: rgba(31, 30, 26, 0.08);
+  /* Moss and cream: a dark green page, cream type, beige paper for the
+     specimen plates. The names keep their old roles: "paper" is the page,
+     "ink" is the type, so every component flips with them. Contrast on the
+     page (#19201a): ink 13.2, soft 9.3, muted 6.0. */
+  --color-paper: #19201a;
+  --color-paper-warm: #1e261e;
+  --color-card: #212a21;
+  --color-ink: #ebe5cc;
+  --color-ink-soft: #c5c3a8;
+  --color-ink-muted: #9a9d86;
+  --color-ink-faint: rgba(235, 229, 204, 0.08);
 
-  /* Primary accent colors, used sparingly as dots, sparkles & highlights */
-  --color-blue: #4285f4;
-  --color-red: #ea4335;
-  --color-yellow: #f9ab00;
-  --color-green: #34a853;
-  --color-purple: #a142f4;
+  /* Accents, muted to sit on moss: lichen, gold, mint, lilac, terracotta and
+     a misty blue. The old hue names stay so the labs keep their meanings. */
+  --color-blue: #9fc0d0;
+  --color-red: #e0937a;
+  --color-yellow: #e2c47a;
+  --color-green: #c6d37b;
+  --color-purple: #bfaee0;
+  --color-mint: #9cc7a4;
 
-  /* Pastel tints for card tiles & panels */
-  --tint-blue: #e4edfd;
-  --tint-red: #fce5e1;
-  --tint-yellow: #fdf0d3;
-  --tint-green: #e1f2e6;
-  --tint-purple: #efe3fd;
+  /* Tints: the accents as washes on moss, for tiles and highlights. */
+  --tint-blue: #26343a;
+  --tint-red: #3a2c26;
+  --tint-yellow: #36321f;
+  --tint-green: #2c3622;
+  --tint-purple: #2e2a38;
+
+  /* Beige paper, for plates and cards that read as printed matter. */
+  --paper-bg: #e4dac3;
+  --paper-card: #ece4d0;
+  --paper-ink: #27261f;
+  --paper-ink-soft: #4a4838;
+  --paper-ink-muted: #5f5c48;
 
   /* Semantic aliases */
   --color-bg-primary: var(--color-paper);
   --color-bg-secondary: var(--color-paper-warm);
   --color-bg-tertiary: var(--color-paper-warm);
   --color-bg-card: var(--color-card);
-  --color-bg-card-hover: #fffefc;
+  --color-bg-card-hover: #263026;
 
   --color-text-primary: var(--color-ink);
   --color-text-secondary: var(--color-ink-soft);
   --color-text-tertiary: var(--color-ink-muted);
 
-  --color-accent-primary: var(--color-blue);
+  --color-accent-primary: var(--color-green);
   --color-accent-secondary: var(--color-ink);
-  --color-accent-glow: var(--tint-blue);
+  --color-accent-glow: var(--tint-green);
 
-  --color-border: rgba(31, 30, 26, 0.14);
-  --color-border-hover: rgba(31, 30, 26, 0.4);
-
-  --gradient-accent: linear-gradient(
-    100deg,
-    var(--color-blue),
-    var(--color-purple) 55%,
-    var(--color-red)
-  );
-  --gradient-subtle: linear-gradient(135deg, var(--tint-blue) 0%, var(--tint-purple) 100%);
+  --color-border: rgba(235, 229, 204, 0.14);
+  --color-border-hover: rgba(235, 229, 204, 0.4);
 
   /* Type — friendly geometric sans, italic serif accents, mono labels */
-  --font-heading: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-mono: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
@@ -101,8 +102,8 @@
   --radius-2xl: 2.75rem;
   --radius-pill: 999px;
 
-  --shadow-card: 0 1px 2px rgba(31, 30, 26, 0.04), 0 8px 24px rgba(31, 30, 26, 0.05);
-  --shadow-card-hover: 0 2px 4px rgba(31, 30, 26, 0.05), 0 20px 44px rgba(31, 30, 26, 0.1);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.25), 0 20px 44px rgba(0, 0, 0, 0.4);
 
   --z-navbar: 100;
   --z-modal: 200;

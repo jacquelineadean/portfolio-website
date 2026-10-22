@@ -53,8 +53,8 @@ ol {
 }
 
 ::selection {
-  background: var(--color-yellow);
-  color: var(--color-ink);
+  background: var(--color-green);
+  color: var(--color-paper);
 }
 
 ::-webkit-scrollbar {
@@ -66,12 +66,12 @@ ol {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(31, 30, 26, 0.22);
+  background: rgba(235, 229, 204, 0.18);
   border-radius: 5px;
   border: 2px solid var(--color-paper);
 
   &:hover {
-    background: rgba(31, 30, 26, 0.38);
+    background: rgba(235, 229, 204, 0.34);
   }
 }
 

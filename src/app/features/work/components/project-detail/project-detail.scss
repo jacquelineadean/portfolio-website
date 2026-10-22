@@ -24,7 +24,19 @@
   margin-top: var(--space-lg);
 }
 
-/* The project's lead figure, where the generated banner used to be. */
+/* The project's specimen, then its lead figure. */
+.study-specimen {
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.study-hint {
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  color: var(--color-ink-muted);
+}
+
 .study-hero {
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
@@ -195,4 +207,12 @@
 
 .not-found {
   margin-bottom: var(--space-md);
+}
+
+/* The pathfinding lab on its own sheet of paper. */
+.study-paper {
+  display: block;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  background: var(--color-paper);
+  border-radius: var(--radius-xl);
 }

@@ -5,9 +5,9 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 400;
   line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
+  letter-spacing: -0.012em;
   color: var(--color-text-primary);
   text-wrap: balance;
 }

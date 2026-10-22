@@ -55,7 +55,7 @@ interface Layout {
 }
 
 /**
- * The home page's lab: three best-first searches on one map.
+ * The Algorithm Visualizer page's lab: three best-first searches on one map.
  *
  * Expansions are drawn at a fixed rate, so the time a search takes on screen is
  * proportional to the cells it expands. Until someone touches it, the lab runs
@@ -457,8 +457,9 @@ export class Pathfinder {
     }
   }
 
+  /** From the canvas itself, so a lab on beige paper draws in the paper's ink. */
   private readColors(): void {
-    const style = getComputedStyle(document.documentElement);
+    const style = getComputedStyle(this.canvasRef().nativeElement);
     for (const name of [
       '--color-blue',
       '--color-green',

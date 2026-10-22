@@ -10,7 +10,8 @@
  * plugin; rerun this after changing a figure.
  *
  * CHRONICLE can point at the plugin's `scripts/chronicle` launcher; otherwise
- * the newest copy under ~/.claude/plugins is used.
+ * the newest copy under ~/.claude/plugins is used. FORMATS=svg skips the PNG
+ * storyboards, which need NumPy and OpenCV.
  */
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
@@ -116,7 +117,8 @@ async function build(bin, figure, variant) {
     steps: figure.steps,
   };
   writeFileSync(join(dir, 'animation.json'), JSON.stringify(animation, null, 2));
-  const log = await run(bin, ['animate', 'build', 'animation.json', '--formats', 'svg,png'], dir);
+  const formats = process.env.FORMATS ?? 'svg,png';
+  const log = await run(bin, ['animate', 'build', 'animation.json', '--formats', formats], dir);
   const warnings = log.split('\n').filter((l) => /warn/i.test(l));
   // The page already loads DM Sans, DM Mono and Instrument Serif. Left in, the
   // SVG's own @import would request a second, differently-cut set of the same

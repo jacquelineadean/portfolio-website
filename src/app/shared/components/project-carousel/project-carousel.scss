@@ -128,7 +128,17 @@
 // and the drawing is cropped to fill, so it ends up magnified two and a half
 // times on a phone — a handful of enormous dots instead of a field of them.
 .project-card .work-card-tile {
-  min-height: calc(var(--card-w) * 0.36);
+  min-height: calc(var(--card-w) * 0.5);
+  overflow: hidden;
+}
+
+// The project's specimen, drawn small across the tile.
+.tile-glyphs {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  pointer-events: none;
 }
 
 // Stretched link: the title anchor covers the whole card, so the card is one

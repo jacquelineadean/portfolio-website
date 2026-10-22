@@ -5,16 +5,20 @@ export const PROJECTS: Project[] = [
     slug: 'algorithm-visualizer',
     title: 'Algorithm Visualizer',
     subtitle: 'Famous algorithms, traced step by step — each step citing its source.',
-    tags: ['React', 'Education'],
+    tags: ['React'],
     status: 'shipped',
     statusLabel: 'Live',
     links: [
       { label: 'Live site', href: 'https://jacquelineadean.github.io/AlgorithmVisualizer/' },
       { label: 'Source', href: 'https://github.com/jacquelineadean/AlgorithmVisualizer' },
     ],
-    art: 'sieve',
     hero: 'catalog',
     sections: [
+      {
+        title: 'Pathfinding lab',
+        caption: 'Dijkstra, A* and greedy best-first search the same map. Tap it to move the goal.',
+        visual: { kind: 'lab', name: 'pathfinder' },
+      },
       {
         title: 'The evidence gate',
         caption: 'Citation coverage is a test, so a step without a source fails the build.',
@@ -50,7 +54,7 @@ export const PROJECTS: Project[] = [
     title: 'The Readiness Loop',
     subtitle:
       'Forecasting disaster risk from public data — and proving the probabilities before anyone plans on them.',
-    tags: ['Python', 'Forecasting', 'Open data'],
+    tags: ['Python'],
     status: 'shipped',
     statusLabel: 'Live',
     links: [
@@ -63,7 +67,6 @@ export const PROJECTS: Project[] = [
         href: 'https://github.com/jacquelineadean/disaster-risk-forecasting-readiness-loop',
       },
     ],
-    art: 'footprints',
     hero: 'loop',
     sections: [
       {

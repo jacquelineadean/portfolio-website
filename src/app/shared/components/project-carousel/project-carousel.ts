@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Project } from '../../../core/models/project.model';
-import { ProjectArt } from '../project-art/project-art';
-import { TileTint, tintFor } from '../../art/tints';
+import { WORKS } from '../../../core/works';
+import { Glyphs } from '../../glyphs/glyphs';
 
 /**
  * Wheel carousel.
@@ -33,7 +33,7 @@ import { TileTint, tintFor } from '../../art/tints';
 @Component({
   selector: 'app-project-carousel',
   standalone: true,
-  imports: [RouterLink, ProjectArt],
+  imports: [RouterLink, Glyphs],
   templateUrl: './project-carousel.html',
   styleUrl: './project-carousel.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -98,9 +98,15 @@ export class ProjectCarousel {
     event.stopPropagation();
   };
 
-  /** Shared with the card grid, so a project keeps one colour across the site. */
-  protected tint(index: number): TileTint {
-    return tintFor(index);
+  /** Each project's specimen from the home page, one instance per card. */
+  protected readonly specimens = new Map(
+    WORKS.map((w) => [w.slug, { instance: w.specimen(), label: w.label }]),
+  );
+
+  /** The tile colour, in the order the cards come. */
+  protected tint(project: Project): string {
+    const i = this.projects().indexOf(project);
+    return ['green', 'yellow', 'blue', 'purple'][Math.max(0, i) % 4];
   }
 
   protected pad(n: number): string {

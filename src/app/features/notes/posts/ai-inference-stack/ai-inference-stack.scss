@@ -1,28 +1,16 @@
 .back-link {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
 }
 
 .post-meta {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-sm);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-ink-muted);
-
-  .sparkle {
-    font-size: 0.55rem;
-  }
-}
-
-.post-tags {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
 }
 
 .article {

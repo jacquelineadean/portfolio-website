@@ -46,7 +46,7 @@ const SHADOW_STYLE = `
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="cf-plate" [class.is-loaded]="loaded()">
+    <div class="cf-plate paper" [class.is-loaded]="loaded()">
       <div #stage class="cf-stage"></div>
       @if (loaded() && !reducedMotion) {
         <button
@@ -66,9 +66,10 @@ const SHADOW_STYLE = `
       display: block;
     }
 
+    /* Beige paper: the figures are drawn in dark ink. */
     .cf-plate {
       position: relative;
-      background: var(--color-card);
+      background: var(--color-paper);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-xl);
       overflow: hidden;
