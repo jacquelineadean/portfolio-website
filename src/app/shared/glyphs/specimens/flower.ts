@@ -1,4 +1,4 @@
-import { GlyphGrid, Pointer, Specimen, Tone, clear, hash, slant } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, bit, bits, clear, hash } from '../grid';
 import { Mask } from '../mask';
 
 /**
@@ -42,6 +42,10 @@ const MODELS = [
 ];
 const CENTRE_WORDS = '45';
 const LEAF_WORDS = '62 of 100 points grade reasoning · ';
+/** Each region's text as bits, eight per character. */
+const MODEL_BITS = MODELS.map((m) => bits(m.words));
+const CENTRE_BITS = bits(CENTRE_WORDS);
+const LEAF_BITS = bits(LEAF_WORDS);
 /** The petals open clockwise from the upper left, in the round's order. */
 const ANGLES = [-2.25, -0.68, 0.9, 2.47];
 /** Mask regions: petals 20, 40, 60, 80; the centre and the leaves. */
@@ -56,21 +60,16 @@ interface Pt {
 }
 
 /**
- * Four Mental Models' specimen: a flower written in the post's own words.
- * Each petal is one model, its area set by the minutes that model owns in a
- * 45-minute round (going deeper takes eighteen, so its petal is largest),
- * and its text is what the post says that model does. The petals open
- * clockwise in the round's order around a centre written in 45s; the leaves
- * carry the rubric's weight, and the stem is drawn in line. Pointing at a
- * petal names it.
+ * Four Mental Models' specimen: a flower written in the bits of the post's
+ * own words. Each petal is one model, its area set by the minutes that model
+ * owns in a 45-minute round (going deeper takes eighteen, so its petal is
+ * largest), and its bits spell what the post says that model does. The
+ * petals open clockwise in the round's order around a centre written in the
+ * bits of 45; the leaves carry the rubric's weight, and the stem is a line
+ * of bits. Pointing at a petal names it.
  */
 export class Flower implements Specimen {
-  readonly font = {
-    family: "'Instrument Serif', Georgia, serif",
-    size: 12,
-    cellWidth: 5.4,
-    lineHeight: 10,
-  };
+  readonly font = { family: "'DM Mono', monospace", size: 9, cellWidth: 5.6, lineHeight: 9 };
 
   private readonly mask = new Mask();
   private cols = 0;
@@ -92,24 +91,20 @@ export class Flower implements Specimen {
 
     clear(grid);
     const { cellWidth, lineHeight } = this.font;
-    // The stem, as a line two characters wide, under everything else.
-    for (let i = 1; i < this.stem.length; i++) {
-      const a = this.stem[i - 1];
-      const b = this.stem[i];
-      const ch = slant(b.x - a.x, b.y - a.y);
+    // The stem, as a line two bits wide, under everything else.
+    for (const b of this.stem) {
       for (const dx of [0, cellWidth * 0.9]) {
         const col = Math.floor((b.x + dx) / cellWidth);
         const row = Math.floor(b.y / lineHeight);
         if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) continue;
         const k = row * this.cols + col;
-        grid.char[k] = ch;
+        grid.char[k] = bit(col, row);
         grid.alpha[k] = dx ? 0.5 : 0.85;
         grid.tone[k] = Tone.Mint;
       }
     }
 
-    // One running text per region, written row by row through its cells,
-    // so words break where the shape's edge cuts them.
+    // One run of bits per region, read row by row through its cells.
     const cursor = new Map<number, number>();
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
@@ -118,14 +113,11 @@ export class Flower implements Specimen {
         const region = this.mask.region(col, row);
         const petal = petalOf(region);
         const key = petal >= 0 ? petal : Math.abs(region - CENTRE) < 15 ? CENTRE : LEAF;
-        const text = petal >= 0 ? MODELS[petal].words : key === CENTRE ? CENTRE_WORDS : LEAF_WORDS;
+        const text = petal >= 0 ? MODEL_BITS[petal] : key === CENTRE ? CENTRE_BITS : LEAF_BITS;
         const k = cursor.get(key) ?? Math.floor(hash(key) * text.length);
         cursor.set(key, k + 1);
-        const ch = text[k % text.length];
         const i = row * this.cols + col;
-        // A space in the text still hides the stem behind it.
-        grid.char[i] = ch === ' ' ? '' : ch;
-        if (ch === ' ') continue;
+        grid.char[i] = text[k % text.length];
         // The rim is written brighter than the inside, so each shape's edge reads.
         const rim = c < 0.9 || this.mask.at(col, row - 1) < 0.3 || this.mask.at(col, row + 1) < 0.3;
         const dim = this.hovered >= 0 && petal !== this.hovered ? 0.4 : 1;

@@ -7,7 +7,7 @@ import {
   makeGrid,
   search,
 } from '../../labs/pathfinding';
-import { GlyphGrid, Pointer, Specimen, Tone, clear, hash } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, bit, bits, clear, hash } from '../grid';
 
 /**
  * Milliseconds a search would take to expand every cell of the map. The rate
@@ -24,24 +24,24 @@ const NAMES: Record<Algorithm, string> = {
   greedy: 'Greedy best-first',
 };
 /**
- * What each path is spelled with: the source key the Algorithm Visualizer's
- * pathfinding traces cite (pathfinding/sources.js) for Dijkstra's paper and
- * Hart, Nilsson and Raphael's A* paper. Greedy best-first is spelled plainly.
+ * What each path is written in: the bits of the source key the Algorithm
+ * Visualizer's pathfinding traces cite (pathfinding/sources.js) for
+ * Dijkstra's paper and Hart, Nilsson and Raphael's A* paper. Greedy
+ * best-first is spelled plainly.
  */
 const SPELL: Record<Algorithm, string> = {
-  dijkstra: 'DIJKSTRA59·',
-  astar: 'HNR68·',
-  greedy: 'BEST-FIRST·',
+  dijkstra: bits('DIJKSTRA59 '),
+  astar: bits('HNR68 '),
+  greedy: bits('BEST-FIRST '),
 };
-/** Rings of distance from the start, as moss grows outward. */
-const RINGS = '.:-=+*';
 
 /**
  * The Algorithm Visualizer's specimen: the site's own grid search, run live
- * and drawn in characters. Each map cell is two characters wide, so the map's
- * cells are near square. Expanded cells spread from the start in rings of
- * equal cost, like moss; the path, once found, is spelled out in the source
- * its trace cites. Dijkstra, A* and greedy take turns on one map, then the
+ * and drawn in bits. Each map cell is two bits wide, so the map's cells are
+ * near square. Expanded cells spread from the start like moss, each showing
+ * its distance from the start in binary, so rings of equal cost show as
+ * bands; the path, once found, is written in the bits of the source its
+ * trace cites. Dijkstra, A* and greedy take turns on one map, then the
  * map changes. A tap moves the goal.
  */
 export class Moss implements Specimen {
@@ -105,31 +105,32 @@ export class Moss implements Specimen {
       }
     };
 
-    // The ground: walls as faint hatching, slow ground as ripples, open
-    // ground left dark, so the search shows as it spreads across it.
+    // The ground: walls as faint bits, slow ground as scattered gold ones,
+    // open ground left dark, so the search shows as it spreads across it.
     for (let c = 0; c < map.cost.length; c++) {
-      if (map.cost[c] === WALL) put(c, hash(c) > 0.5 ? '/\\' : '\\/', 0.3, Tone.Muted);
-      else if (map.cost[c] === SLOW_COST) put(c, hash(c) > 0.6 ? '~ ' : ' ~', 0.28, Tone.Gold);
+      if (map.cost[c] === WALL) put(c, bit(c, 0) + bit(c, 1), 0.13, Tone.Muted);
+      else if (map.cost[c] === SLOW_COST) put(c, hash(c) > 0.6 ? '1 ' : ' 0', 0.28, Tone.Gold);
     }
 
-    // The search, ring by ring; the newest cells brightest.
+    // The search, ring by ring; the newest cells brightest. Each cell shows
+    // two bits of its distance from the start, in steps of three.
     for (let k = 0; k < shown; k++) {
       const c = r.order[k];
       const age = elapsed - k / this.rate;
       const fresh = Math.max(0, 1 - age / 1200);
-      const ring = RINGS[Math.floor(r.g[c] / 3) % RINGS.length];
-      put(c, ring + ring, 0.38 + 0.55 * fresh, map.cost[c] === SLOW_COST ? Tone.Gold : Tone.Lichen);
+      const ring = (Math.floor(r.g[c] / 3) & 3).toString(2).padStart(2, '0');
+      put(c, ring, 0.32 + 0.6 * fresh, map.cost[c] === SLOW_COST ? Tone.Gold : Tone.Lichen);
     }
     if (!done) {
       for (let c = 0; c < map.cost.length; c++) {
         const pushed = r.pushedAt[c];
         const expanded = r.expandedAt[c];
         if (pushed >= 0 && pushed <= shown && (expanded < 0 || expanded >= shown))
-          put(c, '()', 0.8, Tone.Ink);
+          put(c, '11', 0.85, Tone.Ink);
       }
     }
 
-    // The path, spelled in the source its trace cites, written from the start.
+    // The path, in the bits of the source its trace cites, from the start.
     if (pathT > 0) {
       const spell = SPELL[this.algo];
       const upto = Math.ceil(r.path.length * pathT);
@@ -139,8 +140,8 @@ export class Moss implements Specimen {
         put(r.path[k], a + b, 1, Tone.Gold);
       }
     }
-    put(map.start, '@@', 1, Tone.Ink);
-    put(map.goal, '**', 1, Tone.Rust);
+    put(map.start, '11', 1, Tone.Mist);
+    put(map.goal, '11', 1, Tone.Rust);
     return !done || pathT < 1 || this.touring;
   }
 

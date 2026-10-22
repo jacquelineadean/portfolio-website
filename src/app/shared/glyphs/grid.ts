@@ -1,6 +1,7 @@
 /**
  * The shared pieces of the glyph specimens: a grid of character cells, the
- * tones they are drawn in, and the density ramp.
+ * tones they are drawn in, and the bits they are written in. Every specimen
+ * draws in 0s and 1s.
  */
 
 /** One character per cell, row-major. An empty string leaves the cell blank. */
@@ -44,11 +45,8 @@ export const Tone = {
   Mist: 8,
 } as const;
 
-/** Characters from sparse to dense, for drawing a density as a glyph. */
-export const RAMP = ' .\'`^",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$';
-
 /** What a cell shows while it is still settling, or when the pointer stirs it. */
-export const SCRAMBLE = '01<>/\\|=+*#%@$&?!:;{}[]~';
+export const SCRAMBLE = '01';
 
 export interface Pointer {
   col: number;
@@ -71,29 +69,24 @@ export function clear(grid: GlyphGrid): void {
   grid.tone.fill(0);
 }
 
-/** The glyph for a density from 0 to 1. */
-export function ramp(density: number): string {
-  const i = Math.max(1, Math.min(RAMP.length - 1, Math.round(density * (RAMP.length - 1))));
-  return RAMP[i];
+/** A cell's own bit: a stable 0 or 1, so a form's digits do not flicker. */
+export function bit(col: number, row: number): string {
+  return hash(col, row) < 0.5 ? '0' : '1';
 }
 
 /**
- * The glyph for a cell of a filled shape with coverage `c`, drawn as lace:
- * light marks inside, heavier ones along the rim where coverage falls off,
- * so a solid area reads as a form with an outline and not a slab of type.
+ * A cell's bit for a density from 0 to 1, dithered: denser cells are more
+ * often 0, the digit with more ink, so a picture's tones survive in binary.
  */
-export function lace(c: number, col: number, row: number): string {
-  const rim = 1 - Math.abs(2 * Math.min(1, c) - 1);
-  return ramp(0.04 + rim * 0.62 + hash(col, row) * 0.16);
+export function dither(density: number, col: number, row: number): string {
+  return hash(col, row) < density ? '0' : '1';
 }
 
-/** The character that draws a segment's direction on screen: | / - or \. */
-export function slant(dx: number, dy: number): string {
-  const deg = ((Math.atan2(-dy, dx) * 180) / Math.PI + 180) % 180;
-  if (deg < 22.5 || deg >= 157.5) return '-';
-  if (deg < 67.5) return '/';
-  if (deg < 112.5) return '|';
-  return '\\';
+/** A text's bits: eight per character, its code's low byte, as 0s and 1s. */
+export function bits(text: string): string {
+  let out = '';
+  for (const ch of text) out += ((ch.codePointAt(0) ?? 0) & 0xff).toString(2).padStart(8, '0');
+  return out;
 }
 
 /** A stable pseudo-random number in [0, 1) for a cell, so patterns do not flicker. */
