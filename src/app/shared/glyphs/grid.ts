@@ -87,6 +87,15 @@ export function lace(c: number, col: number, row: number): string {
   return ramp(0.04 + rim * 0.62 + hash(col, row) * 0.16);
 }
 
+/** The character that draws a segment's direction on screen: | / - or \. */
+export function slant(dx: number, dy: number): string {
+  const deg = ((Math.atan2(-dy, dx) * 180) / Math.PI + 180) % 180;
+  if (deg < 22.5 || deg >= 157.5) return '-';
+  if (deg < 67.5) return '/';
+  if (deg < 112.5) return '|';
+  return '\\';
+}
+
 /** A stable pseudo-random number in [0, 1) for a cell, so patterns do not flicker. */
 export function hash(a: number, b = 0): number {
   let h = Math.imul(a ^ 0x9e3779b9, 0x85ebca6b) ^ Math.imul(b + 0x632be5ab, 0xc2b2ae35);

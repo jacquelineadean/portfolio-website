@@ -75,7 +75,8 @@
 }
 
 .hero-fern {
-  width: min(100%, 32rem);
+  /* As tall as the screen allows below the bar, with room for the readout. */
+  width: min(100%, 32rem, calc((100svh - 13rem) * 0.74));
   justify-self: center;
 
   @media (max-width: 899px) {
