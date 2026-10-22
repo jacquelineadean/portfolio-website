@@ -1,11 +1,11 @@
-import { GlyphGrid, Pointer, Specimen, Tone, clear, ramp } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, clear, dither } from '../grid';
 
 export interface FootageSource {
   /** A recording: the path without its extension; .webm and .mp4 sit beside it. */
   video?: string;
   /** A still: the first frame of the recording, or a picture on its own. */
   poster: string;
-  /** Dark marks on a light ground (an app's page, a painting) draw as dense glyphs. */
+  /** Dark marks on a light ground (an app's page, a painting) draw as dense bits. */
   light: boolean;
 }
 
@@ -13,9 +13,9 @@ export interface FootageSource {
 const FLOOR = 0.14;
 
 /**
- * Real footage drawn in characters: a recording of an app, or a picture,
- * sampled one pixel per cell. Each cell's brightness picks a glyph from the
- * ramp; its hue picks a tone, so a blue search frontier stays blue and an
+ * Real footage drawn in binary: a recording of an app, or a picture, sampled
+ * one pixel per cell. Each cell's brightness sets its opacity and dithers it
+ * between 0 and 1; its hue picks a tone, so a blue search frontier stays blue and an
  * orange path stays orange. A recording plays while it is on screen and
  * holds still when it is not; under reduced motion only the still is drawn.
  */
@@ -67,8 +67,8 @@ export class Footage implements Specimen {
       const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
       const density = this.source.light ? 1 - lum : lum;
       if (density < FLOOR) continue;
-      grid.char[i] = ramp(0.08 + density * 0.85);
-      grid.alpha[i] = Math.min(1, 0.3 + density * 0.8);
+      grid.char[i] = dither(density, i % cols, (i / cols) | 0);
+      grid.alpha[i] = Math.min(1, 0.25 + density * 0.85);
       grid.tone[i] = toneOf(r, g, b, max, min);
     }
     return false;

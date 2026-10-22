@@ -1,4 +1,4 @@
-import { GlyphGrid, Pointer, Specimen, Tone, clear, hash, slant } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, bit, clear, hash } from '../grid';
 
 /** The frond unrolls from its base over this long. */
 const GROW_MS = 8000;
@@ -28,13 +28,13 @@ interface Pt {
 }
 
 /**
- * The home page's fern: a frond drawn as line art in characters, unrolling
- * the way a fern does. Every stroke is set in the character that follows
- * its direction (| / - \), so the rachis, the pinnae and their pinnules read
- * as a botanical drawing. The upper rachis starts rolled in a coil; as it
- * grows the coil travels up and shrinks, and each pair of pinnae opens as
- * the coil lets it go. Below the middle the fern turns into binary that
- * drips downward, the plant becoming the code that drew it.
+ * The home page's fern: a frond drawn in 0s and 1s, unrolling the way a fern
+ * does. The rachis, the pinnae and their pinnules are strokes of bits, so
+ * the frond reads as a botanical line drawing. The upper rachis starts
+ * rolled in a coil; as it grows the coil travels up and shrinks, and each
+ * pair of pinnae opens as the coil lets it go. Below the middle the bits
+ * start to flicker and drip downward, the plant becoming the code that drew
+ * it.
  */
 export class Fern implements Specimen {
   readonly font = { family: "'DM Mono', monospace", size: 9, cellWidth: 5.6, lineHeight: 9 };
@@ -107,7 +107,7 @@ export class Fern implements Specimen {
   }
 
   readout(): string {
-    return `a fern frond, unrolling · ${this.count.toLocaleString('en-US')} characters`;
+    return `a fern frond, unrolling · ${this.count.toLocaleString('en-US')} bits`;
   }
 
   /** Draw the frond unrolled by `g` (0 to 1). */
@@ -210,12 +210,11 @@ export class Fern implements Specimen {
     }
   }
 
-  /** Set the cells along a straight segment in the character for its direction. */
+  /** Set the cells along a straight segment, each to its own bit. */
   private stroke(a: Pt, b: Pt, prio: number, tone: number, alpha: number, keep = false): void {
     const { cellWidth, lineHeight } = this.font;
     const dx = b.x - a.x;
     const dy = b.y - a.y;
-    const ch = slant(dx, dy);
     const n = Math.ceil(Math.max(Math.abs(dx) / cellWidth, Math.abs(dy) / lineHeight) * 2) + 1;
     for (let i = 0; i <= n; i++) {
       const col = Math.floor((a.x + (dx * i) / n) / cellWidth);
@@ -224,7 +223,7 @@ export class Fern implements Specimen {
       const c = row * this.cols + col;
       if (this.prio[c] > prio) continue;
       this.prio[c] = prio;
-      this.glyph[c] = ch;
+      this.glyph[c] = bit(col, row);
       this.tone[c] = tone;
       this.alpha[c] = alpha;
       this.keep[c] = keep ? 1 : 0;

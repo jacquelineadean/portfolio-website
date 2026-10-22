@@ -2,8 +2,8 @@
  * A drawing surface one pixel per character cell. A specimen draws its form
  * here with ordinary canvas calls, in the display's own CSS pixels; reading
  * the pixels back gives each cell's coverage, from 0 (empty) to 1 (inside),
- * with the antialiased rim in between, which the ramp turns into lighter
- * glyphs at the edges.
+ * with the antialiased rim in between, which a specimen can draw brighter
+ * or fainter to mark a shape's edge.
  *
  * Several shapes can share one mask by drawing in different colours: the red
  * channel holds coverage and the green channel a region number, so a flower

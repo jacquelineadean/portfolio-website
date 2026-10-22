@@ -1,4 +1,4 @@
-import { GlyphGrid, Pointer, Specimen, Tone, clear, slant } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, bit, bits, clear } from '../grid';
 import { Mask } from '../mask';
 
 /** The post's best case for one user on one H100: an 8B model at batch one. */
@@ -8,6 +8,8 @@ const GOLDEN = Math.PI * (3 - Math.sqrt(5));
 /** The text the tokens spell, the post's opening line. */
 const TEXT =
   'Every LLM request crosses seven layers of software before a GPU multiplies anything. ';
+/** That line as bits, eight per character. */
+const TEXT_BITS = bits(TEXT);
 /** The seven layers, centre outward, in the post's colours. */
 const LAYERS = [Tone.Mist, Tone.Rust, Tone.Mint, Tone.Lilac, Tone.Gold, Tone.Rust, Tone.Lichen];
 const PETALS = 34;
@@ -18,7 +20,7 @@ const HOLD_MS = 2600;
  * The AI Inference Stack's specimen: a sunflower whose seeds are tokens.
  * Seeds arrive at 209 a second, the post's best case for one user, each on
  * the golden angle from the last, spiralling out from the centre; each shows
- * the next character of the post's opening line. The head is banded in the
+ * the next bit of the post's opening line. The head is banded in the
  * seven layers' colours, centre to rim, and ringed with petals.
  */
 export class Sunflower implements Specimen {
@@ -56,30 +58,26 @@ export class Sunflower implements Specimen {
     const stem = this.paint(head, radius, t);
     clear(grid);
     const { cellWidth, lineHeight } = this.font;
-    // The stem, as a line two characters wide.
-    for (let i = 1; i < stem.length; i++) {
-      const ch = slant(stem[i].x - stem[i - 1].x, stem[i].y - stem[i - 1].y);
+    // The stem, as a line two bits wide.
+    for (const s of stem) {
       for (const dx of [0, cellWidth * 0.9]) {
-        const col = Math.floor((stem[i].x + dx) / cellWidth);
-        const row = Math.floor(stem[i].y / lineHeight);
+        const col = Math.floor((s.x + dx) / cellWidth);
+        const row = Math.floor(s.y / lineHeight);
         if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) continue;
-        grid.char[row * this.cols + col] = ch;
+        grid.char[row * this.cols + col] = bit(col, row);
         grid.alpha[row * this.cols + col] = dx ? 0.45 : 0.8;
         grid.tone[row * this.cols + col] = Tone.Mint;
       }
     }
-    // Petals and the leaf from the mask, each cell in the stroke that
-    // follows its petal outward from the head (or along the leaf).
+    // Petals and the leaf from the mask, in bits.
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
         const c = this.mask.at(col, row);
         if (c < 0.3) continue;
         const i = row * this.cols + col;
         const petal = this.mask.region(col, row) < 100;
-        const x = (col + 0.5) * cellWidth;
-        const y = (row + 0.5) * lineHeight;
-        grid.char[i] = petal ? slant(x - head.x, y - head.y) : slant(-1, -0.45);
-        grid.alpha[i] = petal ? 0.35 + c * 0.55 : 0.3 + c * 0.4;
+        grid.char[i] = bit(col, row);
+        grid.alpha[i] = petal ? 0.2 + c * 0.42 : 0.25 + c * 0.35;
         grid.tone[i] = petal ? Tone.Gold : Tone.Mint;
       }
     }
@@ -91,8 +89,7 @@ export class Sunflower implements Specimen {
       const row = Math.floor((head.y + r * Math.sin(a)) / this.font.lineHeight);
       if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) continue;
       const i = row * this.cols + col;
-      const ch = TEXT[k % TEXT.length];
-      grid.char[i] = ch === ' ' ? '·' : ch;
+      grid.char[i] = TEXT_BITS[k % TEXT_BITS.length];
       const fresh = this.seeds - k < 30 ? 1 : 0.75;
       grid.alpha[i] = fresh;
       grid.tone[i] = LAYERS[Math.min(LAYERS.length - 1, Math.floor((r / radius) * LAYERS.length))];

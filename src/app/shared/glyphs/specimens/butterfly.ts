@@ -1,4 +1,4 @@
-import { GlyphGrid, Pointer, Specimen, Tone, clear, hash, lace } from '../grid';
+import { GlyphGrid, Pointer, Specimen, Tone, bit, bits, clear, hash } from '../grid';
 import { Mask } from '../mask';
 
 /**
@@ -8,14 +8,16 @@ import { Mask } from '../mask';
  */
 const LEDGER =
   'tornado-ok · exp-0002 · BSS +0.1201 · AUC 0.8175 · bin 0.2–0.3 · said 24.5% · saw 32.2% · off by 7.7 pp · tolerance 5 pp · calibration fails · ';
+/** The ledger card as bits, eight per character. */
+const LEDGER_BITS = bits(LEDGER);
 const GLIDE_MS = 3200;
 
 /**
  * The Readiness Loop's specimen: a swallowtail, the butterfly of the
  * butterfly effect, woven from the numbers of one real forecasting run. The
- * wings' inner cells spell out the ledger card, character by character; the
+ * wings' inner cells are the ledger card's bits, read left to right; the
  * veins, margins and spots are cut out of them, and the rims are drawn
- * heavier. It glides, its wings opening and closing.
+ * brighter, in gold. It glides, its wings opening and closing.
  */
 export class Butterfly implements Specimen {
   readonly font = { family: "'DM Mono', monospace", size: 9, cellWidth: 5.6, lineHeight: 9 };
@@ -45,12 +47,12 @@ export class Butterfly implements Specimen {
         const i = row * this.cols + col;
         const body = this.mask.region(col, row) > 200;
         if (c > 0.92 && !body) {
-          // Inside a wing cell: the ledger, read left to right, top to bottom.
-          grid.char[i] = LEDGER[k++ % LEDGER.length];
+          // Inside a wing cell: the ledger's bits, left to right, top to bottom.
+          grid.char[i] = LEDGER_BITS[k++ % LEDGER_BITS.length];
           grid.alpha[i] = 0.3 + 0.35 * hash(col, row);
           grid.tone[i] = Tone.Soft;
         } else {
-          grid.char[i] = lace(c, col, row);
+          grid.char[i] = bit(col, row);
           grid.alpha[i] = Math.min(1, 0.55 + c * 0.45);
           grid.tone[i] = body ? Tone.Ink : Tone.Gold;
         }

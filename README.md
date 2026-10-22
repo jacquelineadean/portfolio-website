@@ -60,16 +60,16 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Specimens
 
-The site draws each piece of work as a natural form made of characters, on a canvas, in `src/app/shared/glyphs/`. `glyphs.ts` is the component: it scrambles a specimen in on first sight, lets the pointer stir the characters near it, and runs only while the specimen is on screen. Each specimen in `specimens/` draws its shape on a small mask (`mask.ts`), one pixel per character cell, and picks a character, a tone and an opacity for every cell. Colours come from the theme's CSS variables, so a specimen inside a `.paper` block switches to the beige palette.
+The site draws each piece of work as a natural form made of 0s and 1s, on a canvas, in `src/app/shared/glyphs/`. `glyphs.ts` is the component: it flips a specimen's bits in on first sight, lets the pointer flip the bits near it, and runs only while the specimen is on screen. Each specimen in `specimens/` draws its shape on a small mask (`mask.ts`), one pixel per cell, and picks a bit, a tone and an opacity for every cell. Colours come from the theme's CSS variables, so a specimen inside a `.paper` block switches to the beige palette.
 
-Every character a specimen shows comes from the work itself:
+Where a specimen shows text, its bits are that text's own bytes (`bits()` in `grid.ts`):
 
-- The fern on the home page unrolls from a coil, drawn as line art, and its base dissolves into binary.
-- The moss runs the site's own search code (`src/app/shared/labs/pathfinding.ts`) and spells each path with its source.
-- The butterfly's wings are written in the `tornado-ok` ledger card (exp-0002) from the Readiness Loop.
-- The flower's four petals are sized by the minutes each model owns in Four Mental Models, and written in the post's words.
-- The sunflower's seeds are tokens arriving at The AI Inference Stack's 209 a second.
-- The About page draws the Algorithm Visualizer recording and the posts' opening plates through the same character ramp (`footage.ts`).
+- The fern on the home page unrolls from a coil, and its base flickers and drips downward.
+- The moss runs the site's own search code (`src/app/shared/labs/pathfinding.ts`). Each cell shows its distance from the start in binary, and each path is written in the bits of its source key.
+- The butterfly's wings are the bits of the `tornado-ok` ledger card (exp-0002) from the Readiness Loop.
+- The flower's four petals are sized by the minutes each model owns in Four Mental Models, and written in the bits of the post's words.
+- The sunflower's seeds are tokens arriving at The AI Inference Stack's 209 a second, each one bit of the post's opening line.
+- The About page draws the Algorithm Visualizer recording and the posts' opening plates in dithered bits (`footage.ts`).
 
 ## Figures
 
