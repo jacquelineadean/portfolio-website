@@ -1,5 +1,13 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  ElementRef,
+  afterNextRender,
+  inject,
+  viewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HeroName } from '../../core/hero-name';
 import { WORKS } from '../../core/works';
 import { Glyphs } from '../../shared/glyphs/glyphs';
 import { Fern } from '../../shared/glyphs/specimens/fern';
@@ -19,11 +27,28 @@ import { Fern } from '../../shared/glyphs/specimens/fern';
 export class Home {
   protected readonly fern = new Fern();
   protected readonly works = WORKS.map((w) => ({ ...w, instance: w.specimen() }));
-  /** A row of measuring ticks, as along the edge of a specimen photograph. */
-  protected readonly ticks = '- | '.repeat(60);
   /** A phone's width, read once: the canvases keep the shape they start with. */
   protected readonly narrow =
     typeof matchMedia === 'function' && matchMedia('(max-width: 640px)').matches;
+
+  private readonly heroName = viewChild.required<ElementRef<HTMLElement>>('heroName');
+
+  constructor() {
+    const name = inject(HeroName);
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(() => {
+      // The navbar's 4.75rem bar covers the top of the screen, so the name
+      // counts as on screen only below it.
+      const view = new IntersectionObserver(([entry]) => name.visible.set(entry.isIntersecting), {
+        rootMargin: '-76px 0px 0px 0px',
+      });
+      view.observe(this.heroName().nativeElement);
+      destroyRef.onDestroy(() => {
+        view.disconnect();
+        name.visible.set(false);
+      });
+    });
+  }
 
   protected pad(n: number): string {
     return n < 10 ? `0${n}` : `${n}`;

@@ -18,6 +18,9 @@ import { mountArticle } from './artifact/article';
 /** Matches src/content/blog/ai-inference-stack.md and the route in notes.routes.ts. */
 const SLUG = 'ai-inference-stack';
 
+/** The page's own header carries the title, so the article's is left out. */
+const TITLE_OFF = '#overview .ph-title { display: none; }';
+
 /**
  * Fonts for the article. A shadow root cannot register its own @font-face
  * rules, so the stylesheet goes in the document head.
@@ -59,7 +62,7 @@ export class AiInferenceStack {
       }
 
       const root = this.article().nativeElement.attachShadow({ mode: 'open' });
-      root.innerHTML = `<style>${styles}</style>${markup}`;
+      root.innerHTML = `<style>${styles}${TITLE_OFF}</style>${markup}`;
       destroyRef.onDestroy(mountArticle(root));
     });
   }

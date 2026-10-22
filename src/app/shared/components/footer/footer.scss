@@ -1,17 +1,16 @@
-/* Beige paper under the moss page, the way a printed label sits under a
-   specimen. */
+/* The foot of the moss page: a rule, the one contact route set large in the
+   serif, and the site's links in the mono of the specimen readouts. */
 footer {
   margin-top: auto;
-  background: var(--paper-bg);
-  color: var(--paper-ink);
-  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  border-top: 1px solid var(--color-border);
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.16));
 }
 
 .footer-inner {
   display: flex;
   flex-direction: column;
   gap: var(--space-2xl);
-  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(4rem, 8vw, 6.5rem);
   padding-bottom: var(--space-lg);
 }
 
@@ -22,31 +21,49 @@ footer {
 }
 
 .footer-eyebrow {
-  color: rgba(39, 38, 31, 0.65);
-  margin-bottom: var(--space-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
 }
 
 .footer-contact {
   display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.85rem 1.75rem;
-  font-size: var(--text-base);
-  font-weight: 500;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.28em;
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 1.5rem + 5vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.012em;
   color: var(--color-ink);
-  background: var(--color-paper);
-  border-radius: var(--radius-pill);
-  transition: transform var(--duration-normal) var(--ease-out-expo);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+  transition: text-decoration-color var(--duration-normal) ease;
+
+  em {
+    color: var(--color-green);
+  }
 
   .contact-arrow {
-    transition: transform var(--duration-normal) var(--ease-out-expo);
+    font-family: var(--font-body);
+    font-size: 0.5em;
+    color: var(--color-ink-soft);
+    transition: translate var(--duration-normal) var(--ease-out-expo);
   }
 
   &:hover {
-    transform: scale(1.03);
+    text-decoration-color: var(--color-border-hover);
 
     .contact-arrow {
-      transform: translateX(4px);
+      translate: 0.12em -0.12em;
     }
   }
 }
@@ -62,7 +79,7 @@ footer {
   font-size: var(--text-2xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: rgba(39, 38, 31, 0.5);
+  color: var(--color-ink-muted);
   margin-bottom: var(--space-sm);
 }
 
@@ -73,12 +90,12 @@ footer {
 
   a {
     font-size: var(--text-sm);
-    color: rgba(39, 38, 31, 0.8);
+    color: var(--color-ink-soft);
     transition: color var(--duration-fast) ease;
     width: fit-content;
 
     &:hover {
-      color: var(--color-paper);
+      color: var(--color-green);
     }
   }
 }
@@ -90,11 +107,13 @@ footer {
   gap: var(--space-sm);
   flex-wrap: wrap;
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(39, 38, 31, 0.15);
+  border-top: 1px solid var(--color-border);
 
   p {
-    font-size: var(--text-xs);
-    color: rgba(39, 38, 31, 0.55);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.06em;
+    color: var(--color-ink-muted);
   }
 }
 
@@ -108,11 +127,11 @@ footer {
   }
 
   a {
-    color: rgba(39, 38, 31, 0.8);
-    border-bottom: 1px solid rgba(39, 38, 31, 0.3);
+    color: var(--color-ink-soft);
+    border-bottom: 1px solid var(--color-border-hover);
 
     &:hover {
-      color: var(--color-paper);
+      color: var(--color-green);
     }
   }
 }
