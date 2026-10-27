@@ -7,6 +7,7 @@
     "prestart": "node scripts/build-blog.mjs",
     "start": "ng serve --port ${PORT:-4200}",
     "build": "ng build",
+    "postbuild": "node scripts/build-meta.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
