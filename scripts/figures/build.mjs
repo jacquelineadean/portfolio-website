@@ -10,8 +10,9 @@
  * plugin; rerun this after changing a figure.
  *
  * CHRONICLE can point at the plugin's `scripts/chronicle` launcher; otherwise
- * the newest copy under ~/.claude/plugins is used. FORMATS=svg skips the PNG
- * storyboards, which need NumPy and OpenCV.
+ * the newest copy under ~/.claude/plugins or the Claude desktop app's plugin
+ * folder is used. FORMATS=svg skips the PNG storyboards, which need NumPy and
+ * OpenCV.
  */
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
@@ -66,9 +67,22 @@ function frameFor(variant, dw, dh) {
   return { width, height };
 }
 
+/**
+ * The CLI installs plugins under ~/.claude/plugins in a folder named for the
+ * plugin; the desktop app keeps them under Application Support in folders
+ * named by id. Either way the plugin is the folder holding scripts/chronicle.
+ */
+const PLUGIN_DIRS = [
+  join(homedir(), '.claude', 'plugins'),
+  join(homedir(), 'Library', 'Application Support', 'Claude', 'local-agent-mode-sessions'),
+];
+
 function chronicleBin() {
-  if (process.env.CHRONICLE) return process.env.CHRONICLE;
-  const base = join(homedir(), '.claude', 'plugins');
+  if (process.env.CHRONICLE) {
+    if (!existsSync(process.env.CHRONICLE))
+      throw new Error(`CHRONICLE=${process.env.CHRONICLE} does not exist`);
+    return process.env.CHRONICLE;
+  }
   const found = [];
   const walk = (dir, depth) => {
     if (depth > 5 || !existsSync(dir)) return;
@@ -76,11 +90,11 @@ function chronicleBin() {
       const path = join(dir, name);
       if (!statSync(path).isDirectory()) continue;
       const bin = join(path, 'scripts', 'chronicle');
-      if (name === 'chronicle' && existsSync(bin)) found.push(bin);
+      if (existsSync(bin) && statSync(bin).isFile()) found.push(bin);
       else walk(path, depth + 1);
     }
   };
-  walk(base, 0);
+  PLUGIN_DIRS.forEach((dir) => walk(dir, 0));
   if (!found.length)
     throw new Error('chronicle plugin not found; set CHRONICLE to its scripts/chronicle');
   return found.sort((a, b) => statSync(b).mtimeMs - statSync(a).mtimeMs)[0];
@@ -92,6 +106,7 @@ function run(bin, args, cwd) {
     let log = '';
     child.stdout.on('data', (b) => (log += b));
     child.stderr.on('data', (b) => (log += b));
+    child.on('error', fail);
     child.on('close', (code) =>
       code === 0 ? ok(log) : fail(new Error(`${args.join(' ')}\n${log}`)),
     );

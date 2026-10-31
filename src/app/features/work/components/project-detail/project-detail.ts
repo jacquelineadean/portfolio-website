@@ -4,15 +4,17 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ScrollReveal } from '../../../../shared/components/scroll-reveal/scroll-reveal';
 import { PROJECTS } from '../../data/projects.data';
+import { SYSTEMS } from '../../data/systems';
 import { ChronicleFigure } from '../../../../shared/components/chronicle-figure/chronicle-figure';
 import { Pathfinder } from '../../../../shared/components/labs/pathfinder/pathfinder';
+import { SystemDiagram } from '../../../../shared/components/system-diagram/system-diagram';
 import { Glyphs } from '../../../../shared/glyphs/glyphs';
 import { workFor } from '../../../../core/works';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [RouterLink, ScrollReveal, ChronicleFigure, Pathfinder, Glyphs],
+  imports: [RouterLink, ScrollReveal, ChronicleFigure, Pathfinder, SystemDiagram, Glyphs],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.scss',
 })
@@ -42,6 +44,8 @@ export class ProjectDetail {
   /** A phone's width, read once: the canvas keeps the shape it starts with. */
   protected readonly narrow =
     typeof matchMedia === 'function' && matchMedia('(max-width: 640px)').matches;
+
+  protected readonly systems = SYSTEMS;
 
   /** A figure's file pair under public/projects/, without the layout suffix. */
   protected figure(slug: string, name: string): string {

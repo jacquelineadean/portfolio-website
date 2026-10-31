@@ -20,14 +20,10 @@ export const PROJECTS: Project[] = [
         visual: { kind: 'lab', name: 'pathfinder' },
       },
       {
-        title: 'The evidence gate',
-        caption: 'Citation coverage is a test, so a step without a source fails the build.',
-        visual: { kind: 'figure', name: 'evidence-gate' },
-      },
-      {
         title: 'Architecture',
-        caption: 'Adding a visualization means adding a directory.',
-        visual: { kind: 'figure', name: 'architecture' },
+        caption:
+          'Each algorithm is one directory, and a test that fails any uncited step stands between a commit and the site.',
+        visual: { kind: 'system' },
       },
       {
         title: 'Stack',
@@ -67,18 +63,17 @@ export const PROJECTS: Project[] = [
         href: 'https://github.com/jacquelineadean/disaster-risk-forecasting-readiness-loop',
       },
     ],
-    hero: 'loop',
     sections: [
+      {
+        title: 'Architecture',
+        caption: 'The scorer came first, and nothing the agent does can move it.',
+        visual: { kind: 'system' },
+      },
       {
         title: 'Calibration',
         caption:
           'From the committed ledger: the seasonal tornado model passes on skill and fails on calibration.',
         visual: { kind: 'figure', name: 'calibration' },
-      },
-      {
-        title: 'Harness before model',
-        caption: 'The scorer came first, and nothing the agent does can move it.',
-        visual: { kind: 'figure', name: 'harness' },
       },
       {
         title: 'What is built',
