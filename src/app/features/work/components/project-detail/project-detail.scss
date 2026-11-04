@@ -94,9 +94,9 @@
   }
 }
 
-/* The roadmap: one station per phase on a line. A proven phase is a filled
-   green stop; a built one is an open dashed ring, so the difference between
-   "exists" and "has met its exit criteria" is the first thing that reads. */
+/* The roadmap: one station per phase on a line. A proven phase is a green
+   stop with a check; a built one is a filled grey stop with no check, joined
+   by a dashed line, so "exists" and "has met its exit criteria" read apart. */
 .phases {
   --dot: 1.75rem;
   display: grid;
@@ -158,8 +158,8 @@
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-card);
-  background: var(--color-card);
-  border: 2px dashed var(--color-ink-muted);
+  background: var(--color-ink-muted);
+  border: 2px solid var(--color-ink-muted);
   border-radius: 50%;
 
   @media (min-width: 768px) {

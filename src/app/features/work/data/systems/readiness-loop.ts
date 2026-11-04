@@ -1,0 +1,608 @@
+import { SystemSpec } from '../../../../shared/components/system-diagram/system.model';
+
+/**
+ * The readiness loop, read from
+ * github.com/jacquelineadean/disaster-risk-forecasting-readiness-loop at
+ * origin/main (9424daa) on 2026-10-31. Payloads come from the code, the
+ * tornado-ok contract, snapshots/manifest.json (32 records) and the committed
+ * ledgers (12 validate cards across 3 contracts). The manifest pins Storm
+ * Events, the Census county file and the NWS crosswalk; the ERA5, NRI and
+ * USA Structures links show the key each connector writes.
+ */
+export const READINESS_LOOP: SystemSpec = {
+  title: 'The readiness loop',
+  repo: 'https://github.com/jacquelineadean/disaster-risk-forecasting-readiness-loop/blob/main/',
+  groups: [
+    { id: 'public', label: 'Public data', style: 'external' },
+    { id: 'guarded', label: 'Guarded code, hashed every run', style: 'boundary' },
+    { id: 'proposer', label: 'Untrusted', style: 'external' },
+    { id: 'outputs', label: 'Kept and published', style: 'zone' },
+  ],
+  nodes: [
+    {
+      id: 'storm-events',
+      label: 'Storm Events',
+      kind: 'external',
+      tech: 'NOAA NCEI',
+      group: 'public',
+      path: 'readiness/connectors/storm_events.py',
+      code: 'def snapshot(years, states, snapshot_dir, manifest, *, …) -> pathlib.Path',
+      about:
+        'The ground truth: damaging events per county, 1996 to 2025. Damaging means $10,000 of property damage, or any injury or death.',
+    },
+    {
+      id: 'era5',
+      label: 'ERA5',
+      kind: 'external',
+      tech: 'Open-Meteo',
+      group: 'public',
+      path: 'readiness/connectors/open_meteo.py',
+      code: 'def snapshot(centroids, years, snapshot_dir, manifest, *, scope=None, …)',
+      about:
+        'Monthly precipitation and mean temperature per county point, the features for the learned models.',
+    },
+    {
+      id: 'fema-nri',
+      label: 'FEMA NRI',
+      kind: 'external',
+      tech: 'v1.20',
+      group: 'public',
+      path: 'readiness/connectors/nri.py',
+      code: 'def load(snapshot_dir, manifest, *, refresh=False, allow_fetch=True) -> Table',
+      about:
+        'A static risk index derived through 2023. The firewall refuses it as a feature, and the backtest shows it as an inadmissible benchmark.',
+    },
+    {
+      id: 'usa-structures',
+      label: 'USA Structures',
+      kind: 'external',
+      tech: 'FEMA, ORNL',
+      group: 'public',
+      path: 'readiness/connectors/usa_structures.py',
+      code: 'def fetch_counts(state_fips, *, layer_url=LAYER_URL, …) -> tuple[list[dict], int]',
+      about:
+        'County building counts by occupancy class: the exposure side of a brief, never a feature.',
+    },
+    {
+      id: 'snapshot-pins',
+      label: 'Snapshot pins',
+      kind: 'storage',
+      tech: 'sha256 manifest',
+      group: 'guarded',
+      path: 'snapshots/manifest.json',
+      code: 'class Manifest:\n    def add(self, key, record)',
+      about:
+        '32 records, each with its url, size, sha256 and licence. A cached file without a matching record is fetched again or refused.',
+    },
+    {
+      id: 'contract',
+      label: 'Contract',
+      kind: 'storage',
+      tech: 'tornado-ok.json',
+      group: 'guarded',
+      path: 'contracts/tornado-ok.json',
+      code: 'class Contract:\n    def digest(self) -> str',
+      about:
+        'Fixes the hazard, scope, splits, damage rule and pass thresholds before any fit. Its digest is stamped on every card.',
+    },
+    {
+      id: 'agent',
+      label: 'Agent',
+      kind: 'model',
+      tech: 'Claude Agent SDK',
+      group: 'proposer',
+      path: 'readiness/agent/orchestrator.py',
+      code: 'def run_experiment(candidate, dataset, split, ledger, *, touch_budget=None, …)',
+      about:
+        'Proposes candidates from 8 registered models, from climatology to gradient boosting. A local backend walks a fixed queue with no LLM.',
+    },
+    {
+      id: 'integrity-guard',
+      label: 'Integrity guard',
+      kind: 'monitor',
+      tech: 'sha256 tree',
+      group: 'guarded',
+      path: 'readiness/agent/guard.py',
+      code: 'def check(before: dict[str, str], root: pathlib.Path = REPO_ROOT) -> None',
+      about:
+        'Hashes the harness, the contracts, the data plane and itself before and after each agent run. Any change raises HarnessTampered.',
+    },
+    {
+      id: 'feature-firewall',
+      label: 'Feature firewall',
+      kind: 'function',
+      tech: 'cutoff + audit',
+      group: 'guarded',
+      path: 'readiness/harness/features.py',
+      code: 'def admit(source: FeatureSource, contract: Contract) -> None',
+      about:
+        'Refuses leaky sources and cuts every input at the forecast cutoff. It then rebuilds the frame with later months poisoned and requires the same result.',
+    },
+    {
+      id: 'harness',
+      label: 'Harness',
+      kind: 'service',
+      tech: 'Python stdlib',
+      group: 'guarded',
+      path: 'readiness/harness/scoring.py',
+      code: 'def score(model, panel, contract, split, *, sources=None) -> Scorecard',
+      about:
+        'Fits, predicts on unlabelled counties, and only then fetches the labels. It scores Brier skill against climatology, AUC and 10-bin reliability.',
+      lines: [
+        'fit(train)',
+        'predict(holdout)',
+        'labels after predict',
+        'brier_skill_score',
+        'auc · 10 bins',
+      ],
+    },
+    {
+      id: 'leakage-canary',
+      label: 'Leakage canary',
+      kind: 'monitor',
+      tech: 'BSS 0.99, AUC 0.999',
+      group: 'guarded',
+      path: 'readiness/harness/canary.py',
+      code: 'def run(*, probs, outcomes, brier_skill_score, auc, view=None, …) -> CanaryReport',
+      about:
+        'Trips on results too good to be true: a Brier skill over 0.99, an AUC over 0.999, or confident forecasts that match the outcomes. A trip seals the card as REJECTED.',
+    },
+    {
+      id: 'test-gate',
+      label: 'Test gate',
+      kind: 'gateway',
+      tech: 'touch budget 1',
+      group: 'guarded',
+      path: 'readiness/harness/splits.py',
+      code: 'class TouchBudget:\n    def spend(self, model, version)',
+      about:
+        'Opens the 2021 to 2025 test years once per contract, and only for a model with a canary-clear pass on validation.',
+    },
+    {
+      id: 'ledger',
+      label: 'Ledger',
+      kind: 'db',
+      tech: 'SHA-256 chain',
+      group: 'outputs',
+      path: 'readiness/harness/ledger.py',
+      code: 'def append(self, card) -> ExperimentCard',
+      about:
+        "Append-only cards, each sealed with SHA-256 over its fields and the previous card's hash. 12 cards across 3 ledgers so far.",
+    },
+    {
+      id: 'briefs',
+      label: 'County briefs',
+      kind: 'job',
+      tech: 'cite.validate',
+      group: 'outputs',
+      path: 'readiness/brief.py',
+      code: 'def build(fips, period_label, issued, exposure, cards, …) -> cite.Document',
+      about:
+        'Writes county briefs and facility gap reports, and writes none with a citation violation. None are issued yet, since no test touch is spent.',
+    },
+    {
+      id: 'website',
+      label: 'Website',
+      kind: 'cdn',
+      tech: 'Pages + Pyodide',
+      group: 'outputs',
+      path: 'site/index.html',
+      code: 'RL.fetchJSON("ledgers.json")',
+      about:
+        'Publishes the design, every ledger re-verified in the browser, and a sandbox that runs the real package through Pyodide.',
+    },
+  ],
+  edges: [
+    {
+      from: 'storm-events',
+      to: 'snapshot-pins',
+      label: 'CSV.gz',
+      async: true,
+      payload: 'noaa/storm_events/2025  sha256 d9b46b4c6aae…',
+      detail:
+        'StormEvents_details-ftp_v1.0_d2025_c20260819.csv.gz, 12,585,209 bytes. One record per year.',
+      at: 'snapshots/manifest.json:274',
+    },
+    {
+      from: 'era5',
+      to: 'snapshot-pins',
+      label: 'monthly',
+      async: true,
+      payload: 'open-meteo/era5/  precipitation_sum, temperature_2m_mean',
+      detail: 'Requested from archive-api.open-meteo.com/v1/archive for each county point.',
+      at: 'readiness/connectors/open_meteo.py:65',
+    },
+    {
+      from: 'fema-nri',
+      to: 'snapshot-pins',
+      label: 'county CSV',
+      async: true,
+      payload: 'fema/nri_counties_1.20  derived_through=2023',
+      detail: 'NRI_Table_Counties_1.20.zip: EAL, RISK, SOVI and RESL scores per county.',
+      at: 'readiness/connectors/nri.py:60',
+    },
+    {
+      from: 'usa-structures',
+      to: 'snapshot-pins',
+      label: 'counts',
+      async: true,
+      payload: 'fema/usa_structures/<st>',
+      detail: 'Building counts grouped by FIPS, OCC_CLS and PRIM_OCC.',
+      at: 'readiness/connectors/usa_structures.py:56',
+    },
+    {
+      from: 'snapshot-pins',
+      to: 'feature-firewall',
+      label: 'features',
+      payload: '("precip_mm", "tmean_c")',
+      detail:
+        'The ERA5 series variables. Anything keyed noaa/storm_events/ is refused as a feature.',
+      at: 'readiness/harness/features.py:86',
+    },
+    {
+      from: 'snapshot-pins',
+      to: 'harness',
+      label: 'labels',
+      payload: '"property_usd_min": 10000.0',
+      detail: 'A county-month counts when damage reaches $10,000, or anyone is injured or killed.',
+      at: 'readiness/harness/labels.py:195',
+    },
+    {
+      from: 'contract',
+      to: 'harness',
+      label: 'criteria',
+      payload: '"min_auc": 0.7, "min_brier_skill_score": 0.0',
+      detail: 'Also a 0.05 reliability tolerance over 10 bins of at least 30 counties each.',
+      at: 'contracts/tornado-ok.json:37',
+    },
+    {
+      from: 'contract',
+      to: 'feature-firewall',
+      label: 'cutoff',
+      payload: '"validate": [2016, 2020]',
+      detail:
+        'The first validate year bounds static layers, and every input stops one month before its period.',
+      at: 'contracts/tornado-ok.json:27',
+    },
+    {
+      from: 'agent',
+      to: 'harness',
+      label: 'model',
+      payload: 'build_model("climatology-seasonal")',
+      detail:
+        'One of 8 by name: climatology-pooled, -seasonal, persistence, leaky-oracle, logistic, gbm, and both +iso.',
+      at: 'readiness/engine/registry.py:214',
+    },
+    {
+      from: 'feature-firewall',
+      to: 'harness',
+      label: 'frame',
+      payload: 'precip_1m … precip_same_10y, tmean_3m, lat',
+      detail:
+        'Eight columns: precip_1m, _3m, _12m, _same_10y, tmean_3m, elevation_m, water_share, lat.',
+      at: 'readiness/engine/features.py:43',
+    },
+    {
+      from: 'harness',
+      to: 'leakage-canary',
+      label: 'forecasts',
+      payload: 'run(probs, outcomes, brier_skill_score, auc, …)',
+      detail: 'Every forecast and outcome, with the scores, before any verdict is honoured.',
+      at: 'readiness/harness/scoring.py:337',
+    },
+    {
+      from: 'leakage-canary',
+      to: 'ledger',
+      label: 'sealed card',
+      payload: 'card_hash = sha256(payload ‖ prev_hash)',
+      detail:
+        'The hash covers every field, sorted, with no spaces. The first card chains to 64 zeros.',
+      at: 'readiness/harness/ledger.py:28',
+    },
+    {
+      from: 'integrity-guard',
+      to: 'agent',
+      label: 'HarnessTampered',
+      payload: 'raise HarnessTampered(changed)',
+      detail: 'tree_digest is sha256 over each guarded path and its own sha256, cut to 16 hex.',
+      at: 'readiness/agent/guard.py:128',
+    },
+    {
+      from: 'ledger',
+      to: 'agent',
+      label: 'past cards',
+      async: true,
+      payload: 'experiments/<contract>/ledger.jsonl',
+      detail: 'The calibration critic reads earlier cards before the next proposal.',
+      at: 'readiness/agent/subagents.py:74',
+    },
+    {
+      from: 'ledger',
+      to: 'test-gate',
+      label: 'PASS',
+      payload: 'card.status == "PASS" and split == "validate"',
+      detail: 'Same model, version, contract digest and kwargs, and no earlier test card.',
+      at: 'readiness/agent/orchestrator.py:769',
+    },
+    {
+      from: 'test-gate',
+      to: 'harness',
+      label: 'test set',
+      payload: '"test": [2021, 2025], "test_touch_budget": 1',
+      detail:
+        'Touches are keyed model@version in test_touches.json. A second read raises SplitViolation.',
+      at: 'readiness/harness/splits.py:169',
+    },
+    {
+      from: 'ledger',
+      to: 'briefs',
+      label: 'card',
+      payload: 'validated_by',
+      detail:
+        'A brief needs a passing, canary-clear test card. All 12 committed cards are validate cards.',
+      at: 'readiness/brief.py:359',
+    },
+    {
+      from: 'briefs',
+      to: 'website',
+      label: 'briefs',
+      async: true,
+      payload: 'briefs.json',
+      detail: 'An empty list until a brief ships.',
+      at: 'tools/build_site.py:29',
+    },
+    {
+      from: 'ledger',
+      to: 'website',
+      label: 'ledgers.json',
+      async: true,
+      payload: 'ledgers.json',
+      detail: 'Each row shows the model, Brier skill, AUC and verdict, re-verified in the browser.',
+      at: 'tools/build_site.py:21',
+    },
+  ],
+  paths: [
+    { id: 'score', label: 'Score a model', first: 0, last: 3 },
+    { id: 'leak', label: 'Catch a leak', first: 4, last: 5 },
+    { id: 'guard', label: 'Guard the scorer', first: 6, last: 6 },
+    { id: 'test', label: 'Open the test set', first: 7, last: 8 },
+  ],
+  steps: [
+    {
+      caption:
+        'A contract fixes the hazard, the splits and the pass thresholds before any model is fit.',
+      focus: ['contract'],
+      events: [
+        { node: 'contract', log: '"hazard": "tornado", "states": ["OK"]' },
+        { node: 'contract', log: '"train": [1996, 2015], "validate": [2016, 2020]' },
+        { node: 'contract', log: 'contract_digest 827313e1273a5e76', status: 'ok' },
+      ],
+    },
+    {
+      caption:
+        'Public data arrives as 32 pinned files, each checked against its sha256 in one manifest.',
+      focus: ['storm-events', 'era5', 'fema-nri', 'usa-structures', 'snapshot-pins'],
+      events: [
+        { edge: 'storm-events>snapshot-pins' },
+        { edge: 'era5>snapshot-pins', with: true },
+        {
+          node: 'snapshot-pins',
+          log: '32 records: 30 Storm Events years, Census, NWS',
+          status: 'ok',
+        },
+      ],
+    },
+    {
+      caption:
+        'The agent proposes one of 8 registered models, and the feature firewall cuts every input at the forecast cutoff.',
+      focus: ['agent', 'feature-firewall', 'harness', 'snapshot-pins', 'contract'],
+      events: [
+        { edge: 'agent>harness' },
+        { edge: 'snapshot-pins>feature-firewall' },
+        { edge: 'contract>feature-firewall', with: true },
+        { edge: 'feature-firewall>harness' },
+      ],
+    },
+    {
+      caption:
+        'The harness scores skill, AUC and reliability, the canary checks for leaks, and the card joins a hash-chained ledger.',
+      focus: ['harness', 'leakage-canary', 'ledger'],
+      events: [
+        { node: 'harness', log: 'fit → predict, labels still sealed' },
+        { edge: 'snapshot-pins>harness' },
+        { edge: 'contract>harness', with: true },
+        { edge: 'harness>leakage-canary', log: 'BSS +0.1201 · AUC 0.8175' },
+        {
+          edge: 'leakage-canary>ledger',
+          log: 'FAIL (reliability) · card 2fe9c88b1bd3 ← 25164e7d740c',
+        },
+        { edge: 'ledger>agent' },
+      ],
+    },
+    {
+      caption:
+        'The leaky-oracle model scores too well, so the canary trips and its card is sealed as REJECTED.',
+      focus: ['agent', 'harness', 'leakage-canary', 'ledger'],
+      events: [
+        { edge: 'agent>harness', log: 'build_model("leaky-oracle")', set: { agent: 'bad' } },
+        {
+          edge: 'harness>leakage-canary',
+          log: 'BSS 0.99999 > 0.99 · AUC 1.0 > 0.999',
+          status: 'warn',
+          set: { 'leakage-canary': 'warn' },
+        },
+        {
+          edge: 'leakage-canary>ledger',
+          log: 'REJECTED by leakage canary · card 1741b19dc82a',
+          status: 'bad',
+        },
+      ],
+    },
+    {
+      caption:
+        "FEMA's risk index is derived through 2023, so the firewall refuses it as a feature.",
+      focus: ['fema-nri', 'snapshot-pins', 'feature-firewall'],
+      events: [
+        { edge: 'fema-nri>snapshot-pins', set: { agent: 'normal', 'leakage-canary': 'normal' } },
+        {
+          edge: 'snapshot-pins>feature-firewall',
+          log: 'FeatureAdmissionError: data through 2023, validating from 2016',
+          status: 'bad',
+          stop: 0.8,
+          set: { 'fema-nri': 'bad' },
+        },
+      ],
+    },
+    {
+      caption:
+        'The integrity guard hashes the guarded code before and after every agent run, so an edit raises HarnessTampered.',
+      focus: ['integrity-guard', 'agent'],
+      events: [
+        {
+          node: 'integrity-guard',
+          log: 'snapshot(root, guarded) → tree_digest',
+          set: { 'fema-nri': 'normal' },
+        },
+        { node: 'agent', log: 'agent run' },
+        { node: 'integrity-guard', log: 'check(before): any changed path' },
+        { edge: 'integrity-guard>agent', status: 'warn' },
+      ],
+    },
+    {
+      caption:
+        'Only a canary-clear pass on validation opens the held-out years, and the contract allows one touch.',
+      focus: ['ledger', 'test-gate', 'harness'],
+      events: [
+        { edge: 'ledger>test-gate' },
+        { edge: 'test-gate>harness' },
+        { node: 'test-gate', log: 'TouchBudget.spend(model, version) · 1 of 1' },
+      ],
+    },
+    {
+      caption:
+        'A passing test card would unlock county briefs, and the website already republishes every ledger.',
+      focus: ['ledger', 'briefs', 'website'],
+      events: [
+        { edge: 'ledger>briefs', log: 'validated_by: no test card yet', status: 'warn', stop: 0.6 },
+        { edge: 'ledger>website', log: 'ledgers.json · 12 cards, 3 contracts' },
+        { node: 'website', log: 'every card hash re-verified in the browser', status: 'ok' },
+      ],
+    },
+  ],
+  layouts: {
+    wide: {
+      node: [160, 52],
+      at: {
+        'storm-events': [0, 0],
+        era5: [0, 96],
+        'fema-nri': [0, 192],
+        'usa-structures': [0, 288],
+        contract: [216, 0],
+        'snapshot-pins': [216, 96],
+        'feature-firewall': [432, 96],
+        'test-gate': [432, 192],
+        'integrity-guard': [648, 0],
+        harness: [648, 96, 160, 148],
+        'leakage-canary': [648, 288],
+        agent: [864, 96],
+        website: [216, 408],
+        briefs: [432, 408],
+        ledger: [648, 408],
+      },
+      routes: {
+        'storm-events>snapshot-pins': 'r > l | 188',
+        'era5>snapshot-pins': 'r > l',
+        'fema-nri>snapshot-pins': 'r > l | 188',
+        'usa-structures>snapshot-pins': 'r > l | 188',
+        'snapshot-pins>feature-firewall': 'r > l',
+        'snapshot-pins>harness': 'b > l',
+        'contract>harness': 'r:-8 > l:-62 | 620',
+        'contract>feature-firewall': 'r:8 > t',
+        'agent>harness': 'l > r:-48',
+        'feature-firewall>harness': 'r > l:-48',
+        'harness>leakage-canary': 'b > t',
+        'leakage-canary>ledger': 'b > t',
+        'integrity-guard>agent': 'r > t',
+        'ledger>agent': 'r > b',
+        'ledger>test-gate': 'l:-12 > r:12 | 620',
+        'test-gate>harness': 'r > l:48',
+        'ledger>briefs': 'l:12 > r:12',
+        'briefs>website': 'l > r',
+        'ledger>website': 'b > b | 482',
+      },
+      labels: {
+        'storm-events>snapshot-pins': null,
+        'era5>snapshot-pins': null,
+        'fema-nri>snapshot-pins': null,
+        'usa-structures>snapshot-pins': null,
+      },
+      pad: {
+        outputs: [30, 14, 38, 14],
+        proposer: [30, 14, 14, 14],
+      },
+    },
+    tall: {
+      node: [142, 44],
+      at: {
+        'storm-events': [0, 0],
+        era5: [168, 0],
+        'fema-nri': [0, 60],
+        'usa-structures': [168, 60],
+        'snapshot-pins': [0, 166],
+        contract: [168, 166],
+        'feature-firewall': [0, 242],
+        'integrity-guard': [168, 242],
+        harness: [0, 318, 310, 44],
+        'leakage-canary': [0, 394],
+        'test-gate': [168, 394],
+        agent: [168, 496],
+        ledger: [0, 598],
+        briefs: [168, 598],
+        website: [168, 674],
+      },
+      routes: {
+        'storm-events>snapshot-pins': 'r > r:-8 | 150',
+        'era5>snapshot-pins': 'l > r:-8 | 150',
+        'fema-nri>snapshot-pins': 'r > r:-8 | 150',
+        'usa-structures>snapshot-pins': 'l > r:-8 | 150',
+        'snapshot-pins>feature-firewall': 'b > t',
+        'snapshot-pins>harness': 'l > l | -14',
+        'contract>harness': 'l:16 > t:5 | 160',
+        'contract>feature-firewall': 'l:4 > r | 150',
+        'agent>harness': 'r:-12 > r | 324',
+        'feature-firewall>harness': 'b > t:-84',
+        'harness>leakage-canary': 'b:-84 > t',
+        'leakage-canary>ledger': 'b:46 > t:46',
+        'integrity-guard>agent': 'r > r:12 | 336',
+        'ledger>agent': 'r:-12 > l | 150',
+        'ledger>test-gate': 'r:-12 > l | 150',
+        'test-gate>harness': 't > b:84',
+        'ledger>briefs': 'r:10 > l:10',
+        'briefs>website': 'b > t',
+        'ledger>website': 'b > l',
+      },
+      labels: {
+        'storm-events>snapshot-pins': null,
+        'era5>snapshot-pins': null,
+        'fema-nri>snapshot-pins': null,
+        'usa-structures>snapshot-pins': null,
+        'snapshot-pins>harness': null,
+        'contract>harness': null,
+        'contract>feature-firewall': null,
+        'agent>harness': null,
+        'integrity-guard>agent': null,
+        'ledger>agent': null,
+        'ledger>test-gate': null,
+        'ledger>briefs': null,
+        'leakage-canary>ledger': null,
+      },
+      pad: {
+        public: [30, 14, 14, 14],
+        guarded: [30, 8, 14, 24],
+        proposer: [30, 8, 14, 10],
+        outputs: [30, 14, 14, 14],
+      },
+      names: { guarded: 'Guarded' },
+    },
+  },
+};

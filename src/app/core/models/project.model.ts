@@ -2,12 +2,15 @@
  * What a section shows in place of paragraphs.
  *
  * `figure` is a chronicle animation: public/projects/<slug>/<name>-wide.svg and
- * -tall.svg, built by scripts/figures/build.mjs. `chips` is a row of labels.
+ * -tall.svg, built by scripts/figures/build.mjs. `system` is the project's
+ * interactive architecture diagram, from src/app/features/work/data/systems.
+ * `chips` is a row of labels.
  * `phases` is a roadmap track, each phase marked proven or only built.
  * `lab` is an interactive figure from src/app/shared/components/labs.
  */
 export type ProjectVisual =
   | { kind: 'figure'; name: string }
+  | { kind: 'system' }
   | { kind: 'lab'; name: 'pathfinder' }
   | { kind: 'chips'; items: string[] }
   | { kind: 'phases'; phases: ProjectPhase[] };
@@ -49,7 +52,7 @@ export interface Project {
   /** Rendered as the status chip and in the detail hero. */
   statusLabel: string;
   links: ProjectLink[];
-  /** The chronicle figure at the top of the project page. */
-  hero: string;
+  /** The chronicle figure at the top of the project page, if it has one. */
+  hero?: string;
   sections: ProjectSection[];
 }

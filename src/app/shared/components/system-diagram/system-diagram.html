@@ -1,0 +1,382 @@
+<figure
+  class="sd paper"
+  [class.is-phone]="phone()"
+  [class.is-calm]="calm()"
+  (keydown)="onKey($event)"
+>
+  <div class="sd-head">
+    <div class="sd-paths" role="group" aria-label="Paths through the system">
+      <button
+        type="button"
+        class="sd-path"
+        [attr.aria-pressed]="!pathId()"
+        (click)="pickPath(null)"
+      >
+        Full tour
+      </button>
+      @for (p of spec().paths; track p.id) {
+        <button
+          type="button"
+          class="sd-path"
+          [attr.aria-pressed]="pathId() === p.id"
+          (click)="pickPath(p.id)"
+        >
+          {{ p.label }}
+        </button>
+      }
+    </div>
+    <p class="sd-clock" aria-hidden="true">
+      <span class="sd-clock-now">{{ stamp(t()) }}</span> / {{ stamp(tl().duration) }}
+    </p>
+  </div>
+
+  <div class="sd-body">
+    <div class="sd-stage" [style.aspect-ratio]="ratio()">
+      <svg
+        class="sd-svg"
+        [attr.viewBox]="viewBox()"
+        role="group"
+        [attr.aria-label]="spec().title"
+        [class.is-picking]="!!picked() || !!hover()"
+      >
+        <defs>
+          <pattern [attr.id]="uid + '-grid'" width="16" height="16" patternUnits="userSpaceOnUse">
+            <circle class="sd-dot" cx="1" cy="1" r="0.8" />
+          </pattern>
+        </defs>
+        <rect
+          [attr.x]="geo().view.x"
+          [attr.y]="geo().view.y"
+          [attr.width]="geo().view.w"
+          [attr.height]="geo().view.h"
+          [attr.fill]="'url(#' + uid + '-grid)'"
+          (click)="inspect('node', null)"
+        />
+
+        @for (g of geo().groups; track g.id) {
+          <g [class]="'g is-' + g.style">
+            <rect
+              [attr.x]="g.x"
+              [attr.y]="g.y"
+              [attr.width]="g.w"
+              [attr.height]="g.h"
+              [attr.rx]="g.style === 'cluster' ? 8 : 12"
+            />
+            <text [attr.x]="g.name.x" [attr.y]="g.name.y + 8.5">{{ g.label }}</text>
+          </g>
+        }
+
+        @for (w of geo().wires; track w.id) {
+          <g [class]="wireClass(w)">
+            <path class="w-line" [attr.d]="w.d" />
+            <path
+              class="w-flow"
+              [attr.d]="w.d"
+              pathLength="1"
+              [attr.stroke-dashoffset]="1 - reach(w)"
+            />
+            <path class="w-arrow" [attr.d]="w.arrow" />
+            <circle class="w-port" [attr.cx]="w.points[0].x" [attr.cy]="w.points[0].y" r="2.2" />
+          </g>
+        }
+
+        <!-- Labels sit over every wire, and the wide hit paths over the labels. -->
+        @for (w of geo().wires; track w.id) {
+          @if (w.label; as l) {
+            <g [class]="wireClass(w) + ' wl'">
+              <rect [attr.x]="l.x" [attr.y]="l.y" [attr.width]="l.w" [attr.height]="l.h" rx="3" />
+              <text [attr.x]="l.cx" [attr.y]="l.cy">{{ l.text }}</text>
+            </g>
+          }
+        }
+        @for (w of geo().wires; track w.id) {
+          <path
+            class="w-hit"
+            [attr.d]="w.d"
+            [attr.data-edge]="w.id"
+            (click)="inspect('edge', w.id)"
+            (pointerenter)="onHover('edge', w.id, $event)"
+            (pointerleave)="onHover('edge', null)"
+          >
+            <title>{{ wireLabel(w.id) }}</title>
+          </path>
+        }
+
+        @for (n of spec().nodes; track n.id) {
+          @let b = box(n.id);
+          @let tallBox = b.h > 100;
+          <g
+            [class]="nodeClass(n.id)"
+            [attr.transform]="'translate(' + b.x + ' ' + b.y + ')'"
+            tabindex="0"
+            role="button"
+            [attr.data-node]="n.id"
+            [attr.aria-label]="n.label + ', ' + n.tech"
+            (click)="inspect('node', n.id)"
+            (pointerenter)="onHover('node', n.id, $event)"
+            (pointerleave)="onHover('node', null)"
+          >
+            <rect
+              class="n-halo"
+              x="-4"
+              y="-4"
+              [attr.width]="b.w + 8"
+              [attr.height]="b.h + 8"
+              rx="9"
+            />
+            <rect class="n-box" [attr.width]="b.w" [attr.height]="b.h" rx="6" />
+            <g
+              [attr.transform]="
+                'translate(' +
+                (phone() ? 8 : 10) +
+                ' ' +
+                (tallBox ? 10 : (b.h - (phone() ? 20 : 24)) / 2) +
+                ')'
+              "
+            >
+              <rect
+                class="n-ico-bg"
+                [attr.width]="phone() ? 20 : 24"
+                [attr.height]="phone() ? 20 : 24"
+                rx="5"
+              />
+              <path
+                class="n-ico"
+                [attr.d]="icons[n.kind]"
+                [attr.transform]="phone() ? 'translate(4 4) scale(1)' : 'translate(6 6)'"
+              />
+            </g>
+            <text class="n-name" [attr.x]="phone() ? 34 : 40" [attr.y]="tallBox ? 21 : b.h / 2 - 2">
+              {{ n.label }}
+            </text>
+            <text
+              class="n-tech"
+              [attr.x]="phone() ? 34 : 40"
+              [attr.y]="tallBox ? 34 : b.h / 2 + 11"
+            >
+              {{ n.tech }}
+            </text>
+            @if (tallBox && n.lines) {
+              <line class="n-rule" x1="10" [attr.x2]="b.w - 10" y1="46" y2="46" />
+              @for (line of n.lines; track line; let i = $index) {
+                <text class="n-line" x="12" [attr.y]="64 + i * 16">{{ line }}</text>
+              }
+            }
+            @if (status(n.id) !== 'normal') {
+              <g class="n-badge" [attr.transform]="'translate(' + (b.w - 2) + ' 2)'">
+                <circle r="7" />
+                @switch (status(n.id)) {
+                  @case ('ok') {
+                    <path d="M-3 0.2l2 2 4-4.2" />
+                  }
+                  @case ('warn') {
+                    <path d="M0 -3.4v3.8M0 2.8v0.4" />
+                  }
+                  @default {
+                    <path d="M-2.6 -2.6l5.2 5.2M2.6 -2.6l-5.2 5.2" />
+                  }
+                }
+              </g>
+            }
+          </g>
+        }
+
+        @for (p of frame().packets; track p.id) {
+          <g
+            [class]="'pk is-' + p.status"
+            [class.is-stopped]="p.stopped"
+            [attr.transform]="'translate(' + p.x + ' ' + p.y + ')'"
+          >
+            <circle class="pk-halo" r="8" />
+            <circle class="pk-dot" r="3.6" />
+            @if (p.stopped) {
+              <path class="pk-x" d="M-2.2 -2.2l4.4 4.4M2.2 -2.2l-4.4 4.4" />
+            }
+          </g>
+        }
+      </svg>
+
+      @if (tip(); as tip) {
+        <div class="sd-tip" [style.left.%]="tip.left" [style.top.%]="tip.top" aria-hidden="true">
+          {{ tip.text }}
+        </div>
+      }
+    </div>
+
+    <aside class="sd-side">
+      <div class="sd-side-inner">
+        @if (!phone() && picked()) {
+          <ng-container [ngTemplateOutlet]="inspector" />
+        } @else {
+          <div class="sd-trace-head">
+            <span>Trace</span>
+            <span>{{ log().length }} {{ log().length === 1 ? 'event' : 'events' }}</span>
+          </div>
+          <ol #trace class="sd-trace" aria-label="Trace">
+            @for (ev of log(); track ev.i; let last = $last) {
+              <li [class]="'is-' + (ev.status ?? 'normal')" [class.is-now]="last">
+                <button type="button" tabindex="-1" (click)="seek(ev)">
+                  <span class="sd-trace-t">{{ stamp(ev.start) }}</span>
+                  <span class="sd-trace-route">{{ route(ev) }}</span>
+                  <span class="sd-trace-text">{{ ev.text }}</span>
+                </button>
+              </li>
+            } @empty {
+              <li class="sd-trace-empty">Waiting for the first event</li>
+            }
+          </ol>
+        }
+      </div>
+    </aside>
+  </div>
+
+  <div class="sd-dock">
+    <div class="sd-panel" aria-live="polite">
+      @if (phone() && picked()) {
+        <ng-container [ngTemplateOutlet]="inspector" />
+      } @else {
+        <p class="sd-caption">
+          <span class="sd-num">{{ pad(step()) }}</span>
+          {{ spec().steps[step()].caption }}
+        </p>
+      }
+    </div>
+
+    <div class="sd-controls">
+      <div class="sd-buttons">
+        <button type="button" class="sd-btn" (click)="prev()" aria-label="Previous step">
+          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+            <path d="M7.5 2.5L4 6l3.5 3.5" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="sd-btn sd-btn--play"
+          (click)="toggle()"
+          [attr.aria-label]="playing() && !picked() ? 'Pause' : 'Play'"
+        >
+          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+            @if (playing() && !picked()) {
+              <rect x="2" y="1.5" width="2.6" height="9" rx="0.6" />
+              <rect x="7.4" y="1.5" width="2.6" height="9" rx="0.6" />
+            } @else {
+              <path d="M3 1.6v8.8a.6.6 0 0 0 .9.5l7-4.4a.6.6 0 0 0 0-1L3.9 1.1a.6.6 0 0 0-.9.5z" />
+            }
+          </svg>
+        </button>
+        <button type="button" class="sd-btn" (click)="next()" aria-label="Next step">
+          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+            <path d="M4.5 2.5L8 6 4.5 9.5" />
+          </svg>
+        </button>
+      </div>
+      <ol
+        #rail
+        class="sd-rail"
+        aria-label="Steps"
+        (pointerdown)="onRailDown($event)"
+        (pointermove)="onRailMove($event)"
+        (pointerup)="onRailUp()"
+        (pointercancel)="onRailUp()"
+      >
+        @for (s of tl().steps; track $index) {
+          <li
+            [class]="'sd-seg is-' + stepState($index)"
+            [class.is-out]="!inPath($index)"
+            [style.flex-grow]="s.end - s.start"
+            [style.--fill]="$index === step() ? fill($index) : null"
+          >
+            <button
+              type="button"
+              (click)="onSegment($event, $index)"
+              [attr.aria-label]="'Step ' + ($index + 1) + ': ' + spec().steps[$index].caption"
+              [attr.aria-current]="$index === step() ? 'step' : null"
+            ></button>
+          </li>
+        }
+      </ol>
+      <p class="sd-hint">Click a part or wire · ← → to step</p>
+    </div>
+  </div>
+</figure>
+
+<ng-template #inspector>
+  @if (pickedNode(); as node) {
+    <div class="sd-insp">
+      <div class="sd-insp-top">
+        <span class="sd-tag">{{ kindLabel[node.kind] }}</span>
+        <button type="button" class="sd-close" (click)="inspect('node', null)" aria-label="Close">
+          ×
+        </button>
+      </div>
+      <h3 class="sd-insp-name">{{ node.label }}</h3>
+      <p class="sd-insp-tech">{{ node.tech }}</p>
+      @if (node.code) {
+        <pre class="sd-code"><code>{{ node.code }}</code></pre>
+      }
+      <p class="sd-insp-about">{{ node.about }}</p>
+      @if (href(node.path); as url) {
+        <a class="sd-file" [href]="url" target="_blank" rel="noopener noreferrer">{{
+          node.path
+        }}</a>
+      }
+      @if (links().length) {
+        <ul class="sd-links" role="list" aria-label="Connections">
+          @for (l of links(); track l.id) {
+            <li>
+              <button type="button" class="sd-link" (click)="inspect('edge', l.id)">
+                <span class="sd-link-dir" aria-hidden="true">{{ l.outgoing ? '→' : '←' }}</span>
+                <span class="sd-link-name">{{ l.other.label }}</span>
+                <span class="sd-link-label">{{ l.edge.label }}</span>
+              </button>
+            </li>
+          }
+        </ul>
+      }
+      <ng-container [ngTemplateOutlet]="steps" />
+    </div>
+  } @else if (pickedEdge(); as edge) {
+    <div class="sd-insp">
+      <div class="sd-insp-top">
+        <span class="sd-tag">{{ edge.async ? 'Async' : 'Call' }}</span>
+        <button type="button" class="sd-close" (click)="inspect('edge', null)" aria-label="Close">
+          ×
+        </button>
+      </div>
+      <h3 class="sd-insp-name">
+        <button type="button" class="sd-end" (click)="inspect('node', edge.from)">
+          {{ nodes().get(edge.from)!.label }}
+        </button>
+        <span class="sd-insp-arrow" aria-label="to">→</span>
+        <button type="button" class="sd-end" (click)="inspect('node', edge.to)">
+          {{ nodes().get(edge.to)!.label }}
+        </button>
+      </h3>
+      <p class="sd-insp-tech">{{ edge.label }}</p>
+      <pre class="sd-code"><code>{{ edge.payload }}</code></pre>
+      <p class="sd-insp-about">{{ edge.detail }}</p>
+      @if (href(edge.at); as url) {
+        <a class="sd-file" [href]="url" target="_blank" rel="noopener noreferrer">{{ edge.at }}</a>
+      }
+      <ng-container [ngTemplateOutlet]="steps" />
+    </div>
+  }
+</ng-template>
+
+<ng-template #steps>
+  @if (pickedSteps().length) {
+    <div class="sd-insp-steps">
+      <span>In steps</span>
+      @for (i of pickedSteps(); track i) {
+        <button
+          type="button"
+          class="sd-chip"
+          (click)="goTo(i)"
+          [attr.aria-label]="'Go to step ' + (i + 1)"
+        >
+          {{ pad(i) }}
+        </button>
+      }
+    </div>
+  }
+</ng-template>
