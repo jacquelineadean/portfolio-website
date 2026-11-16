@@ -1,4 +1,11 @@
-import { Component, ElementRef, afterNextRender, inject, input } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  afterNextRender,
+  inject,
+  input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   ScrollAnimationService,
   RevealAnimation,
@@ -8,6 +15,7 @@ import {
   selector: 'app-scroll-reveal',
   standalone: true,
   template: '<ng-content />',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: ':host { display: block; }',
 })
 export class ScrollReveal {

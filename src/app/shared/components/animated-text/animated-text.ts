@@ -1,10 +1,18 @@
-import { Component, ElementRef, afterNextRender, inject, input } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  afterNextRender,
+  inject,
+  input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ScrollAnimationService } from '../../../core/services/scroll-animation.service';
 
 @Component({
   selector: 'app-animated-text',
   standalone: true,
   template: '<span style="visibility: hidden"><ng-content /></span>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: ':host { display: inline-block; }',
 })
 export class AnimatedText {

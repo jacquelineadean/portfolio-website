@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ import { workFor } from '../../../../core/works';
   standalone: true,
   imports: [RouterLink, ScrollReveal, ChronicleFigure, Pathfinder, SystemDiagram, Glyphs],
   templateUrl: './project-detail.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './project-detail.scss',
 })
 export class ProjectDetail {

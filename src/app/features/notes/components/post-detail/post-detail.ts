@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,6 +12,7 @@ import { BlogService } from '../../../../core/services/blog.service';
   standalone: true,
   imports: [RouterLink, ScrollReveal, ShareButtons],
   templateUrl: './post-detail.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './post-detail.scss',
 })
 export class PostDetail {

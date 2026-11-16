@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ScrollReveal } from '../../shared/components/scroll-reveal/scroll-reveal';
 import { ProjectCarousel } from '../../shared/components/project-carousel/project-carousel';
 import { PROJECTS } from './data/projects.data';
@@ -8,6 +8,7 @@ import { PROJECTS } from './data/projects.data';
   standalone: true,
   imports: [ScrollReveal, ProjectCarousel],
   templateUrl: './work.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './work.scss',
 })
 export class Work {

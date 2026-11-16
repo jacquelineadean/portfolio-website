@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -18,6 +18,7 @@ import { ReadingItem } from '../../core/models/reading.model';
   standalone: true,
   imports: [RouterLink, ScrollReveal, NgTemplateOutlet],
   templateUrl: './notes.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './notes.scss',
 })
 export class Notes {
