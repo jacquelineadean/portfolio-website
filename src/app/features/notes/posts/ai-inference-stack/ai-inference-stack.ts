@@ -5,6 +5,7 @@ import {
   afterNextRender,
   inject,
   viewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -40,6 +41,7 @@ const FONTS_HREF =
   standalone: true,
   imports: [RouterLink, ScrollReveal, ShareButtons],
   templateUrl: './ai-inference-stack.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ai-inference-stack.scss',
 })
 export class AiInferenceStack {

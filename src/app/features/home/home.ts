@@ -5,6 +5,7 @@ import {
   afterNextRender,
   inject,
   viewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeroName } from '../../core/hero-name';
@@ -22,6 +23,7 @@ import { Fern } from '../../shared/glyphs/specimens/fern';
   standalone: true,
   imports: [RouterLink, Glyphs],
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home.scss',
 })
 export class Home {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BlogService } from '../../core/services/blog.service';
 import { Glyphs } from '../../shared/glyphs/glyphs';
@@ -35,6 +35,7 @@ interface Reel {
   standalone: true,
   imports: [RouterLink, Glyphs, LoopVideo],
   templateUrl: './about.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './about.scss',
 })
 export class About {

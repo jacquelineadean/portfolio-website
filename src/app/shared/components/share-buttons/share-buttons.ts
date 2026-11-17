@@ -1,9 +1,10 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-share-buttons',
   standalone: true,
   templateUrl: './share-buttons.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './share-buttons.scss',
 })
 export class ShareButtons {
